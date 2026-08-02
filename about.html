@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Deskline — Financial Markets News &amp; Tools</title>
+<meta name="description" content="Deskline is a financial markets platform built by a 10-year profitable trader, offering live prices, charts, calculators, news, and an economic calendar to help traders of every level.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1116; --panel:#151A22; --panel-2:#12161D;
+    --line-soft:rgba(255,255,255,0.08); --ink:#EDEFF3; --dim:#7C8598; --gold:#E8B15C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Space Grotesk',sans-serif; min-height:100vh; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
+  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
+  .wordmark span{ color:var(--gold); }
+  .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
+  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
+  .navlinks a:hover{ color:var(--ink); }
+  .navlinks a.active{ color:var(--gold); }
+
+  article{ max-width: 740px; margin: 0 auto; padding: 3.5rem 6vw 4rem; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:1rem;
+  }
+  h1{ font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight:700; letter-spacing:-0.02em; line-height:1.15; margin-bottom:1.4rem; }
+  h2{ font-size:1.25rem; font-weight:600; margin:2.2rem 0 .9rem; }
+  p{ font-size:1.02rem; line-height:1.8; color:#D7DAE1; margin-bottom:1.1rem; }
+  .lead{ font-size:1.15rem; color:var(--ink); }
+  ul{ margin: 0 0 1.1rem 1.2rem; }
+  li{ font-size:1rem; line-height:1.8; color:#D7DAE1; margin-bottom:.5rem; }
+  strong{ color:var(--ink); }
+
+  .signature{
+    margin-top:2.5rem; padding-top:1.8rem; border-top:1px solid var(--line-soft);
+    display:flex; align-items:center; gap:1rem;
+  }
+  .sig-mark{
+    width:44px; height:44px; border-radius:50%;
+    background: linear-gradient(135deg, var(--gold), #B9803A);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; color:#1A1305; font-size:1.1rem; flex-shrink:0;
+  }
+  .sig-name{ font-weight:600; font-size:.95rem; }
+  .sig-role{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-top:.15rem; }
+
+  .disclaimer-box{
+    margin-top:2.5rem;
+    background: var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:6px;
+    padding:1.3rem 1.5rem;
+  }
+  .disclaimer-box p{ font-size:.85rem; color:var(--dim); line-height:1.7; margin-bottom:0; }
+
+  footer{
+    text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
+    font-size:.65rem; color: var(--dim); border-top:1px solid var(--line-soft);
+  }
+  footer a{ color:var(--gold); text-decoration:none; margin: 0 .5rem; }
+
+  /* ---------------- DeskAi floating chatbox ---------------- */
+  .deskai-toggle{
+    position: fixed;
+    right: 24px; bottom: 24px;
+    z-index: 999;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #B9803A);
+    border: none;
+    cursor: pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    font-size: 1.4rem;
+    transition: transform .15s;
+  }
+  .deskai-toggle:hover{ transform: scale(1.06); }
+  .deskai-toggle .dot{
+    position:absolute; top:6px; right:6px;
+    width:10px; height:10px; border-radius:50%;
+    background:#4ADE80; border:2px solid var(--bg);
+  }
+
+  .deskai-panel{
+    position: fixed;
+    right: 24px; bottom: 96px;
+    z-index: 999;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    height: 520px;
+    max-height: calc(100vh - 140px);
+    background: var(--panel);
+    border: 1px solid var(--line-soft);
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+  .deskai-panel.open{ display:flex; }
+
+  .deskai-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: .9rem 1.1rem;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--panel-2);
+  }
+  .deskai-header-title{ display:flex; align-items:center; gap:.5rem; }
+  .deskai-header-title .mark{
+    width:26px; height:26px; border-radius:50%;
+    background: linear-gradient(135deg, var(--gold), #B9803A);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; color:#1A1305; font-size:.75rem;
+  }
+  .deskai-header-title span{ font-weight:600; font-size:.9rem; }
+  .deskai-header-sub{ font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim); }
+  .deskai-close{
+    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:1.1rem;
+    line-height:1; padding:.2rem;
+  }
+  .deskai-close:hover{ color:var(--ink); }
+
+  .deskai-messages{
+    flex:1;
+    overflow-y:auto;
+    padding: 1rem 1.1rem;
+    display:flex; flex-direction:column; gap:.8rem;
+  }
+  .deskai-msg{
+    max-width: 85%;
+    padding: .65rem .85rem;
+    border-radius: 10px;
+    font-size: .85rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .deskai-msg.user{
+    align-self:flex-end;
+    background: var(--gold);
+    color: #1A1305;
+    border-bottom-right-radius:2px;
+  }
+  .deskai-msg.assistant{
+    align-self:flex-start;
+    background: var(--panel-2);
+    color: #D7DAE1;
+    border-bottom-left-radius:2px;
+  }
+  .deskai-msg.thinking{
+    align-self:flex-start;
+    background: var(--panel-2);
+    color: var(--dim);
+    font-family:'JetBrains Mono', monospace;
+    font-size:.75rem;
+  }
+  .deskai-msg.err{
+    align-self:flex-start;
+    background: rgba(251,107,91,0.1);
+    color: #FB6B5B;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.75rem;
+  }
+
+  .deskai-welcome{
+    font-size:.82rem; color:var(--dim); line-height:1.6; padding: .2rem .1rem 0;
+  }
+  .deskai-quick{
+    display:flex; flex-wrap:wrap; gap:.4rem; padding: 0 1.1rem .9rem;
+  }
+  .deskai-quick button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.66rem;
+    background:transparent;
+    border:1px solid var(--line-soft);
+    color:var(--dim);
+    padding:.35rem .65rem;
+    border-radius:5px;
+    cursor:pointer;
+  }
+  .deskai-quick button:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .deskai-input-row{
+    display:flex; gap:.5rem;
+    padding: .8rem;
+    border-top:1px solid var(--line-soft);
+    background: var(--panel-2);
+  }
+  .deskai-input{
+    flex:1;
+    background: var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:6px;
+    padding:.6rem .75rem;
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.85rem;
+    outline:none;
+  }
+  .deskai-input:focus{ border-color:var(--gold); }
+  .deskai-send{
+    background: var(--gold);
+    border:none;
+    border-radius:6px;
+    width:38px;
+    color:#1A1305;
+    font-weight:700;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .deskai-send:hover{ opacity:.9; }
+
+  @media (max-width: 480px){
+    .deskai-panel{ right:16px; left:16px; width:auto; bottom:88px; }
+    .deskai-toggle{ right:16px; bottom:16px; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wordmark">Desk<span>line</span></div>
+  <div class="navlinks">
+    <a href="index.html">Market</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="news.html">News</a>
+    <a href="calendar.html">Economic Calendar</a>
+    <a href="brokers/index.html">Brokers</a>
+  </div>
+</nav>
+
+<article>
+  <div class="eyebrow">About Deskline</div>
+  <h1>Real market data, built by someone who actually trades.</h1>
+  <p class="lead">Deskline is a financial markets platform covering live forex, gold and silver, crypto, stock indices, and futures — with the news, calculator, and economic calendar tools traders actually reach for every day.</p>
+
+  <h2>Why Deskline exists</h2>
+  <p>Most financial sites are either overwhelming — built for institutional traders with a hundred features nobody new needs — or too thin, showing a single price with no real context. Deskline was built to sit in between: fast, live market data alongside the practical tools that matter, without the clutter.</p>
+
+  <h2>Built on real trading experience</h2>
+  <p>Deskline is run by a trader with over 10 years of profitable, hands-on experience across forex and gold markets. That experience shapes what's actually built here — not guesses about what traders might want, but the tools and information used in real trading decisions day to day, including:</p>
+  <ul>
+    <li>Live price tracking across forex, metals, crypto, indices, and futures</li>
+    <li>A profit/loss and position size calculator built around real risk management, not just theoretical formulas</li>
+    <li>An economic calendar to track the events that actually move markets</li>
+    <li>Straightforward broker guidance to help traders evaluate who they trust with their capital</li>
+  </ul>
+
+  <h2>Who Deskline is for</h2>
+  <p>Whether you're placing your first trade or you've been in the markets for years, Deskline is built to be useful at every stage — a live reference for checking prices, planning trades, and staying on top of the news and events that matter, without needing ten different tabs open.</p>
+
+  <h2>What Deskline is not</h2>
+  <p>Deskline provides market data, tools, and general information for educational purposes. It does not provide personalized financial advice, and it does not manage funds or execute trades on anyone's behalf. Trading forex, crypto, and other leveraged instruments carries real risk, and decisions made using this site are always your own.</p>
+
+  <div class="signature">
+    <div class="sig-mark">D</div>
+    <div>
+      <div class="sig-name">The Deskline Team</div>
+      <div class="sig-role">10+ years trading forex &amp; gold markets</div>
+    </div>
+  </div>
+
+  <div class="disclaimer-box">
+    <p>Deskline is an independent financial information platform. Prices and data are provided by third-party sources (including TradingView) and may be delayed. Nothing on this site constitutes financial, investment, or trading advice. Always do your own research and consider your own risk tolerance before trading.</p>
+  </div>
+</article>
+
+<footer>
+  Deskline · <a href="about.html">About</a> · <a href="contact.html">Contact</a>
+</footer>
+
+
+<button class="deskai-toggle" id="deskaiToggle" aria-label="Open DeskAi">
+  💬<span class="dot"></span>
+</button>
+
+<div class="deskai-panel" id="deskaiPanel">
+  <div class="deskai-header">
+    <div class="deskai-header-title">
+      <div class="mark">D</div>
+      <div>
+        <div><span>DeskAi</span></div>
+        <div class="deskai-header-sub">Powered by Gemini</div>
+      </div>
+    </div>
+    <button class="deskai-close" id="deskaiClose">✕</button>
+  </div>
+  <div class="deskai-messages" id="deskaiMessages">
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about markets, trading, or how to use Deskline.</div>
+  </div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is Deskline and what can I do here?">What is Deskline?</button></div>
+  <div class="deskai-input-row">
+    <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
+    <button class="deskai-send" id="deskaiSend">→</button>
+  </div>
+</div>
+
+<script>
+window.getDeskAiContext = async function(){ return null; };
+
+/* ---------------- DeskAi floating chatbox ---------------- */
+(function(){
+  const SECTION = "general";
+  const toggle = document.getElementById('deskaiToggle');
+  const panel = document.getElementById('deskaiPanel');
+  const closeBtn = document.getElementById('deskaiClose');
+  const messagesEl = document.getElementById('deskaiMessages');
+  const quickEl = document.getElementById('deskaiQuick');
+  const inputEl = document.getElementById('deskaiInput');
+  const sendBtn = document.getElementById('deskaiSend');
+
+  let history = [];
+  let opened = false;
+
+  toggle.addEventListener('click', () => {
+    opened = !opened;
+    panel.classList.toggle('open', opened);
+    if(opened) inputEl.focus();
+  });
+  closeBtn.addEventListener('click', () => {
+    opened = false;
+    panel.classList.remove('open');
+  });
+
+  function addMessage(role, text){
+    const div = document.createElement('div');
+    div.className = 'deskai-msg ' + role;
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  async function sendToDeskAi(question){
+    if(!question.trim()) return;
+    document.getElementById('deskaiWelcome')?.remove();
+    quickEl.style.display = 'none';
+    addMessage('user', question);
+    history.push({ role:'user', text: question });
+    const thinkingEl = addMessage('thinking', 'DeskAi is thinking…');
+
+    let context = null;
+    if(typeof window.getDeskAiContext === 'function'){
+      try{ context = await window.getDeskAiContext(); } catch(e){}
+    }
+
+    try{
+      const res = await fetch('/.netlify/functions/deskai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: SECTION, question, context, history: history.slice(0,-1) })
+      });
+      const data = await res.json();
+      thinkingEl.remove();
+      if(data.error){
+        addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
+        return;
+      }
+      addMessage('assistant', data.answer);
+      history.push({ role:'assistant', text: data.answer });
+    } catch(e){
+      thinkingEl.remove();
+      addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
+    }
+  }
+
+  sendBtn.addEventListener('click', () => {
+    const q = inputEl.value.trim();
+    if(!q) return;
+    inputEl.value = '';
+    sendToDeskAi(q);
+  });
+  inputEl.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const q = inputEl.value.trim();
+      if(!q) return;
+      inputEl.value = '';
+      sendToDeskAi(q);
+    }
+  });
+  quickEl.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
+  });
+})();
+
+</script>
+</body>
+</html>
