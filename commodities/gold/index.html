@@ -653,10 +653,10 @@
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
 // The publishable/anon key is safe to expose in frontend code by design —
 // Row Level Security (set up via supabase-schema.sql) is what keeps data private.
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_KEY = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+const SUPABASE_URL = 'https://odlyvhxhktdjrydpkmta.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_zTpEf6S1XsS4JgPpjpXTFg_7atZZvFu';
 
-const sb = (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && window.supabase)
+const sb = (SUPABASE_URL !== 'https://odlyvhxhktdjrydpkmta.supabase.co' && window.supabase)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   : null;
 
