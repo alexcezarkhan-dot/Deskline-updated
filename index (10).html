@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Price Today (XAUUSD) Live Chart & AI Analysis | DeskTerminal</title>
+<meta name="description" content="Live gold price today (XAUUSD), chart, AI-generated market analysis, news, and economic events. Track gold spot price per ounce in real time.">
+<meta name="keywords" content="gold price today, XAUUSD live price, gold price live, gold chart, gold forecast, gold news, gold technical analysis, sona rate, gold price per ounce">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="DeskTerminal">
+<meta name="theme-color" content="#0E1116">
+<link rel="canonical" href="https://deskterminal.com/commodities/gold/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DeskTerminal">
+<meta property="og:title" content="Gold Price Today (XAUUSD) Live Chart & AI Analysis">
+<meta property="og:description" content="Live gold price today (XAUUSD), chart, AI-generated market analysis, news, and economic events. Track gold spot price per ounce in real time.">
+<meta property="og:url" content="https://deskterminal.com/commodities/gold/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gold Price Today (XAUUSD) Live Chart & AI Analysis">
+<meta name="twitter:description" content="Live gold price today (XAUUSD), chart, AI-generated market analysis, news, and economic events. Track gold spot price per ounce in real time.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Gold Price Today (XAUUSD) Live Chart & AI Analysis",
+  "description": "Live gold price today (XAUUSD), chart, AI-generated market analysis, news, and economic events. Track gold spot price per ounce in real time.",
+  "url": "https://deskterminal.com/commodities/gold/",
+  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "DeskTerminal", "item": "https://deskterminal.com/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Commodities", "item": "https://deskterminal.com/commodities/" },
+      { "@type": "ListItem", "position": 3, "name": "Gold (XAUUSD)", "item": "https://deskterminal.com/commodities/gold/" }
+    ]
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/instrument-styles.css">
+<style>
+
+  /* ---------------- Hamburger + nav drawer ---------------- */
+  .nav-left{ display:flex; align-items:center; gap:.9rem; }
+  .hamburger-btn{
+    background:transparent; border:1px solid var(--line-soft); border-radius:5px;
+    width:34px; height:34px; cursor:pointer; flex-shrink:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  }
+  .hamburger-btn span{ width:16px; height:2px; background:var(--dim); border-radius:1px; transition: background .15s; }
+  .hamburger-btn:hover{ border-color:var(--gold); }
+  .hamburger-btn:hover span{ background:var(--gold); }
+
+  .nav-drawer-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.55);
+    z-index:1000; display:none;
+  }
+  .nav-drawer-overlay.open{ display:block; }
+  .nav-drawer{
+    position:fixed; top:0; left:0; bottom:0;
+    width:280px; max-width:82vw;
+    background:var(--panel); border-right:1px solid var(--line-soft);
+    z-index:1001;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    display:flex; flex-direction:column;
+  }
+  .nav-drawer.open{ transform: translateX(0); }
+  .nav-drawer-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.2rem 1.3rem; border-bottom:1px solid var(--line-soft);
+  }
+  .drawer-close{ background:transparent; border:none; color:var(--dim); font-size:1.2rem; cursor:pointer; line-height:1; }
+  .drawer-close:hover{ color:var(--ink); }
+  .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
+  .nav-drawer-links a{
+    padding:.85rem 1.3rem;
+    font-family:'JetBrains Mono', monospace; font-size:.85rem; letter-spacing:.02em;
+    color:var(--dim); text-decoration:none;
+    border-left:2px solid transparent;
+  }
+  .nav-drawer-links a:hover{ color:var(--ink); background:var(--panel-2); }
+  .nav-drawer-links a.active{ color:var(--gold); border-left-color:var(--gold); background:var(--panel-2); }
+  .nav-drawer-note{
+    margin-top:auto;
+    padding:1rem 1.3rem;
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    border-top:1px solid var(--line-soft);
+  }
+
+
+  /* ---------------- Auth: login/signup + profile ---------------- */
+  .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
+  .auth-btn{
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; font-weight:600;
+    padding:.45rem .9rem; border-radius:5px; cursor:pointer;
+    border:1px solid var(--line-soft); background:transparent; color:var(--dim);
+  }
+  .auth-btn:hover{ border-color:var(--gold); color:var(--gold); }
+  .auth-btn.primary{
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
+    border:none; color:#1A1305;
+  }
+  .auth-btn.primary:hover{ opacity:.92; }
+
+  .auth-avatar-btn{
+    width:34px; height:34px; border-radius:50%; overflow:hidden;
+    border:1px solid var(--line-soft); cursor:pointer; background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center; padding:0;
+  }
+  .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
+  .auth-avatar-btn .initial{ font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:.85rem; }
+
+  .auth-modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
+    align-items:center; justify-content:center;
+  }
+  .auth-modal-overlay.open{ display:flex; }
+  .auth-modal{
+    width:340px; max-width:90vw;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
+    padding:1.8rem; position:relative;
+  }
+  .auth-modal-close{
+    position:absolute; top:.9rem; right:.9rem;
+    background:transparent; border:none; color:var(--dim); font-size:1.1rem; cursor:pointer;
+  }
+  .auth-modal-close:hover{ color:var(--ink); }
+  .auth-modal h2{ font-size:1.1rem; font-weight:700; margin-bottom:.4rem; }
+  .auth-modal p{ font-size:.82rem; color:var(--dim); margin-bottom:1.4rem; line-height:1.5; }
+  .auth-provider-btn{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
+    padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
+    background:var(--panel-2); color:var(--ink);
+    font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:500;
+    cursor:pointer; margin-bottom:.7rem;
+  }
+  .auth-provider-btn:hover{ border-color:var(--gold); }
+  .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
+  .auth-modal-note{
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    margin-top:1rem; line-height:1.6; text-align:center;
+  }
+
+  .profile-dropdown{
+    position:fixed; top:64px; right:6vw; z-index:1090;
+    width:300px; background:var(--panel); border:1px solid var(--line-soft);
+    border-radius:10px; box-shadow:0 12px 32px rgba(0,0,0,0.5);
+    display:none; overflow:hidden;
+  }
+  .profile-dropdown.open{ display:block; }
+  .profile-header{
+    display:flex; align-items:center; gap:.8rem;
+    padding:1.1rem; border-bottom:1px solid var(--line-soft); background:var(--panel-2);
+  }
+  .profile-header img{ width:44px; height:44px; border-radius:50%; object-fit:cover; }
+  .profile-header .initial{
+    width:44px; height:44px; border-radius:50%; background:var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
+  }
+  .profile-header-name{ font-weight:600; font-size:.9rem; }
+  .profile-header-email{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim); margin-top:.15rem; }
+
+  .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
+  .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
+  .profile-field-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--dim); flex-shrink:0;
+  }
+  .profile-field-value{ font-size:.78rem; color:var(--ink); text-align:right; word-break:break-word; }
+  .profile-field-value.mono{ font-family:'JetBrains Mono', monospace; font-size:.7rem; }
+  .profile-field-clickable{ cursor:pointer; }
+  .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
+  .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
+  .watchlist-chip{
+    display:inline-flex; align-items:center; gap:.35rem;
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    padding:.3rem .5rem; font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--ink);
+  }
+  .watchlist-chip-remove{
+    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:.75rem; padding:0; line-height:1;
+  }
+  .watchlist-chip-remove:hover{ color:#FB6B5B; }
+  .watchlist-empty{
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim);
+    padding:.4rem 0; line-height:1.5;
+  }
+
+  .profile-actions{ padding:.7rem 1.1rem 1.1rem; border-top:1px solid var(--line-soft); }
+  .profile-signout{
+    width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
+    background:rgba(251,107,91,0.08); color:#FB6B5B;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; font-weight:600; cursor:pointer;
+  }
+  .profile-signout:hover{ background:rgba(251,107,91,0.15); }
+
+  @media (max-width: 600px){
+    .auth-slot .auth-btn-label{ display:none; }
+    .profile-dropdown{ right:4vw; left:4vw; width:auto; }
+  }
+
+  /* ---------------- DeskAi floating chatbox (v2) ---------------- */
+  @keyframes deskaiPulseRing{
+    0%{ box-shadow: 0 0 0 0 rgba(232,177,92,0.45); }
+    70%{ box-shadow: 0 0 0 14px rgba(232,177,92,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(232,177,92,0); }
+  }
+  @keyframes deskaiPanelIn{
+    from{ opacity:0; transform: translateY(12px) scale(.97); }
+    to{ opacity:1; transform: translateY(0) scale(1); }
+  }
+  @keyframes deskaiBounce{
+    0%,80%,100%{ transform: scale(0.6); opacity:.4; }
+    40%{ transform: scale(1); opacity:1; }
+  }
+  @keyframes deskaiShimmer{
+    0%,100%{ transform: rotate(0deg) scale(1); }
+    50%{ transform: rotate(12deg) scale(1.08); }
+  }
+
+  .deskai-toggle-wrap{
+    position: fixed;
+    right: 24px; bottom: 24px;
+    z-index: 999;
+    display:flex; flex-direction:column; align-items:center; gap:.55rem;
+  }
+  .deskai-toggle{
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 45%, #B9803A);
+    border: none;
+    cursor: pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45), inset 0 1px 1px rgba(255,255,255,0.4);
+    transition: transform .18s ease;
+    padding:0;
+    animation: deskaiPulseRing 2.8s ease-out infinite;
+  }
+  .deskai-toggle:hover{ transform: scale(1.08); }
+  .deskai-toggle:hover .deskai-spark{ animation: deskaiShimmer .6s ease-in-out; }
+  .deskai-spark{ width:27px; height:27px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25)); }
+  .deskai-toggle-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.64rem;
+    letter-spacing:.03em;
+    color: var(--gold);
+    background: var(--panel);
+    border:1px solid var(--line-soft);
+    padding:.28rem .65rem;
+    border-radius:12px;
+    white-space:nowrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  }
+
+  .deskai-panel{
+    position: fixed;
+    right: 24px; bottom: 118px;
+    z-index: 999;
+    width: 370px;
+    max-width: calc(100vw - 32px);
+    height: 540px;
+    max-height: calc(100vh - 140px);
+    background: var(--panel);
+    border: 1px solid rgba(232,177,92,0.25);
+    border-radius: 18px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.2);
+  }
+  .deskai-panel.open{
+    display:flex;
+    animation: deskaiPanelIn .22s cubic-bezier(.2,.9,.3,1.2);
+  }
+
+  .deskai-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid rgba(232,177,92,0.18);
+    background: linear-gradient(135deg, rgba(232,177,92,0.14), rgba(232,177,92,0.02));
+  }
+  .deskai-header-title{ display:flex; align-items:center; gap:.65rem; }
+  .deskai-header-title .mark{
+    width:32px; height:32px; border-radius:50%;
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 45%, #B9803A);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
+    flex-shrink:0;
+  }
+  .deskai-header-title .mark svg{ width:16px; height:16px; }
+  .deskai-header-title span{ font-weight:700; font-size:.95rem; letter-spacing:-0.01em; }
+  .deskai-header-sub{
+    font-family:'JetBrains Mono', monospace; font-size:.6rem; color:var(--dim);
+    display:flex; align-items:center; gap:.35rem; margin-top:.1rem;
+  }
+  .deskai-header-sub .live-dot{
+    width:6px; height:6px; border-radius:50%; background:#4ADE80;
+    box-shadow: 0 0 6px rgba(74,222,128,0.7);
+  }
+  .deskai-close{
+    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:1.1rem;
+    line-height:1; padding:.3rem; border-radius:6px;
+  }
+  .deskai-close:hover{ color:var(--ink); background:rgba(255,255,255,0.06); }
+
+  .deskai-messages{
+    flex:1;
+    overflow-y:auto;
+    padding: 1.1rem 1.1rem;
+    display:flex; flex-direction:column; gap:.9rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(232,177,92,0.35) transparent;
+  }
+  .deskai-messages::-webkit-scrollbar{ width:5px; }
+  .deskai-messages::-webkit-scrollbar-thumb{ background: rgba(232,177,92,0.3); border-radius:3px; }
+
+  .deskai-row{ display:flex; gap:.55rem; align-items:flex-end; }
+  .deskai-row.user{ flex-direction:row-reverse; }
+  .deskai-avatar{
+    width:24px; height:24px; border-radius:50%;
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 45%, #B9803A);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .deskai-avatar svg{ width:12px; height:12px; }
+
+  .deskai-msg{
+    max-width: 76%;
+    padding: .68rem .9rem;
+    border-radius: 14px;
+    font-size: .85rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .deskai-msg.user{
+    background: linear-gradient(135deg, #FFD98E, var(--gold));
+    color: #1A1305;
+    font-weight:500;
+    border-bottom-right-radius:4px;
+  }
+  .deskai-msg.assistant{
+    background: var(--panel-2);
+    border: 1px solid var(--line-soft);
+    color: #E4E7EE;
+    border-bottom-left-radius:4px;
+  }
+  .deskai-msg.err{
+    background: rgba(251,107,91,0.1);
+    border: 1px solid rgba(251,107,91,0.3);
+    color: #FB6B5B;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.78rem;
+    border-bottom-left-radius:4px;
+  }
+
+  .deskai-thinking-row{ display:flex; gap:.55rem; align-items:center; }
+  .deskai-thinking-bubble{
+    background: var(--panel-2);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    border-bottom-left-radius:4px;
+    padding: .75rem 1rem;
+    display:flex; gap:4px; align-items:center;
+  }
+  .deskai-thinking-bubble span{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--gold);
+    animation: deskaiBounce 1.1s ease-in-out infinite;
+  }
+  .deskai-thinking-bubble span:nth-child(2){ animation-delay:.15s; }
+  .deskai-thinking-bubble span:nth-child(3){ animation-delay:.3s; }
+
+  .deskai-welcome{
+    font-size:.83rem; color:var(--dim); line-height:1.65; padding: .1rem .1rem 0;
+  }
+  .deskai-quick{
+    display:flex; flex-wrap:wrap; gap:.45rem; padding: 0 1.1rem 1rem;
+  }
+  .deskai-quick button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.66rem;
+    background: rgba(232,177,92,0.06);
+    border:1px solid rgba(232,177,92,0.25);
+    color:var(--gold);
+    padding:.4rem .75rem;
+    border-radius:20px;
+    cursor:pointer;
+    transition: background .15s, transform .15s;
+  }
+  .deskai-quick button:hover{ background: rgba(232,177,92,0.16); transform: translateY(-1px); }
+
+  .deskai-input-row{
+    display:flex; gap:.55rem; align-items:center;
+    padding: .85rem .9rem;
+    border-top:1px solid var(--line-soft);
+    background: var(--panel-2);
+  }
+  .deskai-input{
+    flex:1;
+    background: var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:22px;
+    padding:.65rem 1rem;
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.85rem;
+    outline:none;
+    transition: border-color .15s;
+  }
+  .deskai-input:focus{ border-color:var(--gold); }
+  .deskai-send{
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
+    border:none;
+    border-radius:50%;
+    width:38px; height:38px;
+    color:#1A1305;
+    font-weight:700;
+    cursor:pointer;
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    transition: transform .15s;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
+  }
+  .deskai-send:hover{ transform: scale(1.08); }
+  .deskai-send svg{ width:16px; height:16px; }
+
+  @media (max-width: 480px){
+    .deskai-panel{ right:16px; left:16px; width:auto; bottom:108px; }
+    .deskai-toggle-wrap{ right:16px; bottom:16px; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="wordmark">Desk<span>line</span></div>
+  </div>
+  <div class="navlinks">
+    <a href="../../index.html">Market</a>
+    <a href="../../calendar.html">Economic Calendar</a>
+    <a href="../../news.html">News</a>
+    <a href="../../calculator.html">Calculator</a>
+  </div>
+</nav>
+
+<div class="nav-drawer-overlay" id="navOverlay"></div>
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <div class="wordmark">Desk<span>line</span></div>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="../../index.html">Market</a>
+    <a href="../../calculator.html">Calculator</a>
+    <a href="../../news.html">News</a>
+    <a href="../../calendar.html">Economic Calendar</a>
+    <a href="../../opinion/index.html">Opinion</a>
+    <a href="../../academy/index.html">Academy</a>
+    <a href="../../brokers/index.html">Brokers</a>
+  </div>
+  <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
+</div>
+
+<div class="breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../commodities/">Commodities</a><span class="sep">/</span>
+  <span class="current">Gold (XAUUSD)</span>
+</div>
+
+<div class="instrument-hero">
+  <h1 id="instTitle">Gold (XAUUSD)</h1>
+  <div class="subtitle mono" id="instSubtitle">Gold Spot / US Dollar</div>
+  <div class="hero-price-row">
+    <div class="hero-price mono" id="heroPrice">Loading…</div>
+    <div class="hero-change mono" id="heroChange">—</div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-label">Day High</div><div class="hero-stat-value" id="statHigh">—</div></div>
+    <div class="hero-stat"><div class="hero-stat-label">Day Low</div><div class="hero-stat-value" id="statLow">—</div></div>
+    <div class="hero-stat"><div class="hero-stat-label">Day Range</div><div class="hero-stat-value" id="statRange">—</div></div>
+    <div class="hero-stat"><div class="hero-stat-label">Spread</div><div class="hero-stat-value" id="statSpread">—</div></div>
+    <div class="hero-stat"><div class="hero-stat-label">Market Status</div><div class="hero-stat-value" id="statStatus">—</div></div>
+    <div class="hero-stat"><div class="hero-stat-label">Session</div><div class="hero-stat-value" id="statSession">—</div></div>
+    <div class="hero-stat"><div class="hero-stat-label">Last Updated</div><div class="hero-stat-value mono" id="statUpdated">—</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-label">Live Chart</div>
+  <div class="chart-panel"><div id="chartContainer" style="height:100%;width:100%;"></div></div>
+</section>
+
+<section class="section">
+  <div class="section-label">AI Market Analysis</div>
+  <div class="insight-grid">
+    <div class="insight-main" id="insightMain"><p class="insight-loading">Generating today's analysis…</p></div>
+    <div class="insight-side" id="insightSide"></div>
+  </div>
+  <div class="ai-disclaimer">Analysis generated automatically by DeskAi from live price data — general information only, not financial advice.</div>
+</section>
+
+<section class="section">
+  <div class="section-label">Latest News — Gold (XAUUSD)</div>
+  <div class="news-grid" id="newsGrid"><p class="insight-loading">Loading headlines…</p></div>
+</section>
+
+<section class="section">
+  <div class="section-label">Related Economic Events</div>
+  <div class="events-table">
+    <div class="events-header-row">
+      <span>Date</span><span>Currency</span><span></span><span>Event</span>
+      <span style="text-align:right;">Actual</span><span style="text-align:right;">Forecast</span><span style="text-align:right;">Previous</span>
+    </div>
+    <div id="eventsBody"><div class="event-row"><span class="insight-loading">Loading events…</span></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">Historical Performance</div>
+  <div class="perf-grid" id="perfGrid"></div>
+</section>
+
+<section class="section">
+  <div class="section-label">Related Markets</div>
+  <div class="related-grid" id="relatedGrid"></div>
+</section>
+
+<section class="section">
+  <div class="section-label">Frequently Asked Questions</div>
+  <div id="faqContainer"><p class="insight-loading">Generating FAQ…</p></div>
+</section>
+
+<section class="section" style="border-bottom:none;">
+  <div class="section-label">More on DeskTerminal</div>
+  <div class="internal-links">
+    <a href="../../index.html">Market</a>
+    <a href="../../calendar.html">Economic Calendar</a>
+    <a href="../../news.html">News</a>
+    <a href="../../calculator.html">Trade Calculator</a>
+    <a href="../../index.html">Market Screener</a>
+  </div>
+</section>
+
+<footer>
+  Prices and data from third-party sources (Frankfurter/ECB, Binance, Gold-API, TradingView) — may be delayed. AI analysis is general information, not financial advice.<br>
+  <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a>
+</footer>
+
+
+<div class="auth-slot" id="authSlot">
+  <button class="auth-btn" id="loginBtn">Login</button>
+  <button class="auth-btn primary" id="signupBtn">Sign Up</button>
+</div>
+
+<div class="auth-modal-overlay" id="authModalOverlay">
+  <div class="auth-modal">
+    <button class="auth-modal-close" id="authModalClose">✕</button>
+    <h2>Welcome to DeskTerminal</h2>
+    <p>Sign in to save your watchlist, favorites, and personal settings.</p>
+    <button class="auth-provider-btn" id="googleLoginBtn">
+      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <button class="auth-provider-btn" id="facebookLoginBtn">
+      <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      Continue with Facebook
+    </button>
+    <div class="auth-modal-note">By continuing you agree this is a demo auth flow — see About for details.</div>
+  </div>
+</div>
+
+<div class="profile-dropdown" id="profileDropdown">
+  <div class="profile-header" id="profileHeaderContent"></div>
+  <div class="profile-fields" id="profileFields"></div>
+  <div class="profile-actions">
+    <button class="profile-signout" id="signOutBtn">Sign out</button>
+  </div>
+</div>
+
+
+
+<div class="deskai-toggle-wrap">
+  <button class="deskai-toggle" id="deskaiToggle" aria-label="Open DeskAi">
+    <svg class="deskai-spark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/>
+    </svg>
+  </button>
+  <span class="deskai-toggle-label">Ask DeskAi</span>
+</div>
+
+<div class="deskai-panel" id="deskaiPanel">
+  <div class="deskai-header">
+    <div class="deskai-header-title">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/>
+        </svg>
+      </div>
+      <div>
+        <div><span>DeskAi</span></div>
+        <div class="deskai-header-sub"><span class="live-dot"></span>Powered by Gemini</div>
+      </div>
+    </div>
+    <button class="deskai-close" id="deskaiClose">✕</button>
+  </div>
+  <div class="deskai-messages" id="deskaiMessages">
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Gold (XAUUSD) or the markets.</div>
+  </div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is happening with Gold (XAUUSD) today?">What's happening today?</button></div>
+  <div class="deskai-input-row">
+    <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
+    <button class="deskai-send" id="deskaiSend" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 12h15M13 6l6 6-6 6" stroke="#1A1305" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+<script src="../../assets/instruments-data.js"></script>
+<script>window.CURRENT_INSTRUMENT_KEY = 'gold';</script>
+<script src="../../assets/instrument-engine.js"></script>
+
+
+<script>
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const drawer = document.getElementById('navDrawer');
+  const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('drawerClose');
+  if(!btn || !drawer || !overlay || !closeBtn) return;
+  function openDrawer(){ drawer.classList.add('open'); overlay.classList.add('open'); }
+  function closeDrawer(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
+  btn.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+})();
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* ---------------- Supabase Auth ---------------- */
+// ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
+// The publishable/anon key is safe to expose in frontend code by design —
+// Row Level Security (set up via supabase-schema.sql) is what keeps data private.
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_KEY = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+
+const sb = (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && window.supabase)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  : null;
+
+// Exposed globally so any page's other scripts (e.g. a watchlist button on
+// the Market page) can check who's logged in and read/update their profile.
+window.currentUser = null;
+window.currentProfile = null;
+
+const authSlot = document.getElementById('authSlot');
+const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
+const authModalOverlay = document.getElementById('authModalOverlay');
+const authModalClose = document.getElementById('authModalClose');
+const googleLoginBtn = document.getElementById('googleLoginBtn');
+const facebookLoginBtn = document.getElementById('facebookLoginBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+const profileHeaderContent = document.getElementById('profileHeaderContent');
+const profileFields = document.getElementById('profileFields');
+const signOutBtn = document.getElementById('signOutBtn');
+
+function openAuthModal(){ authModalOverlay.classList.add('open'); }
+function closeAuthModal(){ authModalOverlay.classList.remove('open'); }
+window.openAuthModal = openAuthModal;
+loginBtn?.addEventListener('click', openAuthModal);
+signupBtn?.addEventListener('click', openAuthModal);
+authModalClose?.addEventListener('click', closeAuthModal);
+authModalOverlay?.addEventListener('click', (e) => { if(e.target === authModalOverlay) closeAuthModal(); });
+
+async function signInWith(provider){
+  if(!sb){ alert('Sign-in is not configured on this site yet.'); return; }
+  await sb.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
+}
+googleLoginBtn?.addEventListener('click', () => signInWith('google'));
+facebookLoginBtn?.addEventListener('click', () => signInWith('facebook'));
+
+function fmtDate(iso){
+  if(!iso) return '—';
+  return new Date(iso).toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+}
+function fmtDateTime(iso){
+  if(!iso) return '—';
+  return new Date(iso).toLocaleString(undefined, { year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+
+async function detectCountry(){
+  try{
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    return data.country_name || null;
+  } catch(e){ return null; }
+}
+
+let watchlistExpanded = false;
+
+function renderProfileFields(){
+  const profile = window.currentProfile;
+  const user = window.currentUser;
+  if(!profile || !user) return;
+
+  const photo = user.user_metadata?.avatar_url || user.user_metadata?.picture;
+  const watchlist = Array.isArray(profile.watchlist) ? profile.watchlist : [];
+  const favoritesCount = Array.isArray(profile.favorites) ? profile.favorites.length : 0;
+
+  const watchlistChips = watchlist.length
+    ? `<div class="watchlist-chips">${watchlist.map(sym => `
+        <span class="watchlist-chip">${sym}<button class="watchlist-chip-remove" data-symbol="${sym}">✕</button></span>
+      `).join('')}</div>`
+    : `<div class="watchlist-empty">No symbols yet — use the ☆ button on the Market chart to add one.</div>`;
+
+  profileFields.innerHTML = `
+    <div class="profile-field"><span class="profile-field-label">ID</span><span class="profile-field-value mono">${user.id.slice(0,8)}…</span></div>
+    <div class="profile-field"><span class="profile-field-label">Name</span><span class="profile-field-value">${profile.name || '—'}</span></div>
+    <div class="profile-field"><span class="profile-field-label">Email</span><span class="profile-field-value">${profile.email || '—'}</span></div>
+    <div class="profile-field"><span class="profile-field-label">Photo</span><span class="profile-field-value">${photo ? 'Set' : '—'}</span></div>
+    <div class="profile-field"><span class="profile-field-label">Country</span><span class="profile-field-value">${profile.country || '—'}</span></div>
+    <div class="profile-field"><span class="profile-field-label">Joined</span><span class="profile-field-value mono">${fmtDate(profile.created_at)}</span></div>
+    <div class="profile-field"><span class="profile-field-label">Last Login</span><span class="profile-field-value mono">${fmtDateTime(profile.last_login)}</span></div>
+    <div class="profile-field"><span class="profile-field-label">Role</span><span class="profile-field-value">${profile.role || 'member'}</span></div>
+    <div class="profile-field profile-field-clickable" id="watchlistToggleRow"><span class="profile-field-label">Watchlist ${watchlistExpanded ? '▲' : '▼'}</span><span class="profile-field-value">${watchlist.length} item${watchlist.length===1?'':'s'}</span></div>
+    ${watchlistExpanded ? watchlistChips : ''}
+    <div class="profile-field"><span class="profile-field-label">Favorites</span><span class="profile-field-value">${favoritesCount} item${favoritesCount===1?'':'s'}</span></div>
+  `;
+
+  document.getElementById('watchlistToggleRow')?.addEventListener('click', () => {
+    watchlistExpanded = !watchlistExpanded;
+    renderProfileFields();
+  });
+  profileFields.querySelectorAll('.watchlist-chip-remove').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      await window.toggleWatchlist(btn.dataset.symbol);
+    });
+  });
+}
+
+async function loadProfileUI(user){
+  window.currentUser = user;
+  authSlot.innerHTML = '';
+  const avatarBtn = document.createElement('button');
+  avatarBtn.className = 'auth-avatar-btn';
+  avatarBtn.id = 'avatarBtn';
+  const photo = user.user_metadata?.avatar_url || user.user_metadata?.picture;
+  const name = user.user_metadata?.full_name || user.user_metadata?.name || user.email;
+  avatarBtn.innerHTML = photo
+    ? `<img src="${photo}" alt="">`
+    : `<span class="initial">${(name || '?').charAt(0).toUpperCase()}</span>`;
+  authSlot.appendChild(avatarBtn);
+
+  avatarBtn.addEventListener('click', () => {
+    profileDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if(!avatarBtn.contains(e.target) && !profileDropdown.contains(e.target)){
+      profileDropdown.classList.remove('open');
+    }
+  });
+
+  // Fetch (and lazily create/update) the profile row — private to this user via RLS.
+  let { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).single();
+
+  if(!profile){
+    let country = await detectCountry();
+    const { data: created } = await sb.from('profiles').insert({
+      id: user.id,
+      name: name,
+      email: user.email,
+      photo_url: photo,
+      country: country,
+      last_login: new Date().toISOString(),
+    }).select().single();
+    profile = created;
+  } else {
+    const updates = { last_login: new Date().toISOString() };
+    if(!profile.country){
+      const country = await detectCountry();
+      if(country) updates.country = country;
+    }
+    const { data: updated } = await sb.from('profiles').update(updates).eq('id', user.id).select().single();
+    profile = updated || profile;
+  }
+
+  window.currentProfile = profile;
+
+  profileHeaderContent.innerHTML = `
+    ${photo ? `<img src="${photo}" alt="">` : `<div class="initial">${(name||'?').charAt(0).toUpperCase()}</div>`}
+    <div>
+      <div class="profile-header-name">${profile.name || name || 'Trader'}</div>
+      <div class="profile-header-email">${profile.email || user.email}</div>
+    </div>
+  `;
+
+  renderProfileFields();
+  if(typeof window.onAuthReady === 'function') window.onAuthReady();
+}
+
+function showLoggedOutUI(){
+  window.currentUser = null;
+  window.currentProfile = null;
+  authSlot.innerHTML = `
+    <button class="auth-btn" id="loginBtn"><span class="auth-btn-label">Login</span></button>
+    <button class="auth-btn primary" id="signupBtn"><span class="auth-btn-label">Sign Up</span></button>
+  `;
+  document.getElementById('loginBtn').addEventListener('click', openAuthModal);
+  document.getElementById('signupBtn').addEventListener('click', openAuthModal);
+  profileDropdown.classList.remove('open');
+  if(typeof window.onAuthReady === 'function') window.onAuthReady();
+}
+
+// Reusable: call from anywhere on the site to add/remove a symbol from the
+// signed-in user's watchlist. Opens the login modal automatically if signed out.
+window.toggleWatchlist = async function(symbol){
+  if(!sb){ alert('Watchlist is not configured on this site yet.'); return; }
+  if(!window.currentUser){ openAuthModal(); return; }
+  const current = Array.isArray(window.currentProfile?.watchlist) ? window.currentProfile.watchlist : [];
+  const exists = current.includes(symbol);
+  const updated = exists ? current.filter(s => s !== symbol) : [...current, symbol];
+  const { data } = await sb.from('profiles').update({ watchlist: updated }).eq('id', window.currentUser.id).select().single();
+  if(data) window.currentProfile = data;
+  renderProfileFields();
+  if(typeof window.onWatchlistChanged === 'function') window.onWatchlistChanged();
+};
+window.isInWatchlist = function(symbol){
+  const list = Array.isArray(window.currentProfile?.watchlist) ? window.currentProfile.watchlist : [];
+  return list.includes(symbol);
+};
+
+signOutBtn?.addEventListener('click', async () => {
+  if(sb) await sb.auth.signOut();
+  showLoggedOutUI();
+});
+
+async function initAuth(){
+  if(!sb){ return; } // not configured yet — buttons remain visible as Login/Sign Up, inert
+  const { data: { session } } = await sb.auth.getSession();
+  if(session?.user){
+    await loadProfileUI(session.user);
+    closeAuthModal();
+  }
+  sb.auth.onAuthStateChange(async (event, session) => {
+    if(event === 'SIGNED_IN' && session?.user){
+      await loadProfileUI(session.user);
+      closeAuthModal();
+    } else if(event === 'SIGNED_OUT'){
+      showLoggedOutUI();
+    }
+  });
+}
+initAuth();
+</script>
+
+
+/* ---------------- DeskAi floating chatbox (v2) ---------------- */
+(function(){
+  const SECTION = "market";
+  const toggle = document.getElementById('deskaiToggle');
+  const panel = document.getElementById('deskaiPanel');
+  const closeBtn = document.getElementById('deskaiClose');
+  const messagesEl = document.getElementById('deskaiMessages');
+  const quickEl = document.getElementById('deskaiQuick');
+  const inputEl = document.getElementById('deskaiInput');
+  const sendBtn = document.getElementById('deskaiSend');
+
+  const SPARK_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/></svg>';
+
+  let history = [];
+  let opened = false;
+
+  toggle.addEventListener('click', () => {
+    opened = !opened;
+    panel.classList.toggle('open', opened);
+    if(opened) inputEl.focus();
+  });
+  closeBtn.addEventListener('click', () => {
+    opened = false;
+    panel.classList.remove('open');
+  });
+
+  function addMessage(role, text){
+    const row = document.createElement('div');
+    row.className = 'deskai-row ' + (role === 'user' ? 'user' : '');
+    if(role !== 'user'){
+      row.innerHTML = `<div class="deskai-avatar">${SPARK_SVG}</div>`;
+    }
+    const bubble = document.createElement('div');
+    bubble.className = 'deskai-msg ' + role;
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return row;
+  }
+
+  function addThinking(){
+    const row = document.createElement('div');
+    row.className = 'deskai-thinking-row';
+    row.innerHTML = `<div class="deskai-avatar">${SPARK_SVG}</div>
+      <div class="deskai-thinking-bubble"><span></span><span></span><span></span></div>`;
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return row;
+  }
+
+  async function sendToDeskAi(question){
+    if(!question.trim()) return;
+    document.getElementById('deskaiWelcome')?.remove();
+    quickEl.style.display = 'none';
+    addMessage('user', question);
+    history.push({ role:'user', text: question });
+    const thinkingRow = addThinking();
+
+    let context = null;
+    if(typeof window.getDeskAiContext === 'function'){
+      try{ context = await window.getDeskAiContext(); } catch(e){}
+    }
+
+    try{
+      const res = await fetch('/.netlify/functions/deskai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: SECTION, question, context, history: history.slice(0,-1) })
+      });
+      const data = await res.json();
+      thinkingRow.remove();
+      if(data.error){
+        addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
+        return;
+      }
+      addMessage('assistant', data.answer);
+      history.push({ role:'assistant', text: data.answer });
+    } catch(e){
+      thinkingRow.remove();
+      addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
+    }
+  }
+
+  sendBtn.addEventListener('click', () => {
+    const q = inputEl.value.trim();
+    if(!q) return;
+    inputEl.value = '';
+    sendToDeskAi(q);
+  });
+  inputEl.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const q = inputEl.value.trim();
+      if(!q) return;
+      inputEl.value = '';
+      sendToDeskAi(q);
+    }
+  });
+  quickEl.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
+  });
+})();
+
+
+</body>
+</html>

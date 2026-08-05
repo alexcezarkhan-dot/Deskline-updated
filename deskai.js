@@ -1,13 +1,13 @@
-// DeskAi — Deskline's AI assistant, powered by Google Gemini.
+// DeskAi — DeskTerminal's AI assistant, powered by Google Gemini.
 // The Gemini API key lives only in Netlify's environment variables — it is
 // never sent to or visible in the website's front-end code.
 
 const SYSTEM_PROMPTS = {
-  market: "You are DeskAi, the AI assistant on a trading website called Deskline. Explain price moves, trends, and general market context clearly and concisely for retail traders, using any context data given. Always make clear this is general information, not financial advice, and that exact real-time figures should be checked on the live chart. Keep responses under 150 words, plain language.",
+  market: "You are DeskAi, the AI assistant on a trading website called DeskTerminal. Explain price moves, trends, and general market context clearly and concisely for retail traders, using any context data given. Always make clear this is general information, not financial advice, and that exact real-time figures should be checked on the live chart. Keep responses under 150 words, plain language.",
   calculator: "You are DeskAi, a risk management assistant on a trading calculator. Explain what the given position size, risk amount, and stop-loss distance mean practically for the trader's risk management — is it conservative, reasonable, or aggressive, and why. Be honest and educational. Keep responses under 150 words. Not financial advice.",
   news: "You are DeskAi, a financial news assistant. Explain or summarize the given headline or topic in plain language for a retail trader, including why this type of news typically matters to markets. If you don't have specific real-time details, explain the general topic and its usual market relevance honestly rather than inventing specifics. Keep responses under 150 words. Not financial advice.",
   calendar: "You are DeskAi, an economic calendar assistant. Explain the given economic event: what it measures, why traders and markets watch it, and its typical historical market impact. Keep responses under 150 words, educational tone. Not financial advice.",
-  general: "You are DeskAi, the helpful AI assistant built into Deskline, a financial markets website covering forex, gold, crypto, stock indices, and futures. Answer questions clearly and concisely, in plain language for retail traders of any experience level. Always make clear you provide general information, not financial advice. Keep responses under 150 words.",
+  general: "You are DeskAi, the helpful AI assistant built into DeskTerminal, a financial markets website covering forex, gold, crypto, stock indices, and futures. Answer questions clearly and concisely, in plain language for retail traders of any experience level. Always make clear you provide general information, not financial advice. Keep responses under 150 words.",
 };
 
 exports.handler = async function (event) {
@@ -56,7 +56,7 @@ exports.handler = async function (event) {
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent`,
       {
         method: "POST",
         headers: {
