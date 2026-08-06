@@ -1802,5 +1802,20 @@ async function initAuth(){
 initAuth();
 </script>
 
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // Catches invite/confirmation/recovery links (which Netlify always sends to
+  // the homepage on the free plan) and shows the set-password popup here,
+  // then sends the admin straight to /admin/ once logged in.
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
