@@ -45,6 +45,28 @@
   #postBody a{ color:var(--gold); }
   .not-found{ font-family:'JetBrains Mono', monospace; font-size:.9rem; color:var(--dim); padding:2rem 0; }
 
+  .breadcrumb-nav{
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.2rem;
+  }
+  .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
+  .breadcrumb-nav a:hover{ color:var(--gold); }
+  .breadcrumb-nav .sep{ margin:0 .4rem; }
+  .breadcrumb-nav .current{ color:var(--gold); }
+
+  .related-tools{
+    margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft);
+  }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
+  }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
+
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
     font-size:.65rem; color: var(--dim); border-top:1px solid var(--line-soft);
@@ -266,7 +288,8 @@
 </div>
 
 <article id="articleRoot">
-  <a class="back-link mono" href="index.html">&larr; Back to Academy</a>
+  <nav class="breadcrumb-nav" id="breadcrumbNav" aria-label="Breadcrumb"></nav>
+  <a class="back-link mono" href="index.html" id="backLink">&larr; Back to Academy</a>
   <div id="postContent">
     <div class="not-found">Loading…</div>
   </div>
@@ -290,10 +313,38 @@
 </script>
 
 <script>
+const ACADEMY_CATEGORIES = [
+  { slug:'forex-basics', title:'Forex Basics' },
+  { slug:'technical-analysis', title:'Technical Analysis' },
+  { slug:'fundamental-analysis', title:'Fundamental Analysis' },
+  { slug:'gold-commodities', title:'Gold & Commodities' },
+  { slug:'risk-management', title:'Risk Management & Psychology' },
+  { slug:'strategy-guides', title:'Strategy & Practical Guides' },
+  { slug:'broker-platform-guides', title:'Broker & Platform Guides' },
+  { slug:'glossary', title:'Trading Glossary' },
+];
+
+// Category-aware "you might also find useful" tool links, beyond the two
+// that always show (Economic Calendar + Calculator).
+const CATEGORY_TOOL_LINKS = {
+  'gold-commodities': [{ href:'../commodities/gold/index.html', label:'Live Gold Price' }],
+  'forex-basics': [{ href:'../index.html', label:'Live Market Prices' }],
+  'technical-analysis': [{ href:'../index.html', label:'Live Charts' }],
+  'fundamental-analysis': [{ href:'../calendar.html', label:'Economic Calendar' }],
+};
+
+function estimateReadTime(body){
+  if(!body) return 1;
+  const words = body.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
 (function(){
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('slug');
   const container = document.getElementById('postContent');
+  const breadcrumb = document.getElementById('breadcrumbNav');
+  const backLink = document.getElementById('backLink');
 
   if(!slug){
     container.innerHTML = '<div class="not-found">No post specified.</div>';
@@ -308,14 +359,69 @@
         container.innerHTML = '<div class="not-found">Post not found.</div>';
         return;
       }
-      document.getElementById('pageTitle').textContent = post.title + ' — DeskTerminal';
+
+      const cat = ACADEMY_CATEGORIES.find(c => c.slug === post.category);
+      const readTime = estimateReadTime(post.body);
+
+      document.title = post.title + ' — DeskTerminal Academy';
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if(metaDesc) metaDesc.setAttribute('content', post.excerpt || post.title);
+
+      // Breadcrumb: Home > Academy > [Category]
+      if(cat){
+        breadcrumb.innerHTML = `
+          <a href="../index.html">Home</a><span class="sep">/</span>
+          <a href="index.html">Academy</a><span class="sep">/</span>
+          <a href="index.html?category=${cat.slug}">${cat.title}</a>
+        `;
+        backLink.href = `index.html?category=${cat.slug}`;
+        backLink.innerHTML = `&larr; Back to ${cat.title}`;
+      } else {
+        breadcrumb.innerHTML = `
+          <a href="../index.html">Home</a><span class="sep">/</span>
+          <a href="index.html">Academy</a>
+        `;
+      }
+
       const bodyHtml = (typeof marked !== 'undefined') ? marked.parse(post.body || '') : (post.body || '');
+
+      // Related tool links: category-specific ones (if any) + always-on defaults
+      const smartLinks = CATEGORY_TOOL_LINKS[post.category] || [];
+      const allLinks = [
+        ...smartLinks,
+        { href:'../calendar.html', label:'Economic Calendar' },
+        { href:'../calculator.html', label:'Trade Calculator' },
+      ].filter((link, idx, arr) => arr.findIndex(l => l.href === link.href) === idx); // dedupe
+
       container.innerHTML = `
         <div class="post-tag">${post.tag || 'Academy'}</div>
         <h1>${post.title}</h1>
-        <div class="post-date mono">${post.date || ''} · Academy</div>
+        <div class="post-date mono">${post.date || ''} · ${cat ? cat.title : 'Academy'} · ${readTime} min read</div>
         <div id="postBody">${bodyHtml}</div>
+        <div class="related-tools">
+          <div class="related-tools-label">Useful tools</div>
+          <div class="related-tools-links">
+            ${allLinks.map(l => `<a class="related-tool-link" href="${l.href}">${l.label} →</a>`).join('')}
+          </div>
+        </div>
       `;
+
+      // JSON-LD Article schema, built from the real loaded post data
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.excerpt || '',
+        datePublished: post.date || '',
+        dateModified: post.date || '',
+        author: { '@type': 'Organization', name: 'DeskTerminal' },
+        publisher: { '@type': 'Organization', name: 'DeskTerminal' },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': window.location.href },
+      };
+      const schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.textContent = JSON.stringify(schema);
+      document.head.appendChild(schemaScript);
     })
     .catch(() => {
       container.innerHTML = '<div class="not-found">Could not load post.</div>';

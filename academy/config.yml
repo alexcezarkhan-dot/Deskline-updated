@@ -1,0 +1,97 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "admin/uploads"
+public_folder: "/admin/uploads"
+
+collections:
+  - name: "hotstories"
+    label: "News — Hot Stories"
+    files:
+      - name: "stories"
+        label: "Hot Stories (Top 15)"
+        file: "news/hot-stories.json"
+        fields:
+          - label: "Stories"
+            name: "stories"
+            widget: "list"
+            summary: "{{title}}"
+            max: 15
+            fields:
+              - { label: "Headline", name: "title", widget: "string" }
+              - { label: "Source name (e.g. Reuters, Bloomberg)", name: "source", widget: "string" }
+              - { label: "Source URL (link to original story)", name: "sourceUrl", widget: "string" }
+              - { label: "Image URL (optional)", name: "imageUrl", widget: "string", required: false }
+              - { label: "Timestamp", name: "timestamp", widget: "datetime" }
+
+  - name: "academy"
+    label: "Academy"
+    files:
+      - name: "posts"
+        label: "Academy Posts"
+        file: "academy/posts.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Slug (URL-friendly, e.g. what-is-xauusd)", name: "slug", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Forex Basics", value: "forex-basics" }
+                  - { label: "Technical Analysis", value: "technical-analysis" }
+                  - { label: "Fundamental Analysis", value: "fundamental-analysis" }
+                  - { label: "Gold & Commodities", value: "gold-commodities" }
+                  - { label: "Risk Management & Psychology", value: "risk-management" }
+                  - { label: "Strategy & Practical Guides", value: "strategy-guides" }
+                  - { label: "Broker & Platform Guides", value: "broker-platform-guides" }
+                  - { label: "Trading Glossary", value: "glossary" }
+              - { label: "Tag (shown as a small label on the card)", name: "tag", widget: "string", default: "Beginner" }
+              - { label: "Excerpt (shown on the Academy page)", name: "excerpt", widget: "text" }
+              - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "opinion"
+    label: "Opinion"
+    files:
+      - name: "posts"
+        label: "Opinion Posts"
+        file: "opinion/posts.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Slug (URL-friendly, e.g. gold-outlook)", name: "slug", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "Tag", name: "tag", widget: "string", default: "Opinion" }
+              - { label: "Author", name: "author", widget: "string", default: "DeskTerminal Team", required: false }
+              - { label: "Author Bio (short, one line)", name: "authorBio", widget: "string", default: "10+ years trading forex & gold markets. Opinions are personal, not financial advice.", required: false }
+              - { label: "Excerpt (shown on the Opinion page)", name: "excerpt", widget: "text" }
+              - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "brokers"
+    label: "Brokers"
+    files:
+      - name: "posts"
+        label: "Broker Posts"
+        file: "brokers/posts.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Slug (URL-friendly, e.g. best-ecn-brokers)", name: "slug", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "Tag", name: "tag", widget: "string", default: "Guide" }
+              - { label: "Excerpt (shown on the Brokers page)", name: "excerpt", widget: "text" }
+              - { label: "Body", name: "body", widget: "markdown" }
