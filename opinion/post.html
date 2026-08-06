@@ -43,6 +43,23 @@
   #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
   #postBody strong{ color:var(--ink); }
   #postBody a{ color:var(--gold); }
+
+  .author-card{
+    display:flex; align-items:center; gap:.9rem;
+    margin-top:2.2rem; padding:1.1rem 1.3rem;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:10px;
+  }
+  .author-avatar{
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-weight:700; color:#1A1305; font-size:1.05rem;
+  }
+  .author-name{ font-weight:700; font-size:.9rem; }
+  .author-name .author-handle{
+    font-family:'JetBrains Mono', monospace; font-weight:400; font-size:.72rem; color:var(--dim); margin-left:.4rem;
+  }
+  .author-bio{ font-size:.8rem; color:var(--dim); margin-top:.25rem; line-height:1.5; }
   .not-found{ font-family:'JetBrains Mono', monospace; font-size:.9rem; color:var(--dim); padding:2rem 0; }
 
   footer{
@@ -310,11 +327,21 @@
       }
       document.getElementById('pageTitle').textContent = post.title + ' — DeskTerminal';
       const bodyHtml = (typeof marked !== 'undefined') ? marked.parse(post.body || '') : (post.body || '');
+      const authorName = post.author || 'DeskTerminal Team';
+      const authorBio = post.authorBio || '10+ years trading forex & gold markets. Opinions are personal, not financial advice.';
+      const initial = authorName.trim().charAt(0).toUpperCase();
       container.innerHTML = `
         <div class="post-tag">${post.tag || 'Opinion'}</div>
         <h1>${post.title}</h1>
         <div class="post-date mono">${post.date || ''} · Opinion</div>
         <div id="postBody">${bodyHtml}</div>
+        <div class="author-card">
+          <div class="author-avatar">${initial}</div>
+          <div>
+            <div class="author-name">${authorName}<span class="author-handle">@deskterminal</span></div>
+            <div class="author-bio">${authorBio}</div>
+          </div>
+        </div>
       `;
     })
     .catch(() => {
