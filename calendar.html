@@ -98,7 +98,15 @@
       "name": "How often is the economic calendar updated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DeskTerminal's economic calendar pulls data from official government and central bank sources, with actual figures reflected as soon as they're released and reported by the data provider."
+        "text": "Data refreshes automatically every 3 minutes. For any event within its final 10 minutes before release, a live countdown appears, and the page switches to checking every 10 seconds — so the real number typically replaces the countdown within seconds of the official release, not minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see an economic event's past results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — click the clock icon at the end of any event's row to open a table of that event's real releases over the past year, including the actual, forecast, and previous values from each past occurrence."
       }
     },
     {
@@ -106,7 +114,7 @@
       "name": "Is this economic calendar free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, DeskTerminal's economic calendar is completely free, with no account or sign-up required, including AI-generated explanations for each event."
+        "text": "Yes, DeskTerminal's economic calendar is completely free, with no account or sign-up required, including detailed explanations and a full year of history for each event."
       }
     }
   ]
@@ -152,6 +160,11 @@
     background:#4ADE80; margin-right:.4rem; animation:pulse 2s ease-in-out infinite;
   }
   @keyframes pulse{ 0%,100%{opacity:.35;} 50%{opacity:1;} }
+
+  .last-updated{
+    padding: .6rem 6vw 0;
+    font-size:.68rem; color:var(--dim); letter-spacing:.02em;
+  }
 
   .filter-bar{
     display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap;
@@ -246,7 +259,7 @@
   .cal-main{ padding: 1.2rem 0 3rem; }
   .table-header-row{
     display:grid;
-    grid-template-columns: 62px 66px 68px 24px 1fr 84px 84px 84px;
+    grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px;
     gap:.5rem;
     font-family:'JetBrains Mono', monospace;
     font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--dim);
@@ -258,7 +271,7 @@
   .date-cell .dnum{ font-size:.62rem; color:var(--dim); display:block; }
   .event-row{
     display:grid;
-    grid-template-columns: 62px 66px 68px 24px 1fr 84px 84px 84px;
+    grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px;
     gap:.5rem;
     align-items:center;
     padding: .55rem .8rem;
@@ -267,13 +280,77 @@
     font-size:.8rem;
   }
   .event-row:hover{ background: var(--panel-2); }
+  .event-row .ev-folder{ font-size:.9rem; text-align:center; transition: transform .15s; }
+  .event-row .ev-history-icon{
+    font-size:.85rem; text-align:center; cursor:pointer; opacity:.55; transition: opacity .15s;
+  }
+  .event-row .ev-history-icon:hover{ opacity:1; }
+  .event-row.detail-open .ev-folder{ transform: rotate(90deg); }
+
+  .specs-table{ display:flex; flex-direction:column; gap:0; margin-bottom:.8rem; }
+  .specs-row{
+    display:grid; grid-template-columns: 130px 1fr; gap:1rem;
+    padding:.5rem 0; border-bottom:1px solid var(--line-soft);
+  }
+  .specs-row:last-child{ border-bottom:none; }
+  .specs-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--dim);
+  }
+  .specs-value{ font-size:.85rem; color:#D7DAE1; line-height:1.55; }
+  @media (max-width: 600px){
+    .specs-row{ grid-template-columns: 1fr; gap:.2rem; }
+  }
+
+  .history-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin: 1rem 0 .6rem; padding-top:.8rem;
+    border-top:1px solid var(--line-soft);
+  }
+  .history-table{ border:1px solid var(--line-soft); border-radius:6px; overflow:hidden; }
+  .history-header-row, .history-row{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap:.5rem;
+    padding:.45rem .7rem;
+  }
+  .history-header-row{
+    font-family:'JetBrains Mono', monospace; font-size:.6rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--dim); background:var(--panel-2);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .history-row{
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .history-row:last-child{ border-bottom:none; }
+  .history-row .hist-actual{ color:var(--ink); font-weight:600; }
+  @media (max-width: 600px){
+    .history-header-row, .history-row{ grid-template-columns: 1.1fr 1fr 1fr 1fr; font-size:.62rem; gap:.3rem; }
+  }
   .event-row .ev-time{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
+  .ev-time.countdown{
+    color: #FB6B5B;
+    font-weight: 700;
+    animation: countdownPulse 1s ease-in-out infinite;
+  }
+  @keyframes countdownPulse{
+    0%, 100%{ opacity: 1; }
+    50%{ opacity: .55; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ev-time.countdown{ animation: none; }
+  }
   .event-row .ev-currency{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--ink); }
   .event-row .ev-impact{ width:10px; height:10px; border-radius:2px; }
   .event-row .ev-name{ color:var(--ink); }
-  .event-row .ev-val{ font-family:'JetBrains Mono', monospace; font-size:.75rem; text-align:right; color:var(--dim); }
+  .event-row .ev-val{ font-family:'JetBrains Mono', monospace; font-size:.75rem; text-align:right; color:var(--dim); display:flex; flex-direction:column; align-items:flex-end; gap:.15rem; }
   .event-row .ev-val.actual-up{ color:#4ADE80; }
   .event-row .ev-val.actual-down{ color:#FB6B5B; }
+  .ev-countdown{
+    font-size:.68rem; font-weight:700; color:#FB6B5B;
+    animation: countdownPulse 1s ease-in-out infinite;
+  }
+  @keyframes countdownPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.55; } }
+  .ev-countdown.releasing{ color:#FB6B5B; text-transform:uppercase; letter-spacing:.05em; font-size:.6rem; }
 
   .event-detail{
     display:none;
@@ -311,7 +388,7 @@
 
   @media (max-width: 700px){
     .table-header-row, .event-row{
-      grid-template-columns: 48px 45px 40px 18px 1fr;
+      grid-template-columns: 48px 45px 40px 18px 1fr 20px 20px;
     }
     .ev-val{ display:none; }
   }
@@ -767,6 +844,7 @@
   <h1>Economic <span>Calendar</span></h1>
   <div class="util-clock mono" id="clockLine"><span class="dot"></span>live</div>
 </div>
+<div class="last-updated mono" id="lastUpdated"></div>
 
 <div class="filter-bar">
   <div class="impact-toggles" id="impactToggles">
@@ -793,7 +871,7 @@
     <div class="quick-nav" id="quickNav"></div>
 
     <div class="sidebar-note">
-      Data from Trading Economics (public tier). Click any event to see an AI-generated explainer.
+      Real economic data, updated live. Click the folder icon on any event for a detailed breakdown.
     </div>
 
     <div class="ad-slot">
@@ -804,7 +882,7 @@
   <div class="cal-main">
     <div class="table-header-row">
       <span>Date</span><span>Time</span><span>Currency</span><span></span><span>Event</span>
-      <span style="text-align:right;">Actual</span><span style="text-align:right;">Forecast</span><span style="text-align:right;">Previous</span>
+      <span></span><span style="text-align:right;">Actual</span><span style="text-align:right;">Forecast</span><span style="text-align:right;">Previous</span><span></span>
     </div>
     <div id="calendarBody">
       <div class="cal-status">Loading calendar…</div>
@@ -814,13 +892,13 @@
 
 <section class="seo-content">
   <h2>Live Economic Calendar — CPI, NFP, Interest Rates &amp; GDP</h2>
-  <p>DeskTerminal's economic calendar tracks upcoming and recently released economic events — including interest rate decisions, CPI (inflation) releases, Non-Farm Payrolls (NFP), GDP data, and PMI reports — sourced from official government and central bank data. If you've heard traders say "don't trade during news" or "watch out for news time," this is the calendar they mean — it shows exactly when those high-impact releases happen. Filter by impact level or country, search for a specific event, or jump straight to today, this week, or next week using the calendar on the left.</p>
+  <p>DeskTerminal's economic calendar tracks upcoming and recently released economic events — including interest rate decisions, CPI (inflation) releases, Non-Farm Payrolls (NFP), GDP data, and PMI reports — sourced from official government and central bank data. A live countdown appears for any event in its final 10 minutes before release, switching to the real number within seconds of publication. If you've heard traders say "don't trade during news" or "watch out for news time," this is the calendar they mean — it shows exactly when those high-impact releases happen. Filter by impact level or country, search for a specific event, or jump straight to today, this week, or next week using the calendar on the left.</p>
 
   <h2>Why economic events move forex, gold &amp; stock markets</h2>
   <p>Central banks set interest rates based on inflation (CPI) and employment (NFP) data, and interest rate expectations are one of the biggest drivers of currency strength. That's why high-impact releases like the U.S. Federal Reserve's rate decisions or the monthly Non-Farm Payrolls report can move EUR/USD, gold (XAUUSD), and major stock indices within seconds of release.</p>
 
   <h2>How to use this economic calendar</h2>
-  <p>Each row shows the release date and time in your local timezone, the currency affected, an impact rating (low, medium, or high), and the actual, forecast, and previous values once available. Click any event to open an AI-generated explanation of what the indicator measures and why traders watch it, along with the original data source.</p>
+  <p>Each row shows the release date and time in your local timezone, the currency affected, an impact rating (low, medium, or high), and the actual, forecast, and previous values once available. Click the folder icon on any event to see what the indicator measures, its usual effect on the currency, and why traders watch it, along with the original data source. Click the clock icon at the end of the row to see a full year of that event's real past releases.</p>
 
   <h2>Frequently Asked Questions</h2>
 
@@ -840,10 +918,13 @@
   <p>CPI (Consumer Price Index) measures inflation by tracking the average price change of a basket of goods and services. It moves forex markets because central banks use inflation data to set interest rates, and interest rate expectations are a primary driver of currency values.</p>
 
   <h3>How often is this economic calendar updated?</h3>
-  <p>DeskTerminal's economic calendar pulls data from official government and central bank sources, with actual figures reflected as soon as they're released and reported by the data provider.</p>
+  <p>Data refreshes automatically every 3 minutes. For any event within its final 10 minutes before release, a live countdown appears, and the page switches to checking every 10 seconds — so the real number typically replaces the countdown within seconds of the official release, not minutes.</p>
+
+  <h3>Can I see an event's past results?</h3>
+  <p>Yes — click the clock icon at the end of any event's row to open a table of that event's real releases over the past year, including the actual, forecast, and previous values from each past occurrence.</p>
 
   <h3>Is this economic calendar free to use?</h3>
-  <p>Yes, DeskTerminal's economic calendar is completely free, with no account or sign-up required, including AI-generated explanations for each event.</p>
+  <p>Yes, DeskTerminal's economic calendar is completely free, with no account or sign-up required, including detailed explanations and a full year of history for each event.</p>
 
   <h2>Explore more on DeskTerminal</h2>
   <p>Check live prices on the <a href="index.html">Market</a> page, work out your trade risk with the <a href="calculator.html">Trade Calculator</a>, or catch up on <a href="news.html">News</a> alongside this calendar.</p>
@@ -864,7 +945,6 @@ let activeCountry = '';
 let searchQuery = '';
 let dateRangeStart = null;
 let dateRangeEnd = null;
-const detailCache = {};
 
 function updateClock(){
   const now = new Date();
@@ -872,7 +952,22 @@ function updateClock(){
     `<span class="dot"></span>live · ${now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'})}`;
 }
 updateClock();
-setInterval(updateClock, 1000);
+setInterval(() => { updateClock(); updateLastUpdatedLine(); }, 1000);
+
+let lastCalendarFetchTime = null;
+
+function updateLastUpdatedLine(){
+  const el = document.getElementById('lastUpdated');
+  if(!el || !lastCalendarFetchTime) return;
+  const diffMs = new Date() - lastCalendarFetchTime;
+  const diffMin = Math.floor(diffMs / 60000);
+  const diffHr = Math.floor(diffMin / 60);
+  let text;
+  if(diffMin < 1) text = 'Updated just now';
+  else if(diffMin < 60) text = `Updated ${diffMin} minute${diffMin===1?'':'s'} ago`;
+  else text = `Updated ${diffHr} hour${diffHr===1?'':'s'} ago`;
+  el.textContent = text;
+}
 
 async function loadCalendarData(){
   const bodyEl = document.getElementById('calendarBody');
@@ -886,6 +981,8 @@ async function loadCalendarData(){
     }
     allEvents = data.events.filter(e => e.date && e.event);
     allEvents.sort((a,b) => new Date(a.date) - new Date(b.date));
+    lastCalendarFetchTime = new Date();
+    updateLastUpdatedLine();
     populateCountryFilter();
     renderCalendar();
   } catch(e){
@@ -970,71 +1067,480 @@ function renderCalendar(){
     const actualClass = (e.actual && e.forecast && parseFloat(e.actual) > parseFloat(e.forecast)) ? 'actual-up'
                        : (e.actual && e.forecast && parseFloat(e.actual) < parseFloat(e.forecast)) ? 'actual-down' : '';
     html += `
-      <div class="event-row" data-idx="${idx}" data-key="ev-${idx}">
+      <div class="event-row" data-idx="${idx}" data-key="ev-${idx}" data-eventtime="${new Date(e.date).toISOString()}">
         ${dateCellHtml}
         <span class="ev-time">${fmtTime(e.date)}</span>
         <span class="ev-currency">${e.currency || e.country || ''}</span>
         <span class="ev-impact ${impactClass(e.importance)}" style="background:${e.importance===3?'#FB6B5B':e.importance===2?'#E8B15C':'#7C8598'}"></span>
         <span class="ev-name">${e.event}</span>
-        <span class="ev-val ${actualClass}">${e.actual || '—'}</span>
+        <span class="ev-folder">📁</span>
+        <span class="ev-val ${actualClass}" id="actual-${idx}">
+          <span class="ev-actual-num">${e.actual || '—'}</span>
+        </span>
         <span class="ev-val">${e.forecast || '—'}</span>
         <span class="ev-val">${e.previous || '—'}</span>
+        <span class="ev-history-icon" title="Historical data">🕒</span>
       </div>
       <div class="event-detail" id="detail-${idx}"></div>
+      <div class="event-detail" id="history-${idx}"></div>
     `;
   });
   bodyEl.innerHTML = html;
 
   bodyEl.querySelectorAll('.event-row').forEach(row => {
-    row.addEventListener('click', () => toggleDetail(row, filtered[parseInt(row.dataset.idx)]));
+    row.addEventListener('click', (e) => {
+      if(e.target.classList.contains('ev-history-icon')) return; // handled separately below
+      toggleDetail(row, filtered[parseInt(row.dataset.idx)]);
+    });
+    const historyIcon = row.querySelector('.ev-history-icon');
+    if(historyIcon){
+      historyIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleHistory(row, filtered[parseInt(row.dataset.idx)]);
+      });
+    }
   });
+
+  // Build the list of events currently within their 10-minute countdown
+  // window (scheduled, no Actual value yet) — re-derived every render since
+  // filters/refreshes change which events are visible.
+  activeCountdowns = filtered
+    .map((e, idx) => ({ idx, date: new Date(e.date), hasActual: !!e.actual }))
+    .filter(c => !c.hasActual && (c.date - new Date()) > 0 && (c.date - new Date()) <= 10 * 60 * 1000);
+  tickCountdowns();
 }
 
-async function toggleDetail(row, ev){
+// ---------------- Live countdown for imminent releases ----------------
+// Ticks every second; once any event's countdown hits zero, switches to fast
+// polling (every 10s) so the real Actual value replaces it within seconds of
+// release, rather than waiting for the normal 3-minute refresh cycle.
+let activeCountdowns = [];
+let fastPollTimer = null;
+let fastPollAttempts = 0;
+
+function tickCountdowns(){
+  let anyReleasing = false;
+  activeCountdowns.forEach(c => {
+    const cell = document.getElementById('actual-' + c.idx);
+    if(!cell) return;
+    const diff = c.date - new Date();
+    let countdownEl = cell.querySelector('.ev-countdown');
+    if(!countdownEl){
+      countdownEl = document.createElement('span');
+      countdownEl.className = 'ev-countdown';
+      cell.appendChild(countdownEl);
+    }
+    if(diff <= 0){
+      countdownEl.textContent = 'Releasing…';
+      countdownEl.classList.add('releasing');
+      anyReleasing = true;
+    } else {
+      const mins = Math.floor(diff / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      countdownEl.textContent = `${mins}:${secs.toString().padStart(2,'0')}`;
+    }
+  });
+
+  if(anyReleasing){
+    startFastPoll();
+  } else if(fastPollTimer){
+    // Actual value(s) already came through — no need to keep fast-polling.
+    clearInterval(fastPollTimer);
+    fastPollTimer = null;
+  }
+}
+
+function startFastPoll(){
+  if(fastPollTimer) return; // already polling
+  fastPollAttempts = 0;
+  fastPollTimer = setInterval(() => {
+    fastPollAttempts++;
+    loadCalendarData();
+    // Give up after ~3 minutes (18 × 10s) if the actual value still hasn't
+    // appeared in the data source yet — falls back to the normal refresh cycle.
+    if(fastPollAttempts >= 18){
+      clearInterval(fastPollTimer);
+      fastPollTimer = null;
+    }
+  }, 10 * 1000);
+}
+
+setInterval(tickCountdowns, 1000);
+
+// ---------------- Event reference data — static, no AI, no API credits ----------------
+// Economic indicators are a finite, well-known set that doesn't change day to
+// day, so this is curated once here rather than calling an AI API on every
+// click. Zero cost, zero rate-limit risk, and never depends on any AI
+// provider being available or having credits left.
+const EVENT_REFERENCE = {
+  'inflation rate': {
+    measures: "The year-over-year (or month-over-month) change in the average price of a basket of consumer goods and services — the standard measure of inflation.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — higher inflation raises the odds of interest rate hikes.",
+    frequency: "Released monthly, roughly 2-3 weeks after the reference month ends.",
+    whyTradersCare: "Central banks set interest rates largely based on inflation data, and interest rate expectations are one of the biggest drivers of currency strength."
+  },
+  'consumer price index cpi': {
+    measures: "Tracks the average price change of a basket of consumer goods and services over time — the primary gauge of inflation.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals inflation pressure that may prompt rate hikes.",
+    frequency: "Released monthly, roughly 2-3 weeks after the reference month ends.",
+    whyTradersCare: "CPI directly shapes central bank interest rate decisions, making it one of the most closely watched releases in forex."
+  },
+  'non farm payrolls': {
+    measures: "The change in the number of employed people in the U.S., excluding the farming sector, during the previous month.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — stronger job creation signals a healthier economy.",
+    frequency: "Released monthly by the U.S. Bureau of Labor Statistics, typically on the first Friday of the month.",
+    whyTradersCare: "Job creation is a key leading indicator of consumer spending, which drives most economic activity — this is one of the most market-moving releases each month."
+  },
+  'unemployment rate': {
+    measures: "The percentage of the total labor force that is unemployed and actively seeking work.",
+    usualEffect: "Actual lower than Forecast is typically good for the currency — a falling unemployment rate signals labor market strength.",
+    frequency: "Released monthly, often alongside the jobs report.",
+    whyTradersCare: "Labor market health directly informs central bank policy decisions, especially in dual-mandate economies like the U.S."
+  },
+  'gdp growth rate': {
+    measures: "The percentage change in the total value of goods and services produced by an economy, compared to the previous period.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — stronger growth supports a stronger economy and currency.",
+    frequency: "Released quarterly, with preliminary, revised, and final estimates.",
+    whyTradersCare: "GDP is the broadest measure of economic health and directly influences central bank policy and long-term currency trends."
+  },
+  'interest rate decision': {
+    measures: "The benchmark interest rate set by a country's central bank, which influences borrowing costs across the entire economy.",
+    usualEffect: "A rate hike (or hawkish signal) is typically good for the currency; a rate cut (or dovish signal) is typically negative.",
+    frequency: "Set at scheduled central bank policy meetings, typically 6-8 times per year.",
+    whyTradersCare: "Interest rate differentials between countries are one of the single biggest drivers of currency valuation and forex trends."
+  },
+  'retail sales': {
+    measures: "The change in the total value of sales at the retail level, a key gauge of consumer spending.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — stronger consumer spending signals economic strength.",
+    frequency: "Released monthly, a few weeks after the reference month.",
+    whyTradersCare: "Consumer spending drives a majority of economic activity in most developed economies, making this a closely watched health check."
+  },
+  'manufacturing pmi': {
+    measures: "A survey-based index measuring the direction of manufacturing sector activity — above 50 signals expansion, below 50 signals contraction.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals stronger manufacturing sector activity.",
+    frequency: "Released monthly, usually within the first few days of the following month.",
+    whyTradersCare: "PMI data is timely and forward-looking, often reacting faster to economic conditions than official government data."
+  },
+  'services pmi': {
+    measures: "A survey-based index measuring the direction of services sector activity — above 50 signals expansion, below 50 signals contraction.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals stronger services sector activity.",
+    frequency: "Released monthly, usually within the first few days of the following month.",
+    whyTradersCare: "Services make up the majority of output in most developed economies, making this a key real-time health gauge."
+  },
+  'trade balance': {
+    measures: "The difference between the value of a country's exports and imports over a given period.",
+    usualEffect: "A larger-than-expected surplus (or smaller deficit) is typically good for the currency.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Trade flows directly affect currency demand — a trade surplus generally means more foreign demand for the domestic currency."
+  },
+  'producer price index ppi': {
+    measures: "Tracks the average change in selling prices received by domestic producers — often an early signal of consumer inflation.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals building inflation pressure.",
+    frequency: "Released monthly.",
+    whyTradersCare: "PPI often moves before CPI, making it a leading indicator traders watch for early inflation signals."
+  },
+  'initial jobless claims': {
+    measures: "The number of people filing for unemployment benefits for the first time in a given week.",
+    usualEffect: "Actual lower than Forecast is typically good for the currency — fewer new claims signals a stronger labor market.",
+    frequency: "Released weekly, typically every Thursday.",
+    whyTradersCare: "As a weekly release, it's one of the most timely, frequent gauges of labor market health available."
+  },
+  'building permits': {
+    measures: "The number of new construction permits issued, a leading indicator of future construction activity.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals confidence in future construction activity.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Construction activity is a meaningful driver of GDP and employment, and permits lead actual building activity by months."
+  },
+  'consumer confidence': {
+    measures: "A survey-based index measuring how optimistic consumers feel about the economy and their own finances.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — higher confidence often precedes stronger spending.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Consumer sentiment often foreshadows future spending behavior, making it a useful leading indicator."
+  },
+  'industrial production': {
+    measures: "The change in output from manufacturing, mining, and utilities sectors.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals stronger industrial sector activity.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Industrial output is a core component of GDP and a real-time signal of broader economic momentum."
+  },
+  'balance of trade': {
+    measures: "The difference between the value of a country's exports and imports over a given period.",
+    usualEffect: "A larger-than-expected surplus (or smaller deficit) is typically good for the currency.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Trade flows directly affect currency demand — a trade surplus generally means more foreign demand for the domestic currency."
+  },
+  'core inflation rate': {
+    measures: "The change in consumer prices excluding volatile items like food and energy — a cleaner read on underlying inflation trends.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals persistent underlying inflation pressure.",
+    frequency: "Released monthly, alongside the headline CPI figure.",
+    whyTradersCare: "Central banks often weigh core inflation more heavily than headline CPI when setting policy, since it strips out short-term noise."
+  },
+  'core pce price index': {
+    measures: "The change in prices for personal consumption, excluding food and energy — the U.S. Federal Reserve's preferred inflation gauge.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — increases the odds of a more hawkish Fed stance.",
+    frequency: "Released monthly by the U.S. Bureau of Economic Analysis.",
+    whyTradersCare: "The Fed explicitly targets this measure for its 2% inflation goal, making it one of the most policy-relevant U.S. releases."
+  },
+  'durable goods orders': {
+    measures: "The change in new orders placed with manufacturers for goods expected to last three years or more.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals business investment confidence.",
+    frequency: "Released monthly.",
+    whyTradersCare: "A forward-looking gauge of manufacturing and business investment activity, often volatile due to large one-off orders like aircraft."
+  },
+  'average hourly earnings': {
+    measures: "The change in average wages paid to employees, a key measure of wage growth and inflation pressure from the labor market.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — faster wage growth can fuel inflation.",
+    frequency: "Released monthly, usually alongside the jobs report.",
+    whyTradersCare: "Wage growth feeds directly into inflation expectations and is closely watched by central banks alongside employment data."
+  },
+  'ism manufacturing pmi': {
+    measures: "A U.S. survey-based index of manufacturing activity — above 50 signals expansion, below 50 signals contraction.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals stronger factory sector activity.",
+    frequency: "Released monthly, on the first business day of the month.",
+    whyTradersCare: "One of the earliest monthly indicators available, often moving markets before official government data confirms the trend."
+  },
+  'ism non manufacturing pmi': {
+    measures: "A U.S. survey-based index of services sector activity — above 50 signals expansion, below 50 signals contraction.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals stronger services sector activity.",
+    frequency: "Released monthly, a few business days into the month.",
+    whyTradersCare: "Services make up the majority of U.S. economic output, making this a key real-time health gauge."
+  },
+  'housing starts': {
+    measures: "The number of new residential construction projects that began during the month.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals housing market and broader economic strength.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Housing activity is a meaningful driver of GDP and employment, and often reacts early to interest rate changes."
+  },
+  'existing home sales': {
+    measures: "The number of previously constructed homes that were sold during the month.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals consumer confidence and housing demand.",
+    frequency: "Released monthly.",
+    whyTradersCare: "The housing market is highly sensitive to interest rates, making this a useful gauge of how rate policy is affecting the real economy."
+  },
+  'new home sales': {
+    measures: "The number of newly constructed homes sold during the month.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals housing demand and builder confidence.",
+    frequency: "Released monthly.",
+    whyTradersCare: "A forward-looking housing indicator, since new home sales are counted at contract signing rather than closing."
+  },
+  'michigan consumer sentiment': {
+    measures: "A survey-based index measuring U.S. consumer attitudes toward personal finances and the broader economy.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — higher sentiment often precedes stronger spending.",
+    frequency: "Released twice monthly — a preliminary reading and a final revision.",
+    whyTradersCare: "Consumer sentiment often foreshadows future spending behavior, and this is one of the most widely followed sentiment gauges."
+  },
+  'adp employment change': {
+    measures: "The change in private-sector U.S. employment, based on ADP's payroll processing data.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals labor market strength.",
+    frequency: "Released monthly, typically two days before the official Non-Farm Payrolls report.",
+    whyTradersCare: "Often treated as an early preview of the more market-moving NFP report, though the two don't always align closely."
+  },
+  'current account': {
+    measures: "The broadest measure of a country's transactions with the rest of the world, including trade, income, and transfers.",
+    usualEffect: "A larger-than-expected surplus (or smaller deficit) is typically good for the currency.",
+    frequency: "Released quarterly in most countries.",
+    whyTradersCare: "A persistent current account deficit can signal long-term currency weakness, as it reflects reliance on foreign capital."
+  },
+  'government budget value': {
+    measures: "The difference between government spending and revenue over a given period — a surplus or deficit.",
+    usualEffect: "A smaller-than-expected deficit (or larger surplus) is typically good for the currency.",
+    frequency: "Released monthly or annually depending on the country.",
+    whyTradersCare: "Large, persistent deficits can raise concerns about government debt sustainability, which can weigh on a currency over time."
+  },
+  'money supply m2': {
+    measures: "The total amount of currency, checking deposits, and easily-convertible near-money in an economy.",
+    usualEffect: "Effects vary — rapid money supply growth can signal future inflation, which markets may view negatively for the currency long-term.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Money supply growth is watched as a leading signal of inflation pressure and central bank policy stance."
+  },
+  'factory orders': {
+    measures: "The change in the total value of new orders placed with manufacturers for both durable and non-durable goods.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals manufacturing sector demand.",
+    frequency: "Released monthly.",
+    whyTradersCare: "A broader complement to durable goods orders, giving a fuller picture of manufacturing sector health."
+  },
+  'business confidence': {
+    measures: "A survey-based index measuring how optimistic business managers feel about current and future economic conditions.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — higher confidence often precedes stronger business investment.",
+    frequency: "Released monthly.",
+    whyTradersCare: "Business sentiment often leads actual investment and hiring decisions, making it a useful forward-looking indicator."
+  },
+  'continuing jobless claims': {
+    measures: "The number of people continuing to receive unemployment benefits, reflecting the total pool of unemployed workers.",
+    usualEffect: "Actual lower than Forecast is typically good for the currency — signals workers are finding jobs faster.",
+    frequency: "Released weekly, alongside initial jobless claims.",
+    whyTradersCare: "Complements the initial claims figure by showing how long unemployment is lasting, not just how many new claims are filed."
+  },
+  'employment change': {
+    measures: "The net change in the number of employed people in an economy during the reference period.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals labor market strength.",
+    frequency: "Released monthly or quarterly depending on the country.",
+    whyTradersCare: "Employment trends are a core input into central bank policy decisions and overall economic health assessments."
+  },
+  'composite pmi': {
+    measures: "A survey-based index blending manufacturing and services activity into a single overall economic health gauge — above 50 signals expansion.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals broad-based economic expansion.",
+    frequency: "Released monthly, typically alongside the individual manufacturing and services PMI readings.",
+    whyTradersCare: "Gives a single, timely snapshot of overall private-sector economic momentum across both goods and services."
+  },
+  'core retail sales': {
+    measures: "The change in retail sales excluding volatile categories like automobiles — a cleaner read on underlying consumer spending.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals steady underlying consumer demand.",
+    frequency: "Released monthly, alongside headline retail sales.",
+    whyTradersCare: "Strips out large, lumpy purchases like vehicles to give a more consistent read on everyday consumer spending trends."
+  },
+  'personal income': {
+    measures: "The change in total income received by individuals from all sources, including wages, investments, and benefits.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals stronger household finances.",
+    frequency: "Released monthly, often alongside personal spending data.",
+    whyTradersCare: "Income growth underpins future consumer spending, which drives the majority of economic activity in most economies."
+  },
+  'employment cost index': {
+    measures: "The change in the total cost of labor, including wages and benefits, for businesses.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — signals rising labor cost and inflation pressure.",
+    frequency: "Released quarterly.",
+    whyTradersCare: "Considered one of the most comprehensive wage inflation gauges, closely watched by central banks for inflation risk."
+  },
+  'capacity utilization': {
+    measures: "The percentage of an economy's total industrial production capacity that is actually being used.",
+    usualEffect: "Actual greater than Forecast is typically good for the currency — higher utilization can signal building inflation pressure.",
+    frequency: "Released monthly, alongside industrial production data.",
+    whyTradersCare: "When utilization runs high, it can signal capacity constraints that lead to rising prices and potential rate hikes."
+  },
+  'crude oil inventories': {
+    measures: "The weekly change in the amount of crude oil held in storage, a key gauge of supply and demand balance.",
+    usualEffect: "A larger-than-expected build in inventories is typically negative for oil prices; a larger draw is typically positive.",
+    frequency: "Released weekly, typically on Wednesdays.",
+    whyTradersCare: "One of the most closely watched weekly releases for oil traders, often causing immediate price volatility in crude and related currency pairs like USD/CAD."
+  },
+};
+
+// Normalizes an event/category name for matching — strips common suffixes
+// like "(MoM)", "(YoY)", "(QoQ)" and lowercases, since the same underlying
+// indicator appears under slightly different labels across countries.
+function normalizeEventName(name){
+  return (name || '')
+    .toLowerCase()
+    .replace(/\(.*?\)/g, '')
+    .replace(/[^a-z\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function lookupEventReference(ev){
+  const candidates = [normalizeEventName(ev.category), normalizeEventName(ev.event)];
+  for(const key of Object.keys(EVENT_REFERENCE)){
+    if(candidates.some(c => c && (c === key || c.includes(key) || key.includes(c)))){
+      return EVENT_REFERENCE[key];
+    }
+  }
+  return null;
+}
+
+function toggleDetail(row, ev){
   const idx = row.dataset.idx;
   const detailEl = document.getElementById('detail-' + idx);
   const isOpen = detailEl.classList.contains('open');
 
-  // close any other open detail rows
+  // close any other open detail/history panels (and un-rotate folder icons)
   document.querySelectorAll('.event-detail.open').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.event-row.detail-open').forEach(r => r.classList.remove('detail-open'));
 
   if(isOpen) return;
   detailEl.classList.add('open');
+  row.classList.add('detail-open');
 
-  const cacheKey = ev.event + '|' + ev.country;
-  if(detailCache[cacheKey]){
-    detailEl.innerHTML = detailCache[cacheKey];
+  const sourceHtml = ev.source
+    ? `<div class="specs-row"><span class="specs-label">Source</span><span class="specs-value">${ev.sourceUrl ? `<a href="${ev.sourceUrl}" target="_blank" style="color:var(--gold);">${ev.source}</a>` : ev.source}</span></div>`
+    : '';
+
+  // Real "Next Release" — found by searching the actual fetched calendar data
+  // for the next future occurrence of this same event, never guessed.
+  const nextOccurrence = allEvents
+    .filter(other => other.event === ev.event && new Date(other.date) > new Date(ev.date))
+    .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+  const nextReleaseHtml = nextOccurrence
+    ? `<div class="specs-row"><span class="specs-label">Next Release</span><span class="specs-value">${new Date(nextOccurrence.date).toLocaleDateString(undefined, {month:'short', day:'numeric', year:'numeric'})}</span></div>`
+    : '';
+
+  const ref = lookupEventReference(ev);
+
+  if(!ref){
+    detailEl.innerHTML = `<div class="specs-table">
+      ${sourceHtml}
+      ${nextReleaseHtml}
+      <div class="specs-row"><span class="specs-label">Note</span><span class="specs-value">A detailed reference isn't available for this specific indicator yet.</span></div>
+    </div>`;
     return;
   }
 
-  detailEl.innerHTML = '<div class="detail-loading">DeskAi is explaining this event…</div>';
+  detailEl.innerHTML = `<div class="specs-table">
+    ${sourceHtml}
+    ${nextReleaseHtml}
+    <div class="specs-row"><span class="specs-label">Measures</span><span class="specs-value">${ref.measures}</span></div>
+    <div class="specs-row"><span class="specs-label">Usual Effect</span><span class="specs-value">${ref.usualEffect}</span></div>
+    <div class="specs-row"><span class="specs-label">Frequency</span><span class="specs-value">${ref.frequency}</span></div>
+    <div class="specs-row"><span class="specs-label">Why Traders Care</span><span class="specs-value">${ref.whyTradersCare}</span></div>
+  </div>`;
+}
+
+const historyCache = {};
+
+async function toggleHistory(row, ev){
+  const idx = row.dataset.idx;
+  const historyEl = document.getElementById('history-' + idx);
+  const isOpen = historyEl.classList.contains('open');
+
+  // close any other open detail/history panels
+  document.querySelectorAll('.event-detail.open').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.event-row.detail-open').forEach(r => r.classList.remove('detail-open'));
+
+  if(isOpen) return;
+  historyEl.classList.add('open');
+  row.classList.add('detail-open');
+
+  const cacheKey = ev.event + '|' + ev.country;
+  if(historyCache[cacheKey]){
+    historyEl.innerHTML = historyCache[cacheKey];
+    return;
+  }
+
+  historyEl.innerHTML = '<div class="detail-loading">Loading real historical releases…</div>';
 
   try{
-    const res = await fetch('/.netlify/functions/deskai', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        section: 'calendar',
-        question: `Explain the economic event "${ev.event}" for ${ev.country}. What does it measure, why do traders watch it, and what's its typical market impact?`,
-        context: { actual: ev.actual, forecast: ev.forecast, previous: ev.previous }
-      })
-    });
+    const res = await fetch(`/.netlify/functions/event-history?country=${encodeURIComponent(ev.country)}&event=${encodeURIComponent(ev.event)}`);
     const data = await res.json();
-    let sourceHtml = '';
-    if(ev.source){
-      sourceHtml = `<div class="detail-source">Source: ${ev.sourceUrl ? `<a href="${ev.sourceUrl}" target="_blank">${ev.source}</a>` : ev.source}</div>`;
-    }
-    const html = data.error
-      ? `<div class="detail-loading">AI explanation isn't available right now.</div>${sourceHtml}`
-      : `<div>${data.answer}</div>${sourceHtml}`;
-    detailEl.innerHTML = html;
-    detailCache[cacheKey] = html;
+    const rows = data.history || [];
+
+    const html = rows.length ? `
+      <div class="history-label">Past Year — Real Releases</div>
+      <div class="history-table">
+        <div class="history-header-row">
+          <span>Date</span><span>Actual</span><span>Forecast</span><span>Previous</span>
+        </div>
+        ${rows.map(h => `
+          <div class="history-row">
+            <span>${new Date(h.date).toLocaleDateString(undefined, {month:'short', day:'numeric', year:'numeric'})}</span>
+            <span class="hist-actual">${h.actual || '—'}</span>
+            <span>${h.forecast || '—'}</span>
+            <span>${h.previous || '—'}</span>
+          </div>
+        `).join('')}
+      </div>
+    ` : `<div class="history-label">Past Year</div><div class="detail-loading">No historical releases found in the past year for this event.</div>`;
+
+    historyEl.innerHTML = html;
+    historyCache[cacheKey] = html;
   } catch(e){
-    detailEl.innerHTML = '<div class="detail-loading">AI explanation isn\'t available right now.</div>';
+    historyEl.innerHTML = '<div class="detail-loading">Historical data isn\'t available right now.</div>';
   }
 }
 
 loadCalendarData();
+
+// Auto-refresh every 3 minutes, matching the server-side cache window
+// (econ-calendar.js), so actual/forecast values stay current through the day.
+setInterval(loadCalendarData, 3 * 60 * 1000);
 
 /* ---------------- Mini calendar sidebar (date reference) ---------------- */
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -1321,7 +1827,7 @@ window.getDeskAiContext = async function(){ return { calendarScope: 'Global majo
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
