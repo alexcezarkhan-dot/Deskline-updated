@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forex News Today — Live Market Headlines &amp; Hot Stories | DeskTerminal</title>
 <meta name="description" content="Live forex, crypto, and stock market news from real financial sources, updated automatically. Hot Stories, breaking headlines, and AI explanations — free, no sign-up.">
-<meta name="keywords" content="forex news, forex news today, market news today, crypto news, stock market news today, gold price news, financial headlines, trading news today, breaking forex news, live market news, forex news live, hot stories forex, forexlive news, marketwatch news, latest financial news, forex news update, currency market news, news trading forex, forex news source, real time forex news">
+<meta name="keywords" content="forex news, forex news today, market news today, crypto news, stock market news today, gold price news, financial headlines, trading news today, breaking forex news, live market news, forex news live, hot stories forex, forexlive news, marketwatch news, yahoo finance news, kitco gold news, coindesk crypto news, marketaux news, finnhub market news, alpha vantage news, latest financial news, forex news update, currency market news, news trading forex, forex news source, real time forex news">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="DeskTerminal">
 <meta name="theme-color" content="#0E1116">
@@ -58,7 +58,7 @@
       "name": "Where does DeskTerminal's forex news come from?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Headlines are pulled live from real financial news publishers — including InvestingLive (formerly ForexLive) and MarketWatch — via their official RSS feeds, the same syndication method most financial news aggregators use. Every headline links to the original article."
+        "text": "Headlines are pulled live from trusted, established financial news publishers — including InvestingLive (formerly ForexLive), MarketWatch, Yahoo Finance, Kitco News, CoinDesk, Marketaux, and Finnhub. Every headline links to the original article."
       }
     },
     {
@@ -138,8 +138,46 @@
   }
   @keyframes pulse{ 0%,100%{opacity:.35;} 50%{opacity:1;} }
 
+  .last-updated{
+    padding: .6rem 6vw 0;
+    font-size:.68rem; color:var(--dim); letter-spacing:.02em;
+  }
+
   /* ---------------- Hot Stories ---------------- */
-  .hot-stories-section{ padding: 1.4rem 6vw 0; }
+  .hot-stories-section{ padding: 1.4rem 0 0; }
+  .news-layout{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 6vw;
+  }
+  @media (max-width: 860px){ .news-layout{ grid-template-columns: 1fr; padding: 0; } }
+  .news-sidebar{
+    border-right:1px solid var(--line-soft);
+    padding: 1.4rem 1.2rem 2rem 0;
+    display:flex;
+    flex-direction:column;
+  }
+  @media (max-width: 860px){ .news-sidebar{ border-right:none; border-bottom:1px solid var(--line-soft); padding: 1.4rem 6vw; } }
+  .news-sidebar .sidebar-label{
+    font-family:'JetBrains Mono', monospace; font-size:.6rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:.7rem;
+  }
+  .news-sidebar .ad-slot{
+    flex: 1;
+    min-height: 460px;
+    border:1px dashed var(--line-soft); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:1.5rem 1rem;
+  }
+  @media (max-width: 860px){ .news-sidebar .ad-slot{ min-height:140px; flex:none; } }
+  .news-sidebar .ad-slot span{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem;
+    color:var(--dim); letter-spacing:.08em; text-transform:uppercase; line-height:1.8;
+  }
+  .news-main{ padding: 0 0 0 1.4rem; min-width:0; }
+  @media (max-width: 860px){ .news-main{ padding: 0 6vw; } }
   .hot-stories-label{
     font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.18em;
     text-transform:uppercase; color:var(--gold); margin-bottom:.9rem;
@@ -153,18 +191,18 @@
   }
   @media (max-width: 700px){ .hot-stories-featured{ grid-template-columns:1fr; } }
   .hot-story-featured-card{
-    background: var(--panel); padding:1.2rem; display:flex; gap:1rem; text-decoration:none; color:var(--ink);
+    background: var(--panel); padding:1.5rem; display:flex; gap:1.2rem; text-decoration:none; color:var(--ink);
   }
   .hot-story-featured-card:hover{ background:#171E28; }
   .hot-story-img{
-    width:84px; height:84px; border-radius:4px; object-fit:cover; flex-shrink:0; background:var(--panel-2);
+    width:104px; height:104px; border-radius:5px; object-fit:cover; flex-shrink:0; background:var(--panel-2);
   }
   .hot-story-img.placeholder{
     display:flex; align-items:center; justify-content:center;
-    font-family:'JetBrains Mono', monospace; font-size:1.4rem; color:var(--line);
+    font-family:'JetBrains Mono', monospace; font-size:1.8rem; color:var(--line);
   }
-  .hot-story-title{ font-size:.95rem; font-weight:600; line-height:1.35; margin-bottom:.5rem; }
-  .hot-story-meta{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim); }
+  .hot-story-title{ font-size:1.05rem; font-weight:600; line-height:1.4; margin-bottom:.6rem; }
+  .hot-story-meta{ font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim); }
   .hot-story-meta .src{ color:var(--gold); }
 
   .hot-stories-list{
@@ -214,7 +252,7 @@
     letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--dim);
-    padding: .6rem 6vw;
+    padding: .6rem .9rem;
     border-bottom:1px solid var(--line);
     background: var(--panel-2);
   }
@@ -222,7 +260,6 @@
   .table-header span:nth-child(2){ width:120px; }
 
   .news-shell{
-    margin: 0 6vw;
     border-left:1px solid var(--line);
     border-right:1px solid var(--line);
     border-bottom:1px solid var(--line);
@@ -232,16 +269,56 @@
   #newsContainer{ width:100%; }
   .news-row{
     display:flex; align-items:center; gap:.5rem;
-    padding: .6rem 6vw;
+    padding: .6rem .9rem;
     border-bottom:1px solid var(--line-soft);
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
     text-decoration:none; color:var(--ink);
     font-size:.85rem;
+    cursor:pointer;
   }
   .news-row:last-child{ border-bottom:none; }
   .news-row:hover{ background: var(--panel-2); }
   .news-row .nr-time{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); width:70px; flex-shrink:0; }
   .news-row .nr-source{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--gold); width:120px; flex-shrink:0; }
   .news-row .nr-title{ flex:1; }
+
+  .news-detail{
+    display:none;
+    padding: 1rem .9rem 1.4rem;
+    background: var(--panel-2);
+    border-bottom:1px solid var(--line-soft);
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+  .news-detail.open{ display:block; }
+  .news-detail-body{ display:flex; gap:1.2rem; }
+  .news-detail-img{
+    width:120px; height:90px; object-fit:cover; border-radius:6px; flex-shrink:0; background:var(--panel);
+  }
+  .news-detail-img.placeholder{
+    display:flex; align-items:center; justify-content:center; font-size:1.6rem;
+  }
+  .news-detail-text{ flex:1; min-width:0; }
+  .news-detail-from{ font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--gold); margin-bottom:.5rem; }
+  .news-detail-from a{ color:var(--gold); }
+  .news-detail-snippet{ font-size:.88rem; line-height:1.65; color:#D7DAE1; margin-bottom:.7rem; }
+  .news-detail-fullstory{
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; font-weight:600;
+    color:var(--gold); text-decoration:none;
+  }
+  .news-detail-fullstory:hover{ text-decoration:underline; }
+
+  .more-stories{ margin-top:1.3rem; padding-top:1.1rem; border-top:1px solid var(--line-soft); }
+  .more-stories-label{
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.6rem;
+  }
+  .more-story-link{
+    display:block; padding:.4rem 0; font-size:.82rem; color:var(--ink); text-decoration:none;
+  }
+  .more-story-link:hover{ color:var(--gold); }
+  .more-story-link .ms-source{ font-family:'JetBrains Mono', monospace; font-size:.65rem; color:var(--dim); margin-right:.5rem; }
   .news-status{ padding: 2rem 6vw; font-family:'JetBrains Mono', monospace; font-size:.8rem; color:var(--dim); }
 
   .seo-content{
@@ -541,8 +618,8 @@
   /* ---------------- Auth: login/signup + profile ---------------- */
   .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
   .auth-btn{
-    font-family:'JetBrains Mono', monospace; font-size:.72rem; font-weight:600;
-    padding:.45rem .9rem; border-radius:5px; cursor:pointer;
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; font-weight:600;
+    padding:.32rem .65rem; border-radius:4px; cursor:pointer;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
   }
   .auth-btn:hover{ border-color:var(--gold); color:var(--gold); }
@@ -676,6 +753,7 @@
   </div>
   <div class="navlinks">
     <a href="index.html">Market</a>
+    <a href="brokers/index.html">Brokers</a>
     <a href="calendar.html">Economic Calendar</a>
     <a href="news.html" class="active">News</a>
     <a href="calculator.html">Calculator</a>
@@ -708,36 +786,50 @@
   <h1>Market <span>News</span></h1>
   <div class="util-clock mono" id="clockLine"><span class="dot"></span>live feed</div>
 </div>
+<div class="last-updated mono" id="lastUpdated"></div>
 
-<div class="hot-stories-section">
-  <div class="hot-stories-label">Hot Stories</div>
-  <div class="hot-stories-featured" id="hotStoriesFeatured"></div>
-  <div class="hot-stories-list" id="hotStoriesList"></div>
-</div>
+<div class="news-layout">
+  <aside class="news-sidebar">
+    <div class="sidebar-label">Promotions</div>
+    <div class="ad-slot">
+      <span>Broker &amp;<br>Bonus<br>Promotions<br>— Coming Soon —</span>
+    </div>
+  </aside>
 
-<div class="filter-row" id="newsTabs"></div>
+  <div class="news-main">
+    <div class="hot-stories-section">
+      <div class="hot-stories-label">Hot Stories</div>
+      <div class="hot-stories-featured" id="hotStoriesFeatured"></div>
+      <div class="hot-stories-list" id="hotStoriesList"></div>
+    </div>
 
-<div class="table-header">
-  <span>Time</span>
-  <span>Source</span>
-  <span>Headline</span>
-</div>
+    <div class="hot-stories-label" style="margin-top:2rem;">Latest Stories</div>
 
-<div class="news-shell">
-  <div id="newsContainer"></div>
+    <div class="filter-row" id="newsTabs"></div>
+
+    <div class="table-header">
+      <span>Time</span>
+      <span>Source</span>
+      <span>Headline</span>
+    </div>
+
+    <div class="news-shell">
+      <div id="newsContainer"></div>
+    </div>
+  </div>
 </div>
 
 <section class="seo-content">
   <h2>Live Forex, Crypto &amp; Stock Market News</h2>
-  <p>Real, live financial headlines pulled directly from InvestingLive (formerly ForexLive) and MarketWatch — the same kind of sources professional trading news aggregators use. Updated automatically, no TradingView widget, click any headline to read the full original article.</p>
+  <p>Real, live financial headlines pulled directly from InvestingLive (formerly ForexLive), MarketWatch, Yahoo Finance, Kitco News, and CoinDesk — the same kind of sources professional trading news aggregators use. Updated automatically, no TradingView widget. Click any headline to preview it inline, then read the full original article at the source.</p>
 
   <h2>Hot Stories — always current</h2>
-  <p>The Hot Stories section at the top of this page highlights the most important headlines. It automatically surfaces the latest breaking story until DeskTerminal's editors manually feature something more significant — so there's always a current, relevant story at the top, whether or not an editor has stepped in recently.</p>
+  <p>Hot Stories highlights the most important headlines from credible financial sources, refreshed automatically so there's always a current, relevant story at the top — no waiting, no manual refresh needed.</p>
 
   <h2>Frequently Asked Questions</h2>
 
   <h3>Where does DeskTerminal's forex news come from?</h3>
-  <p>Headlines are pulled live from real financial news publishers — including InvestingLive (formerly ForexLive) and MarketWatch — via their official RSS feeds, the same syndication method most financial news aggregators use. Every headline links to the original article.</p>
+  <p>Headlines are pulled live from trusted, established financial news publishers — including InvestingLive (formerly ForexLive), MarketWatch, Yahoo Finance, Kitco News, CoinDesk, Marketaux, and Finnhub. Every headline links to the original article.</p>
 
   <h3>What are Hot Stories?</h3>
   <p>Hot Stories is a curated selection of the most important headlines, capped at 15. It automatically shows the latest breaking story until an editor manually highlights a specific story as more important, similar to how major financial news aggregators curate their top section.</p>
@@ -756,7 +848,6 @@
 </section>
 
 <footer>
-  News sourced live from <a href="https://www.forexlive.com" target="_blank">InvestingLive</a> and <a href="https://www.marketwatch.com" target="_blank">MarketWatch</a>. Headlines link to their original articles.<br>
   <a href="about.html">About</a> · <a href="contact.html">Contact</a>
 </footer>
 
@@ -797,14 +888,56 @@ function renderNewsList(){
     return;
   }
 
-  container.innerHTML = filtered.map(item => `
-    <a class="news-row" href="${item.link}" target="_blank" rel="noopener">
+  container.innerHTML = filtered.map((item, idx) => `
+    <div class="news-row" data-idx="${idx}">
       <span class="nr-time">${fmtNewsTime(item.pubDate)}</span>
       <span class="nr-source">${item.source}</span>
       <span class="nr-title">${item.title}</span>
-    </a>
+    </div>
+    <div class="news-detail" id="newsDetail-${idx}"></div>
   `).join('');
+
+  container.querySelectorAll('.news-row').forEach(row => {
+    row.addEventListener('click', () => toggleNewsDetail(row, filtered, parseInt(row.dataset.idx)));
+  });
 }
+
+function toggleNewsDetail(row, filtered, idx){
+  const detailEl = document.getElementById('newsDetail-' + idx);
+  const isOpen = detailEl.classList.contains('open');
+
+  // Only one story expanded at a time
+  document.querySelectorAll('.news-detail.open').forEach(d => d.classList.remove('open'));
+  if(isOpen) return;
+
+  const item = filtered[idx];
+
+  // Up to 4 other recent headlines, excluding this one
+  const others = filtered.filter((_, i) => i !== idx).slice(0, 4);
+  const moreHtml = others.length ? `
+    <div class="more-stories">
+      <div class="more-stories-label">More Stories</div>
+      ${others.map(o => `<a class="more-story-link" href="${o.link}" target="_blank" rel="noopener"><span class="ms-source">${o.source}</span>${o.title}</a>`).join('')}
+    </div>
+  ` : '';
+
+  detailEl.innerHTML = `
+    <div class="news-detail-body">
+      ${item.image
+        ? `<img class="news-detail-img" src="${item.image}" alt="" onerror="this.style.display='none'">`
+        : `<div class="news-detail-img placeholder">📰</div>`}
+      <div class="news-detail-text">
+        <div class="news-detail-from">From ${item.source}</div>
+        <div class="news-detail-snippet">${item.description || 'No summary available for this story.'}</div>
+        <a class="news-detail-fullstory" href="${item.link}" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+    ${moreHtml}
+  `;
+  detailEl.classList.add('open');
+}
+
+let lastNewsFetchTime = null;
 
 async function loadNews(){
   const container = document.getElementById('newsContainer');
@@ -817,12 +950,27 @@ async function loadNews(){
       return;
     }
     allNewsItems = data.items;
+    lastNewsFetchTime = new Date();
+    updateLastUpdatedLine();
     renderTabs();
     renderNewsList();
     refreshHotStoriesWithLatest();
   } catch(e){
     container.innerHTML = '<div class="news-status">Could not load news right now. Please try again shortly.</div>';
   }
+}
+
+function updateLastUpdatedLine(){
+  const el = document.getElementById('lastUpdated');
+  if(!el || !lastNewsFetchTime) return;
+  const diffMs = new Date() - lastNewsFetchTime;
+  const diffMin = Math.floor(diffMs / 60000);
+  const diffHr = Math.floor(diffMin / 60);
+  let text;
+  if(diffMin < 1) text = 'Updated just now';
+  else if(diffMin < 60) text = `Updated ${diffMin} minute${diffMin===1?'':'s'} ago`;
+  else text = `Updated ${diffHr} hour${diffHr===1?'':'s'} ago`;
+  el.textContent = text;
 }
 
 function updateClock(){
@@ -916,7 +1064,16 @@ loadHotStories();
 
 loadNews();
 updateClock();
-setInterval(updateClock, 1000);
+setInterval(() => { updateClock(); updateLastUpdatedLine(); }, 1000);
+
+// True auto-refresh: re-fetches headlines every 10 minutes without needing a
+// page reload — matches the server-side cache window exactly (see
+// news-feed.js), so this never polls for data that couldn't possibly have
+// changed yet, and stays well within the rate-limited APIs' free quotas.
+setInterval(() => {
+  loadNews();
+  loadHotStories();
+}, 10 * 60 * 1000);
 
 </script>
 
@@ -1115,7 +1272,7 @@ window.getDeskAiContext = async function(){
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).

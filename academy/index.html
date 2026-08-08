@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forex &amp; Trading Broker Reviews and Guides | DeskTerminal</title>
-<meta name="description" content="Broker reviews, comparisons, and guides to help you choose a forex, crypto, or CFD trading broker — regulation, spreads, execution, and withdrawal reliability explained.">
-<meta name="keywords" content="forex broker review, best forex broker, trading broker comparison, broker regulation, ECN broker, STP broker">
+<title>Academy — Trading Education &amp; Guides | DeskTerminal</title>
+<meta name="description" content="DeskTerminal Academy — educational articles and guides on forex, gold, crypto, and trading fundamentals, for beginners and experienced traders alike.">
+<meta name="keywords" content="forex education, learn trading, trading for beginners, what is forex, trading guide">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -70,6 +70,51 @@
     font-size:.85rem;
     color:var(--dim);
   }
+
+  .breadcrumb-nav{
+    padding: 1rem 6vw 0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem;
+    color:var(--dim);
+  }
+  .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
+  .breadcrumb-nav a:hover{ color:var(--gold); }
+  .breadcrumb-nav .sep{ margin:0 .4rem; }
+  .breadcrumb-nav .current{ color:var(--gold); }
+
+  .category-grid{
+    padding: 0 6vw 3rem;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 1.2rem;
+  }
+  .category-card{
+    background: var(--panel);
+    border:1px solid var(--line-soft);
+    border-radius:10px;
+    padding: 1.5rem;
+    text-decoration:none;
+    color:var(--ink);
+    display:flex;
+    flex-direction:column;
+    gap:.6rem;
+    transition: border-color .15s, transform .15s;
+  }
+  .category-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
+  .category-icon{ font-size:1.8rem; line-height:1; }
+  .category-title{ font-size:1.05rem; font-weight:700; }
+  .category-desc{ font-size:.85rem; color:var(--dim); line-height:1.55; flex:1; }
+  .category-count{
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--gold);
+    padding-top:.8rem; margin-top:.2rem; border-top:1px solid var(--line-soft);
+  }
+
+  .back-to-categories{
+    display:inline-block; margin: 0 6vw 1.2rem;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem;
+    color:var(--dim); text-decoration:none;
+  }
+  .back-to-categories:hover{ color:var(--gold); }
 
   .seo-content{
     padding: 1rem 6vw 3rem;
@@ -523,51 +568,135 @@
     <a href="../news.html">News</a>
     <a href="../calendar.html">Economic Calendar</a>
     <a href="../opinion/index.html">Opinion</a>
-    <a href="../academy/index.html">Academy</a>
-    <a href="../brokers/index.html" class="active">Brokers</a>
+    <a href="../academy/index.html" class="active">Academy</a>
+    <a href="../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKTERMINAL · FULL SITE MENU</div>
 </div>
 
+<nav class="breadcrumb-nav" id="breadcrumbNav" aria-label="Breadcrumb" style="display:none;"></nav>
+
 <div class="pagehead">
-  <h1>Brokers</h1>
-  <p>BROKER REVIEWS, COMPARISONS &amp; GUIDES</p>
+  <h1 id="pageH1">Academy</h1>
+  <p id="pageSubtitle">LEARN FOREX, GOLD &amp; CRYPTO TRADING</p>
 </div>
 
-<div class="posts" id="postsGrid"></div>
+<a class="back-to-categories" id="backToCategories" href="index.html" style="display:none;">&larr; Back to all categories</a>
+
+<section class="category-grid" id="categoryGrid" aria-label="Academy categories"></section>
+
+<section class="posts" id="postsGrid" aria-label="Academy articles"></section>
 <div class="empty" id="emptyMsg" style="display:none;">No posts published yet — check back soon.</div>
 
 <section class="seo-content">
-  <h2>Choosing a Forex or Trading Broker</h2>
-  <p>Read broker reviews and guides covering regulation, spreads, execution models (A-Book, B-Book, ECN, STP), and withdrawal reliability — the factors that actually matter when picking a forex, crypto, or CFD broker.</p>
+  <h2>DeskTerminal Academy</h2>
+  <p>Educational content only — not financial advice. Always do your own research and understand the risks before trading.</p>
 </section>
 
-<footer>DeskTerminal · Brokers · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
 
 <script>
+const ACADEMY_CATEGORIES = [
+  { slug:'forex-basics', title:'Forex Basics', description:'Start here: core concepts every trader needs before placing a trade.', icon:'📘' },
+  { slug:'technical-analysis', title:'Technical Analysis', description:'Chart patterns, indicators, and price action strategies.', icon:'📊' },
+  { slug:'fundamental-analysis', title:'Fundamental Analysis', description:'Economic events, central banks, and how news moves markets.', icon:'📰' },
+  { slug:'gold-commodities', title:'Gold & Commodities', description:'XAUUSD trading, safe-haven assets, and commodity correlations.', icon:'🪙' },
+  { slug:'risk-management', title:'Risk Management & Psychology', description:'Position sizing, stop-loss discipline, and trading mindset.', icon:'🛡️' },
+  { slug:'strategy-guides', title:'Strategy & Practical Guides', description:'Trading styles, plan-building, and backtesting.', icon:'🧭' },
+  { slug:'broker-platform-guides', title:'Broker & Platform Guides', description:'How to choose a broker, understand regulation, and compare platforms.', icon:'🏦' },
+  { slug:'glossary', title:'Trading Glossary', description:'A-Z definitions of forex and trading terms.', icon:'🔤' },
+];
+
+const params = new URLSearchParams(window.location.search);
+const activeCategorySlug = params.get('category');
+
 fetch('posts.json')
   .then(r => r.json())
   .then(posts => {
-    const grid = document.getElementById('postsGrid');
-    if(!posts.length){
-      document.getElementById('emptyMsg').style.display = 'block';
-      return;
-    }
-    // newest first
     posts.sort((a,b) => (b.date||'').localeCompare(a.date||''));
-    grid.innerHTML = posts.map(p => `
-      <a class="post-card" href="post.html?slug=${p.slug}">
-        <div class="post-tag">${p.tag || 'Guide'}</div>
-        <div class="post-title">${p.title}</div>
-        <div class="post-excerpt">${p.excerpt || ''}</div>
-        <div class="post-date">${p.date || ''}</div>
-      </a>
-    `).join('');
+
+    if(!activeCategorySlug){
+      renderCategoryLanding(posts);
+    } else {
+      renderCategoryFiltered(posts, activeCategorySlug);
+    }
   })
   .catch(() => {
     document.getElementById('emptyMsg').textContent = 'Could not load posts.';
     document.getElementById('emptyMsg').style.display = 'block';
   });
+
+function renderCategoryLanding(posts){
+  const grid = document.getElementById('categoryGrid');
+  grid.innerHTML = ACADEMY_CATEGORIES.map(cat => {
+    const count = posts.filter(p => p.category === cat.slug).length;
+    return `
+      <a class="category-card" href="${cat.slug}/index.html">
+        <div class="category-icon">${cat.icon}</div>
+        <div class="category-title">${cat.title}</div>
+        <div class="category-desc">${cat.description}</div>
+        <div class="category-count">${count} article${count===1?'':'s'}</div>
+      </a>
+    `;
+  }).join('');
+}
+
+function renderCategoryFiltered(posts, slug){
+  const cat = ACADEMY_CATEGORIES.find(c => c.slug === slug);
+  const grid = document.getElementById('postsGrid');
+  const emptyMsg = document.getElementById('emptyMsg');
+
+  if(!cat){
+    document.getElementById('pageH1').textContent = 'Category not found';
+    document.getElementById('pageSubtitle').textContent = 'That category doesn\'t exist.';
+    document.getElementById('backToCategories').style.display = 'inline-block';
+    return;
+  }
+
+  // Breadcrumb: Home > Academy > [Category]
+  const breadcrumb = document.getElementById('breadcrumbNav');
+  breadcrumb.style.display = 'block';
+  breadcrumb.innerHTML = `
+    <a href="../index.html">Home</a><span class="sep">/</span>
+    <a href="index.html">Academy</a><span class="sep">/</span>
+    <span class="current">${cat.title}</span>
+  `;
+
+  document.getElementById('pageH1').textContent = cat.title;
+  document.getElementById('pageSubtitle').textContent = cat.description.toUpperCase();
+  document.getElementById('backToCategories').style.display = 'inline-block';
+  document.getElementById('categoryGrid').style.display = 'none';
+
+  // Dynamic per-category SEO metadata
+  document.title = `${cat.title} | DeskTerminal Academy`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc) metaDesc.setAttribute('content', cat.description);
+
+  const filtered = posts.filter(p => p.category === slug);
+  if(!filtered.length){
+    emptyMsg.textContent = `No articles in ${cat.title} yet — check back soon.`;
+    emptyMsg.style.display = 'block';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const readTime = estimateReadTime(p.body);
+    return `
+      <a class="post-card" href="post.html?slug=${p.slug}">
+        <div class="post-tag">${p.tag || 'Guide'}</div>
+        <div class="post-title">${p.title}</div>
+        <div class="post-excerpt">${p.excerpt || ''}</div>
+        <div class="post-date">${p.date || ''} · ${readTime} min read</div>
+      </a>
+    `;
+  }).join('');
+}
+
+function estimateReadTime(body){
+  if(!body) return 1;
+  const words = body.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
 </script>
 
 

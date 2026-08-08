@@ -3,44 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Silver Price Today (XAGUSD) Live Chart & AI Analysis | DeskTerminal</title>
-<meta name="description" content="Live silver price today (XAGUSD), chart, AI-generated market analysis, news, and economic events. Track silver spot price per ounce in real time.">
-<meta name="keywords" content="silver price today, XAGUSD live price, silver price live, silver chart, silver forecast, silver news, silver technical analysis, chandi rate">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="author" content="DeskTerminal">
-<meta name="theme-color" content="#0E1116">
-<link rel="canonical" href="https://deskterminal.com/commodities/silver/">
-<meta property="og:type" content="website">
+<title>How Does the Forex Market Work? | DeskTerminal Academy</title>
+<meta name="description" content="How the forex market actually operates — no central exchange, 24-hour trading, and the layers of participants that make prices move.">
+<meta name="keywords" content="how forex market works, forex market structure, OTC market, forex trading hours">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://deskterminal.com/academy/forex-basics/how-does-the-forex-market-work/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Does the Forex Market Work?">
+<meta property="og:description" content="How the forex market actually operates — no central exchange, 24-hour trading, and the layers of participants that make prices move.">
+<meta property="og:url" content="https://deskterminal.com/academy/forex-basics/how-does-the-forex-market-work/">
 <meta property="og:site_name" content="DeskTerminal">
-<meta property="og:title" content="Silver Price Today (XAGUSD) Live Chart & AI Analysis">
-<meta property="og:description" content="Live silver price today (XAGUSD), chart, AI-generated market analysis, news, and economic events. Track silver spot price per ounce in real time.">
-<meta property="og:url" content="https://deskterminal.com/commodities/silver/">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Silver Price Today (XAGUSD) Live Chart & AI Analysis">
-<meta name="twitter:description" content="Live silver price today (XAGUSD), chart, AI-generated market analysis, news, and economic events. Track silver spot price per ounce in real time.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Silver Price Today (XAGUSD) Live Chart & AI Analysis",
-  "description": "Live silver price today (XAGUSD), chart, AI-generated market analysis, news, and economic events. Track silver spot price per ounce in real time.",
-  "url": "https://deskterminal.com/commodities/silver/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "DeskTerminal", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Commodities", "item": "https://deskterminal.com/commodities/" },
-      { "@type": "ListItem", "position": 3, "name": "Silver (XAGUSD)", "item": "https://deskterminal.com/commodities/silver/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "How Does the Forex Market Work?",
+  "description": "How the forex market actually operates — no central exchange, 24-hour trading, and the layers of participants that make prices move.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/forex-basics/how-does-the-forex-market-work/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/instrument-styles.css">
 <style>
+  :root{
+    --bg:#0E1116; --panel:#151A22; --panel-2:#12161D;
+    --line-soft:rgba(255,255,255,0.08); --ink:#EDEFF3; --dim:#7C8598; --gold:#E8B15C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Space Grotesk',sans-serif; min-height:100vh; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
+  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
+  .wordmark span{ color:var(--gold); }
+  .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
+  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
+  .navlinks a:hover{ color:var(--ink); }
+  .navlinks a.active{ color:var(--gold); }
+
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
+  .breadcrumb-nav{
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
+  }
+  .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
+  .breadcrumb-nav a:hover{ color:var(--gold); }
+  .breadcrumb-nav .sep{ margin:0 .4rem; }
+  .breadcrumb-nav .current{ color:var(--gold); }
+
+  .post-tag{
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
+  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
+
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
+  }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
+  }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
+
+  footer{
+    text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
+    font-size:.65rem; color: var(--dim); border-top:1px solid var(--line-soft);
+  }
+
 
   /* ---------------- Hamburger + nav drawer ---------------- */
   .nav-left{ display:flex; align-items:center; gap:.9rem; }
@@ -444,11 +495,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../brokers/index.html">Brokers</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../brokers/index.html">Brokers</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
   </div>
 </nav>
 
@@ -459,133 +510,74 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<div class="breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../commodities/">Commodities</a><span class="sep">/</span>
-  <span class="current">Silver (XAGUSD)</span>
-</div>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/forex-basics/index.html">Forex Basics</a><span class="sep">/</span>
+    <span class="current">How Does the Forex Market Work?</span>
+  </nav>
+  <div class="post-tag">Forex Basics</div>
+  <h1>How Does the Forex Market Work?</h1>
+  <div class="post-date mono">August 6, 2026 · Forex Basics · 2 min read</div>
+  <div id="postBody">
 
-<div class="instrument-hero">
-  <h1 id="instTitle">Silver (XAGUSD)</h1>
-  <div class="subtitle mono" id="instSubtitle">Silver Spot / US Dollar</div>
-  <div class="hero-price-row">
-    <div class="hero-price mono" id="heroPrice">Loading…</div>
-    <div class="hero-change mono" id="heroChange">—</div>
+    <p>Unlike the stock market, forex has no single physical exchange or central location. It's what's called an <strong>over-the-counter (OTC) market</strong> — trading happens directly between parties, electronically, across a global network of banks, brokers, and financial institutions.</p>
+
+    <h2>A market that never technically closes</h2>
+    <p>Because currencies are traded across different time zones worldwide, the forex market runs continuously from Monday morning in Asia through Friday evening in New York — effectively 24 hours a day, 5 days a week. As one major trading session winds down, another is just opening, which is why forex has the concept of overlapping "sessions" rather than a single open/close time (more on this in the Forex Market Sessions article).</p>
+
+    <h2>Layers of the market</h2>
+    <p>Not everyone trades on equal footing. The forex market is often described in tiers:</p>
+    <ul>
+      <li><strong>Interbank market</strong> — the top tier, where the largest banks trade directly with each other at the tightest prices</li>
+      <li><strong>Institutional and corporate participants</strong> — hedge funds, large corporations, and investment firms</li>
+      <li><strong>Retail brokers</strong> — the layer individual traders access, which sources prices from the tiers above</li>
+    </ul>
+    <p>As a retail trader, you're not trading directly with a bank — you're trading through a broker, who quotes you a price based on the wider market.</p>
+
+    <h2>What actually moves prices?</h2>
+    <p>Exchange rates move based on supply and demand for each currency, which is influenced by things like:</p>
+    <ul>
+      <li>Interest rate decisions from central banks</li>
+      <li>Economic data (inflation, employment, GDP)</li>
+      <li>Political stability and geopolitical events</li>
+      <li>Overall market sentiment and risk appetite</li>
+    </ul>
+    <p>You can track exactly these kinds of events on DeskTerminal's <a href="../../../calendar.html">Economic Calendar</a>, which shows upcoming data releases that commonly move currency prices.</p>
+
+    <h2>Liquidity and spreads</h2>
+    <p>Because so much money moves through forex, major pairs like EUR/USD are extremely liquid — meaning it's easy to buy or sell without significantly moving the price yourself. This liquidity generally keeps the cost of trading (the "spread," or the small gap between buy and sell price) relatively low on major pairs compared to smaller, less-traded pairs.</p>
+
+    <p>This is educational content only, not financial advice.</p>
+
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-label">Day High</div><div class="hero-stat-value" id="statHigh">—</div></div>
-    <div class="hero-stat"><div class="hero-stat-label">Day Low</div><div class="hero-stat-value" id="statLow">—</div></div>
-    <div class="hero-stat"><div class="hero-stat-label">Day Range</div><div class="hero-stat-value" id="statRange">—</div></div>
-    <div class="hero-stat"><div class="hero-stat-label">Spread</div><div class="hero-stat-value" id="statSpread">—</div></div>
-    <div class="hero-stat"><div class="hero-stat-label">Market Status</div><div class="hero-stat-value" id="statStatus">—</div></div>
-    <div class="hero-stat"><div class="hero-stat-label">Session</div><div class="hero-stat-value" id="statSession">—</div></div>
-    <div class="hero-stat"><div class="hero-stat-label">Last Updated</div><div class="hero-stat-value mono" id="statUpdated">—</div></div>
-  </div>
-</div>
-
-<section class="section">
-  <div class="section-label">Live Chart</div>
-  <div class="chart-panel"><div id="chartContainer" style="height:100%;width:100%;"></div></div>
-</section>
-
-<section class="section">
-  <div class="section-label">AI Market Analysis</div>
-  <div class="insight-grid">
-    <div class="insight-main" id="insightMain"><p class="insight-loading">Generating today's analysis…</p></div>
-    <div class="insight-side" id="insightSide"></div>
-  </div>
-  <div class="ai-disclaimer">Analysis generated automatically by DeskAi from live price data — general information only, not financial advice.</div>
-</section>
-
-<section class="section">
-  <div class="section-label">Latest News — Silver (XAGUSD)</div>
-  <div class="news-grid" id="newsGrid"><p class="insight-loading">Loading headlines…</p></div>
-</section>
-
-<section class="section">
-  <div class="section-label">Related Economic Events</div>
-  <div class="events-table">
-    <div class="events-header-row">
-      <span>Date</span><span>Currency</span><span></span><span>Event</span>
-      <span style="text-align:right;">Actual</span><span style="text-align:right;">Forecast</span><span style="text-align:right;">Previous</span>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
-    <div id="eventsBody"><div class="event-row"><span class="insight-loading">Loading events…</span></div></div>
   </div>
-</section>
-
-<section class="section">
-  <div class="section-label">Historical Performance</div>
-  <div class="perf-grid" id="perfGrid"></div>
-</section>
-
-<section class="section">
-  <div class="section-label">Related Markets</div>
-  <div class="related-grid" id="relatedGrid"></div>
-</section>
-
-<section class="section">
-  <div class="section-label">Frequently Asked Questions</div>
-  <div id="faqContainer"><p class="insight-loading">Generating FAQ…</p></div>
-</section>
-
-<section class="section" style="border-bottom:none;">
-  <div class="section-label">More on DeskTerminal</div>
-  <div class="internal-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Trade Calculator</a>
-    <a href="../../index.html">Market Screener</a>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../what-is-forex-trading/index.html"><span class="dir">&larr; Previous</span>What is Forex Trading? A Beginner's Guide</a>
+    <a class="article-nav-link" href="../currency-pairs-explained/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Major, Minor, and Exotic Currency Pairs Explained</a>
   </div>
-</section>
+</article>
 
-<footer>
-  Prices and data from third-party sources (Frankfurter/ECB, Binance, Gold-API, TradingView) — may be delayed. AI analysis is general information, not financial advice.<br>
-  <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a>
-</footer>
-
-
-<div class="auth-slot" id="authSlot">
-  <button class="auth-btn" id="loginBtn">Login</button>
-  <button class="auth-btn primary" id="signupBtn">Sign Up</button>
-</div>
-
-<div class="auth-modal-overlay" id="authModalOverlay">
-  <div class="auth-modal">
-    <button class="auth-modal-close" id="authModalClose">✕</button>
-    <h2>Welcome to DeskTerminal</h2>
-    <p>Sign in to save your watchlist, favorites, and personal settings.</p>
-    <button class="auth-provider-btn" id="googleLoginBtn">
-      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Continue with Google
-    </button>
-    <button class="auth-provider-btn" id="facebookLoginBtn">
-      <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-      Continue with Facebook
-    </button>
-    <div class="auth-modal-note">By continuing you agree this is a demo auth flow — see About for details.</div>
-  </div>
-</div>
-
-<div class="profile-dropdown" id="profileDropdown">
-  <div class="profile-header" id="profileHeaderContent"></div>
-  <div class="profile-fields" id="profileFields"></div>
-  <div class="profile-actions">
-    <button class="profile-signout" id="signOutBtn">Sign out</button>
-  </div>
-</div>
-
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -613,9 +605,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Silver (XAGUSD) or the markets.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about How Does the Forex Market Work or forex basics.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is happening with Silver (XAGUSD) today?">What's happening today?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: How Does the Forex Market Work?">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
@@ -626,10 +618,6 @@
   </div>
 </div>
 
-
-<script src="../../assets/instruments-data.js"></script>
-<script>window.CURRENT_INSTRUMENT_KEY = 'silver';</script>
-<script src="../../assets/instrument-engine.js"></script>
 
 
 <script>
@@ -654,10 +642,10 @@
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
 // The publishable/anon key is safe to expose in frontend code by design —
 // Row Level Security (set up via supabase-schema.sql) is what keeps data private.
-const SUPABASE_URL = 'https://odlyvhxhktdjrydpkmta.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_zTpEf6S1XsS4JgPpjpXTFg_7atZZvFu';
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_KEY = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
 
-const sb = (SUPABASE_URL !== 'https://odlyvhxhktdjrydpkmta.supabase.co' && window.supabase)
+const sb = (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && window.supabase)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   : null;
 
@@ -872,7 +860,7 @@ initAuth();
 <script>
 /* ---------------- DeskAi floating chatbox (v2) ---------------- */
 (function(){
-  const SECTION = "market";
+  const SECTION = "general";
   const toggle = document.getElementById('deskaiToggle');
   const panel = document.getElementById('deskaiPanel');
   const closeBtn = document.getElementById('deskaiClose');

@@ -124,8 +124,8 @@
   /* ---------------- Auth: login/signup + profile ---------------- */
   .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
   .auth-btn{
-    font-family:'JetBrains Mono', monospace; font-size:.72rem; font-weight:600;
-    padding:.45rem .9rem; border-radius:5px; cursor:pointer;
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; font-weight:600;
+    padding:.32rem .65rem; border-radius:4px; cursor:pointer;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
   }
   .auth-btn:hover{ border-color:var(--gold); color:var(--gold); }
@@ -259,6 +259,7 @@
   </div>
   <div class="navlinks">
     <a href="../index.html">Market</a>
+    <a href="../brokers/index.html">Brokers</a>
     <a href="../calendar.html">Economic Calendar</a>
     <a href="../news.html">News</a>
     <a href="../calculator.html">Calculator</a>
@@ -372,9 +373,9 @@ function estimateReadTime(body){
         breadcrumb.innerHTML = `
           <a href="../index.html">Home</a><span class="sep">/</span>
           <a href="index.html">Academy</a><span class="sep">/</span>
-          <a href="index.html?category=${cat.slug}">${cat.title}</a>
+          <a href="${cat.slug}/index.html">${cat.title}</a>
         `;
-        backLink.href = `index.html?category=${cat.slug}`;
+        backLink.href = `${cat.slug}/index.html`;
         backLink.innerHTML = `&larr; Back to ${cat.title}`;
       } else {
         breadcrumb.innerHTML = `
@@ -456,7 +457,7 @@ function estimateReadTime(body){
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).

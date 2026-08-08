@@ -3,9 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forex &amp; Trading Broker Reviews and Guides | DeskTerminal</title>
-<meta name="description" content="Broker reviews, comparisons, and guides to help you choose a forex, crypto, or CFD trading broker — regulation, spreads, execution, and withdrawal reliability explained.">
-<meta name="keywords" content="forex broker review, best forex broker, trading broker comparison, broker regulation, ECN broker, STP broker">
+<title>Forex Basics | DeskTerminal Academy</title>
+<meta name="description" content="Start here: core concepts every trader needs before placing a trade.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://deskterminal.com/academy/forex-basics/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Forex Basics",
+  "description": "Start here: core concepts every trader needs before placing a trade.",
+  "url": "https://deskterminal.com/academy/forex-basics/",
+  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Forex Basics", "item": "https://deskterminal.com/academy/forex-basics/" }
+    ]
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -25,7 +44,15 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
-  .pagehead{ padding: 2rem 6vw 1.6rem; }
+  .breadcrumb-nav{
+    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+  }
+  .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
+  .breadcrumb-nav a:hover{ color:var(--gold); }
+  .breadcrumb-nav .sep{ margin:0 .4rem; }
+  .breadcrumb-nav .current{ color:var(--gold); }
+
+  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
   .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
   .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
 
@@ -48,43 +75,196 @@
   }
   .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.65rem;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color: var(--gold);
-    margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
+    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
   }
-  .post-title{ font-size:1.15rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.88rem; color:var(--dim); line-height:1.5; flex:1; }
+  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
+  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
   .post-date{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.7rem; color:var(--dim);
-    margin-top:1rem;
-    padding-top:1rem;
-    border-top:1px solid var(--line-soft);
-  }
-  .empty{
-    padding: 0 6vw 3rem;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.85rem;
-    color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
+    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
   }
 
-  .seo-content{
-    padding: 1rem 6vw 3rem;
-    max-width: 900px;
+  .empty-state{
+    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
+    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
   }
-  .seo-content h2{ font-size:1.1rem; font-weight:600; margin: 1.6rem 0 .6rem; }
-  .seo-content h2:first-child{ margin-top:0; }
-  .seo-content p{ font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem; }
+  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
+  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+
+  .back-to-academy{
+    display:inline-block; margin: 0 6vw 1.2rem;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+  }
+  .back-to-academy:hover{ color:var(--gold); }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
     font-size:.65rem; color: var(--dim); border-top:1px solid var(--line-soft);
   }
 
-    /* ---------------- DeskAi floating chatbox (v2) ---------------- */
+
+  /* ---------------- Hamburger + nav drawer ---------------- */
+  .nav-left{ display:flex; align-items:center; gap:.9rem; }
+  .hamburger-btn{
+    background:transparent; border:1px solid var(--line-soft); border-radius:5px;
+    width:34px; height:34px; cursor:pointer; flex-shrink:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  }
+  .hamburger-btn span{ width:16px; height:2px; background:var(--dim); border-radius:1px; transition: background .15s; }
+  .hamburger-btn:hover{ border-color:var(--gold); }
+  .hamburger-btn:hover span{ background:var(--gold); }
+
+  .nav-drawer-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.55);
+    z-index:1000; display:none;
+  }
+  .nav-drawer-overlay.open{ display:block; }
+  .nav-drawer{
+    position:fixed; top:0; left:0; bottom:0;
+    width:280px; max-width:82vw;
+    background:var(--panel); border-right:1px solid var(--line-soft);
+    z-index:1001;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    display:flex; flex-direction:column;
+  }
+  .nav-drawer.open{ transform: translateX(0); }
+  .nav-drawer-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.2rem 1.3rem; border-bottom:1px solid var(--line-soft);
+  }
+  .drawer-close{ background:transparent; border:none; color:var(--dim); font-size:1.2rem; cursor:pointer; line-height:1; }
+  .drawer-close:hover{ color:var(--ink); }
+  .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
+  .nav-drawer-links a{
+    padding:.85rem 1.3rem;
+    font-family:'JetBrains Mono', monospace; font-size:.85rem; letter-spacing:.02em;
+    color:var(--dim); text-decoration:none;
+    border-left:2px solid transparent;
+  }
+  .nav-drawer-links a:hover{ color:var(--ink); background:var(--panel-2); }
+  .nav-drawer-links a.active{ color:var(--gold); border-left-color:var(--gold); background:var(--panel-2); }
+  .nav-drawer-note{
+    margin-top:auto;
+    padding:1rem 1.3rem;
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    border-top:1px solid var(--line-soft);
+  }
+
+
+  /* ---------------- Auth: login/signup + profile ---------------- */
+  .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
+  .auth-btn{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; font-weight:600;
+    padding:.32rem .65rem; border-radius:4px; cursor:pointer;
+    border:1px solid var(--line-soft); background:transparent; color:var(--dim);
+  }
+  .auth-btn:hover{ border-color:var(--gold); color:var(--gold); }
+  .auth-btn.primary{
+    background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
+    border:none; color:#1A1305;
+  }
+  .auth-btn.primary:hover{ opacity:.92; }
+
+  .auth-avatar-btn{
+    width:34px; height:34px; border-radius:50%; overflow:hidden;
+    border:1px solid var(--line-soft); cursor:pointer; background:var(--panel-2);
+    display:flex; align-items:center; justify-content:center; padding:0;
+  }
+  .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
+  .auth-avatar-btn .initial{ font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:.85rem; }
+
+  .auth-modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
+    align-items:center; justify-content:center;
+  }
+  .auth-modal-overlay.open{ display:flex; }
+  .auth-modal{
+    width:340px; max-width:90vw;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
+    padding:1.8rem; position:relative;
+  }
+  .auth-modal-close{
+    position:absolute; top:.9rem; right:.9rem;
+    background:transparent; border:none; color:var(--dim); font-size:1.1rem; cursor:pointer;
+  }
+  .auth-modal-close:hover{ color:var(--ink); }
+  .auth-modal h2{ font-size:1.1rem; font-weight:700; margin-bottom:.4rem; }
+  .auth-modal p{ font-size:.82rem; color:var(--dim); margin-bottom:1.4rem; line-height:1.5; }
+  .auth-provider-btn{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
+    padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
+    background:var(--panel-2); color:var(--ink);
+    font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:500;
+    cursor:pointer; margin-bottom:.7rem;
+  }
+  .auth-provider-btn:hover{ border-color:var(--gold); }
+  .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
+  .auth-modal-note{
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    margin-top:1rem; line-height:1.6; text-align:center;
+  }
+
+  .profile-dropdown{
+    position:fixed; top:64px; right:6vw; z-index:1090;
+    width:300px; background:var(--panel); border:1px solid var(--line-soft);
+    border-radius:10px; box-shadow:0 12px 32px rgba(0,0,0,0.5);
+    display:none; overflow:hidden;
+  }
+  .profile-dropdown.open{ display:block; }
+  .profile-header{
+    display:flex; align-items:center; gap:.8rem;
+    padding:1.1rem; border-bottom:1px solid var(--line-soft); background:var(--panel-2);
+  }
+  .profile-header img{ width:44px; height:44px; border-radius:50%; object-fit:cover; }
+  .profile-header .initial{
+    width:44px; height:44px; border-radius:50%; background:var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
+  }
+  .profile-header-name{ font-weight:600; font-size:.9rem; }
+  .profile-header-email{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim); margin-top:.15rem; }
+
+  .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
+  .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
+  .profile-field-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--dim); flex-shrink:0;
+  }
+  .profile-field-value{ font-size:.78rem; color:var(--ink); text-align:right; word-break:break-word; }
+  .profile-field-value.mono{ font-family:'JetBrains Mono', monospace; font-size:.7rem; }
+  .profile-field-clickable{ cursor:pointer; }
+  .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
+  .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
+  .watchlist-chip{
+    display:inline-flex; align-items:center; gap:.35rem;
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    padding:.3rem .5rem; font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--ink);
+  }
+  .watchlist-chip-remove{
+    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:.75rem; padding:0; line-height:1;
+  }
+  .watchlist-chip-remove:hover{ color:#FB6B5B; }
+  .watchlist-empty{
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim);
+    padding:.4rem 0; line-height:1.5;
+  }
+
+  .profile-actions{ padding:.7rem 1.1rem 1.1rem; border-top:1px solid var(--line-soft); }
+  .profile-signout{
+    width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
+    background:rgba(251,107,91,0.08); color:#FB6B5B;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; font-weight:600; cursor:pointer;
+  }
+  .profile-signout:hover{ background:rgba(251,107,91,0.15); }
+
+  @media (max-width: 600px){
+    .auth-slot .auth-btn-label{ display:none; }
+    .profile-dropdown{ right:4vw; left:4vw; width:auto; }
+  }
+
+  /* ---------------- DeskAi floating chatbox (v2) ---------------- */
   @keyframes deskaiPulseRing{
     0%{ box-shadow: 0 0 0 0 rgba(232,177,92,0.45); }
     70%{ box-shadow: 0 0 0 14px rgba(232,177,92,0); }
@@ -313,179 +493,6 @@
     .deskai-panel{ right:16px; left:16px; width:auto; bottom:108px; }
     .deskai-toggle-wrap{ right:16px; bottom:16px; }
   }
-  /* ---------------- Hamburger + nav drawer ---------------- */
-  .nav-left{ display:flex; align-items:center; gap:.9rem; }
-  .hamburger-btn{
-    background:transparent; border:1px solid var(--line-soft); border-radius:5px;
-    width:34px; height:34px; cursor:pointer; flex-shrink:0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
-  }
-  .hamburger-btn span{ width:16px; height:2px; background:var(--dim); border-radius:1px; transition: background .15s; }
-  .hamburger-btn:hover{ border-color:var(--gold); }
-  .hamburger-btn:hover span{ background:var(--gold); }
-
-  .nav-drawer-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,0.55);
-    z-index:1000; display:none;
-  }
-  .nav-drawer-overlay.open{ display:block; }
-  .nav-drawer{
-    position:fixed; top:0; left:0; bottom:0;
-    width:280px; max-width:82vw;
-    background:var(--panel); border-right:1px solid var(--line-soft);
-    z-index:1001;
-    transform: translateX(-100%);
-    transition: transform .25s ease;
-    display:flex; flex-direction:column;
-  }
-  .nav-drawer.open{ transform: translateX(0); }
-  .nav-drawer-header{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:1.2rem 1.3rem; border-bottom:1px solid var(--line-soft);
-  }
-  .drawer-close{ background:transparent; border:none; color:var(--dim); font-size:1.2rem; cursor:pointer; line-height:1; }
-  .drawer-close:hover{ color:var(--ink); }
-  .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
-  .nav-drawer-links a{
-    padding:.85rem 1.3rem;
-    font-family:'JetBrains Mono', monospace; font-size:.85rem; letter-spacing:.02em;
-    color:var(--dim); text-decoration:none;
-    border-left:2px solid transparent;
-  }
-  .nav-drawer-links a:hover{ color:var(--ink); background:var(--panel-2); }
-  .nav-drawer-links a.active{ color:var(--gold); border-left-color:var(--gold); background:var(--panel-2); }
-  .nav-drawer-note{
-    margin-top:auto;
-    padding:1rem 1.3rem;
-    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
-    border-top:1px solid var(--line-soft);
-  }
-
-
-  /* ---------------- Auth: login/signup + profile ---------------- */
-  .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
-  .auth-btn{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; font-weight:600;
-    padding:.32rem .65rem; border-radius:4px; cursor:pointer;
-    border:1px solid var(--line-soft); background:transparent; color:var(--dim);
-  }
-  .auth-btn:hover{ border-color:var(--gold); color:var(--gold); }
-  .auth-btn.primary{
-    background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
-    border:none; color:#1A1305;
-  }
-  .auth-btn.primary:hover{ opacity:.92; }
-
-  .auth-avatar-btn{
-    width:34px; height:34px; border-radius:50%; overflow:hidden;
-    border:1px solid var(--line-soft); cursor:pointer; background:var(--panel-2);
-    display:flex; align-items:center; justify-content:center; padding:0;
-  }
-  .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
-  .auth-avatar-btn .initial{ font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:.85rem; }
-
-  .auth-modal-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
-    align-items:center; justify-content:center;
-  }
-  .auth-modal-overlay.open{ display:flex; }
-  .auth-modal{
-    width:340px; max-width:90vw;
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
-    padding:1.8rem; position:relative;
-  }
-  .auth-modal-close{
-    position:absolute; top:.9rem; right:.9rem;
-    background:transparent; border:none; color:var(--dim); font-size:1.1rem; cursor:pointer;
-  }
-  .auth-modal-close:hover{ color:var(--ink); }
-  .auth-modal h2{ font-size:1.1rem; font-weight:700; margin-bottom:.4rem; }
-  .auth-modal p{ font-size:.82rem; color:var(--dim); margin-bottom:1.4rem; line-height:1.5; }
-  .auth-provider-btn{
-    width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
-    padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
-    background:var(--panel-2); color:var(--ink);
-    font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:500;
-    cursor:pointer; margin-bottom:.7rem;
-  }
-  .auth-provider-btn:hover{ border-color:var(--gold); }
-  .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
-  .auth-modal-note{
-    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
-    margin-top:1rem; line-height:1.6; text-align:center;
-  }
-
-  .profile-dropdown{
-    position:fixed; top:64px; right:6vw; z-index:1090;
-    width:300px; background:var(--panel); border:1px solid var(--line-soft);
-    border-radius:10px; box-shadow:0 12px 32px rgba(0,0,0,0.5);
-    display:none; overflow:hidden;
-  }
-  .profile-dropdown.open{ display:block; }
-  .profile-header{
-    display:flex; align-items:center; gap:.8rem;
-    padding:1.1rem; border-bottom:1px solid var(--line-soft); background:var(--panel-2);
-  }
-  .profile-header img{ width:44px; height:44px; border-radius:50%; object-fit:cover; }
-  .profile-header .initial{
-    width:44px; height:44px; border-radius:50%; background:var(--panel);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
-  }
-  .profile-header-name{ font-weight:600; font-size:.9rem; }
-  .profile-header-email{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim); margin-top:.15rem; }
-
-  .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
-  .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
-  .profile-field-label{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim); flex-shrink:0;
-  }
-  .profile-field-value{ font-size:.78rem; color:var(--ink); text-align:right; word-break:break-word; }
-  .profile-field-value.mono{ font-family:'JetBrains Mono', monospace; font-size:.7rem; }
-  .profile-field-clickable{ cursor:pointer; }
-  .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
-  .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
-  .watchlist-chip{
-    display:inline-flex; align-items:center; gap:.35rem;
-    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    padding:.3rem .5rem; font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--ink);
-  }
-  .watchlist-chip-remove{
-    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:.75rem; padding:0; line-height:1;
-  }
-  .watchlist-chip-remove:hover{ color:#FB6B5B; }
-  .watchlist-empty{
-    font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim);
-    padding:.4rem 0; line-height:1.5;
-  }
-
-  .profile-actions{ padding:.7rem 1.1rem 1.1rem; border-top:1px solid var(--line-soft); }
-  .profile-signout{
-    width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
-    background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'JetBrains Mono', monospace; font-size:.75rem; font-weight:600; cursor:pointer;
-  }
-  .profile-signout:hover{ background:rgba(251,107,91,0.15); }
-
-  @media (max-width: 600px){
-    .auth-slot .auth-btn-label{ display:none; }
-    .profile-dropdown{ right:4vw; left:4vw; width:auto; }
-  }
-
-
-  .profile-actions{ padding:.7rem 1.1rem 1.1rem; border-top:1px solid var(--line-soft); }
-  .profile-signout{
-    width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
-    background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'JetBrains Mono', monospace; font-size:.75rem; font-weight:600; cursor:pointer;
-  }
-  .profile-signout:hover{ background:rgba(251,107,91,0.15); }
-
-  @media (max-width: 600px){
-    .auth-slot .auth-btn-label{ display:none; }
-    .profile-dropdown{ right:4vw; left:4vw; width:auto; }
-  }
 
 </style>
 </head>
@@ -496,80 +503,100 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../index.html">Market</a>
-    <a href="../brokers/index.html">Brokers</a>
-    <a href="../calendar.html">Economic Calendar</a>
-    <a href="../news.html">News</a>
-    <a href="../calculator.html">Calculator</a>
+    <a href="../../index.html">Market</a>
+    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../calendar.html">Economic Calendar</a>
+    <a href="../../news.html">News</a>
+    <a href="../../calculator.html">Calculator</a>
   </div>
-  <div class="auth-slot" id="authSlot">
-  <button class="auth-btn" id="loginBtn">Login</button>
-  <button class="auth-btn primary" id="signupBtn">Sign Up</button>
-</div>
 </nav>
 
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <div class="wordmark">Desk<span>line</span></div>
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../index.html">Market</a>
-    <a href="../calculator.html">Calculator</a>
-    <a href="../news.html">News</a>
-    <a href="../calendar.html">Economic Calendar</a>
-    <a href="../opinion/index.html">Opinion</a>
-    <a href="../academy/index.html">Academy</a>
-    <a href="../brokers/index.html" class="active">Brokers</a>
+    <a href="../../index.html">Market</a>
+    <a href="../../calculator.html">Calculator</a>
+    <a href="../../news.html">News</a>
+    <a href="../../calendar.html">Economic Calendar</a>
+    <a href="../../opinion/index.html">Opinion</a>
+    <a href="../../academy/index.html">Academy</a>
+    <a href="../../brokers/index.html">Brokers</a>
   </div>
-  <div class="nav-drawer-note">DESKTERMINAL · FULL SITE MENU</div>
+  <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
+
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a><span class="sep">/</span>
+  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
+  <span class="current">Forex Basics</span>
+</nav>
 
 <div class="pagehead">
-  <h1>Brokers</h1>
-  <p>BROKER REVIEWS, COMPARISONS &amp; GUIDES</p>
+  <h1>📘 Forex Basics</h1>
+  <p>START HERE: CORE CONCEPTS EVERY TRADER NEEDS BEFORE PLACING A TRADE.</p>
 </div>
 
-<div class="posts" id="postsGrid"></div>
-<div class="empty" id="emptyMsg" style="display:none;">No posts published yet — check back soon.</div>
+<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
 
-<section class="seo-content">
-  <h2>Choosing a Forex or Trading Broker</h2>
-  <p>Read broker reviews and guides covering regulation, spreads, execution models (A-Book, B-Book, ECN, STP), and withdrawal reliability — the factors that actually matter when picking a forex, crypto, or CFD broker.</p>
-</section>
-
-<footer>DeskTerminal · Brokers · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
-
-<script>
-fetch('posts.json')
-  .then(r => r.json())
-  .then(posts => {
-    const grid = document.getElementById('postsGrid');
-    if(!posts.length){
-      document.getElementById('emptyMsg').style.display = 'block';
-      return;
-    }
-    // newest first
-    posts.sort((a,b) => (b.date||'').localeCompare(a.date||''));
-    grid.innerHTML = posts.map(p => `
-      <a class="post-card" href="post.html?slug=${p.slug}">
-        <div class="post-tag">${p.tag || 'Guide'}</div>
-        <div class="post-title">${p.title}</div>
-        <div class="post-excerpt">${p.excerpt || ''}</div>
-        <div class="post-date">${p.date || ''}</div>
+<div class="posts">
+      <a class="post-card" href="what-is-forex-trading/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">What is Forex Trading? A Beginner's Guide</div>
+        <div class="post-excerpt">The basics of what forex trading actually means, in plain language, before you place a single trade.</div>
+        <div class="post-date">2026-08-06 · 2 min read</div>
       </a>
-    `).join('');
-  })
-  .catch(() => {
-    document.getElementById('emptyMsg').textContent = 'Could not load posts.';
-    document.getElementById('emptyMsg').style.display = 'block';
-  });
-</script>
+      <a class="post-card" href="how-does-the-forex-market-work/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">How Does the Forex Market Work?</div>
+        <div class="post-excerpt">There's no single forex 'exchange' — here's how a market that trades 24 hours a day actually functions.</div>
+        <div class="post-date">2026-08-06 · 2 min read</div>
+      </a>
+      <a class="post-card" href="currency-pairs-explained/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">Major, Minor, and Exotic Currency Pairs Explained</div>
+        <div class="post-excerpt">Not all currency pairs are equal — here's what separates majors, minors, and exotics, and why it matters to you as a trader.</div>
+        <div class="post-date">2026-08-06 · 1 min read</div>
+      </a>
+      <a class="post-card" href="pips-lots-leverage-explained/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">What is a Pip, Lot, and Spread in Forex?</div>
+        <div class="post-excerpt">Three small words that confuse almost every beginner — pip, lot, and spread, explained simply with real examples.</div>
+        <div class="post-date">2026-08-06 · 2 min read</div>
+      </a>
+      <a class="post-card" href="margin-calls-and-stop-outs/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">Leverage, Margin, and Margin Calls Explained (With Risk Warnings)</div>
+        <div class="post-excerpt">Leverage lets you control a large position with a small deposit — here's exactly how that works, and how it can wipe out an account.</div>
+        <div class="post-date">2026-08-06 · 2 min read</div>
+      </a>
+      <a class="post-card" href="how-to-read-a-forex-quote/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">How to Read a Forex Quote</div>
+        <div class="post-excerpt">A forex quote looks like a wall of numbers at first — here's exactly what each part means.</div>
+        <div class="post-date">2026-08-06 · 2 min read</div>
+      </a>
+      <a class="post-card" href="forex-market-sessions/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">Forex Market Sessions (London, New York, Tokyo, Sydney)</div>
+        <div class="post-excerpt">Forex trades 24 hours a day because of four overlapping sessions around the world — here's how they line up and why it matters.</div>
+        <div class="post-date">2026-08-06 · 1 min read</div>
+      </a>
+      <a class="post-card" href="demo-vs-live-trading/index.html">
+        <div class="post-tag">Forex Basics</div>
+        <div class="post-title">Demo Trading vs Live Trading: When to Switch</div>
+        <div class="post-excerpt">Demo trading feels like practice — but the psychology of live trading is genuinely different. Here's how to know when you're actually ready.</div>
+        <div class="post-date">2026-08-06 · 2 min read</div>
+      </a>
+    </div>
 
+<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -597,9 +624,9 @@ fetch('posts.json')
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me about choosing a broker, regulation, or trading terms.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about forex basics.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What should I look for when choosing a forex broker?">How do I choose a broker?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="What should I learn first about forex?">Where do I start?</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
@@ -609,114 +636,7 @@ fetch('posts.json')
     </button>
   </div>
 </div>
-<script>
-window.getDeskAiContext = async function(){ return null; };
 
-
-/* ---------------- DeskAi floating chatbox (v2) ---------------- */
-(function(){
-  const SECTION = "general";
-  const toggle = document.getElementById('deskaiToggle');
-  const panel = document.getElementById('deskaiPanel');
-  const closeBtn = document.getElementById('deskaiClose');
-  const messagesEl = document.getElementById('deskaiMessages');
-  const quickEl = document.getElementById('deskaiQuick');
-  const inputEl = document.getElementById('deskaiInput');
-  const sendBtn = document.getElementById('deskaiSend');
-
-  const SPARK_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/></svg>';
-
-  let history = [];
-  let opened = false;
-
-  toggle.addEventListener('click', () => {
-    opened = !opened;
-    panel.classList.toggle('open', opened);
-    if(opened) inputEl.focus();
-  });
-  closeBtn.addEventListener('click', () => {
-    opened = false;
-    panel.classList.remove('open');
-  });
-
-  function addMessage(role, text){
-    const row = document.createElement('div');
-    row.className = 'deskai-row ' + (role === 'user' ? 'user' : '');
-    if(role !== 'user'){
-      row.innerHTML = `<div class="deskai-avatar">${SPARK_SVG}</div>`;
-    }
-    const bubble = document.createElement('div');
-    bubble.className = 'deskai-msg ' + role;
-    bubble.textContent = text;
-    row.appendChild(bubble);
-    messagesEl.appendChild(row);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-    return row;
-  }
-
-  function addThinking(){
-    const row = document.createElement('div');
-    row.className = 'deskai-thinking-row';
-    row.innerHTML = `<div class="deskai-avatar">${SPARK_SVG}</div>
-      <div class="deskai-thinking-bubble"><span></span><span></span><span></span></div>`;
-    messagesEl.appendChild(row);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-    return row;
-  }
-
-  async function sendToDeskAi(question){
-    if(!question.trim()) return;
-    document.getElementById('deskaiWelcome')?.remove();
-    quickEl.style.display = 'none';
-    addMessage('user', question);
-    history.push({ role:'user', text: question });
-    const thinkingRow = addThinking();
-
-    let context = null;
-    if(typeof window.getDeskAiContext === 'function'){
-      try{ context = await window.getDeskAiContext(); } catch(e){}
-    }
-
-    try{
-      const res = await fetch('/.netlify/functions/deskai', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section: SECTION, question, context, history: history.slice(0,-1) })
-      });
-      const data = await res.json();
-      thinkingRow.remove();
-      if(data.error){
-        addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
-        return;
-      }
-      addMessage('assistant', data.answer);
-      history.push({ role:'assistant', text: data.answer });
-    } catch(e){
-      thinkingRow.remove();
-      addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
-    }
-  }
-
-  sendBtn.addEventListener('click', () => {
-    const q = inputEl.value.trim();
-    if(!q) return;
-    inputEl.value = '';
-    sendToDeskAi(q);
-  });
-  inputEl.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter'){
-      const q = inputEl.value.trim();
-      if(!q) return;
-      inputEl.value = '';
-      sendToDeskAi(q);
-    }
-  });
-  quickEl.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
-  });
-})();
-
-</script>
 
 
 <script>
@@ -735,42 +655,16 @@ window.getDeskAiContext = async function(){ return null; };
 </script>
 
 
-<div class="auth-modal-overlay" id="authModalOverlay">
-  <div class="auth-modal">
-    <button class="auth-modal-close" id="authModalClose">✕</button>
-    <h2>Welcome to DeskTerminal</h2>
-    <p>Sign in to save your watchlist, favorites, and personal settings.</p>
-    <button class="auth-provider-btn" id="googleLoginBtn">
-      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Continue with Google
-    </button>
-    <button class="auth-provider-btn" id="facebookLoginBtn">
-      <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-      Continue with Facebook
-    </button>
-    <div class="auth-modal-note">By continuing you agree this is a demo auth flow — see About for details.</div>
-  </div>
-</div>
-
-<div class="profile-dropdown" id="profileDropdown">
-  <div class="profile-header" id="profileHeaderContent"></div>
-  <div class="profile-fields" id="profileFields"></div>
-  <div class="profile-actions">
-    <button class="profile-signout" id="signOutBtn">Sign out</button>
-  </div>
-</div>
-
-
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
 // The publishable/anon key is safe to expose in frontend code by design —
 // Row Level Security (set up via supabase-schema.sql) is what keeps data private.
-const SUPABASE_URL = 'https://odlyvhxhktdjrydpkmta.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_zTpEf6S1XsS4JgPpjpXTFg_7atZZvFu';
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_KEY = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
 
-const sb = (SUPABASE_URL !== 'https://odlyvhxhktdjrydpkmta.supabase.co' && window.supabase)
+const sb = (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && window.supabase)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   : null;
 
@@ -980,6 +874,113 @@ async function initAuth(){
 }
 initAuth();
 </script>
+
+
+<script>
+/* ---------------- DeskAi floating chatbox (v2) ---------------- */
+(function(){
+  const SECTION = "general";
+  const toggle = document.getElementById('deskaiToggle');
+  const panel = document.getElementById('deskaiPanel');
+  const closeBtn = document.getElementById('deskaiClose');
+  const messagesEl = document.getElementById('deskaiMessages');
+  const quickEl = document.getElementById('deskaiQuick');
+  const inputEl = document.getElementById('deskaiInput');
+  const sendBtn = document.getElementById('deskaiSend');
+
+  const SPARK_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/></svg>';
+
+  let history = [];
+  let opened = false;
+
+  toggle.addEventListener('click', () => {
+    opened = !opened;
+    panel.classList.toggle('open', opened);
+    if(opened) inputEl.focus();
+  });
+  closeBtn.addEventListener('click', () => {
+    opened = false;
+    panel.classList.remove('open');
+  });
+
+  function addMessage(role, text){
+    const row = document.createElement('div');
+    row.className = 'deskai-row ' + (role === 'user' ? 'user' : '');
+    if(role !== 'user'){
+      row.innerHTML = `<div class="deskai-avatar">${SPARK_SVG}</div>`;
+    }
+    const bubble = document.createElement('div');
+    bubble.className = 'deskai-msg ' + role;
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return row;
+  }
+
+  function addThinking(){
+    const row = document.createElement('div');
+    row.className = 'deskai-thinking-row';
+    row.innerHTML = `<div class="deskai-avatar">${SPARK_SVG}</div>
+      <div class="deskai-thinking-bubble"><span></span><span></span><span></span></div>`;
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return row;
+  }
+
+  async function sendToDeskAi(question){
+    if(!question.trim()) return;
+    document.getElementById('deskaiWelcome')?.remove();
+    quickEl.style.display = 'none';
+    addMessage('user', question);
+    history.push({ role:'user', text: question });
+    const thinkingRow = addThinking();
+
+    let context = null;
+    if(typeof window.getDeskAiContext === 'function'){
+      try{ context = await window.getDeskAiContext(); } catch(e){}
+    }
+
+    try{
+      const res = await fetch('/.netlify/functions/deskai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: SECTION, question, context, history: history.slice(0,-1) })
+      });
+      const data = await res.json();
+      thinkingRow.remove();
+      if(data.error){
+        addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
+        return;
+      }
+      addMessage('assistant', data.answer);
+      history.push({ role:'assistant', text: data.answer });
+    } catch(e){
+      thinkingRow.remove();
+      addMessage('err', "DeskAi isn't available right now — it may not be set up on this site yet.");
+    }
+  }
+
+  sendBtn.addEventListener('click', () => {
+    const q = inputEl.value.trim();
+    if(!q) return;
+    inputEl.value = '';
+    sendToDeskAi(q);
+  });
+  inputEl.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const q = inputEl.value.trim();
+      if(!q) return;
+      inputEl.value = '';
+      sendToDeskAi(q);
+    }
+  });
+  quickEl.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
+  });
+})();
+</script>
+
 
 </body>
 </html>
