@@ -388,9 +388,11 @@
 
   @media (max-width: 700px){
     .table-header-row, .event-row{
-      grid-template-columns: 48px 45px 40px 18px 1fr 20px 20px;
+      grid-template-columns: 48px 45px 40px 18px 1fr 20px 60px 20px;
     }
-    .ev-val{ display:none; }
+    .ev-val-secondary{ display:none; }
+    .ev-val{ font-size:.68rem; }
+    .ev-countdown{ font-size:.6rem; }
   }
 
     /* ---------------- DeskAi floating chatbox (v2) ---------------- */
@@ -882,7 +884,7 @@
   <div class="cal-main">
     <div class="table-header-row">
       <span>Date</span><span>Time</span><span>Currency</span><span></span><span>Event</span>
-      <span></span><span style="text-align:right;">Actual</span><span style="text-align:right;">Forecast</span><span style="text-align:right;">Previous</span><span></span>
+      <span></span><span style="text-align:right;">Actual</span><span class="ev-val-secondary" style="text-align:right;">Forecast</span><span class="ev-val-secondary" style="text-align:right;">Previous</span><span></span>
     </div>
     <div id="calendarBody">
       <div class="cal-status">Loading calendar…</div>
@@ -1077,8 +1079,8 @@ function renderCalendar(){
         <span class="ev-val ${actualClass}" id="actual-${idx}">
           <span class="ev-actual-num">${e.actual || '—'}</span>
         </span>
-        <span class="ev-val">${e.forecast || '—'}</span>
-        <span class="ev-val">${e.previous || '—'}</span>
+        <span class="ev-val ev-val-secondary">${e.forecast || '—'}</span>
+        <span class="ev-val ev-val-secondary">${e.previous || '—'}</span>
         <span class="ev-history-icon" title="Historical data">🕒</span>
       </div>
       <div class="event-detail" id="detail-${idx}"></div>
