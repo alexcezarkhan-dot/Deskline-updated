@@ -40,7 +40,19 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Slug (URL-friendly, e.g. what-is-xauusd)", name: "slug", widget: "string" }
               - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-              - { label: "Tag", name: "tag", widget: "string", default: "Beginner" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Forex Basics", value: "forex-basics" }
+                  - { label: "Technical Analysis", value: "technical-analysis" }
+                  - { label: "Fundamental Analysis", value: "fundamental-analysis" }
+                  - { label: "Gold & Commodities", value: "gold-commodities" }
+                  - { label: "Risk Management & Psychology", value: "risk-management" }
+                  - { label: "Strategy & Practical Guides", value: "strategy-guides" }
+                  - { label: "Broker & Platform Guides", value: "broker-platform-guides" }
+                  - { label: "Trading Glossary", value: "glossary" }
+              - { label: "Tag (shown as a small label on the card)", name: "tag", widget: "string", default: "Beginner" }
               - { label: "Excerpt (shown on the Academy page)", name: "excerpt", widget: "text" }
               - { label: "Body", name: "body", widget: "markdown" }
 
@@ -60,12 +72,44 @@ collections:
               - { label: "Slug (URL-friendly, e.g. gold-outlook)", name: "slug", widget: "string" }
               - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
               - { label: "Tag", name: "tag", widget: "string", default: "Opinion" }
+              - { label: "Author", name: "author", widget: "string", default: "DeskTerminal Team", required: false }
+              - { label: "Author Bio (short, one line)", name: "authorBio", widget: "string", default: "10+ years trading forex & gold markets. Opinions are personal, not financial advice.", required: false }
               - { label: "Excerpt (shown on the Opinion page)", name: "excerpt", widget: "text" }
               - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "brokers"
     label: "Brokers"
     files:
+      - name: "featured"
+        label: "Featured Brokers (comparison table)"
+        file: "brokers/featured-brokers.json"
+        fields:
+          - label: "Brokers"
+            name: "brokers"
+            widget: "list"
+            summary: "{{name}} — {{status}}"
+            fields:
+              - { label: "Broker Name", name: "name", widget: "string" }
+              - { label: "Founded (year)", name: "founded", widget: "string", required: false }
+              - { label: "Domestic License", name: "domesticLicense", widget: "string", required: false, hint: "e.g. FCA, CySEC — leave as — if not disclosed" }
+              - { label: "Max Leverage", name: "maxLeverage", widget: "string", required: false, hint: "e.g. 500:1" }
+              - { label: "Platforms", name: "platforms", widget: "string", required: false, hint: "e.g. MT4, MT5, cTrader, TradingView" }
+              - { label: "EUR/USD Spread", name: "spreadEurUsd", widget: "string", required: false, hint: "You update this manually — not live-streamed" }
+              - { label: "GBP/USD Spread", name: "spreadGbpUsd", widget: "string", required: false }
+              - { label: "USD/JPY Spread", name: "spreadUsdJpy", widget: "string", required: false }
+              - { label: "USD/CHF Spread", name: "spreadUsdChf", widget: "string", required: false }
+              - { label: "USD/CAD Spread", name: "spreadUsdCad", widget: "string", required: false }
+              - { label: "Deposit Options", name: "depositOptions", widget: "string", required: false, hint: "e.g. 17 options" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                hint: "Live = real Open Live/Demo links work now. Apply = sends visitors to Contact page. Coming Soon = greyed out, no link."
+                options:
+                  - { label: "Live (real affiliate links)", value: "live" }
+                  - { label: "Apply (link to Contact page)", value: "apply" }
+                  - { label: "Coming Soon (no link yet)", value: "coming-soon" }
+              - { label: "Open Live Link (only used when Status = Live)", name: "liveLink", widget: "string", required: false }
+              - { label: "Open Demo Link (only used when Status = Live)", name: "demoLink", widget: "string", required: false }
       - name: "posts"
         label: "Broker Posts"
         file: "brokers/posts.json"
