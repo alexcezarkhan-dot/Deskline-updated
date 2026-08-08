@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>MACD Indicator Explained with Examples | DeskTerminal Academy</title>
+<meta name="description" content="Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.">
+<meta name="keywords" content="macd indicator explained with examples">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/macd-indicator/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MACD Indicator Explained with Examples">
+<meta property="og:description" content="Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/macd-indicator/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "MACD Indicator Explained with Examples",
+  "description": "Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/macd-indicator/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does MACD stand for and what does it measure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MACD stands for Moving Average Convergence Divergence. It measures the relationship\n      between two exponential moving averages, typically the 12-period and 26-period EMA,\n      to show both trend direction and the strength of momentum behind it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the three parts of the MACD indicator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The MACD line (the difference between the 12-period and 26-period EMA), the signal\n      line (a 9-period EMA of the MACD line), and the histogram (the visual gap between the\n      MACD line and the signal line)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is MACD a leading or lagging indicator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MACD is fundamentally a lagging indicator, since it's built from moving averages of\n      past price data. However, the histogram can offer an earlier read than the crossover\n      itself \u2014 it often starts shrinking before the MACD and signal lines actually cross,\n      giving some early warning within an otherwise lagging tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is MACD divergence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MACD divergence occurs when price and the MACD indicator move in opposite\n      directions. Bearish divergence is when price makes a higher high but MACD makes a\n      lower high, suggesting fading upward momentum. Bullish divergence is when price makes\n      a lower low but MACD makes a higher low, suggesting fading downward momentum."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,194 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">MACD Indicator Explained with Examples</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>MACD Indicator Explained with Examples</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What MACD Actually Measures</h2>
+    <p>
+      MACD stands for Moving Average Convergence Divergence, developed by Gerald Appel in
+      the late 1970s. It's built from the relationship between two exponential moving
+      averages — commonly the 12-period and 26-period EMA — turning a simple trend tool
+      into something that also captures momentum. When the two EMAs move toward each other,
+      that's <strong>convergence</strong>; when they move apart, that's
+      <strong>divergence</strong>. The MACD indicator plots that relationship directly,
+      giving you trend direction and momentum strength in a single view.
+    </p>
+    <h2>The Three Parts of MACD</h2>
+    <ul>
+<li>
+<strong>MACD line</strong> — calculated as the 12-period EMA minus the 26-period
+        EMA. When positive, the shorter EMA is above the longer one (bullish momentum);
+        when negative, the reverse (bearish momentum).
+      </li>
+<li>
+<strong>Signal line</strong> — a 9-period EMA of the MACD line itself, acting as a
+        trigger for crossover signals.
+      </li>
+<li>
+<strong>Histogram</strong> — the visual gap between the MACD line and the signal
+        line, plotted as bars. Growing bars mean momentum is accelerating; shrinking bars
+        mean it's decelerating.
+      </li>
+</ul>
+    <p>
+      You never need to calculate any of this by hand — every charting platform plots it
+      automatically. What matters is knowing what each of the three pieces is telling you.
+    </p>
+    <h2>Reading Crossover Signals</h2>
+    <p>
+      The most basic MACD signal is the crossover between the MACD line and the signal
+      line. A <strong>bullish crossover</strong> occurs when the MACD line rises above the
+      signal line, suggesting improving upward momentum. A <strong>bearish crossover</strong>
+      occurs when the MACD line drops below the signal line, suggesting building downward
+      momentum.
+    </p>
+    <p>
+      Not every crossover is worth acting on. A bullish crossover appearing during a strong
+      downtrend on a higher timeframe carries far less weight than the same crossover
+      appearing as part of a broader uptrend already in motion — context still matters more
+      than the signal alone.
+    </p>
+    <h2>The Zero Line: Trend Direction at a Glance</h2>
+    <p>
+      Beyond the crossover, the MACD line's position relative to the <strong>zero
+      line</strong> gives a quick read on the broader trend. MACD above zero generally means
+      the market is in bullish territory (the shorter EMA sits above the longer one);
+      MACD below zero generally means bearish territory. Some traders use zero-line
+      crossovers as a simpler, if slower, trend-confirmation signal in their own right,
+      separate from the signal-line crossover.
+    </p>
+    <h2>Why the Histogram Often Leads the Crossover</h2>
+    <p>
+      This is the part most beginner explanations skip, and it's genuinely useful: because
+      the histogram measures the <em>gap</em> between the MACD line and the signal line, it
+      frequently starts shrinking before the two lines actually cross. A shrinking
+      histogram, even while still on the "bullish" side of zero, is often an earlier signal
+      that momentum is fading — well before the crossover itself confirms the shift.
+    </p>
+    <p>
+      Experienced traders often watch the slope of the histogram bars directly rather than
+      waiting passively for the crossover — the crossover confirms what the histogram
+      already started signaling.
+    </p>
+    <h2>MACD Divergence</h2>
+    <p>
+      Divergence occurs when price and MACD move in opposite directions, and it's
+      considered one of MACD's most reliable signal types:
+    </p>
+    <ul>
+<li><strong>Bearish divergence</strong> — price makes a higher high, but MACD makes a lower high, suggesting fading upward momentum even as price continues climbing.</li>
+<li><strong>Bullish divergence</strong> — price makes a lower low, but MACD makes a higher low, suggesting fading downward momentum.</li>
+</ul>
+    <p>
+      Divergence by itself isn't a trade trigger — it's most useful as a warning sign,
+      generally combined with a confirming crossover or price action before acting on it.
+    </p>
+    <p class="internal-link-callout">
+      This is the same divergence concept covered from a different angle in
+      <a href="/academy/technical-analysis/rsi-overbought-oversold">How to Use RSI for Overbought/Oversold Signals</a>
+      — many traders watch both indicators together for stronger confirmation.
+    </p>
+    <h2>Being Honest About MACD's Lag</h2>
+    <p>
+      MACD is fundamentally a <strong>lagging indicator</strong> — both EMAs it's built from
+      are calculated from past price data, so by definition it reacts to price movement
+      after it happens rather than predicting it. In ranging, directionless markets, this
+      lag can produce a high number of false or late signals, since the crossover often
+      confirms a "trend" that's already reversing back into a range.
+    </p>
+    <p>
+      This isn't a flaw to hide from beginners — it's the honest tradeoff of any indicator
+      built from moving averages. MACD tends to work best in genuinely trending conditions,
+      and is more useful as confirmation within a broader plan than as a standalone
+      buy/sell signal generator.
+    </p>
+    <h2>Settings and Pairing with Other Tools</h2>
+    <p>
+      The standard 12/26/9 setting is a reasonable default across most timeframes and is
+      what the vast majority of published MACD strategies assume. Faster settings can
+      generate more signals on shorter timeframes at the cost of more noise; slower
+      settings smooth things out further at the cost of even more lag.
+    </p>
+    <p>
+      MACD and RSI are frequently used together precisely because they measure slightly
+      different things — MACD leans toward trend and momentum shifts, RSI leans toward
+      overbought/oversold extremes. When both point the same direction at once, that
+      alignment is generally treated as a stronger signal than either alone.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/technical-analysis/moving-averages-sma-vs-ema">Moving Averages: SMA vs EMA Explained</a>
+      for the underlying EMA mechanics MACD is built on.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What does MACD stand for and what does it measure?</h3>
+    <p>
+      MACD stands for Moving Average Convergence Divergence. It measures the relationship
+      between two exponential moving averages, typically the 12-period and 26-period EMA,
+      to show both trend direction and the strength of momentum behind it.
+    </p>
+    <h3>What are the three parts of the MACD indicator?</h3>
+    <p>
+      The MACD line (the difference between the 12-period and 26-period EMA), the signal
+      line (a 9-period EMA of the MACD line), and the histogram (the visual gap between the
+      MACD line and the signal line).
+    </p>
+    <h3>Is MACD a leading or lagging indicator?</h3>
+    <p>
+      MACD is fundamentally a lagging indicator, since it's built from moving averages of
+      past price data. However, the histogram can offer an earlier read than the crossover
+      itself — it often starts shrinking before the MACD and signal lines actually cross,
+      giving some early warning within an otherwise lagging tool.
+    </p>
+    <h3>What is MACD divergence?</h3>
+    <p>
+      MACD divergence occurs when price and the MACD indicator move in opposite
+      directions. Bearish divergence is when price makes a higher high but MACD makes a
+      lower high, suggesting fading upward momentum. Bullish divergence is when price makes
+      a lower low but MACD makes a higher low, suggesting fading downward momentum.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../rsi-overbought-oversold/index.html">How to Use RSI for Overbought/Oversold Signals →</a>
+      <a class="related-tool-link" href="../moving-averages-sma-vs-ema/index.html">Moving Averages: SMA vs EMA Explained →</a>
+      <a class="related-tool-link" href="../fibonacci-retracement/index.html">Fibonacci Retracement in Forex Trading →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../rsi-overbought-oversold/index.html"><span class="dir">&larr; Previous</span>How to Use RSI for Overbought/Oversold Signals</a>
+    <a class="article-nav-link" href="../fibonacci-retracement/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Fibonacci Retracement in Forex Trading</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +765,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about MACD Indicator Explained with Examples or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: MACD Indicator Explained with Examples">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>Chart Patterns: Head and Shoulders, Double Top/Bottom | DeskTerminal Academy</title>
+<meta name="description" content="Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.">
+<meta name="keywords" content="chart patterns: head and shoulders, double top/bottom">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/chart-patterns/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chart Patterns: Head and Shoulders, Double Top/Bottom">
+<meta property="og:description" content="Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/chart-patterns/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Chart Patterns: Head and Shoulders, Double Top/Bottom",
+  "description": "Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/chart-patterns/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the head and shoulders pattern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The head and shoulders pattern is a bearish reversal formation made of three peaks: a\n      left shoulder, a higher central peak called the head, and a right shoulder roughly\n      matching the left. All three peaks pull back to a similar support level called the\n      neckline, and a break below the neckline after the right shoulder confirms the\n      pattern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a double top and double bottom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A double top is a bearish reversal pattern formed by two peaks at roughly the same\n      price level, signaling that an uptrend may be losing strength. A double bottom is a\n      bullish reversal pattern formed by two troughs at roughly the same level, signaling\n      that a downtrend may be losing strength."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you calculate the target for a head and shoulders pattern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Measure the distance from the top of the head down to the neckline. Once price breaks\n      below the neckline, project that same distance downward from the breakout point to\n      estimate a potential price target."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an inverse head and shoulders pattern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An inverse head and shoulders is the bullish mirror image of the standard pattern,\n      forming during a downtrend with three troughs instead of peaks \u2014 a left shoulder, a\n      lower central trough (the head), and a right shoulder. A break above the neckline\n      signals a potential reversal to the upside."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,180 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">Chart Patterns: Head and Shoulders, Double Top/Bottom</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>Chart Patterns: Head and Shoulders, Double Top/Bottom</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What a Chart Pattern Actually Represents</h2>
+    <p>
+      Chart patterns like head and shoulders, double top, and double bottom aren't just
+      shapes to memorize — each one represents a specific, repeating battle between buyers
+      and sellers playing out over dozens of candles. Where a single candlestick pattern
+      captures a moment of sentiment shift, these larger formations capture an entire
+      struggle for control of the trend, which is part of why they tend to carry more
+      analytical weight when they complete.
+    </p>
+    <h2>The Head and Shoulders Pattern</h2>
+    <p>
+      The head and shoulders pattern is a bearish reversal formation appearing after an
+      uptrend, built from three peaks:
+    </p>
+    <ul>
+<li><strong>Left shoulder</strong> — price rises, then pulls back.</li>
+<li><strong>Head</strong> — price rises again to a new, higher high, then pulls back to a similar level as the first pullback.</li>
+<li><strong>Right shoulder</strong> — price rises a third time, but fails to reach the height of the head, then pulls back again.</li>
+</ul>
+    <p>
+      Connecting the two pullback points creates the <strong>neckline</strong> — the key
+      support level for this pattern. The pattern is confirmed once price closes decisively
+      below the neckline after forming the right shoulder, signaling that sellers have
+      finally overwhelmed buyers.
+    </p>
+    <p>
+<strong>Setting a target:</strong> measure the vertical distance from the top of the
+      head down to the neckline. Once the neckline breaks, project that same distance
+      downward from the breakout point to estimate where the move might extend to.
+    </p>
+    <h2>Inverse Head and Shoulders</h2>
+    <p>
+      The inverse head and shoulders is the bullish mirror image, forming during a
+      downtrend with three troughs instead of peaks: a left shoulder, a lower central head,
+      and a right shoulder that fails to reach the depth of the head. The neckline here acts
+      as resistance, and a confirmed break above it signals a potential reversal to the
+      upside. The same measured-move approach applies, projected upward from the breakout.
+    </p>
+    <h2>The Double Top Pattern</h2>
+    <p>
+      A double top is a bearish reversal pattern that forms after an uptrend, when price
+      reaches a resistance level, pulls back, rallies again to roughly the same level, and
+      fails to break through a second time. The resulting shape resembles the letter "M."
+    </p>
+    <p>
+      Confirmation comes when price breaks below the support level formed by the trough
+      between the two peaks — often called the neckline of the double top. A target can be
+      estimated by measuring the distance from the peaks down to that support level, then
+      projecting the same distance downward from the breakout point.
+    </p>
+    <h2>The Double Bottom Pattern</h2>
+    <p>
+      A double bottom is the bullish mirror image: price falls to a support level, bounces,
+      falls again to roughly the same level, and fails to break through a second time,
+      forming a "W" shape. This suggests buyers are consistently absorbing selling pressure
+      at that level. Confirmation comes on a break above the resistance formed by the peak
+      between the two troughs, with the same measured-move method used to project a target
+      upward.
+    </p>
+    <p class="internal-link-callout">
+      Both double top and double bottom patterns become considerably more reliable when the
+      key level lines up with an already-established zone — see
+      <a href="/academy/technical-analysis/support-and-resistance">Support and Resistance: The Foundation of Price Action</a>.
+    </p>
+    <h2>Complex Variations</h2>
+    <p>
+      Real charts don't always form textbook-clean patterns. A <strong>complex head and
+      shoulders</strong> can show multiple shoulders on one or both sides rather than a
+      single clean shoulder, reflecting a more prolonged tug-of-war between buyers and
+      sellers before the pattern resolves. The underlying logic and neckline mechanics stay
+      the same — the structure is just messier and takes longer to complete.
+    </p>
+    <h2>Confirmation: Don't Trade the Pattern Early</h2>
+    <p>
+      One of the most common mistakes is entering a trade before the pattern has actually
+      confirmed — assuming a head and shoulders is complete the moment the right shoulder
+      forms, without waiting for an actual neckline break. A pattern that looks textbook
+      right up until confirmation can still fail to break the neckline and simply continue
+      the prior trend instead.
+    </p>
+    <p>
+      Volume can help validate a breakout: a neckline break on noticeably higher volume is
+      generally considered more credible than the same break occurring on quiet, thin
+      trading.
+    </p>
+    <p class="internal-link-callout">
+      Pair pattern confirmation with momentum context from
+      <a href="/academy/technical-analysis/rsi-overbought-oversold">How to Use RSI for Overbought/Oversold Signals</a>.
+    </p>
+    <h2>Common Mistakes</h2>
+    <ul>
+<li><strong>Forcing the pattern.</strong> Seeing a head and shoulders in every chart, even when the shoulders and head don't genuinely resemble the formation.</li>
+<li><strong>Trading before neckline confirmation.</strong> Entering based on an incomplete pattern that hasn't actually broken its key level yet.</li>
+<li><strong>Ignoring the broader trend context.</strong> A reversal pattern carries more weight after a genuine, sustained prior trend than after a short, choppy move.</li>
+<li><strong>Skipping the stop-loss.</strong> Patterns fail. A stop placed beyond the pattern's structure (above the head for head and shoulders, above the peaks for a double top) keeps a failed pattern from becoming an open-ended loss.</li>
+</ul>
+    <p class="internal-link-callout">
+      See <a href="/academy/risk-management/stop-loss-take-profit">Stop-Loss and Take-Profit Strategies</a>
+      for how to place that stop correctly.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the head and shoulders pattern?</h3>
+    <p>
+      The head and shoulders pattern is a bearish reversal formation made of three peaks: a
+      left shoulder, a higher central peak called the head, and a right shoulder roughly
+      matching the left. All three peaks pull back to a similar support level called the
+      neckline, and a break below the neckline after the right shoulder confirms the
+      pattern.
+    </p>
+    <h3>What is the difference between a double top and double bottom?</h3>
+    <p>
+      A double top is a bearish reversal pattern formed by two peaks at roughly the same
+      price level, signaling that an uptrend may be losing strength. A double bottom is a
+      bullish reversal pattern formed by two troughs at roughly the same level, signaling
+      that a downtrend may be losing strength.
+    </p>
+    <h3>How do you calculate the target for a head and shoulders pattern?</h3>
+    <p>
+      Measure the distance from the top of the head down to the neckline. Once price breaks
+      below the neckline, project that same distance downward from the breakout point to
+      estimate a potential price target.
+    </p>
+    <h3>What is an inverse head and shoulders pattern?</h3>
+    <p>
+      An inverse head and shoulders is the bullish mirror image of the standard pattern,
+      forming during a downtrend with three troughs instead of peaks — a left shoulder, a
+      lower central trough (the head), and a right shoulder. A break above the neckline
+      signals a potential reversal to the upside.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../support-and-resistance/index.html">Support and Resistance: The Foundation of Price Action →</a>
+      <a class="related-tool-link" href="../candlestick-patterns/index.html">Candlestick Patterns Every Trader Should Know →</a>
+      <a class="related-tool-link" href="../trendlines-and-channels/index.html">Trendlines and Channels: How to Draw Them Correctly →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../trendlines-and-channels/index.html"><span class="dir">&larr; Previous</span>Trendlines and Channels: How to Draw Them Correctly</a>
+    <a class="article-nav-link" href="../candlestick-patterns/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Candlestick Patterns Every Trader Should Know</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +751,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Chart Patterns or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Chart Patterns: Head and Shoulders, Double Top/Bottom">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

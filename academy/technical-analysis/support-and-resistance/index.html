@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>Support and Resistance: The Foundation of Price Action | DeskTerminal Academy</title>
+<meta name="description" content="Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.">
+<meta name="keywords" content="support and resistance: the foundation of price action">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/support-and-resistance/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Support and Resistance: The Foundation of Price Action">
+<meta property="og:description" content="Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/support-and-resistance/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Support and Resistance: The Foundation of Price Action",
+  "description": "Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/support-and-resistance/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is support and resistance in trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Support is a price zone where buying interest has historically been strong enough to\n      stop price from falling further, acting like a floor. Resistance is a price zone\n      where selling pressure has stopped price from rising further, acting like a ceiling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does old support become new resistance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When price breaks below a support level, traders who bought there are trapped in a\n      losing position. Many sell as soon as price returns to that level just to break even,\n      creating fresh selling pressure \u2014 turning old support into new resistance. The same\n      logic works in reverse when resistance breaks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I draw support and resistance as a line or a zone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As a zone. Price rarely reverses at an exact price point, and treating a level as one\n      precise line often leads to being stopped out by normal noise just before the real\n      reversal. Drawing a zone a few pips or points wide, based on where multiple candle\n      bodies clustered, is more realistic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many touches make a support or resistance level reliable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A level with only one touch is closer to a guess than a confirmed level. Two to three\n      touches make it more credible. However, a level with many touches can also mean\n      stop-losses have clustered heavily around it, sometimes leading to a sharper eventual\n      breakout rather than continued respect for the level."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,176 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">Support and Resistance: The Foundation of Price Action</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>Support and Resistance: The Foundation of Price Action</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What Support and Resistance Actually Are</h2>
+    <p>
+<strong>Support</strong> is a price zone where buying interest has historically been
+      strong enough to stop price from falling further — a floor. <strong>Resistance</strong>
+      is a price zone where selling pressure has historically stopped price from rising
+      further — a ceiling. Together, they're the single most foundational concept in
+      technical analysis, and nearly every other tool in this category — trendlines, chart
+      patterns, indicators — is really just a different way of identifying or confirming
+      these same zones.
+    </p>
+    <h2>Why These Levels Work: The Psychology Behind Them</h2>
+    <p>
+      Support and resistance aren't magic — they work because enough traders are watching
+      the same charts and reacting the same way. When price approaches a level that has
+      reversed before, some traders place buy orders at support or sell orders at
+      resistance in anticipation, others watch for confirmation before entering, and larger
+      participants may be defending positions accumulated in that range. All of this
+      activity concentrates real orders at that price, which is exactly what makes the level
+      behave the way it does — a self-reinforcing pattern built from genuine trader
+      behavior, not superstition.
+    </p>
+    <h2>Draw Zones, Not Lines</h2>
+    <p>
+      One of the most common beginner mistakes is treating a level as one exact price point.
+      Price rarely reverses at a precise number — it's more accurate to think of support and
+      resistance as a zone several pips or points wide, built from where multiple candle
+      bodies clustered, not a single hairline.
+    </p>
+    <p>
+      A useful convention: draw your horizontal line through candle <strong>bodies</strong>,
+      not wicks. Wicks often reflect brief liquidity sweeps or emotional spikes rather than
+      where the market actually agreed on a price — the body is where a candle closed, which
+      better represents genuine consensus.
+    </p>
+    <h2>How to Find Levels That Actually Matter</h2>
+    <ul>
+<li><strong>Start on higher timeframes.</strong> Daily or weekly charts reveal the levels institutions and longer-term participants are watching, which tend to matter more than levels visible only on a 5-minute chart.</li>
+<li><strong>Look for multiple reactions.</strong> A level price has reversed from two or three times is far more credible than a single bounce.</li>
+<li><strong>Watch round numbers.</strong> Psychological levels like 1.1000 on EUR/USD or 2,000 on gold attract disproportionate attention and order flow simply because traders naturally gravitate toward round figures.</li>
+<li><strong>Mark old highs and lows.</strong> A significant swing high from months ago can still act as resistance long after the fact, and a major low can resurface as support.</li>
+<li><strong>Keep your chart clean.</strong> Five clear, well-tested levels are more useful than twenty faint ones — clutter makes it harder to react to what actually matters.</li>
+</ul>
+    <h2>Role Reversal: When Support Becomes Resistance</h2>
+    <p>
+      One of the most reliable patterns in price action: when a support level breaks, it
+      frequently becomes resistance the next time price returns to it — and the same works
+      in reverse when resistance breaks.
+    </p>
+    <p>
+      The logic comes back to trapped traders. If buyers entered at a support level that
+      then broke down, many are now sitting on a loss. When price rallies back up to that
+      former support, a common reaction is to sell simply to exit at breakeven — and that
+      fresh wave of selling is exactly what turns old support into new resistance.
+    </p>
+    <h2>The Touch-Count Paradox</h2>
+    <p>
+      More touches generally make a level feel more reliable — two or three reactions are
+      far more convincing than a single bounce. But there's a counterintuitive wrinkle worth
+      knowing: a level tested repeatedly can also accumulate a large cluster of stop-loss
+      orders just beyond it. When that cluster finally gets triggered, the resulting move
+      can be sharper and faster than a break of a level with fewer touches — precisely
+      because so many orders were sitting in the same place.
+    </p>
+    <p>
+      In practice, this means a heavily-tested level deserves respect, but not blind
+      confidence that it will hold forever — the more times it's been defended, the more
+      violent the eventual break can be if it finally gives way.
+    </p>
+    <h2>Trading Bounces vs Trading Breakouts</h2>
+    <p>
+      There are two broad ways to trade a support or resistance level, and they call for
+      different confirmation:
+    </p>
+    <ul>
+<li>
+<strong>Trading the bounce</strong> — entering as price reacts off the level in the
+        expected direction, typically with a stop placed just beyond the zone. This works
+        best on well-tested levels with clear prior reactions.
+      </li>
+<li>
+<strong>Trading the breakout</strong> — entering once price closes convincingly
+        through the level, anticipating continuation. Confirming this with volume matters:
+        a breakout on unusually high volume is more credible than one on quiet, thin
+        trading.
+      </li>
+</ul>
+    <p class="internal-link-callout">
+      Combine either approach with a properly placed stop-loss — see
+      <a href="/academy/risk-management/stop-loss-take-profit">Stop-Loss and Take-Profit Strategies</a>.
+    </p>
+    <h2>Common Mistakes to Avoid</h2>
+    <ul>
+<li><strong>Drawing too many levels.</strong> A cluttered chart makes every level feel equally important, when most aren't.</li>
+<li><strong>Treating a zone as an exact line.</strong> This leads to premature stop-outs on normal noise right before the real reversal.</li>
+<li><strong>Ignoring how old a level is.</strong> Markets evolve — a level that mattered a year ago may be far less relevant if price has trended well away from it since.</li>
+<li><strong>Trading a level with no volume confirmation on a breakout.</strong> Low-volume breaks are more prone to failing and reversing.</li>
+</ul>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is support and resistance in trading?</h3>
+    <p>
+      Support is a price zone where buying interest has historically been strong enough to
+      stop price from falling further, acting like a floor. Resistance is a price zone
+      where selling pressure has stopped price from rising further, acting like a ceiling.
+    </p>
+    <h3>Why does old support become new resistance?</h3>
+    <p>
+      When price breaks below a support level, traders who bought there are trapped in a
+      losing position. Many sell as soon as price returns to that level just to break even,
+      creating fresh selling pressure — turning old support into new resistance. The same
+      logic works in reverse when resistance breaks.
+    </p>
+    <h3>Should I draw support and resistance as a line or a zone?</h3>
+    <p>
+      As a zone. Price rarely reverses at an exact price point, and treating a level as one
+      precise line often leads to being stopped out by normal noise just before the real
+      reversal. Drawing a zone a few pips or points wide, based on where multiple candle
+      bodies clustered, is more realistic.
+    </p>
+    <h3>How many touches make a support or resistance level reliable?</h3>
+    <p>
+      A level with only one touch is closer to a guess than a confirmed level. Two to three
+      touches make it more credible. However, a level with many touches can also mean
+      stop-losses have clustered heavily around it, sometimes leading to a sharper eventual
+      breakout rather than continued respect for the level.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../trendlines-and-channels/index.html">Trendlines and Channels: How to Draw Them Correctly →</a>
+      <a class="related-tool-link" href="../chart-patterns/index.html">Chart Patterns: Head and Shoulders, Double Top/Bottom →</a>
+      <a class="related-tool-link" href="../candlestick-patterns/index.html">Candlestick Patterns Every Trader Should Know →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    
+    <a class="article-nav-link" href="../trendlines-and-channels/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Trendlines and Channels: How to Draw Them Correctly</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +747,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Support and Resistance or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Support and Resistance: The Foundation of Price Action">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

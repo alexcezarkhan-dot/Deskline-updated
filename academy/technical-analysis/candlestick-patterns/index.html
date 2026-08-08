@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>Candlestick Patterns Every Trader Should Know | DeskTerminal Academy</title>
+<meta name="description" content="Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.">
+<meta name="keywords" content="candlestick patterns every trader should know">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/candlestick-patterns/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Candlestick Patterns Every Trader Should Know">
+<meta property="og:description" content="Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/candlestick-patterns/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Candlestick Patterns Every Trader Should Know",
+  "description": "Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/candlestick-patterns/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the most reliable candlestick pattern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bullish and bearish engulfing patterns, morning and evening star formations, and\n      three white soldiers/three black crows are among the most consistently cited\n      high-probability patterns, particularly on daily timeframes at key support or\n      resistance levels. No pattern is reliable in isolation \u2014 context always matters more\n      than the shape alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a doji candlestick mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A doji forms when a candle's open and close prices are nearly equal, creating a small\n      or nonexistent body. It signals indecision between buyers and sellers. On its own\n      it's a weak signal, but a doji appearing after a prolonged trend at a significant\n      price level can indicate exhaustion and a potential reversal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do candlestick patterns work on all timeframes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Candlestick patterns can appear on any timeframe from 1-minute to monthly charts, but\n      lower timeframes carry more noise and false signals. Patterns on daily and 4-hour\n      charts generally carry more analytical weight than the same pattern on a 1-minute\n      chart."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I trade a candlestick pattern by itself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Candlestick patterns are most useful as one piece of a broader picture \u2014 context\n      such as the prevailing trend, proximity to a real support or resistance level, and\n      volume confirmation all significantly affect whether a pattern is likely to play out\n      as expected."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,219 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">Candlestick Patterns Every Trader Should Know</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>Candlestick Patterns Every Trader Should Know</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>The Anatomy of a Candlestick</h2>
+    <p>
+      A candlestick represents price movement over a defined period — a minute, an hour, a
+      day, whatever timeframe you're viewing — using four data points: the open, high, low,
+      and close. The <strong>body</strong> is the rectangular section between the open and
+      close: a green (or white) body means the close was higher than the open, a bullish
+      period. A red (or black) body means the close was lower than the open, a bearish
+      period. The thin lines above and below the body — the <strong>wicks</strong> or
+      shadows — show the highest and lowest prices reached during that period.
+    </p>
+    <p>
+      A candlestick pattern is simply one or more of these candles arranged in a way that
+      historically correlates with a shift in buyer or seller pressure.
+    </p>
+    <h2>Single-Candle Patterns</h2>
+    <ul>
+<li>
+<strong>Doji</strong> — open and close nearly identical, leaving a tiny body with
+        wicks on both sides. Signals indecision. On its own it's a weak signal, but a doji
+        after a prolonged trend at a significant level can indicate exhaustion.
+        Variations include the gravestone doji (bearish, typically at tops) and dragonfly
+        doji (bullish, typically at bottoms).
+      </li>
+<li>
+<strong>Hammer</strong> — small body near the top of the candle, with a lower wick
+        at least twice the length of the body. Appearing after a downtrend, it suggests
+        buyers stepped in and pushed price back up from the lows — a potential bottom
+        signal.
+      </li>
+<li>
+<strong>Shooting star</strong> — the inverse of the hammer: small body near the
+        bottom, long upper wick. Appearing after an uptrend, it suggests sellers rejected
+        higher prices — a potential top signal.
+      </li>
+<li>
+<strong>Spinning top</strong> — small body with wicks of roughly similar length on
+        both sides, signaling indecision similar to a doji but with a slightly larger body.
+      </li>
+</ul>
+    <p>
+      Single-candle patterns give the most immediate read on sentiment, but generally
+      benefit from a confirming candle before being acted on.
+    </p>
+    <h2>Two-Candle Patterns</h2>
+    <ul>
+<li>
+<strong>Bullish engulfing</strong> — a smaller red candle followed by a larger green
+        candle whose body fully covers the prior candle's body. Suggests buyers have
+        decisively overwhelmed sellers.
+      </li>
+<li>
+<strong>Bearish engulfing</strong> — the mirror image: a smaller green candle
+        followed by a larger red candle that fully engulfs it, suggesting sellers have taken
+        control.
+      </li>
+<li>
+<strong>Tweezer top / tweezer bottom</strong> — two candles with matching highs (top)
+        or matching lows (bottom), suggesting a level is being defended by the opposite
+        side.
+      </li>
+</ul>
+    <p>
+      Engulfing patterns are consistently cited as among the more reliable two-candle
+      formations, particularly when they print at an established support or resistance
+      level.
+    </p>
+    <p class="internal-link-callout">
+      This is exactly why
+      <a href="/academy/technical-analysis/support-and-resistance">Support and Resistance: The Foundation of Price Action</a>
+      matters as much as the pattern itself — a textbook engulfing candle in the middle of
+      nowhere carries far less weight than the same candle at a well-tested level.
+    </p>
+    <h2>Three-Candle Patterns</h2>
+    <ul>
+<li>
+<strong>Morning star</strong> — a bullish reversal formation: a large red candle,
+        followed by a small-bodied indecision candle (often a doji), followed by a large
+        green candle closing well into the first candle's body. Signals a shift from
+        selling pressure to buying pressure.
+      </li>
+<li>
+<strong>Evening star</strong> — the bearish mirror image: large green candle, small
+        indecision candle, large red candle. Signals fading bullish momentum followed by
+        renewed selling.
+      </li>
+<li>
+<strong>Three white soldiers / three black crows</strong> — three consecutive
+        strong candles in the same direction with limited wicks, signaling sustained
+        momentum rather than a single reversal moment.
+      </li>
+</ul>
+    <p>
+      Three-candle patterns generally carry more weight than single-candle ones simply
+      because they represent a fuller story of shifting sentiment across a longer window,
+      rather than one isolated period.
+    </p>
+    <h2>Why Context Matters More Than the Shape</h2>
+    <p>
+      No candlestick pattern works in isolation, and treating one as a standalone signal is
+      one of the most common beginner mistakes. Three factors consistently affect whether a
+      pattern actually plays out:
+    </p>
+    <ul>
+<li>
+<strong>Location.</strong> A bullish engulfing candle printing at a well-tested
+        support zone carries far more weight than the identical candle appearing in the
+        middle of an unremarkable price range.
+      </li>
+<li>
+<strong>Volume.</strong> A doji or spinning top on low volume is a weak signal. The
+        same pattern on unusually high volume suggests real disagreement between buyers and
+        sellers, which tends to be a stronger indication of an actual turning point.
+      </li>
+<li>
+<strong>Prevailing trend.</strong> A textbook bullish pattern forming during a
+        strong, broad downtrend is far less reliable than the same pattern forming as part
+        of a broader reversal already underway.
+      </li>
+</ul>
+    <p>
+      Independent backtests generally support this — pattern accuracy tends to improve
+      meaningfully when a candlestick signal is combined with genuine market context, rather
+      than traded on its shape alone.
+    </p>
+    <h2>Timeframes and Reliability</h2>
+    <p>
+      Candlestick patterns appear on every timeframe, from 1-minute charts to monthly
+      charts, but they don't all carry equal weight. Lower timeframes carry more noise —
+      a doji on a 1-minute chart is a common, largely meaningless occurrence, while the same
+      formation on a daily or 4-hour chart, at a meaningful level, is a considerably more
+      significant signal.
+    </p>
+    <p>
+      Most candlestick reversal patterns tend to resolve within a small number of
+      subsequent candles once the pattern completes — but that window scales with the
+      timeframe itself: a few minutes on a 5-minute chart, a few trading days on a daily
+      chart.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the most reliable candlestick pattern?</h3>
+    <p>
+      Bullish and bearish engulfing patterns, morning and evening star formations, and
+      three white soldiers/three black crows are among the most consistently cited
+      high-probability patterns, particularly on daily timeframes at key support or
+      resistance levels. No pattern is reliable in isolation — context always matters more
+      than the shape alone.
+    </p>
+    <h3>What does a doji candlestick mean?</h3>
+    <p>
+      A doji forms when a candle's open and close prices are nearly equal, creating a small
+      or nonexistent body. It signals indecision between buyers and sellers. On its own
+      it's a weak signal, but a doji appearing after a prolonged trend at a significant
+      price level can indicate exhaustion and a potential reversal.
+    </p>
+    <h3>Do candlestick patterns work on all timeframes?</h3>
+    <p>
+      Candlestick patterns can appear on any timeframe from 1-minute to monthly charts, but
+      lower timeframes carry more noise and false signals. Patterns on daily and 4-hour
+      charts generally carry more analytical weight than the same pattern on a 1-minute
+      chart.
+    </p>
+    <h3>Should I trade a candlestick pattern by itself?</h3>
+    <p>
+      No. Candlestick patterns are most useful as one piece of a broader picture — context
+      such as the prevailing trend, proximity to a real support or resistance level, and
+      volume confirmation all significantly affect whether a pattern is likely to play out
+      as expected.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../chart-patterns/index.html">Chart Patterns: Head and Shoulders, Double Top/Bottom →</a>
+      <a class="related-tool-link" href="../support-and-resistance/index.html">Support and Resistance: The Foundation of Price Action →</a>
+      <a class="related-tool-link" href="../rsi-overbought-oversold/index.html">How to Use RSI for Overbought/Oversold Signals →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../chart-patterns/index.html"><span class="dir">&larr; Previous</span>Chart Patterns: Head and Shoulders, Double Top/Bottom</a>
+    <a class="article-nav-link" href="../moving-averages-sma-vs-ema/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Moving Averages: SMA vs EMA Explained</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +790,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Candlestick Patterns Every Trader Should Know or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Candlestick Patterns Every Trader Should Know">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>How to Use RSI for Overbought/Oversold Signals | DeskTerminal Academy</title>
+<meta name="description" content="Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.">
+<meta name="keywords" content="how to use rsi for overbought/oversold signals">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/rsi-overbought-oversold/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Use RSI for Overbought/Oversold Signals">
+<meta property="og:description" content="Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/rsi-overbought-oversold/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "How to Use RSI for Overbought/Oversold Signals",
+  "description": "Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/rsi-overbought-oversold/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good RSI level to buy or sell?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The traditional thresholds are RSI above 70 for overbought and below 30 for oversold,\n      set by J. Welles Wilder in 1978 using a 14-period calculation. In strong trending\n      markets, many traders adjust these to 80/20 to reduce false signals, since RSI can\n      remain above 70 or below 30 for extended periods during a strong trend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is overbought RSI always a sell signal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. In a strong uptrend, RSI can remain above 70 for weeks while price continues\n      climbing. Treating overbought as an automatic sell signal during a strong trend is\n      one of the most common RSI mistakes and can lead to shorting a market that keeps\n      rising."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is RSI divergence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RSI divergence occurs when price and the RSI indicator move in opposite directions.\n      Regular bullish divergence happens when price makes a lower low but RSI makes a\n      higher low, suggesting weakening downward momentum. Regular bearish divergence is the\n      opposite \u2014 price makes a higher high while RSI makes a lower high."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the RSI formula?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RSI = 100 \u2212 (100 \u00f7 (1 + RS)), where RS is the average gain over a set\n      period (typically 14) divided by the average loss over that same period. The result\n      is a value between 0 and 100."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,177 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">How to Use RSI for Overbought/Oversold Signals</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>How to Use RSI for Overbought/Oversold Signals</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 4 min read</div>
+  <div id="postBody">
+<h2>What RSI Actually Measures</h2>
+    <p>
+      The Relative Strength Index (RSI) is a momentum oscillator, developed by J. Welles
+      Wilder Jr. and introduced in his 1978 book <em>New Concepts in Technical Trading
+      Systems</em>. It measures the speed and magnitude of recent price movements on a
+      scale of 0 to 100 — essentially a speedometer for momentum, not a predictor of exact
+      turning points.
+    </p>
+    <h2>The RSI Formula</h2>
+    <p><strong>RSI = 100 − (100 ÷ (1 + RS))</strong></p>
+    <p>
+      Where <strong>RS</strong> (Relative Strength) is the average gain over a set period —
+      typically 14 candles — divided by the average loss over that same period. You don't
+      need to calculate this by hand; every charting platform plots it automatically. What
+      matters is understanding what drives the number: strong, consistent gains push RSI
+      toward 100, while strong, consistent losses push it toward 0.
+    </p>
+    <h2>Reading Overbought and Oversold</h2>
+    <p>
+      Using the standard 14-period setting, an RSI reading above <strong>70</strong> is
+      conventionally labeled overbought, suggesting price has risen quickly and may be due
+      for a pause or pullback. A reading below <strong>30</strong> is labeled oversold,
+      suggesting the opposite. These thresholds work reasonably well in
+      <strong>range-bound markets</strong>, where price oscillates between clear boundaries
+      rather than trending strongly in one direction.
+    </p>
+    <h2>Why Overbought Isn't a Sell Signal</h2>
+    <p>
+      This is the single most important nuance in using RSI correctly, and it's where most
+      beginners get burned. In a strong trending market, RSI can remain above 70 — or below
+      30 — for an extended stretch, sometimes weeks, while price simply continues in the
+      same direction. Traders who treat "overbought" as an automatic sell signal during a
+      genuine strong trend can find themselves shorting a market that keeps climbing for
+      considerably longer than expected.
+    </p>
+    <p>
+      The label "overbought" describes momentum, not an expiration date on the trend. It's
+      a caution flag worth pairing with other confirmation — not a standalone trigger to
+      trade against a strong trend.
+    </p>
+    <h2>Adaptive Thresholds for Trending Markets</h2>
+    <p>
+      Because static 70/30 levels fire too early in strong trending conditions, many
+      experienced traders shift to <strong>80/20</strong> thresholds on trending
+      instruments — commonly cited for assets like gold and major indices — to reduce false
+      signals. In a strong uptrend, "oversold" might realistically show up closer to 40-45
+      rather than the textbook 30; in a strong downtrend, "overbought" might realistically
+      sit closer to 55-60.
+    </p>
+    <p>
+      The practical takeaway: match your thresholds to the actual behavior of the
+      instrument and current market regime, rather than applying the same static numbers
+      to every chart regardless of conditions.
+    </p>
+    <h2>RSI Divergence: The Highest-Value Signal</h2>
+    <p>
+      Divergence occurs when price and RSI move in opposite directions — and many
+      experienced traders consider it the single highest-value RSI signal, more reliable
+      than a simple threshold cross.
+    </p>
+    <ul>
+<li>
+<strong>Regular bullish divergence</strong> — price makes a lower low, but RSI
+        makes a higher low. This suggests downward momentum is weakening even as price
+        continues falling, often preceding a reversal.
+      </li>
+<li>
+<strong>Regular bearish divergence</strong> — price makes a higher high, but RSI
+        makes a lower high, suggesting upward momentum is fading even as price pushes
+        higher.
+      </li>
+<li>
+<strong>Hidden divergence</strong> — the inverse pattern, which typically signals
+        trend <em>continuation</em> rather than reversal, and is often used by trend-following
+        traders looking to add to an existing position.
+      </li>
+</ul>
+    <p>
+      When trading divergence, the 70/30 threshold lines matter far less than comparing the
+      swing highs and swing lows RSI is printing against the swing highs and lows on the
+      price chart itself.
+    </p>
+    <p class="internal-link-callout">
+      Divergence is most meaningful when it forms near a real level — see
+      <a href="/academy/technical-analysis/support-and-resistance">Support and Resistance: The Foundation of Price Action</a>.
+    </p>
+    <h2>Choosing Your RSI Settings</h2>
+    <ul>
+<li><strong>14-period</strong> is the standard default, and a reasonable starting point across most timeframes and markets.</li>
+<li><strong>Shorter periods</strong> (such as 7) react faster and suit shorter-term day trading, at the cost of more noise.</li>
+<li><strong>Longer periods</strong> (such as 21) smooth out short-term fluctuations, better suited to swing trading.</li>
+</ul>
+    <p>
+      A sensible approach: stick with the 14-period default and standard 70/30 thresholds
+      across a meaningful number of trades before adjusting anything — changing settings too
+      early makes it difficult to tell whether a strategy has a genuine edge or you're just
+      curve-fitting to recent price action.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is a good RSI level to buy or sell?</h3>
+    <p>
+      The traditional thresholds are RSI above 70 for overbought and below 30 for oversold,
+      set by J. Welles Wilder in 1978 using a 14-period calculation. In strong trending
+      markets, many traders adjust these to 80/20 to reduce false signals, since RSI can
+      remain above 70 or below 30 for extended periods during a strong trend.
+    </p>
+    <h3>Is overbought RSI always a sell signal?</h3>
+    <p>
+      No. In a strong uptrend, RSI can remain above 70 for weeks while price continues
+      climbing. Treating overbought as an automatic sell signal during a strong trend is
+      one of the most common RSI mistakes and can lead to shorting a market that keeps
+      rising.
+    </p>
+    <h3>What is RSI divergence?</h3>
+    <p>
+      RSI divergence occurs when price and the RSI indicator move in opposite directions.
+      Regular bullish divergence happens when price makes a lower low but RSI makes a
+      higher low, suggesting weakening downward momentum. Regular bearish divergence is the
+      opposite — price makes a higher high while RSI makes a lower high.
+    </p>
+    <h3>What is the RSI formula?</h3>
+    <p>
+      RSI = 100 − (100 ÷ (1 + RS)), where RS is the average gain over a set
+      period (typically 14) divided by the average loss over that same period. The result
+      is a value between 0 and 100.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../macd-indicator/index.html">MACD Indicator Explained with Examples →</a>
+      <a class="related-tool-link" href="../candlestick-patterns/index.html">Candlestick Patterns Every Trader Should Know →</a>
+      <a class="related-tool-link" href="../fibonacci-retracement/index.html">Fibonacci Retracement in Forex Trading →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../moving-averages-sma-vs-ema/index.html"><span class="dir">&larr; Previous</span>Moving Averages: SMA vs EMA Explained</a>
+    <a class="article-nav-link" href="../macd-indicator/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>MACD Indicator Explained with Examples</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +748,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about How to Use RSI for Overbought/Oversold Signals or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: How to Use RSI for Overbought/Oversold Signals">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

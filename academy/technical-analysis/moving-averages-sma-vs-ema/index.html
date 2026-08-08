@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>Moving Averages: SMA vs EMA Explained | DeskTerminal Academy</title>
+<meta name="description" content="Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.">
+<meta name="keywords" content="moving averages: sma vs ema explained">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/moving-averages-sma-vs-ema/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Moving Averages: SMA vs EMA Explained">
+<meta property="og:description" content="Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/moving-averages-sma-vs-ema/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Moving Averages: SMA vs EMA Explained",
+  "description": "Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/moving-averages-sma-vs-ema/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between SMA and EMA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SMA (Simple Moving Average) gives equal weight to every price in the period, reacting\n      slowly and smoothly. EMA (Exponential Moving Average) gives more weight to recent\n      prices, reacting faster to new price action but also more prone to noise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use SMA or EMA for day trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EMA is generally preferred for day trading and shorter timeframes because it responds\n      faster to recent price changes, which matters more when trades are held for minutes\n      or hours. SMA is generally better suited to longer-term trend analysis on higher\n      timeframes like the daily or weekly chart."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a golden cross and death cross?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A golden cross occurs when a shorter-term moving average, commonly the 50-period,\n      crosses above a longer-term moving average, commonly the 200-period, and is\n      interpreted as a bullish trend signal. A death cross is the opposite \u2014 the 50-period\n      crossing below the 200-period, interpreted as bearish."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the 200-day moving average important?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 200-day moving average, typically the SMA, is one of the most widely watched\n      levels in global markets because institutional investors and systematic funds often\n      use it as a macro trend filter. An asset trading above its 200-day SMA is generally\n      viewed as being in a longer-term uptrend, and below it as a longer-term downtrend."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,183 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">Moving Averages: SMA vs EMA Explained</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>Moving Averages: SMA vs EMA Explained</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What a Moving Average Actually Does</h2>
+    <p>
+      A moving average smooths price into a single line by averaging closing prices over a
+      set number of periods, making the underlying trend easier to read through the noise
+      of individual candles. As new price data comes in, the average recalculates and the
+      line moves — hence "moving" average.
+    </p>
+    <p>
+      The most common types are the <strong>Simple Moving Average (SMA)</strong> and the
+      <strong>Exponential Moving Average (EMA)</strong>. Both do the same basic job, but
+      they get there differently, and that difference matters more than it looks.
+    </p>
+    <h2>SMA vs EMA: The Real Difference</h2>
+    <ul>
+<li>
+<strong>SMA (Simple Moving Average)</strong> — adds up the closing prices over the
+        chosen period and divides by that number. Every price in the period counts equally,
+        which makes the SMA smooth and slower to react to sudden changes.
+      </li>
+<li>
+<strong>EMA (Exponential Moving Average)</strong> — applies more weight to recent
+        prices, so it reacts faster to new price action. This makes it more responsive, but
+        also more sensitive to short-term noise.
+      </li>
+</ul>
+    <p>
+      Neither is objectively "better" — the right choice depends entirely on what you're
+      trying to see: a stable, longer-term trend read, or a quicker reaction to what's
+      happening right now.
+    </p>
+    <h2>Which One Should You Use?</h2>
+    <ul>
+<li><strong>Day trading / shorter timeframes (5-min to 1-hour charts):</strong> EMA is generally preferred, since its faster response better suits trades held for minutes to hours.</li>
+<li><strong>Swing trading / longer timeframes (4-hour to daily):</strong> Either works, though many traders blend a fast EMA for entry timing with a slower SMA for broader trend context.</li>
+<li><strong>Long-term trend filtering (daily to weekly):</strong> SMA is generally preferred for stability — this is exactly why the 200-period average institutions watch most closely is almost always the SMA version, not the EMA.</li>
+</ul>
+    <p>
+      A common combination: a fast EMA (such as 20-period) for identifying entries, paired
+      with a slower SMA (such as 200-period) as a standing filter for the broader market
+      direction.
+    </p>
+    <h2>Moving Averages as Dynamic Support and Resistance</h2>
+    <p>
+      Moving averages aren't just trend indicators — they also function as
+      <strong>dynamic</strong> support and resistance. Unlike the horizontal levels covered
+      in
+      <a href="/academy/technical-analysis/support-and-resistance">Support and Resistance: The Foundation of Price Action</a>,
+      a moving average level moves along with price. In a healthy uptrend, a key moving
+      average (commonly the 20 or 50-period) can act as a rising floor that price
+      repeatedly bounces off; in a downtrend, the same average can act as a falling ceiling.
+    </p>
+    <p>
+      A common, practical use: watching for price to pull back to a rising moving average
+      during an established uptrend as a potential entry area, rather than chasing price
+      further away from it.
+    </p>
+    <h2>Golden Cross and Death Cross</h2>
+    <p>
+      A <strong>golden cross</strong> occurs when a shorter-term moving average crosses
+      above a longer-term one — classically the 50-period crossing above the 200-period —
+      and is read as a signal that the broader trend may be shifting from bearish to
+      bullish. A <strong>death cross</strong> is the mirror image: the 50-period crossing
+      below the 200-period, read as a bearish regime shift.
+    </p>
+    <p>
+      These crosses are watched closely enough that they can influence real capital flows
+      when they occur on major indices. But it's worth being direct about their real
+      limitation: both are <strong>lagging signals</strong> built from historical prices, so
+      by the time the cross actually appears on the chart, a meaningful part of the move has
+      often already happened. They're better understood as regime confirmation — telling
+      you what kind of market you're likely in — rather than a precise entry or exit
+      trigger.
+    </p>
+    <p>
+      Many traders also use faster variations, like a 20 EMA crossing a 50 SMA, specifically
+      because it flags a potential shift earlier than waiting for the full 50/200 cross —
+      trading some reliability for speed.
+    </p>
+    <h2>Why the 200-Day SMA Specifically Matters</h2>
+    <p>
+      The 200-day SMA is one of the most closely watched technical levels across global
+      markets, largely because systematic funds and institutional mandates are frequently
+      calibrated around it. Price trading above the 200-day SMA is broadly treated as a
+      sign of a longer-term uptrend; price below it, a longer-term downtrend.
+    </p>
+    <p>
+      This is specifically the <em>simple</em> version, not exponential — since so much
+      institutional flow is built around the standard SMA calculation, using an EMA
+      substitute here can put your read of trend structure out of sync with what large
+      participants are actually watching.
+    </p>
+    <h2>Reading a Stacked Moving Average Structure</h2>
+    <p>
+      Beyond individual crosses, the relative order of several moving averages at once
+      tells its own story. A commonly cited "healthy trend" structure has faster averages
+      stacked above slower ones in an uptrend (for example, 10 EMA above 20 EMA, above 50
+      SMA, above 200 SMA), all fanning out and pointing in the same direction. When these
+      averages converge and flatten together instead, it often signals consolidation — a
+      squeeze that frequently precedes the next expansive move once it resolves.
+    </p>
+    <p class="internal-link-callout">
+      Moving averages are best used alongside momentum confirmation — see
+      <a href="/academy/technical-analysis/rsi-overbought-oversold">How to Use RSI for Overbought/Oversold Signals</a>.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the difference between SMA and EMA?</h3>
+    <p>
+      SMA (Simple Moving Average) gives equal weight to every price in the period, reacting
+      slowly and smoothly. EMA (Exponential Moving Average) gives more weight to recent
+      prices, reacting faster to new price action but also more prone to noise.
+    </p>
+    <h3>Should I use SMA or EMA for day trading?</h3>
+    <p>
+      EMA is generally preferred for day trading and shorter timeframes because it responds
+      faster to recent price changes, which matters more when trades are held for minutes
+      or hours. SMA is generally better suited to longer-term trend analysis on higher
+      timeframes like the daily or weekly chart.
+    </p>
+    <h3>What is a golden cross and death cross?</h3>
+    <p>
+      A golden cross occurs when a shorter-term moving average, commonly the 50-period,
+      crosses above a longer-term moving average, commonly the 200-period, and is
+      interpreted as a bullish trend signal. A death cross is the opposite — the 50-period
+      crossing below the 200-period, interpreted as bearish.
+    </p>
+    <h3>Why is the 200-day moving average important?</h3>
+    <p>
+      The 200-day moving average, typically the SMA, is one of the most widely watched
+      levels in global markets because institutional investors and systematic funds often
+      use it as a macro trend filter. An asset trading above its 200-day SMA is generally
+      viewed as being in a longer-term uptrend, and below it as a longer-term downtrend.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../macd-indicator/index.html">MACD Indicator Explained with Examples →</a>
+      <a class="related-tool-link" href="../trendlines-and-channels/index.html">Trendlines and Channels: How to Draw Them Correctly →</a>
+      <a class="related-tool-link" href="../rsi-overbought-oversold/index.html">How to Use RSI for Overbought/Oversold Signals →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../candlestick-patterns/index.html"><span class="dir">&larr; Previous</span>Candlestick Patterns Every Trader Should Know</a>
+    <a class="article-nav-link" href="../rsi-overbought-oversold/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>How to Use RSI for Overbought/Oversold Signals</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +754,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Moving Averages or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Moving Averages: SMA vs EMA Explained">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

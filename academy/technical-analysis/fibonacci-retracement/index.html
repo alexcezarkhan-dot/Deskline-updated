@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technical Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Chart patterns, indicators, and price action strategies.">
+<title>Fibonacci Retracement in Forex Trading | DeskTerminal Academy</title>
+<meta name="description" content="Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.">
+<meta name="keywords" content="fibonacci retracement in forex trading">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/technical-analysis/fibonacci-retracement/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fibonacci Retracement in Forex Trading">
+<meta property="og:description" content="Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.">
+<meta property="og:url" content="https://deskterminal.com/academy/technical-analysis/fibonacci-retracement/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Analysis",
-  "description": "Chart patterns, indicators, and price action strategies.",
-  "url": "https://deskterminal.com/academy/technical-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Technical Analysis", "item": "https://deskterminal.com/academy/technical-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Fibonacci Retracement in Forex Trading",
+  "description": "Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/technical-analysis/fibonacci-retracement/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the main Fibonacci retracement levels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most commonly used Fibonacci retracement levels are 23.6%, 38.2%, 50%, 61.8%, and\n      78.6%. The 61.8% level, known as the golden ratio, is generally considered the most\n      significant, though the 50% level is also widely watched even though it isn't\n      technically a Fibonacci ratio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you draw Fibonacci retracement in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Identify a clear swing high and swing low from a recent price move. In an uptrend,\n      draw the Fibonacci tool from the swing low to the swing high. In a downtrend, draw\n      from the swing high to the swing low. The platform automatically plots the\n      retracement levels between those two points."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the 61.8% Fibonacci level always accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Fibonacci levels work best as zones of decision rather than exact reversal\n      points. Price frequently reacts near 61.8% rather than precisely at it, and treating\n      the exact number as a guaranteed reversal price is one of the more common mistakes\n      traders make with this tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I trade Fibonacci levels alone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Fibonacci retracement is generally more reliable when combined with other\n      confirmation, such as a horizontal support or resistance level, a moving average, or\n      a candlestick pattern lining up at the same zone, rather than being used as a\n      standalone signal."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,82 +550,168 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Technical Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📊 Technical Analysis</h1>
-  <p>CHART PATTERNS, INDICATORS, AND PRICE ACTION STRATEGIES.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="support-and-resistance/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Support and Resistance: The Foundation of Price Action</div>
-        <div class="post-excerpt">Learn how to identify, draw, and trade support and resistance levels correctly - as zones, not lines - with real examples covering role reversal and volume confirmation.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="trendlines-and-channels/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Trendlines and Channels: How to Draw Them Correctly</div>
-        <div class="post-excerpt">Learn to draw trendlines and channels using real swing-point rules, not guesswork - including the 3-touch validation rule and what actually invalidates a trendline.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="chart-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Chart Patterns: Head and Shoulders, Double Top/Bottom</div>
-        <div class="post-excerpt">Learn to identify and trade the head and shoulders, double top, and double bottom patterns - with neckline mechanics, measured-move targets, and confirmation rules.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="candlestick-patterns/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Candlestick Patterns Every Trader Should Know</div>
-        <div class="post-excerpt">Learn the essential candlestick patterns - doji, hammer, engulfing, morning star - what they actually signal, and why they only matter at real support and resistance levels.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="moving-averages-sma-vs-ema/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Moving Averages: SMA vs EMA Explained</div>
-        <div class="post-excerpt">Learn the real difference between SMA and EMA, how the golden cross and death cross actually work, and why moving averages function as dynamic support and resistance.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="rsi-overbought-oversold/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">How to Use RSI for Overbought/Oversold Signals</div>
-        <div class="post-excerpt">Learn how the RSI indicator actually works, why overbought isn't a sell signal in a strong trend, and how to trade regular and hidden divergence correctly.</div>
-        <div class="post-date">2026-08-06 · 4 min read</div>
-      </a>
-      <a class="post-card" href="macd-indicator/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">MACD Indicator Explained with Examples</div>
-        <div class="post-excerpt">Learn how MACD actually works - the line, signal, and histogram - and why watching the histogram often gives an earlier read than waiting for the crossover.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
-      <a class="post-card" href="fibonacci-retracement/index.html">
-        <div class="post-tag">Technical Analysis</div>
-        <div class="post-title">Fibonacci Retracement in Forex Trading</div>
-        <div class="post-excerpt">Learn how to draw Fibonacci retracement levels correctly, what 38.2%, 50%, and 61.8% actually mean, and why treating them as exact reversal points is a common mistake.</div>
-        <div class="post-date">2026-08-06 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/technical-analysis/index.html">Technical Analysis</a><span class="sep">/</span>
+    <span class="current">Fibonacci Retracement in Forex Trading</span>
+  </nav>
+  <div class="post-tag">Technical Analysis</div>
+  <h1>Fibonacci Retracement in Forex Trading</h1>
+  <div class="post-date mono">August 6, 2026 · Technical Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What Fibonacci Retracement Actually Measures</h2>
+    <p>
+      Fibonacci retracement is a tool that plots horizontal levels at key percentages
+      between a significant swing high and swing low, based on ratios derived from the
+      Fibonacci number sequence. The core idea: after a strong price move, the market
+      typically pulls back a portion of that move before continuing in the original
+      direction — and these ratios flag the pullback depths that have historically drawn
+      the most attention.
+    </p>
+    <h2>The Key Fibonacci Levels</h2>
+    <ul>
+<li><strong>23.6%</strong> — a shallow pullback, often seen in very strong trends.</li>
+<li><strong>38.2%</strong> — a common, moderate pullback depth in healthy trending conditions.</li>
+<li><strong>50%</strong> — not technically a Fibonacci ratio at all, but included on every charting platform because of its psychological weight as a simple halfway point, watched by institutional, retail, and algorithmic traders alike.</li>
+<li><strong>61.8%</strong> — the "golden ratio," generally considered the most significant level and often the last clean pullback zone before a trend resumes.</li>
+<li><strong>78.6%</strong> — a deep retracement, more common during high-volatility or news-driven price swings.</li>
+</ul>
+    <h2>How to Draw It Correctly</h2>
+    <ol>
+<li>Identify a clear, obvious swing high and swing low — not a minor, insignificant wiggle in price.</li>
+<li><strong>In an uptrend:</strong> draw the Fibonacci tool from the swing low to the swing high.</li>
+<li><strong>In a downtrend:</strong> draw from the swing high to the swing low.</li>
+<li>The platform automatically plots 23.6%, 38.2%, 50%, 61.8%, and 78.6% between those two points.</li>
+<li>Watch for price to react as it pulls back into the 38.2%–61.8% zone, rather than expecting an exact bounce at one specific number.</li>
+</ol>
+    <h2>The Honest Truth About Precision</h2>
+    <p>
+      A lot of trading content treats the 61.8% level as if it holds some kind of magical,
+      near-guaranteed reversal power. That framing oversells the tool. Fibonacci levels are
+      better understood as zones of decision, not zones of guaranteed reversal — the market
+      doesn't turn simply because price touched 61.8%; it turns when enough participants
+      collectively decide the risk-reward at that general area justifies acting. Sometimes
+      that happens close to 61.8%. Sometimes it happens a little earlier or later.
+    </p>
+    <p>
+      This isn't a reason to dismiss the tool — it's a reason to use it with realistic
+      expectations rather than treating the exact percentage as a precise trigger price.
+    </p>
+    <h2>Treat Levels as Zones, Not Lines</h2>
+    <p>
+      A practical adjustment many experienced traders make: treat the 38.2%–61.8%
+      range as one broader decision zone rather than five separate hairline triggers.
+      Placing a stop-loss a small buffer beyond the zone — rather than directly on a single
+      Fibonacci line — accounts for the natural imprecision in exactly where price will
+      actually react.
+    </p>
+    <p class="internal-link-callout">
+      This mirrors the same zone-based thinking covered in
+      <a href="/academy/technical-analysis/support-and-resistance">Support and Resistance: The Foundation of Price Action</a>
+      — price levels in general behave more like ranges than exact numbers.
+    </p>
+    <h2>Why Confluence Matters More Than the Fib Alone</h2>
+    <p>
+      Fibonacci retracement becomes considerably more useful when it lines up with other
+      independent signals rather than being traded in isolation. Common confluence factors
+      include:
+    </p>
+    <ul>
+<li>A horizontal support or resistance zone sitting near the same price</li>
+<li>A key moving average, such as the 50 or 200-period, overlapping the retracement zone</li>
+<li>A candlestick reversal pattern forming right at the level</li>
+<li>RSI showing oversold or overbought conditions, or divergence, at the same point</li>
+</ul>
+    <p>
+      The more of these independently line up in the same area, the stronger the case for
+      that zone actually mattering — a single Fibonacci touch with nothing else confirming
+      it is a much weaker signal on its own.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/technical-analysis/rsi-overbought-oversold">How to Use RSI for Overbought/Oversold Signals</a>
+      and <a href="/academy/technical-analysis/moving-averages-sma-vs-ema">Moving Averages: SMA vs EMA Explained</a>
+      for two of the most common confirmation tools to pair with Fibonacci levels.
+    </p>
+    <h2>Fibonacci Extensions: Setting Targets</h2>
+    <p>
+      While retracement levels help identify potential pullback zones, <strong>Fibonacci
+      extensions</strong> — commonly 127.2% and 161.8% — project potential targets beyond
+      the original swing, useful for planning where a trend might extend to once the
+      pullback resolves and the original move resumes. Extensions are typically applied
+      alongside retracements rather than as a separate, standalone tool.
+    </p>
+    <h2>Common Mistakes</h2>
+    <ul>
+<li><strong>Selecting arbitrary swing points.</strong> Drawing from a minor, unremarkable wiggle rather than a genuinely significant swing high or low produces meaningless levels.</li>
+<li><strong>Treating 61.8% as a guaranteed reversal price.</strong> Expecting an exact bounce at one number, rather than a reaction somewhere within the broader zone.</li>
+<li><strong>Trading the level with zero confirmation.</strong> Entering purely because price touched a Fibonacci line, without any other technical factor supporting the trade.</li>
+<li><strong>Ignoring the broader trend.</strong> Fibonacci retracement assumes a trend is genuinely in place — applying it to a choppy, directionless market produces unreliable levels.</li>
+</ul>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What are the main Fibonacci retracement levels?</h3>
+    <p>
+      The most commonly used Fibonacci retracement levels are 23.6%, 38.2%, 50%, 61.8%, and
+      78.6%. The 61.8% level, known as the golden ratio, is generally considered the most
+      significant, though the 50% level is also widely watched even though it isn't
+      technically a Fibonacci ratio.
+    </p>
+    <h3>How do you draw Fibonacci retracement in forex?</h3>
+    <p>
+      Identify a clear swing high and swing low from a recent price move. In an uptrend,
+      draw the Fibonacci tool from the swing low to the swing high. In a downtrend, draw
+      from the swing high to the swing low. The platform automatically plots the
+      retracement levels between those two points.
+    </p>
+    <h3>Is the 61.8% Fibonacci level always accurate?</h3>
+    <p>
+      No. Fibonacci levels work best as zones of decision rather than exact reversal
+      points. Price frequently reacts near 61.8% rather than precisely at it, and treating
+      the exact number as a guaranteed reversal price is one of the more common mistakes
+      traders make with this tool.
+    </p>
+    <h3>Should I trade Fibonacci levels alone?</h3>
+    <p>
+      No. Fibonacci retracement is generally more reliable when combined with other
+      confirmation, such as a horizontal support or resistance level, a moving average, or
+      a candlestick pattern lining up at the same zone, rather than being used as a
+      standalone signal.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../support-and-resistance/index.html">Support and Resistance: The Foundation of Price Action →</a>
+      <a class="related-tool-link" href="../rsi-overbought-oversold/index.html">How to Use RSI for Overbought/Oversold Signals →</a>
+      <a class="related-tool-link" href="../macd-indicator/index.html">MACD Indicator Explained with Examples →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../macd-indicator/index.html"><span class="dir">&larr; Previous</span>MACD Indicator Explained with Examples</a>
+    
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -624,9 +739,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about technical analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Fibonacci Retracement in Forex Trading or technical analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What technical indicator should I learn first?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Fibonacci Retracement in Forex Trading">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
