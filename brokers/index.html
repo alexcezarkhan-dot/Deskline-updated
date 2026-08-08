@@ -29,6 +29,42 @@
   .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
   .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
 
+  /* ---------------- Broker comparison table (FF-style) ---------------- */
+  .broker-table-wrap{
+    padding: 0 6vw 1rem; overflow-x:auto;
+  }
+  .broker-table{
+    width:100%; min-width:900px; border-collapse:collapse;
+    background: var(--panel); border:1px solid var(--line-soft); border-radius:8px; overflow:hidden;
+  }
+  .broker-table th{
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--dim); text-align:left; padding:.7rem .8rem; background:var(--panel-2);
+    border-bottom:1px solid var(--line-soft); white-space:nowrap;
+  }
+  .broker-table td{
+    padding:.8rem; font-size:.8rem; border-bottom:1px solid var(--line-soft); vertical-align:top; white-space:nowrap;
+  }
+  .broker-table tr:last-child td{ border-bottom:none; }
+  .broker-table .bt-company-name{ font-weight:700; font-size:.88rem; }
+  .broker-table .bt-actions{ display:flex; gap:.5rem; margin-top:.4rem; flex-wrap:wrap; }
+  .broker-table .bt-btn{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; font-weight:600; text-decoration:none;
+    padding:.3rem .6rem; border-radius:4px; white-space:nowrap;
+  }
+  .broker-table .bt-btn.live{ background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A); color:#1A1305; }
+  .broker-table .bt-btn.demo{ border:1px solid var(--line-soft); color:var(--dim); }
+  .broker-table .bt-btn.contact{ border:1px solid var(--gold); color:var(--gold); }
+  .broker-table .bt-btn.pending{ border:1px solid var(--line-soft); color:var(--dim); cursor:default; }
+  .broker-table .bt-spread{ font-family:'JetBrains Mono', monospace; color:var(--dim); text-align:center; }
+
+  .broker-partner-note{
+    margin: 0 6vw 2rem; padding: 1.2rem 1.4rem;
+    background:var(--panel-2); border:1px dashed var(--line-soft); border-radius:8px;
+    font-size:.85rem; color:var(--dim); line-height:1.6;
+  }
+  .broker-partner-note a{ color:var(--gold); }
+
   .posts{
     padding: 0 6vw 3rem;
     display:grid;
@@ -500,10 +536,10 @@
   </div>
   <div class="navlinks">
     <a href="../index.html">Market</a>
-    <a href="../brokers/index.html">Brokers</a>
     <a href="../calendar.html">Economic Calendar</a>
     <a href="../news.html">News</a>
     <a href="../calculator.html">Calculator</a>
+  <a href="../brokers/index.html">Brokers</a>
   </div>
   <div class="auth-slot" id="authSlot">
   <button class="auth-btn" id="loginBtn">Login</button>
@@ -534,6 +570,31 @@
   <p>BROKER REVIEWS, COMPARISONS &amp; GUIDES</p>
 </div>
 
+<div class="broker-table-wrap">
+  <table class="broker-table" id="brokerTable">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Founded</th>
+        <th>Domestic License</th>
+        <th>Max Lev</th>
+        <th>Platforms</th>
+        <th style="text-align:center;">EUR/USD</th>
+        <th style="text-align:center;">GBP/USD</th>
+        <th style="text-align:center;">USD/JPY</th>
+        <th style="text-align:center;">USD/CHF</th>
+        <th style="text-align:center;">USD/CAD</th>
+        <th>Deposit Options</th>
+      </tr>
+    </thead>
+    <tbody id="brokerTableBody"></tbody>
+  </table>
+</div>
+
+<div class="broker-partner-note">
+  Are you a broker interested in being featured here? <a href="../contact.html">Contact us</a> to discuss partnership opportunities.
+</div>
+
 <div class="posts" id="postsGrid"></div>
 <div class="empty" id="emptyMsg" style="display:none;">No posts published yet — check back soon.</div>
 
@@ -543,6 +604,50 @@
 </section>
 
 <footer>DeskTerminal · Brokers · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
+
+<script>
+fetch('featured-brokers.json')
+  .then(r => r.json())
+  .then(brokers => {
+    const tbody = document.getElementById('brokerTableBody');
+    if(!brokers.length){ tbody.innerHTML = ''; return; }
+    tbody.innerHTML = brokers.map(b => {
+      let actionsHtml;
+      if(b.status === 'live'){
+        actionsHtml = `
+          ${b.liveLink ? `<a class="bt-btn live" href="${b.liveLink}" target="_blank" rel="noopener sponsored">Open Live</a>` : ''}
+          ${b.demoLink ? `<a class="bt-btn demo" href="${b.demoLink}" target="_blank" rel="noopener sponsored">Open Demo</a>` : ''}
+          <a class="bt-btn contact" href="../contact.html">Contact</a>
+        `;
+      } else if(b.status === 'apply'){
+        actionsHtml = `<a class="bt-btn contact" href="../contact.html">Apply Now</a>`;
+      } else {
+        actionsHtml = `<span class="bt-btn pending">Coming Soon</span>`;
+      }
+      return `
+        <tr>
+          <td>
+            <div class="bt-company-name">${b.name}</div>
+            <div class="bt-actions">${actionsHtml}</div>
+          </td>
+          <td>${b.founded || '—'}</td>
+          <td>${b.domesticLicense || '—'}</td>
+          <td>${b.maxLeverage || '—'}</td>
+          <td>${b.platforms || '—'}</td>
+          <td class="bt-spread">${b.spreadEurUsd || '—'}</td>
+          <td class="bt-spread">${b.spreadGbpUsd || '—'}</td>
+          <td class="bt-spread">${b.spreadUsdJpy || '—'}</td>
+          <td class="bt-spread">${b.spreadUsdChf || '—'}</td>
+          <td class="bt-spread">${b.spreadUsdCad || '—'}</td>
+          <td>${b.depositOptions || '—'}</td>
+        </tr>
+      `;
+    }).join('');
+  })
+  .catch(() => {
+    document.getElementById('brokerTableBody').innerHTML = '';
+  });
+</script>
 
 <script>
 fetch('posts.json')
