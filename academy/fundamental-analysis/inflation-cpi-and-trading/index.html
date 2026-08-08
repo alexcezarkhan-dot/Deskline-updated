@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamental Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Economic events, central banks, and how news moves markets.">
+<title>Inflation, CPI, and Their Effect on Trading | DeskTerminal Academy</title>
+<meta name="description" content="Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.">
+<meta name="keywords" content="inflation, cpi, and their effect on trading">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/inflation-cpi-and-trading/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inflation, CPI, and Their Effect on Trading">
+<meta property="og:description" content="Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.">
+<meta property="og:url" content="https://deskterminal.com/academy/fundamental-analysis/inflation-cpi-and-trading/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Fundamental Analysis",
-  "description": "Economic events, central banks, and how news moves markets.",
-  "url": "https://deskterminal.com/academy/fundamental-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Fundamental Analysis", "item": "https://deskterminal.com/academy/fundamental-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Inflation, CPI, and Their Effect on Trading",
+  "description": "Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/fundamental-analysis/inflation-cpi-and-trading/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between headline CPI and core CPI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Headline CPI measures price changes across everything a typical household spends,\n      including food and energy. Core CPI strips out food and energy specifically because\n      those categories are historically far more volatile, offering a clearer read on\n      underlying, longer-term inflation trends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is PCE and how is it different from CPI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PCE (Personal Consumption Expenditures) is a separate inflation gauge published by\n      the Bureau of Economic Analysis. It differs from CPI in its formula, data sources,\n      and coverage \u2014 PCE uses chain-weighting that adjusts for consumer substitution,\n      includes indirect spending like employer-paid healthcare, and typically weights\n      shelter costs lower than CPI does."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the Federal Reserve use PCE instead of CPI for its inflation target?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Fed's formal 2% inflation target, adopted in 2012, is set specifically in core\n      PCE terms. The Fed generally considers PCE's broader coverage and\n      substitution-adjusted methodology a more accurate long-run measure of what households\n      actually experience, compared to CPI's fixed-basket approach."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does higher-than-expected inflation affect a currency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Higher-than-expected inflation typically raises expectations that a central bank\n      will keep interest rates higher for longer, or hike further, which tends to support\n      that currency through the same rate-differential mechanism that drives most\n      medium-term currency moves."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,188 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Fundamental Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📰 Fundamental Analysis</h1>
-  <p>ECONOMIC EVENTS, CENTRAL BANKS, AND HOW NEWS MOVES MARKETS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="understanding-the-economic-calendar/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Understanding the Economic Calendar</div>
-        <div class="post-excerpt">Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="what-is-nfp/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</div>
-        <div class="post-excerpt">Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="inflation-cpi-and-trading/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Inflation, CPI, and Their Effect on Trading</div>
-        <div class="post-excerpt">Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-interest-rates-affect-currency-prices/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How Interest Rates Affect Currency Prices</div>
-        <div class="post-excerpt">Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="central-bank-policies-fed-ecb-boe/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Central Bank Policies: Fed, ECB, BOE Compared</div>
-        <div class="post-excerpt">Learn the real structural differences between the Fed, ECB, and Bank of England - dual vs single mandates, governance structures, and why their policies diverge.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-fomc-decisions-impact-forex-and-gold/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How FOMC Decisions Impact Forex and Gold</div>
-        <div class="post-excerpt">Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.</div>
-        <div class="post-date">2026-08-08 · 6 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/fundamental-analysis/index.html">Fundamental Analysis</a><span class="sep">/</span>
+    <span class="current">Inflation, CPI, and Their Effect on Trading</span>
+  </nav>
+  <div class="post-tag">Fundamental Analysis</div>
+  <h1>Inflation, CPI, and Their Effect on Trading</h1>
+  <div class="post-date mono">August 8, 2026 · Fundamental Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>Why Inflation Data Matters to Traders</h2>
+    <p>
+      Inflation data is one of the most direct inputs into central bank policy, and central
+      bank policy is one of the biggest drivers of currency value. When inflation runs hot,
+      central banks generally lean toward holding rates higher or hiking further to cool the
+      economy; when inflation cools, the case for rate cuts builds. That's exactly why
+      inflation releases sit among the highest-impact events on any economic calendar.
+    </p>
+    <p class="internal-link-callout">
+      This connects directly to
+      <a href="/academy/fundamental-analysis/how-interest-rates-affect-currency-prices">How Interest Rates Affect Currency Prices</a>
+      — inflation data is one of the key inputs shaping the rate expectations covered there.
+    </p>
+    <h2>Headline CPI vs Core CPI</h2>
+    <p>
+      The <strong>Consumer Price Index (CPI)</strong> measures the average change in prices
+      paid by consumers for a fixed basket of goods and services. <strong>Headline
+      CPI</strong> includes everything in that basket — food and energy prices included —
+      which makes it considerably more volatile month to month, since food and energy
+      prices can swing sharply due to factors like weather, supply disruptions, or
+      geopolitical events.
+    </p>
+    <p>
+<strong>Core CPI</strong> strips food and energy out specifically because of that
+      volatility, aiming to reveal the underlying, longer-term inflation trend without the
+      noise. Central banks and traders alike generally weight core CPI more heavily than
+      headline CPI when judging the genuine trajectory of inflation, even though headline
+      CPI is the number most news coverage leads with.
+    </p>
+    <h2>What is PCE, and How Is It Different?</h2>
+    <p>
+<strong>PCE (Personal Consumption Expenditures)</strong> is a separate inflation
+      gauge, published by the Bureau of Economic Analysis rather than the Bureau of Labor
+      Statistics that publishes CPI. While it measures broadly the same thing — consumer
+      price inflation — it differs from CPI in three meaningful ways:
+    </p>
+    <ul>
+<li>
+<strong>Chain-weighting.</strong> PCE adjusts for consumer substitution — if beef
+        prices rise and consumers shift toward chicken, PCE's methodology captures that
+        behavior change; CPI's fixed basket does not adjust in the same way.
+      </li>
+<li>
+<strong>Broader coverage.</strong> PCE includes spending paid on a consumer's
+        behalf by others, such as employer-provided healthcare and government medical
+        programs — spending that's largely invisible to CPI.
+      </li>
+<li>
+<strong>Different category weighting.</strong> PCE and CPI weight categories like
+        shelter differently, which can cause the two measures to diverge meaningfully during
+        periods when housing costs are moving sharply.
+      </li>
+</ul>
+    <p>
+      These structural differences mean CPI and PCE don't always move in lockstep, and the
+      gap between them can itself become a talking point during unusual economic periods.
+    </p>
+    <h2>Why the Fed's Target Is Set in PCE, Not CPI</h2>
+    <p>
+      The Federal Reserve's formal 2% inflation target, adopted in 2012, is specifically
+      set in <strong>core PCE</strong> terms — not CPI. This is a genuinely important
+      distinction for traders: when you hear that "the Fed wants inflation at 2%," that
+      target is being measured against core PCE, not the CPI figure that dominates most
+      news headlines.
+    </p>
+    <p>
+      This is precisely why market-moving Fed commentary tends to reference PCE readings
+      even when a CPI release has just made headlines — the Fed's own framework for judging
+      progress toward its goal runs through PCE, and traders who only track CPI can miss
+      part of the full picture the central bank itself is actually responding to.
+    </p>
+    <h2>PPI: The Early-Warning Gauge</h2>
+    <p>
+      A third inflation-adjacent release worth knowing: the <strong>Producer Price Index
+      (PPI)</strong>, which measures price changes at the wholesale and production level
+      rather than what consumers pay directly. Because rising input costs for producers
+      often eventually pass through to consumer prices, PPI is sometimes watched as an
+      early signal for where CPI and PCE might be headed in coming months — though the
+      relationship isn't perfectly reliable or immediate.
+    </p>
+    <h2>How an Inflation Surprise Moves Currency</h2>
+    <p>
+      As with any scheduled release, it's the <strong>surprise relative to
+      forecast</strong> that typically drives the sharpest reaction, not the raw inflation
+      number in isolation. A core inflation reading that comes in meaningfully hotter than
+      expected tends to raise expectations for a more hawkish central bank path, which
+      generally supports that currency; a cooler-than-expected reading tends to have the
+      opposite effect.
+    </p>
+    <p class="internal-link-callout">
+      This is the same expectations mechanism covered in
+      <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold">How FOMC Decisions Impact Forex and Gold</a>
+      and <a href="/academy/fundamental-analysis/understanding-the-economic-calendar">Understanding the Economic Calendar</a>
+      — inflation data is simply one of the most consistently influential inputs feeding
+      into it.
+    </p>
+    <h2>Practical Notes for Trading Inflation Releases</h2>
+    <ul>
+<li><strong>Watch core figures over headline, but don't ignore headline entirely.</strong> Core reveals the underlying trend; headline still affects sentiment and political pressure on central banks.</li>
+<li><strong>Know whether the release is CPI or PCE.</strong> They can diverge, and confusing the two can lead to misreading what a central bank is actually likely to do next.</li>
+<li><strong>Check month-over-month alongside year-over-year.</strong> Year-over-year anchors the trend against target; month-over-month shows current momentum, which matters more for near-term positioning.</li>
+<li><strong>Expect volatility around the release regardless of the outcome.</strong> Inflation data consistently ranks among the highest-impact scheduled events.</li>
+</ul>
+    <p class="internal-link-callout">
+      See <a href="/academy/risk-management/position-sizing">Position Sizing: How Much Should You Risk Per Trade?</a>
+      to prepare for that volatility responsibly.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the difference between headline CPI and core CPI?</h3>
+    <p>
+      Headline CPI measures price changes across everything a typical household spends,
+      including food and energy. Core CPI strips out food and energy specifically because
+      those categories are historically far more volatile, offering a clearer read on
+      underlying, longer-term inflation trends.
+    </p>
+    <h3>What is PCE and how is it different from CPI?</h3>
+    <p>
+      PCE (Personal Consumption Expenditures) is a separate inflation gauge published by
+      the Bureau of Economic Analysis. It differs from CPI in its formula, data sources,
+      and coverage — PCE uses chain-weighting that adjusts for consumer substitution,
+      includes indirect spending like employer-paid healthcare, and typically weights
+      shelter costs lower than CPI does.
+    </p>
+    <h3>Why does the Federal Reserve use PCE instead of CPI for its inflation target?</h3>
+    <p>
+      The Fed's formal 2% inflation target, adopted in 2012, is set specifically in core
+      PCE terms. The Fed generally considers PCE's broader coverage and
+      substitution-adjusted methodology a more accurate long-run measure of what households
+      actually experience, compared to CPI's fixed-basket approach.
+    </p>
+    <h3>How does higher-than-expected inflation affect a currency?</h3>
+    <p>
+      Higher-than-expected inflation typically raises expectations that a central bank
+      will keep interest rates higher for longer, or hike further, which tends to support
+      that currency through the same rate-differential mechanism that drives most
+      medium-term currency moves.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../what-is-nfp/index.html">What is NFP (Non-Farm Payrolls) and Why It Moves Markets →</a>
+      <a class="related-tool-link" href="../how-interest-rates-affect-currency-prices/index.html">How Interest Rates Affect Currency Prices →</a>
+      <a class="related-tool-link" href="../central-bank-policies-fed-ecb-boe/index.html">Central Bank Policies: Fed, ECB, BOE Compared →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../what-is-nfp/index.html"><span class="dir">&larr; Previous</span>What is NFP (Non-Farm Payrolls) and Why It Moves Markets</a>
+    <a class="article-nav-link" href="../how-interest-rates-affect-currency-prices/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>How Interest Rates Affect Currency Prices</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +759,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about fundamental analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Inflation, CPI, and Their Effect on Trading or fundamental analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What economic events move forex the most?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Inflation, CPI, and Their Effect on Trading">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

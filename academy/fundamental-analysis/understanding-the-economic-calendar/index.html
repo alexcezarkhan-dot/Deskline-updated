@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamental Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Economic events, central banks, and how news moves markets.">
+<title>Understanding the Economic Calendar | DeskTerminal Academy</title>
+<meta name="description" content="Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.">
+<meta name="keywords" content="understanding the economic calendar">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/understanding-the-economic-calendar/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding the Economic Calendar">
+<meta property="og:description" content="Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.">
+<meta property="og:url" content="https://deskterminal.com/academy/fundamental-analysis/understanding-the-economic-calendar/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Fundamental Analysis",
-  "description": "Economic events, central banks, and how news moves markets.",
-  "url": "https://deskterminal.com/academy/fundamental-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Fundamental Analysis", "item": "https://deskterminal.com/academy/fundamental-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Understanding the Economic Calendar",
+  "description": "Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/fundamental-analysis/understanding-the-economic-calendar/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do Previous, Forecast, and Actual mean on an economic calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Previous is the figure from the last release of that indicator. Forecast is the\n      consensus estimate among economists ahead of the release. Actual is the real figure\n      once it's officially published. The gap between Forecast and Actual \u2014 the surprise \u2014\n      is what typically drives the market reaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the star or color rating on an economic calendar mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most calendars rate each event by expected market impact, commonly using one to\n      three stars or a color code (green/yellow/red or low/medium/high). This rating\n      reflects how much volatility the event has historically caused, not a prediction of\n      direction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the previous value on an economic calendar sometimes marked as revised?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Statistical agencies frequently revise earlier data once more complete information\n      becomes available. A revised previous figure changes the baseline the new release is\n      being compared against, which can shift how the market interprets the new actual\n      figure even if the new number itself is unremarkable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I trade immediately when an economic release comes out?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Spreads widen and volatility spikes sharply in the first moments\n      after a release, which increases the risk of slippage and can trigger stop-losses on\n      ordinary noise. Some traders prefer to let the initial spike settle before entering,\n      rather than reacting to the very first tick."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,183 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Fundamental Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📰 Fundamental Analysis</h1>
-  <p>ECONOMIC EVENTS, CENTRAL BANKS, AND HOW NEWS MOVES MARKETS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="understanding-the-economic-calendar/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Understanding the Economic Calendar</div>
-        <div class="post-excerpt">Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="what-is-nfp/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</div>
-        <div class="post-excerpt">Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="inflation-cpi-and-trading/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Inflation, CPI, and Their Effect on Trading</div>
-        <div class="post-excerpt">Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-interest-rates-affect-currency-prices/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How Interest Rates Affect Currency Prices</div>
-        <div class="post-excerpt">Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="central-bank-policies-fed-ecb-boe/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Central Bank Policies: Fed, ECB, BOE Compared</div>
-        <div class="post-excerpt">Learn the real structural differences between the Fed, ECB, and Bank of England - dual vs single mandates, governance structures, and why their policies diverge.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-fomc-decisions-impact-forex-and-gold/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How FOMC Decisions Impact Forex and Gold</div>
-        <div class="post-excerpt">Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.</div>
-        <div class="post-date">2026-08-08 · 6 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/fundamental-analysis/index.html">Fundamental Analysis</a><span class="sep">/</span>
+    <span class="current">Understanding the Economic Calendar</span>
+  </nav>
+  <div class="post-tag">Fundamental Analysis</div>
+  <h1>Understanding the Economic Calendar</h1>
+  <div class="post-date mono">August 8, 2026 · Fundamental Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What an Economic Calendar Actually Shows</h2>
+    <p>
+      An economic calendar lists scheduled economic data releases and central bank events —
+      interest rate decisions, inflation reports, employment data, GDP figures, and more —
+      along with the date, time, and the currency or economy each release affects. It exists
+      to answer one practical question: <em>what could realistically move the market today,
+      and when?</em>
+</p>
+    <h2>The Three Numbers: Previous, Forecast, Actual</h2>
+    <ul>
+<li><strong>Previous</strong> — the figure from the last time this indicator was reported.</li>
+<li><strong>Forecast (Consensus)</strong> — the average expectation among economists surveyed ahead of the release.</li>
+<li><strong>Actual</strong> — the real, official figure, populated the moment it's published.</li>
+</ul>
+    <p>
+      These three numbers together tell you not just what happened, but whether it was
+      expected — which turns out to matter far more than the raw number on its own.
+    </p>
+    <h2>The Surprise Is What Actually Moves Price</h2>
+    <p>
+      Markets are forward-looking, and by the time a release happens, the market has
+      typically already priced in the consensus forecast. This is why a result that lands
+      close to the forecast often produces a muted reaction — there's little new information
+      for the market to react to.
+    </p>
+    <p>
+      What actually drives sharp moves is the <strong>gap between forecast and actual</strong>
+      — the surprise. If Core CPI is forecast at 0.3% and comes in at 0.6%, that's a
+      meaningfully larger surprise than a result of 0.3% or 0.4%, and the market typically
+      reprices quickly to reflect the new information.
+    </p>
+    <h2>Impact Ratings: Filtering the Noise</h2>
+    <p>
+      Most calendars rate each event by expected market impact, commonly using a one-to-three
+      star system or a low/medium/high color code. This rating is based on how much
+      volatility that type of event has historically produced, not a prediction of which
+      direction price will move.
+    </p>
+    <p>
+      Filtering a calendar down to medium- and high-impact events is one of the simplest,
+      highest-value habits a trader can build — dozens of low-impact releases happen every
+      week that genuinely don't warrant attention, and treating every single line item as
+      equally important just adds noise to your planning.
+    </p>
+    <h2>Two Different Color Systems (Don't Mix Them Up)</h2>
+    <p>
+      This is a genuine, common point of confusion worth calling out directly: many
+      calendars use color in <strong>two completely different ways</strong> at once, and
+      conflating them leads to real misreads.
+    </p>
+    <ul>
+<li>
+<strong>Impact color-coding</strong> — the folder, star, or badge color next to the
+        event name, indicating how much volatility that <em>type</em> of event typically
+        causes. A red flag here means "high impact expected," not "bad news" or "price
+        falling."
+      </li>
+<li>
+<strong>Surprise color-coding</strong> — the color of the Actual figure itself once
+        released, typically green if it beat the forecast and red if it missed. This is a
+        completely separate signal about the specific outcome, not the event's general
+        importance.
+      </li>
+</ul>
+    <p>
+      A red-flagged (high-impact) event with a green (better-than-forecast) actual reading
+      is a common, unremarkable combination — the colors aren't contradicting each other,
+      they're simply answering two different questions.
+    </p>
+    <h2>Why Revised "Previous" Values Matter</h2>
+    <p>
+      Statistical agencies frequently revise earlier data once more complete information
+      becomes available — you'll often see a small asterisk or marker next to a Previous
+      figure indicating it was updated since its original release. This matters because a
+      revised Previous value changes the baseline the new release is being measured against.
+    </p>
+    <p>
+      A new Actual figure that looks unremarkable against an old, un-revised Previous number
+      can look considerably more (or less) significant once you account for the revision —
+      it's worth reading the revision alongside the new release rather than skipping past
+      it.
+    </p>
+    <h2>The Events That Consistently Move Markets Most</h2>
+    <ul>
+<li><strong>Central bank rate decisions</strong> (Fed, ECB, BOE, and others) — see <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold">How FOMC Decisions Impact Forex and Gold</a>.</li>
+<li><strong>Non-Farm Payrolls (NFP)</strong> — the US employment report, among the most consistently volatile monthly releases.</li>
+<li><strong>Inflation data (CPI/PPI)</strong> — directly feeds into central bank rate decisions.</li>
+<li><strong>GDP releases</strong> — a broad measure of economic growth or contraction.</li>
+<li><strong>PMI surveys</strong> — forward-looking business activity indicators, often watched as an early signal ahead of harder data.</li>
+</ul>
+    <h2>Using the Calendar Practically</h2>
+    <ol>
+<li><strong>Set your correct time zone.</strong> A release time that's off by even one hour can mean trading directly into a spike you didn't see coming.</li>
+<li><strong>Filter to the currencies you actually trade.</strong> No need to track every economy's calendar if you focus on a handful of pairs.</li>
+<li><strong>Check the week ahead, not just today.</strong> Positioning around a major release often starts building in the days before it.</li>
+<li><strong>Widen stops or reduce size around high-impact events.</strong> Spreads widen and slippage risk increases sharply in the first moments after a release.</li>
+<li><strong>Read Actual against Forecast, not just against Previous.</strong> The forecast is what the market has already priced in — that's the real benchmark for a surprise.</li>
+</ol>
+    <p class="internal-link-callout">
+      This connects directly to
+      <a href="/academy/risk-management/position-sizing">Position Sizing: How Much Should You Risk Per Trade?</a>
+      — event volatility is exactly when disciplined sizing matters most.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What do Previous, Forecast, and Actual mean on an economic calendar?</h3>
+    <p>
+      Previous is the figure from the last release of that indicator. Forecast is the
+      consensus estimate among economists ahead of the release. Actual is the real figure
+      once it's officially published. The gap between Forecast and Actual — the surprise —
+      is what typically drives the market reaction.
+    </p>
+    <h3>What does the star or color rating on an economic calendar mean?</h3>
+    <p>
+      Most calendars rate each event by expected market impact, commonly using one to
+      three stars or a color code (green/yellow/red or low/medium/high). This rating
+      reflects how much volatility the event has historically caused, not a prediction of
+      direction.
+    </p>
+    <h3>Why is the previous value on an economic calendar sometimes marked as revised?</h3>
+    <p>
+      Statistical agencies frequently revise earlier data once more complete information
+      becomes available. A revised previous figure changes the baseline the new release is
+      being compared against, which can shift how the market interprets the new actual
+      figure even if the new number itself is unremarkable.
+    </p>
+    <h3>Should I trade immediately when an economic release comes out?</h3>
+    <p>
+      Not necessarily. Spreads widen and volatility spikes sharply in the first moments
+      after a release, which increases the risk of slippage and can trigger stop-losses on
+      ordinary noise. Some traders prefer to let the initial spike settle before entering,
+      rather than reacting to the very first tick.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../what-is-nfp/index.html">What is NFP (Non-Farm Payrolls) and Why It Moves Markets →</a>
+      <a class="related-tool-link" href="../inflation-cpi-and-trading/index.html">Inflation, CPI, and Their Effect on Trading →</a>
+      <a class="related-tool-link" href="../how-fomc-decisions-impact-forex-and-gold/index.html">How FOMC Decisions Impact Forex and Gold →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    
+    <a class="article-nav-link" href="../what-is-nfp/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>What is NFP (Non-Farm Payrolls) and Why It Moves Markets</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +754,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about fundamental analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Understanding the Economic Calendar or fundamental analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What economic events move forex the most?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Understanding the Economic Calendar">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

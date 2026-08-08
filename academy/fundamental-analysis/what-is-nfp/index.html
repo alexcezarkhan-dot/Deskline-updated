@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamental Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Economic events, central banks, and how news moves markets.">
+<title>What is NFP (Non-Farm Payrolls) and Why It Moves Markets | DeskTerminal Academy</title>
+<meta name="description" content="Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.">
+<meta name="keywords" content="what is nfp (non-farm payrolls) and why it moves markets">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/what-is-nfp/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is NFP (Non-Farm Payrolls) and Why It Moves Markets">
+<meta property="og:description" content="Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.">
+<meta property="og:url" content="https://deskterminal.com/academy/fundamental-analysis/what-is-nfp/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Fundamental Analysis",
-  "description": "Economic events, central banks, and how news moves markets.",
-  "url": "https://deskterminal.com/academy/fundamental-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Fundamental Analysis", "item": "https://deskterminal.com/academy/fundamental-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "What is NFP (Non-Farm Payrolls) and Why It Moves Markets",
+  "description": "Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/fundamental-analysis/what-is-nfp/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does NFP stand for and what does it measure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NFP stands for Non-Farm Payrolls, a monthly US employment report released by the\n      Bureau of Labor Statistics that measures the net number of jobs added or lost in the\n      economy, excluding farm workers, government employees, private household staff, and\n      non-profit employees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the NFP report released?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NFP is typically released on the first Friday of every month at 8:30 AM Eastern\n      Time, covering the previous month's employment data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a strong NFP report always strengthen the US dollar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually, but not always. Strong job growth typically supports the dollar by raising\n      expectations of steady or higher interest rates. However, an exceptionally strong\n      report can sometimes raise inflation concerns, which can complicate the market's\n      reaction rather than producing a simple straight-line move."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the three main components of the NFP report to watch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beyond the headline jobs-added number, the same report includes the unemployment\n      rate and average hourly earnings, which measures wage growth. All three are watched\n      together, since a headline beat alongside weak wage growth can tell a very different\n      story than a headline beat with strong wages."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,179 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Fundamental Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📰 Fundamental Analysis</h1>
-  <p>ECONOMIC EVENTS, CENTRAL BANKS, AND HOW NEWS MOVES MARKETS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="understanding-the-economic-calendar/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Understanding the Economic Calendar</div>
-        <div class="post-excerpt">Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="what-is-nfp/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</div>
-        <div class="post-excerpt">Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="inflation-cpi-and-trading/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Inflation, CPI, and Their Effect on Trading</div>
-        <div class="post-excerpt">Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-interest-rates-affect-currency-prices/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How Interest Rates Affect Currency Prices</div>
-        <div class="post-excerpt">Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="central-bank-policies-fed-ecb-boe/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Central Bank Policies: Fed, ECB, BOE Compared</div>
-        <div class="post-excerpt">Learn the real structural differences between the Fed, ECB, and Bank of England - dual vs single mandates, governance structures, and why their policies diverge.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-fomc-decisions-impact-forex-and-gold/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How FOMC Decisions Impact Forex and Gold</div>
-        <div class="post-excerpt">Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.</div>
-        <div class="post-date">2026-08-08 · 6 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/fundamental-analysis/index.html">Fundamental Analysis</a><span class="sep">/</span>
+    <span class="current">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</span>
+  </nav>
+  <div class="post-tag">Fundamental Analysis</div>
+  <h1>What is NFP (Non-Farm Payrolls) and Why It Moves Markets</h1>
+  <div class="post-date mono">August 8, 2026 · Fundamental Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>What NFP Actually Measures</h2>
+    <p>
+      Non-Farm Payrolls (NFP) is a monthly US employment report released by the Bureau of
+      Labor Statistics (BLS), measuring the net number of jobs added or lost across the
+      economy in the previous month. As the name suggests, it excludes farm workers,
+      government employees, private household staff, and non-profit employees — the report
+      instead focuses on private-sector, non-agricultural employment, which together
+      accounts for the large majority of total US jobs.
+    </p>
+    <p>
+      It's published as part of a broader <strong>Employment Situation report</strong>,
+      which is exactly why NFP day carries more than just one number's worth of information
+      — a point covered further below.
+    </p>
+    <h2>When NFP Is Released</h2>
+    <p>
+      NFP is typically released on the <strong>first Friday of every month at 8:30 AM
+      Eastern Time</strong>, covering data from the previous month. It's one of the most
+      consistently scheduled high-impact events on the entire economic calendar, which is
+      part of why so much pre-release positioning and speculation builds in the days
+      leading up to it.
+    </p>
+    <h2>The Three Numbers Inside One Report</h2>
+    <p>
+      A common beginner mistake is treating NFP as a single headline number. The same
+      release actually contains three figures worth watching together:
+    </p>
+    <ul>
+<li>
+<strong>Headline jobs figure</strong> — the net number of jobs added or lost, the
+        number every news headline leads with.
+      </li>
+<li>
+<strong>Unemployment rate</strong> — the share of the labor force currently without
+        work. This can move in a direction that either confirms or complicates the story
+        told by the headline number.
+      </li>
+<li>
+<strong>Average hourly earnings</strong> — a measure of wage growth month over
+        month, watched closely as a signal of inflationary pressure building in the labor
+        market.
+      </li>
+</ul>
+    <p>
+      A strong headline jobs number combined with weak wage growth tells a meaningfully
+      different story than the same headline number combined with hot wage growth — the
+      first suggests solid job creation without much inflation pressure, the second
+      suggests the labor market may be running hot enough to keep the central bank
+      cautious. Reading all three together, rather than reacting to the headline alone,
+      gives a far more complete picture.
+    </p>
+    <h2>Why NFP Consistently Moves Markets</h2>
+    <p>
+      The US dollar is the world's primary reserve currency, and the health of the US labor
+      market feeds directly into the Federal Reserve's policy decisions — the Fed's dual
+      mandate explicitly includes maximum employment alongside price stability. A
+      surprisingly strong or weak NFP report shifts expectations for future Fed policy
+      almost immediately, and those shifted expectations ripple through nearly every major
+      currency pair and gold within minutes of the release.
+    </p>
+    <p class="internal-link-callout">
+      This is the same expectations-driven mechanism covered in
+      <a href="/academy/fundamental-analysis/how-interest-rates-affect-currency-prices">How Interest Rates Affect Currency Prices</a>
+      — NFP is simply one of the inputs that shapes those expectations most directly.
+    </p>
+    <h2>Why a Strong Report Doesn't Always Mean a Stronger Dollar</h2>
+    <p>
+      The simple version of the story is: strong jobs data supports the dollar, weak jobs
+      data weighs on it. That holds true often enough to be a reasonable starting
+      assumption — but it isn't automatic. An exceptionally strong report can sometimes
+      raise concerns about overheating and future inflation, which complicates the market's
+      read rather than producing a clean, straightforward dollar rally.
+    </p>
+    <p>
+      The honest takeaway: the broader context — where inflation currently stands, what the
+      market was already pricing in for the Fed, and how extreme the surprise actually is —
+      all shape how a given NFP report gets interpreted, more than the headline number in
+      isolation.
+    </p>
+    <h2>How NFP Affects Gold</h2>
+    <p>
+      Gold tends to move on NFP day through the same channel covered in
+      <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold">How FOMC Decisions Impact Forex and Gold</a>
+      — a strong report that raises rate expectations tends to lift real yields and the
+      dollar, which typically pressures gold; a weak report that lowers rate expectations
+      tends to have the opposite effect. Because NFP is one of the most reliable
+      volatility-generating events on the calendar, gold (XAUUSD) frequently sees some of
+      its sharpest single-day moves around this specific release.
+    </p>
+    <h2>Practical Notes for Trading NFP Day</h2>
+    <ul>
+<li><strong>Expect wider spreads immediately around the release.</strong> Liquidity thins in the seconds around 8:30 AM ET, and spreads can widen sharply before settling.</li>
+<li><strong>Watch all three numbers, not just the headline.</strong> A quick reaction based only on the headline figure can reverse once wage growth and the unemployment rate are digested.</li>
+<li><strong>Be cautious with tight stop-losses right at the release.</strong> Normal NFP volatility can trigger stops that would hold on an ordinary day.</li>
+<li><strong>Consider position size carefully.</strong> This is consistently one of the highest-volatility scheduled events in forex.</li>
+</ul>
+    <p class="internal-link-callout">
+      See <a href="/academy/risk-management/position-sizing">Position Sizing: How Much Should You Risk Per Trade?</a>
+      and <a href="/academy/risk-management/stop-loss-take-profit">Stop-Loss and Take-Profit Strategies</a>
+      for how to prepare for exactly this kind of volatility.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What does NFP stand for and what does it measure?</h3>
+    <p>
+      NFP stands for Non-Farm Payrolls, a monthly US employment report released by the
+      Bureau of Labor Statistics that measures the net number of jobs added or lost in the
+      economy, excluding farm workers, government employees, private household staff, and
+      non-profit employees.
+    </p>
+    <h3>When is the NFP report released?</h3>
+    <p>
+      NFP is typically released on the first Friday of every month at 8:30 AM Eastern
+      Time, covering the previous month's employment data.
+    </p>
+    <h3>Does a strong NFP report always strengthen the US dollar?</h3>
+    <p>
+      Usually, but not always. Strong job growth typically supports the dollar by raising
+      expectations of steady or higher interest rates. However, an exceptionally strong
+      report can sometimes raise inflation concerns, which can complicate the market's
+      reaction rather than producing a simple straight-line move.
+    </p>
+    <h3>What are the three main components of the NFP report to watch?</h3>
+    <p>
+      Beyond the headline jobs-added number, the same report includes the unemployment
+      rate and average hourly earnings, which measures wage growth. All three are watched
+      together, since a headline beat alongside weak wage growth can tell a very different
+      story than a headline beat with strong wages.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../understanding-the-economic-calendar/index.html">Understanding the Economic Calendar →</a>
+      <a class="related-tool-link" href="../how-interest-rates-affect-currency-prices/index.html">How Interest Rates Affect Currency Prices →</a>
+      <a class="related-tool-link" href="../inflation-cpi-and-trading/index.html">Inflation, CPI, and Their Effect on Trading →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../understanding-the-economic-calendar/index.html"><span class="dir">&larr; Previous</span>Understanding the Economic Calendar</a>
+    <a class="article-nav-link" href="../inflation-cpi-and-trading/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Inflation, CPI, and Their Effect on Trading</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +750,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about fundamental analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about What is NFP (Non-Farm Payrolls) and Why It Moves Markets or fundamental analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What economic events move forex the most?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: What is NFP (Non-Farm Payrolls) and Why It Moves Markets">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

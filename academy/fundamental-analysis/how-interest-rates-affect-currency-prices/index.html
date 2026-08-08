@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamental Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Economic events, central banks, and how news moves markets.">
+<title>How Interest Rates Affect Currency Prices | DeskTerminal Academy</title>
+<meta name="description" content="Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.">
+<meta name="keywords" content="how interest rates affect currency prices">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Interest Rates Affect Currency Prices">
+<meta property="og:description" content="Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.">
+<meta property="og:url" content="https://deskterminal.com/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Fundamental Analysis",
-  "description": "Economic events, central banks, and how news moves markets.",
-  "url": "https://deskterminal.com/academy/fundamental-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Fundamental Analysis", "item": "https://deskterminal.com/academy/fundamental-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "How Interest Rates Affect Currency Prices",
+  "description": "Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do higher interest rates make a currency stronger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Higher interest rates attract foreign capital seeking better returns on deposits and\n      bonds denominated in that currency. As investors buy that currency to access the\n      higher yield, demand increases, which tends to push its value up relative to\n      lower-yielding currencies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the interest rate differential in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The interest rate differential is the gap between the interest rates of the two\n      currencies in a pair. If the base currency yields 5.00% and the quote currency yields\n      1.00%, the pair carries a 4.00% rate differential in the base currency's favor \u2014 and\n      that gap is a key driver of the pair's underlying bias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a carry trade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A carry trade involves borrowing or selling a low interest rate currency to buy a\n      higher interest rate currency, aiming to profit from the interest rate differential\n      over time, in addition to any price appreciation. AUD/JPY and NZD/JPY are commonly\n      cited carry trade pairs due to their historically wide rate spreads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do currency prices react to the actual interest rate or to expectations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Expectations typically move price more than the actual rate level. Markets price in\n      anticipated rate changes ahead of time, so a rate decision that matches what was\n      already expected often produces a muted reaction, while a surprise relative to\n      expectations can produce a sharp move."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,185 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Fundamental Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📰 Fundamental Analysis</h1>
-  <p>ECONOMIC EVENTS, CENTRAL BANKS, AND HOW NEWS MOVES MARKETS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="understanding-the-economic-calendar/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Understanding the Economic Calendar</div>
-        <div class="post-excerpt">Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="what-is-nfp/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</div>
-        <div class="post-excerpt">Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="inflation-cpi-and-trading/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Inflation, CPI, and Their Effect on Trading</div>
-        <div class="post-excerpt">Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-interest-rates-affect-currency-prices/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How Interest Rates Affect Currency Prices</div>
-        <div class="post-excerpt">Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="central-bank-policies-fed-ecb-boe/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Central Bank Policies: Fed, ECB, BOE Compared</div>
-        <div class="post-excerpt">Learn the real structural differences between the Fed, ECB, and Bank of England - dual vs single mandates, governance structures, and why their policies diverge.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-fomc-decisions-impact-forex-and-gold/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How FOMC Decisions Impact Forex and Gold</div>
-        <div class="post-excerpt">Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.</div>
-        <div class="post-date">2026-08-08 · 6 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/fundamental-analysis/index.html">Fundamental Analysis</a><span class="sep">/</span>
+    <span class="current">How Interest Rates Affect Currency Prices</span>
+  </nav>
+  <div class="post-tag">Fundamental Analysis</div>
+  <h1>How Interest Rates Affect Currency Prices</h1>
+  <div class="post-date mono">August 8, 2026 · Fundamental Analysis · 5 min read</div>
+  <div id="postBody">
+<h2>Why Interest Rates Are the Biggest Driver of Currency Value</h2>
+    <p>
+      Interest rates are widely considered the single biggest driver of currency exchange
+      rates over the medium to long term. The logic is straightforward: money seeks the
+      best return it can find. When a country's interest rate rises, deposits and
+      government bonds denominated in that currency start paying more, which draws in
+      foreign capital looking for a better yield. That capital has to be converted into the
+      local currency to be invested, and that buying pressure is what pushes the currency's
+      value up.
+    </p>
+    <p>
+      Falling rates work in reverse — capital tends to drift away from a currency offering
+      shrinking returns, applying downward pressure on its value.
+    </p>
+    <h2>It's the Differential, Not the Level</h2>
+    <p>
+      You never trade one currency in isolation — you trade a pair. So the number that
+      actually matters isn't one country's interest rate on its own, but the
+      <strong>differential</strong> between the two rates in that specific pair.
+    </p>
+    <p>
+      If the base currency yields 5.00% and the quote currency yields 1.00%, the pair
+      carries a 4.00% rate differential in the base currency's favor. That gap is the
+      fundamental backdrop behind the pair — a persistent, structural bias that plays out
+      over weeks and months, distinct from the day-to-day noise of short-term price
+      swings.
+    </p>
+    <h2>How Capital Actually Flows</h2>
+    <p>
+      Institutional investors, pension funds, and large asset managers constantly compare
+      yields across countries when deciding where to park capital. A widening rate
+      differential — where one country's rates are rising while another's are falling or
+      holding steady — tends to accelerate this flow, since the relative attractiveness of
+      the higher-yielding currency is actively increasing, not just sitting static.
+    </p>
+    <p>
+      This is also why interest rate differentials often show up as a leading signal on
+      certain pairs — the differential shifting in one direction sometimes precedes the
+      exchange rate itself following the same direction, as capital repositions ahead of or
+      alongside the changing rate backdrop.
+    </p>
+    <h2>The Overnight Swap</h2>
+    <p>
+      This differential shows up directly on your trading account too, not just in the
+      abstract. Hold a forex position open past the daily rollover and you'll either earn
+      or pay an <strong>overnight swap</strong>, calculated from the interest rate
+      differential between the two currencies in the pair, minus your broker's spread. Long
+      the higher-yielding currency and you tend to collect a small credit each night; long
+      the lower-yielding one and you tend to pay a small debit.
+    </p>
+    <p>
+      For short-term trades this is often negligible, but it becomes a real factor for
+      positions held over multiple days or weeks.
+    </p>
+    <h2>The Carry Trade, With a Worked Example</h2>
+    <p>
+      A <strong>carry trade</strong> is a strategy built directly around this differential:
+      borrowing or selling a low-yield currency to buy a higher-yield currency, aiming to
+      collect the rate differential over time in addition to any price appreciation.
+    </p>
+    <p>
+<strong>Example:</strong> Say the Australian Dollar yields 4.5% and the Japanese Yen
+      yields 0.5% — a 4.0% differential. A trader going long AUD/JPY is effectively
+      borrowing yen (paying its low rate) to hold Australian dollars (earning its higher
+      rate), collecting roughly that 4.0% differential annualized through the daily swap,
+      on top of whatever the exchange rate itself does.
+    </p>
+    <p>
+      The strategy sounds simple, but the risk is real: if AUD/JPY falls in price by more
+      than the accumulated interest earned, the trade loses money overall despite
+      collecting a positive swap every night. Carry trades are also known to unwind sharply
+      during periods of market stress, when investors rush back to lower-yielding "safe
+      haven" currencies all at once.
+    </p>
+    <p class="internal-link-callout">
+      This connects directly to why gold and certain currencies are treated as safe havens
+      during volatility — see
+      <a href="/academy/gold-commodities/why-gold-is-a-safe-haven-asset">Why Gold (XAUUSD) is a Safe-Haven Asset</a>.
+    </p>
+    <h2>Expectations Move Price More Than the Decision Itself</h2>
+    <p>
+      Here's the part that trips up a lot of beginners: markets are forward-looking, and
+      they price in anticipated rate changes well before a central bank actually announces
+      them. This means a rate decision that matches what was already broadly expected often
+      produces a surprisingly muted market reaction — the move already happened in the
+      weeks leading up to the announcement.
+    </p>
+    <p>
+      What actually moves price sharply is a <strong>surprise</strong> relative to
+      expectations — a central bank hiking when a hold was priced in, or signaling a more
+      hawkish or dovish path forward than the market anticipated. This is why traders watch
+      not just the rate decision itself, but the tone of the accompanying statement and
+      press conference just as closely.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold">How FOMC Decisions Impact Forex and Gold</a>
+      for how this plays out around a specific, high-impact event.
+    </p>
+    <h2>Applying This to Your Own Analysis</h2>
+    <ul>
+<li><strong>Track the rate differential trend, not just the current level.</strong> A differential that's widening tells a different story than one that's stable, even if the current numbers look similar.</li>
+<li><strong>Watch central bank tone, not just the decision.</strong> Forward guidance often moves price more than the rate change itself.</li>
+<li><strong>Combine with technical analysis.</strong> Rate differentials describe the medium-term bias — they don't replace the entry and exit precision that comes from price action.</li>
+<li><strong>Check the economic calendar before trading around a decision.</strong> Rate announcements are among the highest-volatility scheduled events in forex.</li>
+</ul>
+    <h2>Frequently Asked Questions</h2>
+    <h3>Why do higher interest rates make a currency stronger?</h3>
+    <p>
+      Higher interest rates attract foreign capital seeking better returns on deposits and
+      bonds denominated in that currency. As investors buy that currency to access the
+      higher yield, demand increases, which tends to push its value up relative to
+      lower-yielding currencies.
+    </p>
+    <h3>What is the interest rate differential in forex?</h3>
+    <p>
+      The interest rate differential is the gap between the interest rates of the two
+      currencies in a pair. If the base currency yields 5.00% and the quote currency yields
+      1.00%, the pair carries a 4.00% rate differential in the base currency's favor — and
+      that gap is a key driver of the pair's underlying bias.
+    </p>
+    <h3>What is a carry trade?</h3>
+    <p>
+      A carry trade involves borrowing or selling a low interest rate currency to buy a
+      higher interest rate currency, aiming to profit from the interest rate differential
+      over time, in addition to any price appreciation. AUD/JPY and NZD/JPY are commonly
+      cited carry trade pairs due to their historically wide rate spreads.
+    </p>
+    <h3>Do currency prices react to the actual interest rate or to expectations?</h3>
+    <p>
+      Expectations typically move price more than the actual rate level. Markets price in
+      anticipated rate changes ahead of time, so a rate decision that matches what was
+      already expected often produces a muted reaction, while a surprise relative to
+      expectations can produce a sharp move.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../central-bank-policies-fed-ecb-boe/index.html">Central Bank Policies: Fed, ECB, BOE Compared →</a>
+      <a class="related-tool-link" href="../how-fomc-decisions-impact-forex-and-gold/index.html">How FOMC Decisions Impact Forex and Gold →</a>
+      <a class="related-tool-link" href="../inflation-cpi-and-trading/index.html">Inflation, CPI, and Their Effect on Trading →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../inflation-cpi-and-trading/index.html"><span class="dir">&larr; Previous</span>Inflation, CPI, and Their Effect on Trading</a>
+    <a class="article-nav-link" href="../central-bank-policies-fed-ecb-boe/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Central Bank Policies: Fed, ECB, BOE Compared</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +756,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about fundamental analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about How Interest Rates Affect Currency Prices or fundamental analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What economic events move forex the most?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: How Interest Rates Affect Currency Prices">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

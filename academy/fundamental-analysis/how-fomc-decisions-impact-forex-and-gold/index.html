@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundamental Analysis | DeskTerminal Academy</title>
-<meta name="description" content="Economic events, central banks, and how news moves markets.">
+<title>How FOMC Decisions Impact Forex and Gold | DeskTerminal Academy</title>
+<meta name="description" content="Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.">
+<meta name="keywords" content="how fomc decisions impact forex and gold">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/">
+<link rel="canonical" href="https://deskterminal.com/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How FOMC Decisions Impact Forex and Gold">
+<meta property="og:description" content="Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.">
+<meta property="og:url" content="https://deskterminal.com/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Fundamental Analysis",
-  "description": "Economic events, central banks, and how news moves markets.",
-  "url": "https://deskterminal.com/academy/fundamental-analysis/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Fundamental Analysis", "item": "https://deskterminal.com/academy/fundamental-analysis/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "How FOMC Decisions Impact Forex and Gold",
+  "description": "Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the FOMC and why does it move markets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The FOMC (Federal Open Market Committee) is the branch of the US Federal Reserve\n      responsible for setting US interest rate policy. It meets roughly eight times a year,\n      and its decisions move markets because US interest rates influence global capital\n      flows, the US dollar, and by extension gold and most major currency pairs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Fed dot plot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The dot plot is a chart published quarterly as part of the Fed's Summary of Economic\n      Projections, showing where each FOMC member individually expects the federal funds\n      rate to be at future year-ends. Traders watch shifts in the dot plot closely because\n      they reveal the committee's forward-looking rate path, not just the current decision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a hawkish Fed decision affect gold?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A hawkish Fed decision \u2014 signaling higher rates or a slower path to cuts than\n      expected \u2014 tends to push the US dollar and real yields higher, which is generally\n      negative for gold, since gold pays no yield and becomes relatively less attractive\n      compared to interest-bearing dollar assets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the market sometimes reverse right after an FOMC decision?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The initial reaction to the rate decision often reflects a quick, mechanical read of\n      the headline number. The move can reverse once the press conference begins, as the\n      Fed Chair's tone, answers to reporters' questions, and forward guidance frequently\n      shift the market's read of the broader policy path beyond what the initial statement\n      suggested."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,197 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Fundamental Analysis</span>
-</nav>
-
-<div class="pagehead">
-  <h1>📰 Fundamental Analysis</h1>
-  <p>ECONOMIC EVENTS, CENTRAL BANKS, AND HOW NEWS MOVES MARKETS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="understanding-the-economic-calendar/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Understanding the Economic Calendar</div>
-        <div class="post-excerpt">Learn how to read an economic calendar - Previous, Forecast, and Actual figures, impact ratings, and the two different color systems that confuse most beginners.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="what-is-nfp/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</div>
-        <div class="post-excerpt">Learn what the NFP report actually measures, its three key components beyond the headline number, and why it remains one of the most volatile releases in forex.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="inflation-cpi-and-trading/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Inflation, CPI, and Their Effect on Trading</div>
-        <div class="post-excerpt">Learn the real difference between headline CPI, core CPI, and PCE - the Fed's preferred gauge - and why the gap between them can matter more to traders than either number alone.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-interest-rates-affect-currency-prices/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How Interest Rates Affect Currency Prices</div>
-        <div class="post-excerpt">Learn why interest rate differentials, not just rate levels, drive currency prices - including the carry trade, overnight swap, and why expectations move price more than the actual decision.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="central-bank-policies-fed-ecb-boe/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">Central Bank Policies: Fed, ECB, BOE Compared</div>
-        <div class="post-excerpt">Learn the real structural differences between the Fed, ECB, and Bank of England - dual vs single mandates, governance structures, and why their policies diverge.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-fomc-decisions-impact-forex-and-gold/index.html">
-        <div class="post-tag">Fundamental Analysis</div>
-        <div class="post-title">How FOMC Decisions Impact Forex and Gold</div>
-        <div class="post-excerpt">Learn how FOMC rate decisions, the dot plot, and Fed press conferences move forex and gold - including the hawkish/dovish framework and why the first candle often reverses.</div>
-        <div class="post-date">2026-08-08 · 6 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/fundamental-analysis/index.html">Fundamental Analysis</a><span class="sep">/</span>
+    <span class="current">How FOMC Decisions Impact Forex and Gold</span>
+  </nav>
+  <div class="post-tag">Fundamental Analysis</div>
+  <h1>How FOMC Decisions Impact Forex and Gold</h1>
+  <div class="post-date mono">August 8, 2026 · Fundamental Analysis · 6 min read</div>
+  <div id="postBody">
+<h2>What the FOMC Actually Does</h2>
+    <p>
+      The FOMC (Federal Open Market Committee) is the branch of the US Federal Reserve
+      responsible for setting US monetary policy, most visibly the federal funds rate — the
+      benchmark interest rate that ripples through the entire US and, by extension, global
+      financial system. The committee meets roughly eight times a year, and each meeting
+      concludes with a scheduled announcement that is consistently among the highest-volatility
+      events on the forex and gold calendar.
+    </p>
+    <p class="internal-link-callout">
+      This event sits on top of the broader mechanism covered in
+      <a href="/academy/fundamental-analysis/how-interest-rates-affect-currency-prices">How Interest Rates Affect Currency Prices</a>
+      — FOMC decisions are simply where that mechanism gets set, and re-set, in real time.
+    </p>
+    <h2>The Three Parts of Every FOMC Release</h2>
+    <ul>
+<li>
+<strong>The rate decision itself</strong> — whether the Fed hikes, holds, or cuts.
+        When this matches what was already broadly priced in, it often produces a smaller
+        initial reaction than beginners expect.
+      </li>
+<li>
+<strong>The policy statement</strong> — the written language accompanying the
+        decision, closely parsed for subtle wording changes versus the previous statement.
+        Small shifts in phrasing around inflation or labor market language are watched
+        closely by professional traders.
+      </li>
+<li>
+<strong>The press conference</strong> — the Fed Chair's live remarks and Q&amp;A
+        with reporters, typically around 30 minutes after the statement. This is very
+        often where the larger, more sustained market move actually happens, not at the
+        initial release.
+      </li>
+</ul>
+    <h2>The Dot Plot: Reading the Fed's Own Forecast</h2>
+    <p>
+      Four times a year, the FOMC release is accompanied by the <strong>Summary of Economic
+      Projections</strong>, which includes the widely-watched <strong>dot plot</strong> — a
+      chart showing where each individual FOMC member expects the federal funds rate to sit
+      at the end of future years. Each dot represents one policymaker's own projection.
+    </p>
+    <p>
+      What matters most isn't any single dot, but how the <em>median</em> and the overall
+      distribution of dots shift compared to the previous release. A dot plot revised
+      higher than the prior quarter signals the committee collectively expects a tighter
+      policy path than previously thought — a hawkish shift, even if the actual rate
+      decision that day doesn't change at all.
+    </p>
+    <h2>The Hawkish/Dovish Framework</h2>
+    <p>
+      Nearly every FOMC-day analysis boils down to this single framework:
+    </p>
+    <ul>
+<li>
+<strong>Hawkish</strong> — language, dot plot revisions, or a decision signaling
+        higher rates, a slower path to cuts, or persistent concern about inflation than the
+        market expected. Generally supportive of the US dollar.
+      </li>
+<li>
+<strong>Dovish</strong> — language, dot plot revisions, or a decision signaling
+        lower rates, a faster path to cuts, or greater confidence inflation is under
+        control than the market expected. Generally weighs on the US dollar.
+      </li>
+</ul>
+    <p>
+      The key word in both cases is "expected" — a genuinely hawkish decision that still
+      falls short of how hawkish the market had already priced can actually trigger a
+      dollar-negative reaction, because relative to expectations, it was the dovish
+      surprise.
+    </p>
+    <h2>Why Gold Reacts the Way It Does</h2>
+    <p>
+      Gold pays no yield or interest of its own, which makes it more attractive relative to
+      interest-bearing assets when rates (and particularly real, inflation-adjusted yields)
+      are falling, and relatively less attractive when they're rising. This is why a
+      hawkish FOMC surprise — higher real yields and typically a stronger dollar — tends to
+      pressure gold, while a dovish surprise tends to support it.
+    </p>
+    <p>
+      Gold's reaction also often moves in tandem with, and partly through, the US dollar
+      itself: dollar strength tends to make gold more expensive for holders of other
+      currencies, adding a second layer of pressure on top of the yield effect.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/gold-commodities/why-gold-is-a-safe-haven-asset">Why Gold (XAUUSD) is a Safe-Haven Asset</a>
+      for more on gold's broader relationship with the dollar and real yields.
+    </p>
+    <h2>Why the First Candle Often Reverses</h2>
+    <p>
+      One of the more important, practical lessons for trading FOMC days: the initial
+      market reaction to the rate decision and statement is often a fast, somewhat
+      mechanical read of the headline numbers — and it can reverse entirely once the press
+      conference begins.
+    </p>
+    <p>
+      A Fed Chair's tone, unscripted answers to reporters, and the nuance behind forward
+      guidance frequently shift the market's read of the broader policy path well beyond
+      what the written statement alone suggested. Trading only the first one or two candles
+      after the release, before the press conference has even started, is a common and
+      costly mistake — the more durable move often develops afterward, once the fuller
+      picture is in.
+    </p>
+    <h2>How to Approach Trading an FOMC Day</h2>
+    <ul>
+<li><strong>Know what's priced in beforehand.</strong> Check market-implied rate expectations ahead of the meeting, so you can judge the actual decision against expectations, not against the raw number alone.</li>
+<li><strong>Don't just trade the first candle.</strong> Consider waiting for the press conference, or at minimum being aware that the initial move has a real chance of reversing.</li>
+<li><strong>Reduce position size or widen stops around the release.</strong> Spreads widen and volatility spikes sharply during FOMC events, and normal stop distances can get caught in noise that wouldn't happen on a typical day.</li>
+<li><strong>Watch the dot plot on Summary of Economic Projections meetings specifically.</strong> These carry extra volatility potential beyond a standard rate-decision-only meeting.</li>
+</ul>
+    <p class="internal-link-callout">
+      This is exactly the kind of event where
+      <a href="/academy/risk-management/stop-loss-take-profit">Stop-Loss and Take-Profit Strategies</a>
+      and disciplined <a href="/academy/risk-management/position-sizing">Position Sizing</a>
+      matter most — volatility spikes are precisely when poor risk management does the most
+      damage.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the FOMC and why does it move markets?</h3>
+    <p>
+      The FOMC (Federal Open Market Committee) is the branch of the US Federal Reserve
+      responsible for setting US interest rate policy. It meets roughly eight times a year,
+      and its decisions move markets because US interest rates influence global capital
+      flows, the US dollar, and by extension gold and most major currency pairs.
+    </p>
+    <h3>What is the Fed dot plot?</h3>
+    <p>
+      The dot plot is a chart published quarterly as part of the Fed's Summary of Economic
+      Projections, showing where each FOMC member individually expects the federal funds
+      rate to be at future year-ends. Traders watch shifts in the dot plot closely because
+      they reveal the committee's forward-looking rate path, not just the current decision.
+    </p>
+    <h3>How does a hawkish Fed decision affect gold?</h3>
+    <p>
+      A hawkish Fed decision — signaling higher rates or a slower path to cuts than
+      expected — tends to push the US dollar and real yields higher, which is generally
+      negative for gold, since gold pays no yield and becomes relatively less attractive
+      compared to interest-bearing dollar assets.
+    </p>
+    <h3>Why does the market sometimes reverse right after an FOMC decision?</h3>
+    <p>
+      The initial reaction to the rate decision often reflects a quick, mechanical read of
+      the headline number. The move can reverse once the press conference begins, as the
+      Fed Chair's tone, answers to reporters' questions, and forward guidance frequently
+      shift the market's read of the broader policy path beyond what the initial statement
+      suggested.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../central-bank-policies-fed-ecb-boe/index.html">Central Bank Policies: Fed, ECB, BOE Compared →</a>
+      <a class="related-tool-link" href="../how-interest-rates-affect-currency-prices/index.html">How Interest Rates Affect Currency Prices →</a>
+      <a class="related-tool-link" href="../what-is-nfp/index.html">What is NFP (Non-Farm Payrolls) and Why It Moves Markets →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../central-bank-policies-fed-ecb-boe/index.html"><span class="dir">&larr; Previous</span>Central Bank Policies: Fed, ECB, BOE Compared</a>
+    
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +768,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about fundamental analysis.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about How FOMC Decisions Impact Forex and Gold or fundamental analysis.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What economic events move forex the most?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: How FOMC Decisions Impact Forex and Gold">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

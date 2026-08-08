@@ -211,6 +211,36 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://deskterminal.com/academy/fundamental-analysis/understanding-the-economic-calendar/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/fundamental-analysis/what-is-nfp/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/fundamental-analysis/inflation-cpi-and-trading/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/fundamental-analysis/central-bank-policies-fed-ecb-boe/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://deskterminal.com/academy/gold-commodities/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
