@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Risk Management & Psychology | DeskTerminal Academy</title>
-<meta name="description" content="Position sizing, stop-loss discipline, and trading mindset.">
+<title>Position Sizing: How Much Should You Risk Per Trade? | DeskTerminal Academy</title>
+<meta name="description" content="Learn the exact formula for calculating position size in forex — including a gold (XAUUSD) example — so every trade risks a fixed, controlled percentage of your account.">
+<meta name="keywords" content="position sizing: how much should you risk per trade?">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/risk-management/">
+<link rel="canonical" href="https://deskterminal.com/academy/risk-management/position-sizing/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Position Sizing: How Much Should You Risk Per Trade?">
+<meta property="og:description" content="Learn the exact formula for calculating position size in forex — including a gold (XAUUSD) example — so every trade risks a fixed, controlled percentage of your account.">
+<meta property="og:url" content="https://deskterminal.com/academy/risk-management/position-sizing/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Risk Management & Psychology",
-  "description": "Position sizing, stop-loss discipline, and trading mindset.",
-  "url": "https://deskterminal.com/academy/risk-management/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Risk Management & Psychology", "item": "https://deskterminal.com/academy/risk-management/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Position Sizing: How Much Should You Risk Per Trade?",
+  "description": "Learn the exact formula for calculating position size in forex — including a gold (XAUUSD) example — so every trade risks a fixed, controlled percentage of your account.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/risk-management/position-sizing/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the formula for position sizing in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lot Size = (Account Balance \u00d7 Risk %) \u00f7 (Stop-Loss Pips \u00d7 Pip\n      Value). This gives you the exact position size that risks your chosen percentage of\n      your account if your stop-loss is hit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I risk per trade in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most experienced traders risk between 0.5% and 2% of their account balance on any\n      single trade, often called the 1% rule. This keeps a losing streak survivable rather\n      than account-ending."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is gold (XAUUSD) position sizing different from forex pairs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. On XAUUSD, one pip is typically a $0.01 price move worth about $1 per standard\n      lot, compared to roughly $10 per pip on most major USD-quoted forex pairs. Using a\n      forex pip value by mistake on a gold trade will size the position incorrectly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I adjust my stop-loss to fit my desired position size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The stop-loss should be based on technical analysis such as support, resistance,\n      or volatility, and the position size should be adjusted to fit that stop-loss \u2014 never\n      the other way around."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,169 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Risk Management & Psychology</span>
-</nav>
-
-<div class="pagehead">
-  <h1>🛡️ Risk Management & Psychology</h1>
-  <p>POSITION SIZING, STOP-LOSS DISCIPLINE, AND TRADING MINDSET.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="position-sizing/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Position Sizing: How Much Should You Risk Per Trade?</div>
-        <div class="post-excerpt">Learn the exact formula for calculating position size in forex — including a gold (XAUUSD) example — so every trade risks a fixed, controlled percentage of your account.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="stop-loss-take-profit/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Stop-Loss and Take-Profit Strategies</div>
-        <div class="post-excerpt">Learn how to place a stop-loss and take-profit using market structure and ATR volatility, not guesswork - with worked examples and the mistakes that quietly wreck accounts.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="risk-reward-ratio/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Risk-Reward Ratio Explained</div>
-        <div class="post-excerpt">Learn how risk-reward ratio works, why a 40% win rate can beat a 70% one, and the breakeven win rate formula every forex trader should know before entering a trade.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="overtrading/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Overtrading: Causes and How to Avoid It</div>
-        <div class="post-excerpt">Learn what causes overtrading in forex - FOMO, revenge trading, and boredom - the warning signs to watch for, and practical rules to keep trade frequency under control.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="trading-psychology-fear-greed/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Trading Psychology: Managing Fear and Greed</div>
-        <div class="post-excerpt">Learn how fear, greed, and cognitive biases like loss aversion and anchoring distort forex trading decisions - and the practical habits that keep emotion out of your execution.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="why-most-traders-fail/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Why Most Traders Fail (and How to Not Be One)</div>
-        <div class="post-excerpt">Most retail forex traders lose money - not from bad luck, but from predictable, avoidable mistakes. See the real reasons traders fail and what separates the consistent minority.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/risk-management/index.html">Risk Management & Psychology</a><span class="sep">/</span>
+    <span class="current">Position Sizing: How Much Should You Risk Per Trade?</span>
+  </nav>
+  <div class="post-tag">Risk Management & Psychology</div>
+  <h1>Position Sizing: How Much Should You Risk Per Trade?</h1>
+  <div class="post-date mono">August 8, 2026 · Risk Management & Psychology · 4 min read</div>
+  <div id="postBody">
+<h2>Why Position Sizing Matters More Than Your Entry</h2>
+    <p>
+      New traders spend most of their energy on finding the "right" entry point. Experienced
+      traders spend just as much energy on a quieter question: how big should this trade
+      actually be? Get your entry wrong with a properly sized position, and it's a minor
+      setback. Get your entry right with a wildly oversized position, and one bad trade can
+      undo weeks of gains.
+    </p>
+    <p>
+      Position sizing is the process of deciding exactly how much of your account to risk on
+      a single trade — and it's arguably the single most important habit separating
+      traders who survive long enough to improve from those who don't.
+    </p>
+    <h2>The 1% Rule (and When to Adjust It)</h2>
+    <p>
+      Most experienced traders risk somewhere between 0.5% and 2% of their account balance
+      on any single trade — commonly shorthanded as the "1% rule." On a $10,000 account,
+      that means a maximum loss of around $100 to $200 if the trade goes against you and
+      your stop-loss is hit.
+    </p>
+    <p>
+      The exact number matters less than the discipline of having one. Risking a small,
+      fixed percentage means a string of losing trades — which happens to every trader
+      eventually — is an inconvenience rather than a account-ending event.
+    </p>
+    <h2>The Position Sizing Formula</h2>
+    <p>
+      Once you know your risk amount and your stop-loss distance, position size is simple
+      arithmetic:
+    </p>
+    <p><strong>Lot Size = (Account Balance × Risk %) ÷ (Stop-Loss in Pips × Pip Value)</strong></p>
+    <p>
+      Three inputs feed this formula:
+    </p>
+    <ul>
+<li><strong>Account balance</strong> — your total trading capital.</li>
+<li><strong>Risk percentage</strong> — the fixed share of your account you're willing to lose on this trade.</li>
+<li><strong>Stop-loss distance</strong> — how many pips away from your entry your stop-loss sits, determined by technical analysis, not by what "feels" comfortable.</li>
+</ul>
+    <h2>Worked Example: EUR/USD</h2>
+    <p>
+      Say you have a $10,000 account, you're risking 1% per trade, and your stop-loss on a
+      EUR/USD trade sits 50 pips from your entry. On a standard lot, EUR/USD's pip value is
+      approximately $10.
+    </p>
+    <p>
+      Lot Size = ($10,000 × 1%) ÷ (50 × $10) = $100 ÷ $500 =
+      <strong>0.20 lots</strong>
+</p>
+    <p>
+      That means trading 0.20 standard lots (two mini lots) risks exactly $100 if your
+      stop-loss is hit — no more, regardless of how the trade actually plays out.
+    </p>
+    <h2>Worked Example: Gold (XAUUSD)</h2>
+    <p>
+      Gold uses different pip mechanics than most forex pairs, and this trips up a lot of
+      traders moving between the two. On XAUUSD, one pip is typically a $0.01 price move,
+      worth roughly <strong>$1 per standard lot</strong> — not the $10 per pip you'd expect
+      from a major forex pair.
+    </p>
+    <p>
+      Using the same $10,000 account, 1% risk, and a 100-pip stop-loss on gold:
+    </p>
+    <p>
+      Lot Size = ($10,000 × 1%) ÷ (100 × $1) = $100 ÷ $100 =
+      <strong>1.0 lot</strong>
+</p>
+    <p>
+      Notice how much larger the lot size is compared to the EUR/USD example for a similar
+      dollar risk — that's a direct result of gold's lower pip value per lot. Applying a
+      forex pip value to a gold trade by mistake will size the position incorrectly, often
+      by a factor of ten.
+    </p>
+    <h2>Why Your Stop-Loss Comes Before Your Position Size</h2>
+    <p>
+      A common mistake works backward: deciding on a lot size first, then placing a
+      stop-loss wherever it happens to land. This gets the process exactly the wrong way
+      around. Your stop-loss should be based on technical analysis — support, resistance,
+      or volatility — and your position size should be adjusted to fit that stop-loss, never
+      the other way around.
+    </p>
+    <p class="internal-link-callout">
+      For how to place a stop-loss that reflects the actual market structure rather than a
+      round number, see
+      <a href="/academy/risk-management/stop-loss-take-profit">Stop-Loss and Take-Profit Strategies</a>.
+    </p>
+    <h2>Common Position Sizing Mistakes</h2>
+    <ul>
+<li><strong>Rounding up when the math says 0.00 lots.</strong> If your risk percentage and stop-loss distance produce a lot size too small for your broker's minimum, the fix is to widen your stop-loss basis or reduce risk — never to force a trade anyway.</li>
+<li><strong>Using the wrong pip value.</strong> Gold, JPY pairs, and cross pairs all calculate differently from standard USD-quoted majors.</li>
+<li><strong>Ignoring gap risk.</strong> A stop-loss caps your intended loss, but prices can gap past it over weekends or during major news, particularly relevant if you hold gold or forex positions overnight.</li>
+<li><strong>Increasing size after a win "because it's working."</strong> Position size should follow your risk plan, not your recent emotional state.</li>
+</ul>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the formula for position sizing in forex?</h3>
+    <p>
+      Lot Size = (Account Balance × Risk %) ÷ (Stop-Loss Pips × Pip
+      Value). This gives you the exact position size that risks your chosen percentage of
+      your account if your stop-loss is hit.
+    </p>
+    <h3>How much should I risk per trade in forex?</h3>
+    <p>
+      Most experienced traders risk between 0.5% and 2% of their account balance on any
+      single trade, often called the 1% rule. This keeps a losing streak survivable rather
+      than account-ending.
+    </p>
+    <h3>Is gold (XAUUSD) position sizing different from forex pairs?</h3>
+    <p>
+      Yes. On XAUUSD, one pip is typically a $0.01 price move worth about $1 per standard
+      lot, compared to roughly $10 per pip on most major USD-quoted forex pairs. Using a
+      forex pip value by mistake on a gold trade will size the position incorrectly.
+    </p>
+    <h3>Should I adjust my stop-loss to fit my desired position size?</h3>
+    <p>
+      No. The stop-loss should be based on technical analysis such as support, resistance,
+      or volatility, and the position size should be adjusted to fit that stop-loss — never
+      the other way around.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../stop-loss-take-profit/index.html">Stop-Loss and Take-Profit Strategies →</a>
+      <a class="related-tool-link" href="../risk-reward-ratio/index.html">Risk-Reward Ratio Explained →</a>
+      <a class="related-tool-link" href="../overtrading/index.html">Overtrading: Causes and How to Avoid It →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    
+    <a class="article-nav-link" href="../stop-loss-take-profit/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Stop-Loss and Take-Profit Strategies</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +740,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about risk management.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Position Sizing or risk management.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is the most important risk management rule?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Position Sizing: How Much Should You Risk Per Trade?">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

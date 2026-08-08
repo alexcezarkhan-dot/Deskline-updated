@@ -221,6 +221,36 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://deskterminal.com/academy/risk-management/position-sizing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/risk-management/stop-loss-take-profit/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/risk-management/risk-reward-ratio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/risk-management/overtrading/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/risk-management/trading-psychology-fear-greed/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deskterminal.com/academy/risk-management/why-most-traders-fail/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://deskterminal.com/academy/strategy-guides/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

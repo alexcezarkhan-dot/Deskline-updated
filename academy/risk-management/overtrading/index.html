@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Risk Management & Psychology | DeskTerminal Academy</title>
-<meta name="description" content="Position sizing, stop-loss discipline, and trading mindset.">
+<title>Overtrading: Causes and How to Avoid It | DeskTerminal Academy</title>
+<meta name="description" content="Learn what causes overtrading in forex - FOMO, revenge trading, and boredom - the warning signs to watch for, and practical rules to keep trade frequency under control.">
+<meta name="keywords" content="overtrading: causes and how to avoid it">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/risk-management/">
+<link rel="canonical" href="https://deskterminal.com/academy/risk-management/overtrading/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Overtrading: Causes and How to Avoid It">
+<meta property="og:description" content="Learn what causes overtrading in forex - FOMO, revenge trading, and boredom - the warning signs to watch for, and practical rules to keep trade frequency under control.">
+<meta property="og:url" content="https://deskterminal.com/academy/risk-management/overtrading/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Risk Management & Psychology",
-  "description": "Position sizing, stop-loss discipline, and trading mindset.",
-  "url": "https://deskterminal.com/academy/risk-management/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Risk Management & Psychology", "item": "https://deskterminal.com/academy/risk-management/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Overtrading: Causes and How to Avoid It",
+  "description": "Learn what causes overtrading in forex - FOMO, revenge trading, and boredom - the warning signs to watch for, and practical rules to keep trade frequency under control.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/risk-management/overtrading/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is overtrading in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Overtrading is placing more trades than your strategy actually justifies, usually\n      driven by boredom, FOMO, or the mistaken belief that more trades automatically mean\n      more profit. It typically shows up as trading unanalyzed setups or trading simply to\n      feel active in the market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between overtrading and revenge trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Overtrading is trading too frequently for various reasons, including boredom or\n      impatience. Revenge trading is a specific form of overtrading driven by the emotional\n      urge to immediately recover a loss, often with a larger position size than usual."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the warning signs of overtrading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common signs include trading sessions or pairs you don't normally analyze, feeling\n      anxious or restless when you have no open position, taking trades you can't explain\n      with a clear rule from your plan, and increasing position size right after a loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I stop overtrading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set a maximum number of trades per day based on how many quality setups your strategy\n      realistically produces, stop trading entirely once that limit is hit, and keep a\n      trading journal to record the reasoning behind every trade so patterns become visible\n      over time."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,156 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Risk Management & Psychology</span>
-</nav>
-
-<div class="pagehead">
-  <h1>🛡️ Risk Management & Psychology</h1>
-  <p>POSITION SIZING, STOP-LOSS DISCIPLINE, AND TRADING MINDSET.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="position-sizing/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Position Sizing: How Much Should You Risk Per Trade?</div>
-        <div class="post-excerpt">Learn the exact formula for calculating position size in forex — including a gold (XAUUSD) example — so every trade risks a fixed, controlled percentage of your account.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="stop-loss-take-profit/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Stop-Loss and Take-Profit Strategies</div>
-        <div class="post-excerpt">Learn how to place a stop-loss and take-profit using market structure and ATR volatility, not guesswork - with worked examples and the mistakes that quietly wreck accounts.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="risk-reward-ratio/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Risk-Reward Ratio Explained</div>
-        <div class="post-excerpt">Learn how risk-reward ratio works, why a 40% win rate can beat a 70% one, and the breakeven win rate formula every forex trader should know before entering a trade.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="overtrading/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Overtrading: Causes and How to Avoid It</div>
-        <div class="post-excerpt">Learn what causes overtrading in forex - FOMO, revenge trading, and boredom - the warning signs to watch for, and practical rules to keep trade frequency under control.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="trading-psychology-fear-greed/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Trading Psychology: Managing Fear and Greed</div>
-        <div class="post-excerpt">Learn how fear, greed, and cognitive biases like loss aversion and anchoring distort forex trading decisions - and the practical habits that keep emotion out of your execution.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="why-most-traders-fail/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Why Most Traders Fail (and How to Not Be One)</div>
-        <div class="post-excerpt">Most retail forex traders lose money - not from bad luck, but from predictable, avoidable mistakes. See the real reasons traders fail and what separates the consistent minority.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/risk-management/index.html">Risk Management & Psychology</a><span class="sep">/</span>
+    <span class="current">Overtrading: Causes and How to Avoid It</span>
+  </nav>
+  <div class="post-tag">Risk Management & Psychology</div>
+  <h1>Overtrading: Causes and How to Avoid It</h1>
+  <div class="post-date mono">August 8, 2026 · Risk Management & Psychology · 4 min read</div>
+  <div id="postBody">
+<h2>What Overtrading Actually Is</h2>
+    <p>
+      Overtrading means placing more trades than your strategy actually calls for. It isn't
+      defined by a specific number — it's defined by the gap between how many quality setups
+      your plan realistically produces and how many trades you're actually taking. If your
+      approach averages two solid setups a day and you're placing eight, the extra six
+      aren't strategy — they're impulse.
+    </p>
+    <h2>Why Overtrading Happens</h2>
+    <p>
+      Overtrading usually isn't a discipline failure so much as a predictable psychological
+      response. Three patterns show up again and again:
+    </p>
+    <ul>
+<li>
+<strong>FOMO (fear of missing out).</strong> A pair makes a big move without you in
+        it, and you jump in late, without a proper setup, just to feel part of the action —
+        chasing the market instead of waiting for it to come to you.
+      </li>
+<li>
+<strong>Boredom and impatience.</strong> The market is quiet, no clear setups are
+        forming, and instead of waiting, you force a low-probability trade just for
+        something to do.
+      </li>
+<li>
+<strong>The dopamine loop.</strong> Placing a trade triggers a reward response in
+        the brain similar to what happens in gambling, regardless of the outcome. This makes
+        the anticipation of a new trade genuinely compelling on its own, separate from
+        whether it's actually a good idea.
+      </li>
+</ul>
+    <h2>Revenge Trading: The Most Damaging Form</h2>
+    <p>
+      Revenge trading is a specific, more dangerous version of overtrading — an immediate,
+      emotional attempt to recover a loss right after it happens. It often shows up as
+      re-entering the market straight away, using a larger position size than normal, or
+      reversing direction without any fresh analysis behind it.
+    </p>
+    <p>
+      The underlying shift is subtle but important: the question stops being "is this a
+      valid trade?" and becomes "how do I get back what I just lost?" That change in
+      objective is exactly what turns one bad trade into a much larger drawdown.
+    </p>
+    <h2>Warning Signs to Watch For</h2>
+    <ul>
+<li>Trading during sessions or pairs you don't normally analyze</li>
+<li>Feeling anxious or restless whenever you have no open position</li>
+<li>Taking a trade you can't explain using a specific rule from your plan</li>
+<li>Increasing position size immediately after a loss</li>
+<li>Trading late at night or when genuinely tired or stressed</li>
+<li>Opening correlated pairs to "make it back faster"</li>
+</ul>
+    <p>
+      Noticing even one of these in the moment is often enough to interrupt the pattern
+      before it compounds into a much larger loss.
+    </p>
+    <h2>The Real Cost of Overtrading</h2>
+    <p>
+      Beyond the trades that lose outright, overtrading has quieter costs that add up just
+      as fast: extra spread and commission on every unnecessary trade, mental fatigue from
+      constantly monitoring positions that were never part of the plan, and — perhaps most
+      importantly — a trading journal so cluttered with impulsive entries that it becomes
+      much harder to evaluate whether your actual strategy is working at all.
+    </p>
+    <h2>Practical Ways to Stop Overtrading</h2>
+    <ol>
+<li><strong>Set a hard trades-per-day cap.</strong> If your strategy averages two quality setups, cap yourself at three. Once you hit the limit, close the platform.</li>
+<li><strong>Write down your setup criteria in advance.</strong> If a trade doesn't meet every listed condition, it doesn't get taken — no exceptions made in the moment.</li>
+<li><strong>Step away after a loss before placing another trade.</strong> Stop new orders, leave the screen, record what happened, and wait before deciding anything else.</li>
+<li><strong>Keep a trading journal.</strong> Recording the reason behind every trade makes impulsive patterns visible over time, rather than staying invisible in the moment.</li>
+<li><strong>Avoid trading when tired, stressed, or during unusually volatile, unfamiliar conditions.</strong> These are exactly the conditions where impulsive entries are most likely.</li>
+</ol>
+    <p class="internal-link-callout">
+      This pairs directly with disciplined sizing in
+      <a href="/academy/risk-management/position-sizing">Position Sizing: How Much Should You Risk Per Trade?</a>
+      and honest evaluation in
+      <a href="/academy/risk-management/risk-reward-ratio">Risk-Reward Ratio Explained</a>.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is overtrading in forex?</h3>
+    <p>
+      Overtrading is placing more trades than your strategy actually justifies, usually
+      driven by boredom, FOMO, or the mistaken belief that more trades automatically mean
+      more profit. It typically shows up as trading unanalyzed setups or trading simply to
+      feel active in the market.
+    </p>
+    <h3>What is the difference between overtrading and revenge trading?</h3>
+    <p>
+      Overtrading is trading too frequently for various reasons, including boredom or
+      impatience. Revenge trading is a specific form of overtrading driven by the emotional
+      urge to immediately recover a loss, often with a larger position size than usual.
+    </p>
+    <h3>What are the warning signs of overtrading?</h3>
+    <p>
+      Common signs include trading sessions or pairs you don't normally analyze, feeling
+      anxious or restless when you have no open position, taking trades you can't explain
+      with a clear rule from your plan, and increasing position size right after a loss.
+    </p>
+    <h3>How can I stop overtrading?</h3>
+    <p>
+      Set a maximum number of trades per day based on how many quality setups your strategy
+      realistically produces, stop trading entirely once that limit is hit, and keep a
+      trading journal to record the reasoning behind every trade so patterns become visible
+      over time.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../trading-psychology-fear-greed/index.html">Trading Psychology: Managing Fear and Greed →</a>
+      <a class="related-tool-link" href="../why-most-traders-fail/index.html">Why Most Traders Fail (and How to Not Be One) →</a>
+      <a class="related-tool-link" href="../position-sizing/index.html">Position Sizing: How Much Should You Risk Per Trade? →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../risk-reward-ratio/index.html"><span class="dir">&larr; Previous</span>Risk-Reward Ratio Explained</a>
+    <a class="article-nav-link" href="../trading-psychology-fear-greed/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Trading Psychology: Managing Fear and Greed</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +727,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about risk management.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Overtrading or risk management.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is the most important risk management rule?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Overtrading: Causes and How to Avoid It">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Risk Management & Psychology | DeskTerminal Academy</title>
-<meta name="description" content="Position sizing, stop-loss discipline, and trading mindset.">
+<title>Stop-Loss and Take-Profit Strategies | DeskTerminal Academy</title>
+<meta name="description" content="Learn how to place a stop-loss and take-profit using market structure and ATR volatility, not guesswork - with worked examples and the mistakes that quietly wreck accounts.">
+<meta name="keywords" content="stop-loss and take-profit strategies">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/risk-management/">
+<link rel="canonical" href="https://deskterminal.com/academy/risk-management/stop-loss-take-profit/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stop-Loss and Take-Profit Strategies">
+<meta property="og:description" content="Learn how to place a stop-loss and take-profit using market structure and ATR volatility, not guesswork - with worked examples and the mistakes that quietly wreck accounts.">
+<meta property="og:url" content="https://deskterminal.com/academy/risk-management/stop-loss-take-profit/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Risk Management & Psychology",
-  "description": "Position sizing, stop-loss discipline, and trading mindset.",
-  "url": "https://deskterminal.com/academy/risk-management/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Risk Management & Psychology", "item": "https://deskterminal.com/academy/risk-management/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Stop-Loss and Take-Profit Strategies",
+  "description": "Learn how to place a stop-loss and take-profit using market structure and ATR volatility, not guesswork - with worked examples and the mistakes that quietly wreck accounts.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/risk-management/stop-loss-take-profit/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where should I place my stop-loss in forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A stop-loss should sit at the point where your trade idea is actually proven wrong \u2014\n      typically just beyond a recent swing high or low, a key support or resistance level,\n      or a distance based on the pair's ATR rather than an arbitrary fixed number of pips."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good risk-reward ratio for stop-loss and take-profit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 1:2 risk-reward ratio is a commonly used baseline, meaning your take-profit target\n      is twice as far from your entry as your stop-loss. At that ratio, a strategy can be\n      profitable even with a win rate below 40%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an ATR-based stop-loss?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An ATR-based stop-loss sets your stop distance as a multiple of the Average True\n      Range indicator, commonly 1.5x to 2x ATR, so your stop adapts to the pair's current\n      volatility instead of using a fixed pip distance regardless of conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the biggest stop-loss mistake traders make?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Widening or moving a stop-loss further away once a trade is already losing. This\n      turns a planned, controlled loss into an open-ended one and is one of the most common\n      ways traders convert a small, manageable loss into a significant one."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,70 +550,174 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Risk Management & Psychology</span>
-</nav>
-
-<div class="pagehead">
-  <h1>🛡️ Risk Management & Psychology</h1>
-  <p>POSITION SIZING, STOP-LOSS DISCIPLINE, AND TRADING MINDSET.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="position-sizing/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Position Sizing: How Much Should You Risk Per Trade?</div>
-        <div class="post-excerpt">Learn the exact formula for calculating position size in forex — including a gold (XAUUSD) example — so every trade risks a fixed, controlled percentage of your account.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="stop-loss-take-profit/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Stop-Loss and Take-Profit Strategies</div>
-        <div class="post-excerpt">Learn how to place a stop-loss and take-profit using market structure and ATR volatility, not guesswork - with worked examples and the mistakes that quietly wreck accounts.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="risk-reward-ratio/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Risk-Reward Ratio Explained</div>
-        <div class="post-excerpt">Learn how risk-reward ratio works, why a 40% win rate can beat a 70% one, and the breakeven win rate formula every forex trader should know before entering a trade.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="overtrading/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Overtrading: Causes and How to Avoid It</div>
-        <div class="post-excerpt">Learn what causes overtrading in forex - FOMO, revenge trading, and boredom - the warning signs to watch for, and practical rules to keep trade frequency under control.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="trading-psychology-fear-greed/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Trading Psychology: Managing Fear and Greed</div>
-        <div class="post-excerpt">Learn how fear, greed, and cognitive biases like loss aversion and anchoring distort forex trading decisions - and the practical habits that keep emotion out of your execution.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="why-most-traders-fail/index.html">
-        <div class="post-tag">Risk Management & Psychology</div>
-        <div class="post-title">Why Most Traders Fail (and How to Not Be One)</div>
-        <div class="post-excerpt">Most retail forex traders lose money - not from bad luck, but from predictable, avoidable mistakes. See the real reasons traders fail and what separates the consistent minority.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/risk-management/index.html">Risk Management & Psychology</a><span class="sep">/</span>
+    <span class="current">Stop-Loss and Take-Profit Strategies</span>
+  </nav>
+  <div class="post-tag">Risk Management & Psychology</div>
+  <h1>Stop-Loss and Take-Profit Strategies</h1>
+  <div class="post-date mono">August 8, 2026 · Risk Management & Psychology · 5 min read</div>
+  <div id="postBody">
+<h2>A Stop-Loss Isn't a Random Number</h2>
+    <p>
+      A stop-loss marks the exact price where your original trade idea is proven wrong. It
+      isn't a comfort blanket, and it isn't meant to be placed at "whatever loss feels
+      acceptable." Your entry is only part of a trade — how you manage it and where you exit
+      are what actually determine whether a strategy is profitable over time.
+    </p>
+    <p>
+      There are three common, defensible ways to decide where a stop-loss actually belongs.
+    </p>
+    <h2>Method 1: Structure-Based Stops</h2>
+    <p>
+      Place your stop just beyond a swing high or low, or beyond a key support or resistance
+      level, that would invalidate your trade thesis if broken. The logic is direct: if that
+      level fails, the reason you entered the trade no longer holds.
+    </p>
+    <p>
+<strong>Example:</strong> EUR/USD has support at 1.1000 with a recent swing low at
+      1.0980. You buy at 1.1020. Your stop sits at 1.0975 — just beyond the swing low, with a
+      small buffer to avoid being caught by normal noise around that level.
+    </p>
+    <h2>Method 2: ATR-Based (Volatility) Stops</h2>
+    <p>
+      The Average True Range (ATR) indicator measures how much a pair typically moves over a
+      given period. An ATR-based stop sets your distance as a multiple of that value —
+      commonly 1.5x to 2x — so your stop adapts to current volatility instead of using a
+      fixed distance regardless of conditions.
+    </p>
+    <p><strong>Placement formula:</strong> Stop Distance = ATR × Multiplier</p>
+    <p>
+<strong>Example:</strong> If the 14-period ATR on EUR/USD is 20 pips and you use a 2x
+      multiplier, your stop distance is 40 pips from entry. During calmer periods the ATR
+      shrinks and your stop tightens with it; during volatile periods it widens
+      automatically.
+    </p>
+    <h2>Method 3: Fixed-Pip Stops</h2>
+    <p>
+      A fixed-pip stop uses the same pip distance on every trade regardless of the pair's
+      current volatility. It's the simplest method, and can work reasonably well in
+      low-volatility, range-bound conditions or when trading a diversified basket of pairs
+      where uniform risk matters more than precision.
+    </p>
+    <p>
+      Its main weakness: the same fixed distance can be too tight during a volatile period
+      (getting stopped out by normal noise) or too wide during a calm one (giving away
+      unnecessary profit potential). Structure-based or ATR-based stops generally produce
+      better-fitted exits once you're comfortable using them.
+    </p>
+    <h2>Setting Your Take-Profit</h2>
+    <p>
+      Your take-profit should generally be set with the same structural logic as your
+      stop-loss — the next meaningful resistance level for a long trade, or support level
+      for a short — rather than an arbitrary round number of pips.
+    </p>
+    <p>
+<strong>Example:</strong> With support at 1.1000 and resistance at 1.1100, buying at
+      1.1020 with a stop at 1.0980 (40 pips) and a take-profit at 1.1080 (60 pips) gives a
+      risk-reward ratio of roughly 1:1.5.
+    </p>
+    <h2>The Risk-Reward Math Behind Win Rate</h2>
+    <p>
+      Risk-reward ratio and win rate are directly connected, and understanding the
+      relationship changes how you think about "good" trades. A 30-pip stop-loss with a
+      60-pip take-profit creates a 1:2 risk-reward ratio — at that ratio, a strategy can stay
+      profitable with a win rate as low as roughly 35%, because your winners are worth twice
+      your losers.
+    </p>
+    <p>
+      This is exactly why chasing a high win rate isn't the only path to profitability — a
+      trader with a 40% win rate and consistent 1:2 risk-reward can outperform a trader with
+      a 60% win rate and poor risk-reward discipline.
+    </p>
+    <p class="internal-link-callout">
+      This connects directly to
+      <a href="/academy/risk-management/risk-reward-ratio">Risk-Reward Ratio Explained</a>
+      and to sizing the trade correctly in the first place with
+      <a href="/academy/risk-management/position-sizing">Position Sizing: How Much Should You Risk Per Trade?</a>.
+    </p>
+    <h2>Trailing Stops: Locking in Profit as a Trade Moves</h2>
+    <p>
+      A trailing stop automatically moves your stop-loss closer to the current price as a
+      trade moves in your favor, locking in profit without requiring you to manually adjust
+      it. Trailing stops tend to work well in strong, sustained trends, but can perform
+      poorly in choppy, ranging markets — where price reversing back and forth can trigger
+      an early exit before the real move develops.
+    </p>
+    <h2>The Mistake That Costs Traders the Most</h2>
+    <p>
+      The single most damaging stop-loss mistake is widening it — moving the stop further
+      away once a trade is already losing, hoping price will turn back in your favor. This
+      converts a planned, controlled loss into an open-ended one, and it's one of the most
+      reliable ways a manageable loss becomes a serious one.
+    </p>
+    <p>
+      A stop-loss only protects you if it's respected once it's set. If a level genuinely
+      needs to move, that decision should be made before the trade is opened, not while
+      you're watching it lose.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>Where should I place my stop-loss in forex?</h3>
+    <p>
+      A stop-loss should sit at the point where your trade idea is actually proven wrong —
+      typically just beyond a recent swing high or low, a key support or resistance level,
+      or a distance based on the pair's ATR rather than an arbitrary fixed number of pips.
+    </p>
+    <h3>What is a good risk-reward ratio for stop-loss and take-profit?</h3>
+    <p>
+      A 1:2 risk-reward ratio is a commonly used baseline, meaning your take-profit target
+      is twice as far from your entry as your stop-loss. At that ratio, a strategy can be
+      profitable even with a win rate below 40%.
+    </p>
+    <h3>What is an ATR-based stop-loss?</h3>
+    <p>
+      An ATR-based stop-loss sets your stop distance as a multiple of the Average True
+      Range indicator, commonly 1.5x to 2x ATR, so your stop adapts to the pair's current
+      volatility instead of using a fixed pip distance regardless of conditions.
+    </p>
+    <h3>What is the biggest stop-loss mistake traders make?</h3>
+    <p>
+      Widening or moving a stop-loss further away once a trade is already losing. This
+      turns a planned, controlled loss into an open-ended one and is one of the most common
+      ways traders convert a small, manageable loss into a significant one.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../position-sizing/index.html">Position Sizing: How Much Should You Risk Per Trade? →</a>
+      <a class="related-tool-link" href="../risk-reward-ratio/index.html">Risk-Reward Ratio Explained →</a>
+      <a class="related-tool-link" href="../why-most-traders-fail/index.html">Why Most Traders Fail (and How to Not Be One) →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../position-sizing/index.html"><span class="dir">&larr; Previous</span>Position Sizing: How Much Should You Risk Per Trade?</a>
+    <a class="article-nav-link" href="../risk-reward-ratio/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>Risk-Reward Ratio Explained</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -612,9 +745,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about risk management.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Stop-Loss and Take-Profit Strategies or risk management.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is the most important risk management rule?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Stop-Loss and Take-Profit Strategies">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
