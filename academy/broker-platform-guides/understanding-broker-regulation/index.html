@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold & Commodities | DeskTerminal Academy</title>
-<meta name="description" content="XAUUSD trading, safe-haven assets, and commodity correlations.">
+<title>Understanding Broker Regulation (FCA, ASIC, CySEC) | DeskTerminal Academy</title>
+<meta name="description" content="Not all forex regulation is equal. Learn what FCA, ASIC, and CySEC actually require, their compensation scheme differences, and how to spot weak offshore licensing.">
+<meta name="keywords" content="understanding broker regulation (fca, asic, cysec)">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/gold-commodities/">
+<link rel="canonical" href="https://deskterminal.com/academy/broker-platform-guides/understanding-broker-regulation/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Broker Regulation (FCA, ASIC, CySEC)">
+<meta property="og:description" content="Not all forex regulation is equal. Learn what FCA, ASIC, and CySEC actually require, their compensation scheme differences, and how to spot weak offshore licensing.">
+<meta property="og:url" content="https://deskterminal.com/academy/broker-platform-guides/understanding-broker-regulation/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Gold & Commodities",
-  "description": "XAUUSD trading, safe-haven assets, and commodity correlations.",
-  "url": "https://deskterminal.com/academy/gold-commodities/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Gold & Commodities", "item": "https://deskterminal.com/academy/gold-commodities/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Understanding Broker Regulation (FCA, ASIC, CySEC)",
+  "description": "Not all forex regulation is equal. Learn what FCA, ASIC, and CySEC actually require, their compensation scheme differences, and how to spot weak offshore licensing.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/broker-platform-guides/understanding-broker-regulation/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between FCA, ASIC, and CySEC regulation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All three require client fund segregation and regular audits, but their\n      compensation schemes differ significantly: the FCA's FSCS covers up to \u00a385,000,\n      CySEC's ICF covers up to \u20ac20,000, and ASIC has no fixed compensation fund,\n      instead relying on dispute resolution through AFCA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does client fund segregation mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Client fund segregation means a broker must hold client deposits in accounts\n      separate from its own operating capital, typically at tier-1 banks. This prevents a\n      broker from using client money for its own business expenses and helps ensure funds\n      can be returned even if the broker becomes insolvent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do offshore-regulated brokers offer higher leverage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tier-1 regulators like the FCA, CySEC, and ASIC cap retail leverage on major forex\n      pairs at 1:30 to protect retail traders from outsized losses. Offshore jurisdictions\n      with lighter oversight often have no such caps, allowing brokers registered there to\n      offer leverage of 1:500, 1:1000, or higher \u2014 a tradeoff for significantly weaker\n      investor protection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a compensation scheme actually protect against?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compensation schemes protect against broker insolvency or failure to return client\n      funds \u2014 not against ordinary trading losses. If a properly regulated broker goes\n      bankrupt, segregated funds are typically returned first, with the compensation\n      scheme acting as a backup safety net for any shortfall."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,58 +550,169 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Gold & Commodities</span>
-</nav>
-
-<div class="pagehead">
-  <h1>🪙 Gold & Commodities</h1>
-  <p>XAUUSD TRADING, SAFE-HAVEN ASSETS, AND COMMODITY CORRELATIONS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="what-moves-gold-prices/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">What Moves Gold Prices? Key Drivers Explained</div>
-        <div class="post-excerpt">A complete breakdown of what actually moves gold (XAUUSD) prices - real yields, the dollar, inflation, central bank buying, ETF flows, physical demand, and mining supply.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="why-gold-is-a-safe-haven-asset/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">Why Gold (XAUUSD) Is a Safe-Haven Asset</div>
-        <div class="post-excerpt">Learn why gold is considered a safe-haven asset - and why fear alone doesn't guarantee a rally. The real drivers: real yields, the dollar, and central bank demand.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="gold-vs-usd-correlation/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">Gold vs USD: Understanding the Inverse Correlation</div>
-        <div class="post-excerpt">Learn how the gold-DXY inverse correlation actually works, how strong it really is, and how to use the US Dollar Index as a confirmation filter when trading XAUUSD.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-to-trade-gold-during-news/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">How to Trade Gold During High-Impact News</div>
-        <div class="post-excerpt">Learn how to trade XAUUSD around high-impact news - realistic spread and slippage numbers, the no-fly zone rule, and breakout vs fade strategies for gold volatility.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/broker-platform-guides/index.html">Broker & Platform Guides</a><span class="sep">/</span>
+    <span class="current">Understanding Broker Regulation (FCA, ASIC, CySEC)</span>
+  </nav>
+  <div class="post-tag">Broker & Platform Guides</div>
+  <h1>Understanding Broker Regulation (FCA, ASIC, CySEC)</h1>
+  <div class="post-date mono">August 8, 2026 · Broker & Platform Guides · 5 min read</div>
+  <div id="postBody">
+<h2>"Regulated" Doesn't Mean What Most Traders Assume</h2>
+    <p>
+      Nearly every broker's website claims to be "regulated," and most proudly display
+      regulator logos in the footer. What that word actually means, however, varies
+      enormously. A broker holding a license from a Tier-1 regulator like the FCA operates
+      under strict capital requirements, compensation schemes, and real enforcement. A
+      broker licensed only in a lightly-overseen offshore jurisdiction may hold something
+      closer to basic paperwork with little enforcement behind it — while displaying an
+      equally confident-looking badge on their homepage.
+    </p>
+    <h2>What Real Regulation Actually Requires</h2>
+    <p>
+      Genuine, meaningful regulation from a respected authority generally requires:
+    </p>
+    <ul>
+<li><strong>Client fund segregation</strong> — client deposits held separately from the broker's own operating capital, typically at tier-1 banks.</li>
+<li><strong>Minimum capital requirements</strong> — the broker must hold sufficient capital reserves of its own.</li>
+<li><strong>Regular audits</strong> — independent verification that the broker is actually complying with the rules.</li>
+<li><strong>Negative balance protection</strong> — in several major jurisdictions, a requirement that a client's account cannot go below zero, even during extreme market moves.</li>
+<li><strong>A compensation scheme</strong> — a fund or mechanism protecting clients if the broker becomes insolvent.</li>
+</ul>
+    <h2>FCA (United Kingdom)</h2>
+    <p>
+      The Financial Conduct Authority is widely considered one of the strictest, most
+      respected regulators in the industry. FCA-regulated brokers are covered by the
+      Financial Services Compensation Scheme (FSCS), protecting eligible clients for up to
+      <strong>£85,000</strong> if the broker becomes insolvent — segregated funds are
+      returned first, with the FSCS acting as an additional safety net for any shortfall.
+    </p>
+    <h2>ASIC (Australia)</h2>
+    <p>
+      The Australian Securities and Investments Commission maintains a solid regulatory
+      reputation and requires client fund segregation, but unlike the FCA and CySEC, ASIC
+      has <strong>no fixed compensation fund</strong>. Instead, disputes are handled
+      through the Australian Financial Complaints Authority (AFCA), which provides a
+      dispute resolution pathway rather than a guaranteed compensation pool.
+    </p>
+    <h2>CySEC (Cyprus/EU)</h2>
+    <p>
+      The Cyprus Securities and Exchange Commission regulates a large share of brokers
+      serving the European market, and CySEC-licensed brokers are permitted to operate
+      across most of the EU under MiFID II passporting rules. Clients are covered by the
+      Investor Compensation Fund (ICF), up to <strong>€20,000</strong> per eligible
+      claimant — a meaningfully lower ceiling than the FCA's scheme, which is part of why
+      CySEC is sometimes viewed as offering a thinner protection net, even though brokers
+      operating under it are entirely legitimate.
+    </p>
+    <h2>Why Leverage Caps Exist</h2>
+    <p>
+      Tier-1 regulators including the FCA, CySEC, and ASIC cap retail leverage on major
+      forex pairs at <strong>1:30</strong>, with tighter caps on minors, commodities, and
+      equities. These caps exist because regulators have observed, sometimes the hard way,
+      that uncapped leverage magnifies retail losses faster than most traders can
+      realistically manage — sharp, sudden market shocks have historically caused
+      significant retail losses, and in some cases broker insolvencies, under unrestricted
+      leverage conditions.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/forex-basics/margin-calls-and-stop-outs">Margin Calls and Stop-Outs</a>
+      for exactly how excessive leverage translates into account risk.
+    </p>
+    <h2>Offshore Licensing: What You're Trading Away</h2>
+    <p>
+      Offshore jurisdictions with lighter regulatory oversight often impose no leverage
+      caps at all, which is why brokers registered there can advertise leverage of 1:500,
+      1:1000, or higher. This is a genuine tradeoff, not a free upgrade — offshore accounts
+      are typically not covered by any meaningful compensation scheme, and enforcement
+      against broker misconduct tends to be considerably weaker or effectively
+      nonexistent.
+    </p>
+    <p>
+      Many brokers that hold a legitimate Tier-1 license also operate separate offshore
+      entities specifically to offer this higher leverage to certain international
+      clients. This makes it essential to confirm exactly which legal entity you're
+      opening an account under — the parent brand's reputation doesn't automatically carry
+      over to every entity operating under that name.
+    </p>
+    <h2>How to Actually Verify a License</h2>
+    <ol>
+<li>Find the broker's claimed license number, usually in the website footer or legal disclosures.</li>
+<li>Go directly to the regulator's own official website — not a link provided by the broker.</li>
+<li>Search the regulator's public register for that license number.</li>
+<li>Confirm the entity name on the register matches the entity you'd actually be opening an account with.</li>
+<li>Check for any disciplinary history or warnings listed against that entity.</li>
+</ol>
+    <p class="internal-link-callout">
+      This is Step 1 of the broader process covered in
+      <a href="/academy/broker-platform-guides/how-to-choose-a-forex-broker">How to Choose a Forex Broker</a>.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the difference between FCA, ASIC, and CySEC regulation?</h3>
+    <p>
+      All three require client fund segregation and regular audits, but their
+      compensation schemes differ significantly: the FCA's FSCS covers up to £85,000,
+      CySEC's ICF covers up to €20,000, and ASIC has no fixed compensation fund,
+      instead relying on dispute resolution through AFCA.
+    </p>
+    <h3>What does client fund segregation mean?</h3>
+    <p>
+      Client fund segregation means a broker must hold client deposits in accounts
+      separate from its own operating capital, typically at tier-1 banks. This prevents a
+      broker from using client money for its own business expenses and helps ensure funds
+      can be returned even if the broker becomes insolvent.
+    </p>
+    <h3>Why do offshore-regulated brokers offer higher leverage?</h3>
+    <p>
+      Tier-1 regulators like the FCA, CySEC, and ASIC cap retail leverage on major forex
+      pairs at 1:30 to protect retail traders from outsized losses. Offshore jurisdictions
+      with lighter oversight often have no such caps, allowing brokers registered there to
+      offer leverage of 1:500, 1:1000, or higher — a tradeoff for significantly weaker
+      investor protection.
+    </p>
+    <h3>What does a compensation scheme actually protect against?</h3>
+    <p>
+      Compensation schemes protect against broker insolvency or failure to return client
+      funds — not against ordinary trading losses. If a properly regulated broker goes
+      bankrupt, segregated funds are typically returned first, with the compensation
+      scheme acting as a backup safety net for any shortfall.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../how-to-choose-a-forex-broker/index.html">How to Choose a Forex Broker →</a>
+      <a class="related-tool-link" href="../ecn-vs-market-maker-brokers/index.html">ECN vs Market Maker Brokers Explained →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../how-to-choose-a-forex-broker/index.html"><span class="dir">&larr; Previous</span>How to Choose a Forex Broker</a>
+    <a class="article-nav-link" href="../ecn-vs-market-maker-brokers/index.html" style="text-align:right; margin-left:auto;"><span class="dir">Next &rarr;</span>ECN vs Market Maker Brokers Explained</a>
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -600,9 +740,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about gold trading.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Understanding Broker Regulation (FCA, ASIC, CySEC) or choosing a broker.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What moves the price of gold?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Understanding Broker Regulation (FCA, ASIC, CySEC)">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

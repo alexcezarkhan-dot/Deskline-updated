@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold & Commodities | DeskTerminal Academy</title>
-<meta name="description" content="XAUUSD trading, safe-haven assets, and commodity correlations.">
+<title>Backtesting Your Strategy: A Step-by-Step Guide | DeskTerminal Academy</title>
+<meta name="description" content="Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.">
+<meta name="keywords" content="backtesting your strategy: a step-by-step guide">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/gold-commodities/">
+<link rel="canonical" href="https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Backtesting Your Strategy: A Step-by-Step Guide">
+<meta property="og:description" content="Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.">
+<meta property="og:url" content="https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Gold & Commodities",
-  "description": "XAUUSD trading, safe-haven assets, and commodity correlations.",
-  "url": "https://deskterminal.com/academy/gold-commodities/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Gold & Commodities", "item": "https://deskterminal.com/academy/gold-commodities/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "Backtesting Your Strategy: A Step-by-Step Guide",
+  "description": "Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is hindsight bias in backtesting and how do you avoid it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hindsight bias happens when you can see future price action while testing past\n      entries, making trades look more obvious than they actually were in real time. It's\n      avoided by testing with future candles hidden, scrolling forward one bar at a time\n      so decisions are made with only the information that would have been available at\n      that moment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many trades do you need for a reliable backtest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most serious backtesting guidance suggests at least 100, and ideally 200 or more\n      trades, before drawing meaningful conclusions. A sample of 50 trades or fewer is\n      generally considered too small to distinguish genuine edge from random variance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is out-of-sample testing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Out-of-sample testing means reserving a portion of historical data \u2014 commonly the\n      most recent 30% \u2014 that isn't used while developing or refining the strategy.\n      Testing the finished rules against this untouched data checks whether the edge is\n      real or the strategy was simply overfitted to the data it was built on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is profit factor and what is considered a good number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Profit factor is gross profit divided by gross loss. A value below 1.0 means the\n      strategy loses money overall. A range of roughly 1.3 to 1.8 is commonly considered\n      solid for a realistic trading strategy, while values above 2.0 are excellent but\n      also worth double-checking for overfitting."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,58 +550,182 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Gold & Commodities</span>
-</nav>
-
-<div class="pagehead">
-  <h1>🪙 Gold & Commodities</h1>
-  <p>XAUUSD TRADING, SAFE-HAVEN ASSETS, AND COMMODITY CORRELATIONS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="what-moves-gold-prices/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">What Moves Gold Prices? Key Drivers Explained</div>
-        <div class="post-excerpt">A complete breakdown of what actually moves gold (XAUUSD) prices - real yields, the dollar, inflation, central bank buying, ETF flows, physical demand, and mining supply.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="why-gold-is-a-safe-haven-asset/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">Why Gold (XAUUSD) Is a Safe-Haven Asset</div>
-        <div class="post-excerpt">Learn why gold is considered a safe-haven asset - and why fear alone doesn't guarantee a rally. The real drivers: real yields, the dollar, and central bank demand.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="gold-vs-usd-correlation/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">Gold vs USD: Understanding the Inverse Correlation</div>
-        <div class="post-excerpt">Learn how the gold-DXY inverse correlation actually works, how strong it really is, and how to use the US Dollar Index as a confirmation filter when trading XAUUSD.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-to-trade-gold-during-news/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">How to Trade Gold During High-Impact News</div>
-        <div class="post-excerpt">Learn how to trade XAUUSD around high-impact news - realistic spread and slippage numbers, the no-fly zone rule, and breakout vs fade strategies for gold volatility.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/strategy-guides/index.html">Strategy & Practical Guides</a><span class="sep">/</span>
+    <span class="current">Backtesting Your Strategy: A Step-by-Step Guide</span>
+  </nav>
+  <div class="post-tag">Strategy & Practical Guides</div>
+  <h1>Backtesting Your Strategy: A Step-by-Step Guide</h1>
+  <div class="post-date mono">August 8, 2026 · Strategy & Practical Guides · 5 min read</div>
+  <div id="postBody">
+<h2>What Backtesting Actually Proves (and Doesn't)</h2>
+    <p>
+      Backtesting means running a strategy's rules against historical data to see how it
+      would have performed. Done properly, it's the difference between a strategy you
+      genuinely believe has an edge and one you simply "feel" works because you remember
+      the times it hit.
+    </p>
+    <p>
+      It's worth being precise about what backtesting does and doesn't prove: it shows
+      that a strategy had a documented edge in the past, under the specific conditions
+      tested. It does not guarantee that edge persists going forward — markets change, and
+      volatility regimes shift. What it does provide is a foundation: a strategy with no
+      historical edge has no real basis for live trading at all, while one with a
+      documented edge across varied conditions gives you something concrete to build on.
+    </p>
+    <h2>Step 1: Write Mechanical, If/Then Rules</h2>
+    <p>
+      Before opening a single historical chart, your strategy needs to be specific enough
+      that two different people could apply the same rules and reach the same
+      conclusions. "Buy when it looks like support" isn't testable. "Buy when RSI(14)
+      crosses below 30 and price is above the 200 EMA on the H1 timeframe" is.
+    </p>
+    <p>
+      Every element needs a clear rule: entry trigger, stop-loss placement, take-profit or
+      exit condition, and position sizing. If you can't write it as an if/then statement,
+      you can't backtest it meaningfully.
+    </p>
+    <p class="internal-link-callout">
+      This connects directly to
+      <a href="/academy/strategy-guides/how-to-build-a-trading-plan">How to Build a Trading Plan</a>
+      and its condition/trigger/invalidation framework.
+    </p>
+    <h2>Step 2: Hide Future Data to Avoid Hindsight Bias</h2>
+    <p>
+      This is widely considered the single most common backtest-killing mistake:
+      <strong>hindsight bias</strong>, where seeing future price action while reviewing
+      past entries makes trades look far more obvious than they actually were in real
+      time. Scrolling backward through a chart with everything already visible naturally
+      biases you toward "seeing" setups that worked.
+    </p>
+    <p>
+      The fix: test with future candles hidden, scrolling forward one bar at a time, and
+      only marking an entry when your rules would have genuinely triggered at that exact
+      moment — not because you can see what happened three days later.
+    </p>
+    <h2>Step 3: Log Every Trade, Including Losers</h2>
+    <p>
+      Every trade your rules would have triggered needs to be logged, including the ones
+      that lost badly. Skipping uncomfortable losing trades, even unintentionally, skews
+      the results toward a rosier picture than the strategy actually deserves. A
+      backtest's value comes specifically from including the full, honest picture — wins,
+      losses, and everything the mechanical rules would have actually done.
+    </p>
+    <h2>Step 4: Split Your Data for Out-of-Sample Testing</h2>
+    <p>
+      A common, effective approach: split your historical data into two periods. Use the
+      earlier roughly 70% to develop and refine the strategy. Then test the final 30% —
+      data you haven't touched during development — without making any further
+      adjustments.
+    </p>
+    <p>
+      If performance holds up reasonably well on that untouched data, the edge is more
+      likely genuine. If results fall apart, the strategy was probably
+      <strong>overfitted</strong> — tuned to match the specific historical window it was
+      built on, rather than reflecting a real, repeatable pattern. A more rigorous version
+      of this same idea, <strong>walk-forward analysis</strong>, repeats the process across
+      multiple rolling periods rather than just one split.
+    </p>
+    <h2>Step 5: Read the Metrics That Actually Matter</h2>
+    <ul>
+<li><strong>Win rate</strong> — the percentage of trades that were profitable, over a meaningful sample.</li>
+<li><strong>Profit factor</strong> — gross profit divided by gross loss. Below 1.0 means the strategy loses money overall; roughly 1.3-1.8 is commonly considered solid; above 2.0 is excellent but worth double-checking for overfitting.</li>
+<li><strong>Maximum drawdown</strong> — the largest peak-to-trough decline in account equity historically. Below 10% is conservative; 10-20% is normal and manageable; above 30% is a serious red flag for account survivability.</li>
+<li><strong>Sample size</strong> — at least 100, and ideally 200+, trades before drawing real conclusions. Fifty trades or fewer is generally too small a sample to separate genuine edge from random variance.</li>
+</ul>
+    <p>
+      Win rate and profit factor need to be read together, not separately — a 40% win rate
+      with a strong reward-to-risk ratio can outperform a 70% win rate with a poor one.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/risk-management/risk-reward-ratio">Risk-Reward Ratio Explained</a>
+      for the full math behind why this pairing matters.
+    </p>
+    <h2>Step 6: Account for Real Trading Costs</h2>
+    <p>
+      A backtest that ignores spread, commission, and slippage will overstate performance
+      — sometimes turning what would be a losing live strategy into an apparently
+      profitable backtest. Building realistic frictional costs into the test from the
+      start, rather than adding them as an afterthought, is essential for results that
+      actually mean something.
+    </p>
+    <p class="internal-link-callout">
+      See <a href="/academy/forex-basics/pips-lots-leverage-explained">What Is a Pip, Lot, and Spread in Forex?</a>
+      for how spread cost is calculated per trade.
+    </p>
+    <h2>Common Backtesting Mistakes</h2>
+    <ul>
+<li><strong>Overfitting.</strong> Tweaking rules endlessly until they match one specific historical window perfectly — this produces a fragile system that breaks down under live, unseen conditions.</li>
+<li><strong>Ignoring frictional costs.</strong> Spread, commission, and slippage can turn a winning backtest into a losing live strategy.</li>
+<li><strong>Insufficient sample size.</strong> Basing conclusions on a few weeks of favorable price action rather than years of data across multiple market conditions.</li>
+<li><strong>Skipping out-of-sample testing entirely.</strong> Testing only on the data used to build the strategy all but guarantees an inflated, unrealistic result.</li>
+</ul>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is hindsight bias in backtesting and how do you avoid it?</h3>
+    <p>
+      Hindsight bias happens when you can see future price action while testing past
+      entries, making trades look more obvious than they actually were in real time. It's
+      avoided by testing with future candles hidden, scrolling forward one bar at a time
+      so decisions are made with only the information that would have been available at
+      that moment.
+    </p>
+    <h3>How many trades do you need for a reliable backtest?</h3>
+    <p>
+      Most serious backtesting guidance suggests at least 100, and ideally 200 or more
+      trades, before drawing meaningful conclusions. A sample of 50 trades or fewer is
+      generally considered too small to distinguish genuine edge from random variance.
+    </p>
+    <h3>What is out-of-sample testing?</h3>
+    <p>
+      Out-of-sample testing means reserving a portion of historical data — commonly the
+      most recent 30% — that isn't used while developing or refining the strategy.
+      Testing the finished rules against this untouched data checks whether the edge is
+      real or the strategy was simply overfitted to the data it was built on.
+    </p>
+    <h3>What is profit factor and what is considered a good number?</h3>
+    <p>
+      Profit factor is gross profit divided by gross loss. A value below 1.0 means the
+      strategy loses money overall. A range of roughly 1.3 to 1.8 is commonly considered
+      solid for a realistic trading strategy, while values above 2.0 are excellent but
+      also worth double-checking for overfitting.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../how-to-build-a-trading-plan/index.html">How to Build a Trading Plan →</a>
+      <a class="related-tool-link" href="../best-indicators-for-beginners/index.html">Best Indicators for Beginners →</a>
+      <a class="related-tool-link" href="../scalping-vs-day-trading-vs-swing-trading/index.html">Scalping vs Day Trading vs Swing Trading →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../how-to-build-a-trading-plan/index.html"><span class="dir">&larr; Previous</span>How to Build a Trading Plan</a>
+    
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -600,9 +753,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about gold trading.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about Backtesting Your Strategy or trading strategy.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What moves the price of gold?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: Backtesting Your Strategy: A Step-by-Step Guide">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

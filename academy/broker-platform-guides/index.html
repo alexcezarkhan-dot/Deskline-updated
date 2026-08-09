@@ -510,7 +510,7 @@
     <a href="../../calendar.html">Economic Calendar</a>
     <a href="../../news.html">News</a>
     <a href="../../calculator.html">Calculator</a>
-  <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -545,34 +545,26 @@
 
 <a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
 
-<div class="posts" id="postsGrid" style="display:none;"></div>
-<div class="empty-state" id="emptyState">
-  <div class="empty-state-icon">🚧</div>
-  <p>Articles for this category are coming soon — check back shortly, or explore <a href="../forex-basics/index.html" style="color:var(--gold);">Forex Basics</a>, which is fully live now.</p>
-</div>
-
-<script>
-fetch('../posts.json')
-  .then(r => r.json())
-  .then(posts => {
-    const filtered = posts.filter(p => p.category === 'broker-platform-guides');
-    if(filtered.length){
-      filtered.sort((a,b) => (b.date||'').localeCompare(a.date||''));
-      const grid = document.getElementById('postsGrid');
-      grid.innerHTML = filtered.map(p => `
-        <a class="post-card" href="../post.html?slug=${p.slug}">
-          <div class="post-tag">${p.tag || 'Guide'}</div>
-          <div class="post-title">${p.title}</div>
-          <div class="post-excerpt">${p.excerpt || ''}</div>
-          <div class="post-date">${p.date || ''}</div>
-        </a>
-      `).join('');
-      grid.style.display = 'grid';
-      document.getElementById('emptyState').style.display = 'none';
-    }
-  })
-  .catch(() => { /* keep the coming-soon state on fetch failure */ });
-</script>
+<div class="posts">
+      <a class="post-card" href="how-to-choose-a-forex-broker/index.html">
+        <div class="post-tag">Broker & Platform Guides</div>
+        <div class="post-title">How to Choose a Forex Broker</div>
+        <div class="post-excerpt">A practical, broker-neutral checklist for choosing a forex broker - regulation verification, true all-in cost, execution model, platform, and withdrawal reputation.</div>
+        <div class="post-date">2026-08-08 · 5 min read</div>
+      </a>
+      <a class="post-card" href="understanding-broker-regulation/index.html">
+        <div class="post-tag">Broker & Platform Guides</div>
+        <div class="post-title">Understanding Broker Regulation (FCA, ASIC, CySEC)</div>
+        <div class="post-excerpt">Not all forex regulation is equal. Learn what FCA, ASIC, and CySEC actually require, their compensation scheme differences, and how to spot weak offshore licensing.</div>
+        <div class="post-date">2026-08-08 · 5 min read</div>
+      </a>
+      <a class="post-card" href="ecn-vs-market-maker-brokers/index.html">
+        <div class="post-tag">Broker & Platform Guides</div>
+        <div class="post-title">ECN vs Market Maker Brokers Explained</div>
+        <div class="post-excerpt">ECN vs market maker brokers compared - fixed vs variable spreads, requotes vs slippage, and which execution model actually fits your trading style.</div>
+        <div class="post-date">2026-08-08 · 5 min read</div>
+      </a>
+    </div>
 
 <footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
 
@@ -602,9 +594,9 @@ fetch('../posts.json')
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about broker & platform guides or trading in general.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about choosing a broker.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is Broker & Platform Guides?">Tell me about this topic</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Where should I start with choosing a broker?">Where do I start?</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
@@ -633,7 +625,7 @@ fetch('../posts.json')
 </script>
 
 
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
@@ -853,8 +845,8 @@ async function initAuth(){
 initAuth();
 </script>
 
-
 <script>
+
 /* ---------------- DeskAi floating chatbox (v2) ---------------- */
 (function(){
   const SECTION = "general";
@@ -957,8 +949,8 @@ initAuth();
     btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
   });
 })();
-</script>
 
+</script>
 
 </body>
 </html>

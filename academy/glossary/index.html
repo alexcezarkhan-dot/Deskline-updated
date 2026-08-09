@@ -3,26 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trading Glossary | DeskTerminal Academy</title>
-<meta name="description" content="A-Z definitions of forex and trading terms.">
+<title>Trading Glossary: A-Z Forex & Trading Terms Explained | DeskTerminal Academy</title>
+<meta name="description" content="A complete A-Z glossary of forex and trading terms - pips, leverage, margin, RSI, NFP, and more - explained clearly, with links to full guides for deeper terms.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://deskterminal.com/academy/glossary/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trading Glossary: A-Z Forex & Trading Terms Explained">
+<meta property="og:description" content="A complete A-Z glossary of forex and trading terms - pips, leverage, margin, RSI, NFP, and more - explained clearly, with links to full guides for deeper terms.">
+<meta property="og:url" content="https://deskterminal.com/academy/glossary/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Trading Glossary",
-  "description": "A-Z definitions of forex and trading terms.",
+  "@type": "DefinedTermSet",
+  "name": "Trading Glossary: A-Z Forex & Trading Terms Explained",
+  "description": "A complete A-Z glossary of forex and trading terms - pips, leverage, margin, RSI, NFP, and more - explained clearly, with links to full guides for deeper terms.",
   "url": "https://deskterminal.com/academy/glossary/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Trading Glossary", "item": "https://deskterminal.com/academy/glossary/" }
-    ]
-  }
+  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,74 +32,42 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   body{ background:var(--bg); color:var(--ink); font-family:'Space Grotesk',sans-serif; min-height:100vh; }
   .mono{ font-family:'JetBrains Mono', monospace; }
-
   nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
   .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
   .wordmark span{ color:var(--gold); }
   .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
-  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
+  .navlinks a{ color:var(--dim); text-decoration:none; }
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
-
-  .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
-  }
+  .breadcrumb-nav{ padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
-
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
+  .glossary-main{ max-width: 860px; margin: 0 auto; padding: 2rem 6vw 4rem; }
+  .glossary-main h1{ font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight:700; margin-bottom:.6rem; }
+  .glossary-intro{ font-size:.9rem; color:var(--dim); line-height:1.7; margin-bottom:2rem; }
+  .glossary-nav-alpha{ display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:2.5rem; }
+  .glossary-nav-alpha a{
+    width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-soft); border-radius:4px; text-decoration:none; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.75rem;
   }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
+  .glossary-nav-alpha a:hover{ border-color:var(--gold); color:var(--gold); }
+  .glossary-letter-group{ margin-bottom:2.2rem; }
+  .glossary-letter-group h2{
+    font-size:1.3rem; font-weight:700; color:var(--gold); margin-bottom:1rem;
+    padding-bottom:.4rem; border-bottom:1px solid var(--line-soft);
   }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
-  .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
-  }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
-
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
-  }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
-
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
-    font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
-  }
-  .back-to-academy:hover{ color:var(--gold); }
-
+  .glossary-term{ margin-bottom:1.1rem; }
+  .glossary-term dt{ font-weight:700; font-size:.92rem; margin-bottom:.3rem; }
+  .glossary-term dd{ font-size:.85rem; color:#D7DAE1; line-height:1.65; margin-left:0; }
+  .glossary-term dd a{ color:var(--gold); text-decoration:none; }
+  .glossary-term dd a:hover{ text-decoration:underline; }
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
     font-size:.65rem; color: var(--dim); border-top:1px solid var(--line-soft);
   }
-
 
   /* ---------------- Hamburger + nav drawer ---------------- */
   .nav-left{ display:flex; align-items:center; gap:.9rem; }
@@ -510,7 +475,7 @@
     <a href="../../calendar.html">Economic Calendar</a>
     <a href="../../news.html">News</a>
     <a href="../../calculator.html">Calculator</a>
-  <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -534,47 +499,485 @@
 
 <nav class="breadcrumb-nav" aria-label="Breadcrumb">
   <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
+  <a href="../index.html">Academy</a><span class="sep">/</span>
   <span class="current">Trading Glossary</span>
 </nav>
 
-<div class="pagehead">
-  <h1>🔤 Trading Glossary</h1>
-  <p>A-Z DEFINITIONS OF FOREX AND TRADING TERMS.</p>
+<main class="glossary-main">
+  <h1>Trading Glossary</h1>
+  <p class="glossary-intro">A-Z definitions of forex and trading terms — clear, no-hype explanations, with links to full guides for terms that deserve deeper coverage.</p>
+  <div class="glossary-nav-alpha">
+<a href="#letter-a">A</a> <a href="#letter-b">B</a> <a href="#letter-c">C</a> <a href="#letter-d">D</a> <a href="#letter-e">E</a> <a href="#letter-f">F</a> <a href="#letter-g">G</a> <a href="#letter-h">H</a> <a href="#letter-i">I</a> <a href="#letter-l">L</a> <a href="#letter-m">M</a> <a href="#letter-n">N</a> <a href="#letter-o">O</a> <a href="#letter-p">P</a> <a href="#letter-q">Q</a> <a href="#letter-r">R</a> <a href="#letter-s">S</a> <a href="#letter-t">T</a> <a href="#letter-v">V</a> <a href="#letter-w">W</a> <a href="#letter-x">X</a> <a href="#letter-y">Y</a>
+  </div>
+<section class="glossary-letter-group" id="letter-a">
+<h2>A</h2>
+<dl>
+<div class="glossary-term">
+<dt>Actual</dt>
+<dd>The real, official figure for an economic data release once published, compared against the forecast to determine market reaction. See <a href="/academy/fundamental-analysis/understanding-the-economic-calendar/">Understanding the Economic Calendar</a>.</dd>
 </div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts" id="postsGrid" style="display:none;"></div>
-<div class="empty-state" id="emptyState">
-  <div class="empty-state-icon">🚧</div>
-  <p>Articles for this category are coming soon — check back shortly, or explore <a href="../forex-basics/index.html" style="color:var(--gold);">Forex Basics</a>, which is fully live now.</p>
+<div class="glossary-term">
+<dt>Ask Price</dt>
+<dd>The price at which you can buy the base currency in a pair. Always higher than the bid price. See <a href="/academy/forex-basics/how-to-read-a-forex-quote/">How to Read a Forex Quote</a>.</dd>
 </div>
-
-<script>
-fetch('../posts.json')
-  .then(r => r.json())
-  .then(posts => {
-    const filtered = posts.filter(p => p.category === 'glossary');
-    if(filtered.length){
-      filtered.sort((a,b) => (b.date||'').localeCompare(a.date||''));
-      const grid = document.getElementById('postsGrid');
-      grid.innerHTML = filtered.map(p => `
-        <a class="post-card" href="../post.html?slug=${p.slug}">
-          <div class="post-tag">${p.tag || 'Guide'}</div>
-          <div class="post-title">${p.title}</div>
-          <div class="post-excerpt">${p.excerpt || ''}</div>
-          <div class="post-date">${p.date || ''}</div>
-        </a>
-      `).join('');
-      grid.style.display = 'grid';
-      document.getElementById('emptyState').style.display = 'none';
-    }
-  })
-  .catch(() => { /* keep the coming-soon state on fetch failure */ });
-</script>
+<div class="glossary-term">
+<dt>ATR (Average True Range)</dt>
+<dd>An indicator measuring how much a pair typically moves over a given period, without indicating direction. Commonly used to set volatility-adjusted stop-loss distances. See <a href="/academy/strategy-guides/best-indicators-for-beginners/">Best Indicators for Beginners</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-b">
+<h2>B</h2>
+<dl>
+<div class="glossary-term">
+<dt>Balance</dt>
+<dd>Your trading account total, not accounting for any currently open trades.</dd>
+</div>
+<div class="glossary-term">
+<dt>Base Currency</dt>
+<dd>The first currency listed in a pair. In EUR/USD, EUR is the base currency. See <a href="/academy/forex-basics/currency-pairs-explained/">Major, Minor, and Exotic Currency Pairs Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Bearish</dt>
+<dd>Expecting or reflecting a decline in price.</dd>
+</div>
+<div class="glossary-term">
+<dt>Bid Price</dt>
+<dd>The price at which you can sell the base currency in a pair. Always lower than the ask price.</dd>
+</div>
+<div class="glossary-term">
+<dt>Bollinger Bands</dt>
+<dd>A volatility indicator consisting of a middle moving average with upper and lower bands plotted a set number of standard deviations away. See <a href="/academy/strategy-guides/best-indicators-for-beginners/">Best Indicators for Beginners</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Breakout</dt>
+<dd>A price move beyond a defined support, resistance, or chart pattern boundary, often signaling continuation. See <a href="/academy/technical-analysis/chart-patterns/">Chart Patterns: Head and Shoulders, Double Top/Bottom</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Bullish</dt>
+<dd>Expecting or reflecting a rise in price.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-c">
+<h2>C</h2>
+<dl>
+<div class="glossary-term">
+<dt>Candlestick</dt>
+<dd>A chart element representing price movement over a set period using open, high, low, and close data. See <a href="/academy/technical-analysis/candlestick-patterns/">Candlestick Patterns Every Trader Should Know</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Carry Trade</dt>
+<dd>A strategy of borrowing a low-interest-rate currency to buy a higher-interest-rate one, aiming to profit from the rate differential. See <a href="/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/">How Interest Rates Affect Currency Prices</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Central Bank</dt>
+<dd>A national or supranational institution (like the Fed, ECB, or BOE) responsible for setting monetary policy and interest rates. See <a href="/academy/fundamental-analysis/central-bank-policies-fed-ecb-boe/">Central Bank Policies: Fed, ECB, BOE Compared</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>CPI (Consumer Price Index)</dt>
+<dd>A measure of average price change across a fixed basket of consumer goods and services, used to gauge inflation. See <a href="/academy/fundamental-analysis/inflation-cpi-and-trading/">Inflation, CPI, and Their Effect on Trading</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Currency Pair</dt>
+<dd>Two currencies quoted against each other, forming the basis of every forex trade. See <a href="/academy/forex-basics/currency-pairs-explained/">Major, Minor, and Exotic Currency Pairs Explained</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-d">
+<h2>D</h2>
+<dl>
+<div class="glossary-term">
+<dt>Death Cross</dt>
+<dd>A bearish signal formed when a shorter-term moving average crosses below a longer-term one, commonly the 50-period below the 200-period. See <a href="/academy/technical-analysis/moving-averages-sma-vs-ema/">Moving Averages: SMA vs EMA Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Demo Account</dt>
+<dd>A practice trading account using virtual funds on live market pricing, used to learn a platform and test a strategy without financial risk. See <a href="/academy/forex-basics/demo-vs-live-trading/">Demo Trading vs Live Trading: When to Switch</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Divergence</dt>
+<dd>When price and an indicator (like RSI or MACD) move in opposite directions, often signaling weakening momentum. See <a href="/academy/technical-analysis/rsi-overbought-oversold/">How to Use RSI for Overbought/Oversold Signals</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Dot Plot</dt>
+<dd>A quarterly chart published by the Federal Reserve showing individual FOMC members' projections for future interest rates. See <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/">How FOMC Decisions Impact Forex and Gold</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>DXY (US Dollar Index)</dt>
+<dd>An index measuring the US dollar's value against a weighted basket of six major currencies. See <a href="/academy/gold-commodities/gold-vs-usd-correlation/">Gold vs USD: Understanding the Inverse Correlation</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-e">
+<h2>E</h2>
+<dl>
+<div class="glossary-term">
+<dt>ECN (Electronic Communication Network)</dt>
+<dd>A broker execution model that routes orders to a network of external liquidity providers rather than taking the other side of the trade internally. See <a href="/academy/broker-platform-guides/ecn-vs-market-maker-brokers/">ECN vs Market Maker Brokers Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>EMA (Exponential Moving Average)</dt>
+<dd>A moving average that weights recent prices more heavily, making it react faster to new price action than a simple moving average. See <a href="/academy/technical-analysis/moving-averages-sma-vs-ema/">Moving Averages: SMA vs EMA Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Equity</dt>
+<dd>Your account balance adjusted for the running profit or loss on any currently open trades. See <a href="/academy/forex-basics/margin-calls-and-stop-outs/">Margin Calls and Stop-Outs</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Exotic Pair</dt>
+<dd>A currency pair combining a major currency with one from a smaller or emerging economy, typically carrying wider spreads and higher volatility. See <a href="/academy/forex-basics/currency-pairs-explained/">Major, Minor, and Exotic Currency Pairs Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Expectancy</dt>
+<dd>The average expected outcome per trade for a strategy, combining win rate and average win/loss size. See <a href="/academy/risk-management/risk-reward-ratio/">Risk-Reward Ratio Explained</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-f">
+<h2>F</h2>
+<dl>
+<div class="glossary-term">
+<dt>FOMC (Federal Open Market Committee)</dt>
+<dd>The branch of the US Federal Reserve responsible for setting US interest rate policy. See <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/">How FOMC Decisions Impact Forex and Gold</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Forecast (Consensus)</dt>
+<dd>The average expectation among economists for an economic data release, ahead of its actual publication. See <a href="/academy/fundamental-analysis/understanding-the-economic-calendar/">Understanding the Economic Calendar</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Free Margin</dt>
+<dd>Equity minus used margin — the cushion available to absorb further losses on open positions.</dd>
+</div>
+<div class="glossary-term">
+<dt>Fundamental Analysis</dt>
+<dd>Evaluating currency or asset value based on economic data, interest rates, and central bank policy, rather than price charts alone.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-g">
+<h2>G</h2>
+<dl>
+<div class="glossary-term">
+<dt>Golden Cross</dt>
+<dd>A bullish signal formed when a shorter-term moving average crosses above a longer-term one, commonly the 50-period above the 200-period. See <a href="/academy/technical-analysis/moving-averages-sma-vs-ema/">Moving Averages: SMA vs EMA Explained</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-h">
+<h2>H</h2>
+<dl>
+<div class="glossary-term">
+<dt>Hawkish / Dovish</dt>
+<dd>Hawkish describes central bank language or action favoring higher rates; dovish describes language or action favoring lower rates or easing. See <a href="/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/">How FOMC Decisions Impact Forex and Gold</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Head and Shoulders</dt>
+<dd>A bearish reversal chart pattern formed by three peaks — a left shoulder, a higher head, and a right shoulder — sharing a common neckline. See <a href="/academy/technical-analysis/chart-patterns/">Chart Patterns: Head and Shoulders, Double Top/Bottom</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-i">
+<h2>I</h2>
+<dl>
+<div class="glossary-term">
+<dt>Interest Rate Differential</dt>
+<dd>The gap between the interest rates of the two currencies in a pair, a key driver of medium-term currency trends. See <a href="/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/">How Interest Rates Affect Currency Prices</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-l">
+<h2>L</h2>
+<dl>
+<div class="glossary-term">
+<dt>Leverage</dt>
+<dd>Borrowed capital that lets you control a larger position than your account balance alone would allow, expressed as a ratio like 1:100. See <a href="/academy/forex-basics/pips-lots-leverage-explained/">What Is a Pip, Lot, and Spread in Forex?</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Liquidity</dt>
+<dd>The ease with which an asset can be bought or sold without significantly affecting its price.</dd>
+</div>
+<div class="glossary-term">
+<dt>Long</dt>
+<dd>A position that profits if price rises — buying with the intention of selling later at a higher price.</dd>
+</div>
+<div class="glossary-term">
+<dt>Lot</dt>
+<dd>A standardized unit of trade size in forex. A standard lot is 100,000 units of the base currency. See <a href="/academy/forex-basics/pips-lots-leverage-explained/">What Is a Pip, Lot, and Spread in Forex?</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-m">
+<h2>M</h2>
+<dl>
+<div class="glossary-term">
+<dt>MACD (Moving Average Convergence Divergence)</dt>
+<dd>An indicator showing the relationship between two exponential moving averages, used to read trend and momentum together. See <a href="/academy/technical-analysis/macd-indicator/">MACD Indicator Explained with Examples</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Margin</dt>
+<dd>The portion of your own funds set aside as collateral to open and hold a leveraged position. See <a href="/academy/forex-basics/margin-calls-and-stop-outs/">Margin Calls and Stop-Outs</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Margin Call</dt>
+<dd>A broker warning triggered when margin level falls to a defined threshold, prompting the trader to add funds or reduce exposure. See <a href="/academy/forex-basics/margin-calls-and-stop-outs/">Margin Calls and Stop-Outs</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Market Maker</dt>
+<dd>A broker execution model where the broker quotes its own prices and acts as the counterparty to client trades. See <a href="/academy/broker-platform-guides/ecn-vs-market-maker-brokers/">ECN vs Market Maker Brokers Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Minor Pair (Cross)</dt>
+<dd>A currency pair combining two major currencies without the US Dollar, such as EUR/GBP. See <a href="/academy/forex-basics/currency-pairs-explained/">Major, Minor, and Exotic Currency Pairs Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Momentum</dt>
+<dd>The speed and strength of a price move, commonly measured with indicators like RSI or MACD.</dd>
+</div>
+<div class="glossary-term">
+<dt>Moving Average</dt>
+<dd>An indicator that smooths price into a single line by averaging closing prices over a set period, used to read trend direction. See <a href="/academy/technical-analysis/moving-averages-sma-vs-ema/">Moving Averages: SMA vs EMA Explained</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-n">
+<h2>N</h2>
+<dl>
+<div class="glossary-term">
+<dt>NFP (Non-Farm Payrolls)</dt>
+<dd>A monthly US employment report measuring net jobs added or lost, among the most volatile scheduled releases in forex. See <a href="/academy/fundamental-analysis/what-is-nfp/">What is NFP (Non-Farm Payrolls) and Why It Moves Markets</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-o">
+<h2>O</h2>
+<dl>
+<div class="glossary-term">
+<dt>Overbought / Oversold</dt>
+<dd>Conditions where an indicator like RSI suggests price has risen or fallen quickly enough to be due for a pause — not an automatic reversal signal. See <a href="/academy/technical-analysis/rsi-overbought-oversold/">How to Use RSI for Overbought/Oversold Signals</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Overtrading</dt>
+<dd>Placing more trades than a strategy actually justifies, often driven by boredom, FOMO, or revenge trading. See <a href="/academy/risk-management/overtrading/">Overtrading: Causes and How to Avoid It</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-p">
+<h2>P</h2>
+<dl>
+<div class="glossary-term">
+<dt>PCE (Personal Consumption Expenditures)</dt>
+<dd>An inflation gauge published by the Bureau of Economic Analysis; the Federal Reserve's official 2% inflation target is set in core PCE terms. See <a href="/academy/fundamental-analysis/inflation-cpi-and-trading/">Inflation, CPI, and Their Effect on Trading</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Pip</dt>
+<dd>The smallest standard unit of price movement in a currency pair, usually the fourth decimal place. See <a href="/academy/forex-basics/pips-lots-leverage-explained/">What Is a Pip, Lot, and Spread in Forex?</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Pipette</dt>
+<dd>One-tenth of a pip, shown as an extra decimal place on many modern trading platforms. See <a href="/academy/forex-basics/pips-lots-leverage-explained/">What Is a Pip, Lot, and Spread in Forex?</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Position Sizing</dt>
+<dd>Calculating how large a trade should be based on account balance, risk percentage, and stop-loss distance. See <a href="/academy/risk-management/position-sizing/">Position Sizing: How Much Should You Risk Per Trade?</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>PPI (Producer Price Index)</dt>
+<dd>A measure of price changes at the wholesale and production level, sometimes used as an early signal for future consumer inflation. See <a href="/academy/fundamental-analysis/inflation-cpi-and-trading/">Inflation, CPI, and Their Effect on Trading</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Profit Factor</dt>
+<dd>Gross profit divided by gross loss for a trading strategy; a key metric in evaluating backtest results. See <a href="/academy/strategy-guides/backtesting-your-strategy/">Backtesting Your Strategy: A Step-by-Step Guide</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-q">
+<h2>Q</h2>
+<dl>
+<div class="glossary-term">
+<dt>Quote Currency</dt>
+<dd>The second currency listed in a pair. In EUR/USD, USD is the quote currency. See <a href="/academy/forex-basics/how-to-read-a-forex-quote/">How to Read a Forex Quote</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-r">
+<h2>R</h2>
+<dl>
+<div class="glossary-term">
+<dt>Real Yield</dt>
+<dd>An interest rate adjusted for inflation, widely considered one of the most consistent drivers of gold prices. See <a href="/academy/gold-commodities/why-gold-is-a-safe-haven-asset/">Why Gold (XAUUSD) Is a Safe-Haven Asset</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Resistance</dt>
+<dd>A price zone where selling pressure has historically stopped price from rising further. See <a href="/academy/technical-analysis/support-and-resistance/">Support and Resistance: The Foundation of Price Action</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Retracement</dt>
+<dd>A temporary price pullback against the prevailing trend, often measured using Fibonacci levels. See <a href="/academy/technical-analysis/fibonacci-retracement/">Fibonacci Retracement in Forex Trading</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Risk-Reward Ratio</dt>
+<dd>A comparison of potential loss versus potential gain on a trade, expressed as a ratio like 1:2. See <a href="/academy/risk-management/risk-reward-ratio/">Risk-Reward Ratio Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>RSI (Relative Strength Index)</dt>
+<dd>A momentum oscillator measuring the speed and magnitude of recent price movements on a 0-100 scale. See <a href="/academy/technical-analysis/rsi-overbought-oversold/">How to Use RSI for Overbought/Oversold Signals</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-s">
+<h2>S</h2>
+<dl>
+<div class="glossary-term">
+<dt>Safe Haven</dt>
+<dd>An asset investors turn to for capital preservation during uncertainty, such as gold. See <a href="/academy/gold-commodities/why-gold-is-a-safe-haven-asset/">Why Gold (XAUUSD) Is a Safe-Haven Asset</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Scalping</dt>
+<dd>A trading style involving very short holding periods, often seconds to minutes, aiming to capture small price moves. See <a href="/academy/strategy-guides/scalping-vs-day-trading-vs-swing-trading/">Scalping vs Day Trading vs Swing Trading</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Short</dt>
+<dd>A position that profits if price falls — selling with the intention of buying back later at a lower price.</dd>
+</div>
+<div class="glossary-term">
+<dt>Slippage</dt>
+<dd>The difference between the expected price of a trade and the actual price it fills at, common during fast-moving or thin-liquidity conditions. See <a href="/academy/gold-commodities/how-to-trade-gold-during-news/">How to Trade Gold During High-Impact News</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>SMA (Simple Moving Average)</dt>
+<dd>A moving average giving equal weight to every price in the period, producing a smoother, slower-reacting line than an EMA. See <a href="/academy/technical-analysis/moving-averages-sma-vs-ema/">Moving Averages: SMA vs EMA Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Spread</dt>
+<dd>The difference between the bid and ask price, functioning as the built-in cost of a trade. See <a href="/academy/forex-basics/pips-lots-leverage-explained/">What Is a Pip, Lot, and Spread in Forex?</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>STP (Straight-Through Processing)</dt>
+<dd>A broker execution model passing orders directly to liquidity providers with minimal intervention. See <a href="/academy/broker-platform-guides/ecn-vs-market-maker-brokers/">ECN vs Market Maker Brokers Explained</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Stop-Loss</dt>
+<dd>A predetermined price at which a losing trade is automatically closed to cap further loss. See <a href="/academy/risk-management/stop-loss-take-profit/">Stop-Loss and Take-Profit Strategies</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Stop-Out</dt>
+<dd>The automatic, forced closure of open positions once margin level falls to a broker-defined threshold. See <a href="/academy/forex-basics/margin-calls-and-stop-outs/">Margin Calls and Stop-Outs</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Support</dt>
+<dd>A price zone where buying interest has historically stopped price from falling further. See <a href="/academy/technical-analysis/support-and-resistance/">Support and Resistance: The Foundation of Price Action</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Swap</dt>
+<dd>The overnight interest charge or credit applied to a forex position held past the daily rollover, based on the interest rate differential. See <a href="/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/">How Interest Rates Affect Currency Prices</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Swing Trading</dt>
+<dd>A trading style holding positions for days to weeks, aiming to capture medium-term price swings. See <a href="/academy/strategy-guides/scalping-vs-day-trading-vs-swing-trading/">Scalping vs Day Trading vs Swing Trading</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-t">
+<h2>T</h2>
+<dl>
+<div class="glossary-term">
+<dt>Take-Profit</dt>
+<dd>A predetermined price at which a winning trade is automatically closed to lock in gains. See <a href="/academy/risk-management/stop-loss-take-profit/">Stop-Loss and Take-Profit Strategies</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Technical Analysis</dt>
+<dd>Evaluating price charts and indicators to inform trading decisions, as opposed to fundamental economic analysis.</dd>
+</div>
+<div class="glossary-term">
+<dt>Trading Plan</dt>
+<dd>A written document combining a trading strategy with risk rules, position sizing, and a review routine. See <a href="/academy/strategy-guides/how-to-build-a-trading-plan/">How to Build a Trading Plan</a>.</dd>
+</div>
+<div class="glossary-term">
+<dt>Trend</dt>
+<dd>The general direction price is moving over a given period — up, down, or sideways.</dd>
+</div>
+<div class="glossary-term">
+<dt>Trendline</dt>
+<dd>A straight line connecting a series of swing highs or lows, used to visualize and confirm trend direction. See <a href="/academy/technical-analysis/trendlines-and-channels/">Trendlines and Channels: How to Draw Them Correctly</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-v">
+<h2>V</h2>
+<dl>
+<div class="glossary-term">
+<dt>Volatility</dt>
+<dd>The degree of price variation over a given period; higher volatility means larger, faster price swings.</dd>
+</div>
+<div class="glossary-term">
+<dt>Volume</dt>
+<dd>The total amount of an asset traded over a given period, often used to confirm the strength of a price move.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-w">
+<h2>W</h2>
+<dl>
+<div class="glossary-term">
+<dt>Whipsaw</dt>
+<dd>A sharp price reversal shortly after an initial move, often triggering stop-losses on both sides before the real direction establishes.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-x">
+<h2>X</h2>
+<dl>
+<div class="glossary-term">
+<dt>XAUUSD</dt>
+<dd>The ticker symbol for gold priced in US dollars — "XAU" is the ISO code for one troy ounce of gold. See <a href="/academy/gold-commodities/what-moves-gold-prices/">What Moves Gold Prices? Key Drivers Explained</a>.</dd>
+</div>
+</dl>
+</section>
+<section class="glossary-letter-group" id="letter-y">
+<h2>Y</h2>
+<dl>
+<div class="glossary-term">
+<dt>Yield</dt>
+<dd>The income return on an investment, such as the interest paid on a government bond, expressed as a percentage.</dd>
+</div>
+</dl>
+</section>
+</main>
 
 <footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+
+
+<div class="auth-slot" id="authSlot">
+  <button class="auth-btn" id="loginBtn">Login</button>
+  <button class="auth-btn primary" id="signupBtn">Sign Up</button>
+</div>
+
+<div class="auth-modal-overlay" id="authModalOverlay">
+  <div class="auth-modal">
+    <button class="auth-modal-close" id="authModalClose">✕</button>
+    <h2>Welcome to DeskTerminal</h2>
+    <p>Sign in to save your watchlist, favorites, and personal settings.</p>
+    <button class="auth-provider-btn" id="googleLoginBtn">
+      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <button class="auth-provider-btn" id="facebookLoginBtn">
+      <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      Continue with Facebook
+    </button>
+    <div class="auth-modal-note">By continuing you agree this is a demo auth flow — see About for details.</div>
+  </div>
+</div>
+
+<div class="profile-dropdown" id="profileDropdown">
+  <div class="profile-header" id="profileHeaderContent"></div>
+  <div class="profile-fields" id="profileFields"></div>
+  <div class="profile-actions">
+    <button class="profile-signout" id="signOutBtn">Sign out</button>
+  </div>
+</div>
+
 
 
 <div class="deskai-toggle-wrap">
@@ -602,9 +1005,9 @@ fetch('../posts.json')
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about trading glossary or trading in general.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me what any trading term means.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is Trading Glossary?">Tell me about this topic</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is a pip?">What is a pip?</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
@@ -633,7 +1036,7 @@ fetch('../posts.json')
 </script>
 
 
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
@@ -853,8 +1256,8 @@ async function initAuth(){
 initAuth();
 </script>
 
-
 <script>
+
 /* ---------------- DeskAi floating chatbox (v2) ---------------- */
 (function(){
   const SECTION = "general";
@@ -957,8 +1360,8 @@ initAuth();
     btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
   });
 })();
-</script>
 
+</script>
 
 </body>
 </html>

@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold & Commodities | DeskTerminal Academy</title>
-<meta name="description" content="XAUUSD trading, safe-haven assets, and commodity correlations.">
+<title>ECN vs Market Maker Brokers Explained | DeskTerminal Academy</title>
+<meta name="description" content="ECN vs market maker brokers compared - fixed vs variable spreads, requotes vs slippage, and which execution model actually fits your trading style.">
+<meta name="keywords" content="ecn vs market maker brokers explained">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://deskterminal.com/academy/gold-commodities/">
+<link rel="canonical" href="https://deskterminal.com/academy/broker-platform-guides/ecn-vs-market-maker-brokers/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECN vs Market Maker Brokers Explained">
+<meta property="og:description" content="ECN vs market maker brokers compared - fixed vs variable spreads, requotes vs slippage, and which execution model actually fits your trading style.">
+<meta property="og:url" content="https://deskterminal.com/academy/broker-platform-guides/ecn-vs-market-maker-brokers/">
+<meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Gold & Commodities",
-  "description": "XAUUSD trading, safe-haven assets, and commodity correlations.",
-  "url": "https://deskterminal.com/academy/gold-commodities/",
-  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "Academy", "item": "https://deskterminal.com/academy/index.html" },
-      { "@type": "ListItem", "position": 3, "name": "Gold & Commodities", "item": "https://deskterminal.com/academy/gold-commodities/" }
-    ]
-  }
+  "@type": "Article",
+  "headline": "ECN vs Market Maker Brokers Explained",
+  "description": "ECN vs market maker brokers compared - fixed vs variable spreads, requotes vs slippage, and which execution model actually fits your trading style.",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@type": "Organization", "name": "DeskTerminal" },
+  "publisher": { "@type": "Organization", "name": "DeskTerminal" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://deskterminal.com/academy/broker-platform-guides/ecn-vs-market-maker-brokers/" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,59 +45,47 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  article{ max-width: 720px; margin: 0 auto; padding: 2.5rem 6vw 4rem; }
   .breadcrumb-nav{
-    padding: 1rem 6vw 0; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
   .breadcrumb-nav .sep{ margin:0 .4rem; }
   .breadcrumb-nav .current{ color:var(--gold); }
 
-  .pagehead{ padding: 1.2rem 6vw 1.6rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
-
-  .posts{
-    padding: 0 6vw 3rem;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 1.2rem;
-  }
-  .post-card{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1.5rem;
-    text-decoration:none;
-    color:var(--ink);
-    display:flex;
-    flex-direction:column;
-    transition: border-color .15s, transform .15s;
-  }
-  .post-card:hover{ border-color: var(--gold); transform: translateY(-2px); }
   .post-tag{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.08em;
-    text-transform:uppercase; color: var(--gold); margin-bottom:.7rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
   }
-  .post-title{ font-size:1.1rem; font-weight:600; margin-bottom:.6rem; line-height:1.3; }
-  .post-excerpt{ font-size:.86rem; color:var(--dim); line-height:1.5; flex:1; }
-  .post-date{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim);
-    margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line-soft);
-  }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-bottom:2.2rem; }
+  #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
+  #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
+  #postBody ul{ margin: 0 0 1rem 1.2rem; }
+  #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
+  #postBody strong{ color:var(--ink); }
+  #postBody a{ color:var(--gold); }
 
-  .empty-state{
-    margin: 0 6vw 3rem; padding: 3rem 2rem; text-align:center;
-    background:var(--panel); border:1px dashed var(--line-soft); border-radius:10px;
+  .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
+  .related-tools-label{
+    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--dim); margin-bottom:.8rem;
   }
-  .empty-state-icon{ font-size:2rem; margin-bottom:1rem; }
-  .empty-state p{ font-family:'JetBrains Mono', monospace; font-size:.85rem; color:var(--dim); line-height:1.7; }
+  .related-tools-links{ display:flex; gap:.7rem; flex-wrap:wrap; }
+  .related-tool-link{
+    padding:.55rem .9rem; border:1px solid var(--line-soft); border-radius:20px;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; text-decoration:none; color:var(--ink);
+  }
+  .related-tool-link:hover{ border-color:var(--gold); color:var(--gold); }
 
-  .back-to-academy{
-    display:inline-block; margin: 0 6vw 1.2rem;
+  .article-nav-links{ display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .article-nav-link{
     font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); text-decoration:none;
+    max-width:48%;
   }
-  .back-to-academy:hover{ color:var(--gold); }
+  .article-nav-link:hover{ color:var(--gold); }
+  .article-nav-link .dir{ display:block; font-size:.62rem; color:var(--dim); margin-bottom:.2rem; }
 
   footer{
     text-align:center; padding: 1.8rem; font-family:'JetBrains Mono', monospace;
@@ -495,6 +484,46 @@
   }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between an ECN broker and a market maker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An ECN broker routes orders to a network of external liquidity providers and\n      typically charges a separate commission on top of a raw, variable spread. A market\n      maker quotes its own prices, acts as the counterparty to your trade, and typically\n      earns through a wider spread rather than a visible commission."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a requote and slippage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A requote happens when a market maker's quoted price changes before your order\n      executes, and the broker asks you to accept a new price rather than filling\n      automatically. Slippage happens when an ECN order executes at the next available\n      market price rather than the exact price requested, without asking for confirmation\n      first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a market maker broker bad for beginners?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Market makers often offer simpler, fixed spreads and instant\n      execution, which can remove a variable for beginners still learning to read price.\n      The genuine concern is the conflict of interest inherent in the model, since the\n      broker profits when a client loses \u2014 worth weighing against the simplicity it\n      offers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which broker type is better for scalping or news trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ECN brokers are generally recommended for scalping, algorithmic trading, and trading\n      around major news events, since market makers have been documented widening spreads\n      aggressively during high-impact releases, which can significantly affect strategies\n      that depend on tight, predictable execution."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -506,11 +535,11 @@
     <div class="wordmark">Desk<span>line</span></div>
   </div>
   <div class="navlinks">
-    <a href="../../index.html">Market</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -521,58 +550,162 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../../index.html">Market</a>
-    <a href="../../calculator.html">Calculator</a>
-    <a href="../../news.html">News</a>
-    <a href="../../calendar.html">Economic Calendar</a>
-    <a href="../../opinion/index.html">Opinion</a>
-    <a href="../../academy/index.html">Academy</a>
-    <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../../index.html">Market</a>
+    <a href="../../../calculator.html">Calculator</a>
+    <a href="../../../news.html">News</a>
+    <a href="../../../calendar.html">Economic Calendar</a>
+    <a href="../../../opinion/index.html">Opinion</a>
+    <a href="../../../academy/index.html">Academy</a>
+    <a href="../../../brokers/index.html">Brokers</a>
   </div>
   <div class="nav-drawer-note">DESKLINE · FULL SITE MENU</div>
 </div>
 
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <a href="../../index.html">Home</a><span class="sep">/</span>
-  <a href="../../academy/index.html">Academy</a><span class="sep">/</span>
-  <span class="current">Gold & Commodities</span>
-</nav>
-
-<div class="pagehead">
-  <h1>🪙 Gold & Commodities</h1>
-  <p>XAUUSD TRADING, SAFE-HAVEN ASSETS, AND COMMODITY CORRELATIONS.</p>
-</div>
-
-<a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
-
-<div class="posts">
-      <a class="post-card" href="what-moves-gold-prices/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">What Moves Gold Prices? Key Drivers Explained</div>
-        <div class="post-excerpt">A complete breakdown of what actually moves gold (XAUUSD) prices - real yields, the dollar, inflation, central bank buying, ETF flows, physical demand, and mining supply.</div>
-        <div class="post-date">2026-08-08 · 4 min read</div>
-      </a>
-      <a class="post-card" href="why-gold-is-a-safe-haven-asset/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">Why Gold (XAUUSD) Is a Safe-Haven Asset</div>
-        <div class="post-excerpt">Learn why gold is considered a safe-haven asset - and why fear alone doesn't guarantee a rally. The real drivers: real yields, the dollar, and central bank demand.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="gold-vs-usd-correlation/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">Gold vs USD: Understanding the Inverse Correlation</div>
-        <div class="post-excerpt">Learn how the gold-DXY inverse correlation actually works, how strong it really is, and how to use the US Dollar Index as a confirmation filter when trading XAUUSD.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
-      <a class="post-card" href="how-to-trade-gold-during-news/index.html">
-        <div class="post-tag">Gold & Commodities</div>
-        <div class="post-title">How to Trade Gold During High-Impact News</div>
-        <div class="post-excerpt">Learn how to trade XAUUSD around high-impact news - realistic spread and slippage numbers, the no-fly zone rule, and breakout vs fade strategies for gold volatility.</div>
-        <div class="post-date">2026-08-08 · 5 min read</div>
-      </a>
+<article>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">/</span>
+    <a href="../../../academy/index.html">Academy</a><span class="sep">/</span>
+    <a href="../../../academy/broker-platform-guides/index.html">Broker & Platform Guides</a><span class="sep">/</span>
+    <span class="current">ECN vs Market Maker Brokers Explained</span>
+  </nav>
+  <div class="post-tag">Broker & Platform Guides</div>
+  <h1>ECN vs Market Maker Brokers Explained</h1>
+  <div class="post-date mono">August 8, 2026 · Broker & Platform Guides · 5 min read</div>
+  <div id="postBody">
+<h2>Quick Recap: How Each Model Works</h2>
+    <p>
+      An <strong>ECN (Electronic Communication Network)</strong> or STP broker operates as
+      a No Dealing Desk (NDD) model, routing your orders to a network of external
+      liquidity providers — banks, hedge funds, and other institutional participants —
+      without taking the other side of your trade itself.
+    </p>
+    <p>
+      A <strong>market maker</strong> operates as a Dealing Desk (DD) broker, quoting its
+      own prices and acting as the counterparty to your trade directly — when you buy, the
+      broker sells to you; when you sell, the broker buys from you.
+    </p>
+    <p class="internal-link-callout">
+      This builds on the broader market-structure explanation in
+      <a href="/academy/forex-basics/how-does-the-forex-market-work">How Does the Forex Market Work?</a>
+</p>
+    <h2>Side-by-Side Comparison</h2>
+    <ul>
+<li><strong>Spread type:</strong> ECN — variable, fluctuates with real-time liquidity. Market maker — often fixed, offering cost predictability.</li>
+<li><strong>Cost structure:</strong> ECN — tighter raw spread plus a separate commission. Market maker — wider spread, typically no visible commission.</li>
+<li><strong>Execution:</strong> ECN — fills at the next available market price (slippage possible). Market maker — may requote if the price moves before execution.</li>
+<li><strong>Transparency:</strong> ECN — aggregated pricing from multiple sources, often with depth-of-market data. Market maker — pricing generated internally, less visible.</li>
+<li><strong>Behavior during news:</strong> ECN — spreads widen with real market liquidity conditions. Market maker — spreads can widen sharply, and some have been documented doing so aggressively during high-impact releases.</li>
+</ul>
+    <h2>Requotes vs Slippage: The Practical Difference</h2>
+    <p>
+      This distinction trips up a lot of traders moving between broker types. A
+      <strong>requote</strong> happens when a market maker's quoted price shifts before
+      your order executes — instead of filling automatically, the platform asks you to
+      accept the new price or cancel. A requote can delay your entry at exactly the moment
+      you don't want a delay.
+    </p>
+    <p>
+<strong>Slippage</strong>, more common with ECN execution, means your order fills at
+      the next available price without asking first — potentially better or worse than
+      what you clicked on, but it happens automatically rather than pausing for your
+      confirmation.
+    </p>
+    <h2>The Genuine Conflict of Interest, Fairly Stated</h2>
+    <p>
+      The market maker model does carry a real, structural conflict of interest: if a
+      client loses, the broker can retain the other side of that trade as profit. This is
+      a legitimate concern worth taking seriously, and it's exactly why regulation matters
+      so much when evaluating any market maker broker specifically.
+    </p>
+    <p>
+      That said, it's worth stating fairly: not every market maker actively trades against
+      its clients as a deliberate strategy, and a properly regulated market maker operates
+      under real oversight constraining that behavior. The concern is structural, not
+      automatically a sign of bad faith from every broker using this model.
+    </p>
+    <p class="internal-link-callout">
+      This is exactly why
+      <a href="/academy/broker-platform-guides/how-to-choose-a-forex-broker">How to Choose a Forex Broker</a>
+      puts regulation verification as the very first step, regardless of execution model.
+    </p>
+    <h2>When a Market Maker Actually Makes Sense</h2>
+    <ul>
+<li><strong>Beginners</strong> still learning to read price, who benefit from removing spread unpredictability as one less variable while focused on strategy.</li>
+<li><strong>Small accounts</strong> where a commission per lot would represent a larger proportional cost.</li>
+<li><strong>Thin-liquidity conditions</strong> — exotic pairs or off-hours trading, where ECN liquidity can dry up and produce wide spreads or partial fills; a market maker quotes a price regardless.</li>
+</ul>
+    <h2>When ECN Is the Better Fit</h2>
+    <ul>
+<li><strong>Scalpers</strong> who depend on tight, transparent, real-time pricing.</li>
+<li><strong>Algorithmic or systematic traders</strong> whose strategies assume genuine market pricing rather than a broker's internal quote.</li>
+<li><strong>News traders</strong> around major releases like FOMC or CPI, where market maker spreads have been documented widening more aggressively than genuine market conditions alone would justify.</li>
+</ul>
+    <p class="internal-link-callout">
+      See <a href="/academy/gold-commodities/how-to-trade-gold-during-news">How to Trade Gold During High-Impact News</a>
+      for exactly the kind of conditions where execution model matters most.
+    </p>
+    <h2>The Gap Between "ECN" as Marketing and as Reality</h2>
+    <p>
+      Worth knowing before choosing based on the label alone: "ECN" functions as a
+      marketing term almost as much as a strict technical one, and not every broker
+      advertising "ECN execution" runs a genuine, full ECN model behind the scenes. The
+      execution model a broker advertises and the model it actually operates aren't always
+      identical — another reason the broader vetting process, not just the ECN label
+      alone, matters when selecting a broker.
+    </p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>What is the difference between an ECN broker and a market maker?</h3>
+    <p>
+      An ECN broker routes orders to a network of external liquidity providers and
+      typically charges a separate commission on top of a raw, variable spread. A market
+      maker quotes its own prices, acts as the counterparty to your trade, and typically
+      earns through a wider spread rather than a visible commission.
+    </p>
+    <h3>What is the difference between a requote and slippage?</h3>
+    <p>
+      A requote happens when a market maker's quoted price changes before your order
+      executes, and the broker asks you to accept a new price rather than filling
+      automatically. Slippage happens when an ECN order executes at the next available
+      market price rather than the exact price requested, without asking for confirmation
+      first.
+    </p>
+    <h3>Is a market maker broker bad for beginners?</h3>
+    <p>
+      Not necessarily. Market makers often offer simpler, fixed spreads and instant
+      execution, which can remove a variable for beginners still learning to read price.
+      The genuine concern is the conflict of interest inherent in the model, since the
+      broker profits when a client loses — worth weighing against the simplicity it
+      offers.
+    </p>
+    <h3>Which broker type is better for scalping or news trading?</h3>
+    <p>
+      ECN brokers are generally recommended for scalping, algorithmic trading, and trading
+      around major news events, since market makers have been documented widening spreads
+      aggressively during high-impact releases, which can significantly affect strategies
+      that depend on tight, predictable execution.
+    </p>
+  </div>
+  <div class="related-tools">
+    <div class="related-tools-label">Useful tools</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../../../index.html">Live Market Prices →</a>
+      <a class="related-tool-link" href="../../../calculator.html">Trade Calculator →</a>
+      <a class="related-tool-link" href="../../../calendar.html">Economic Calendar →</a>
     </div>
+  
+    <div class="related-tools-label" style="margin-top:2rem;">Related Articles</div>
+    <div class="related-tools-links">
+      <a class="related-tool-link" href="../how-to-choose-a-forex-broker/index.html">How to Choose a Forex Broker →</a>
+      <a class="related-tool-link" href="../understanding-broker-regulation/index.html">Understanding Broker Regulation (FCA, ASIC, CySEC) →</a>
+    </div>
+  </div>
+  <div class="article-nav-links">
+    <a class="article-nav-link" href="../understanding-broker-regulation/index.html"><span class="dir">&larr; Previous</span>Understanding Broker Regulation (FCA, ASIC, CySEC)</a>
+    
+  </div>
+</article>
 
-<footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -600,9 +733,9 @@
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about gold trading.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about ECN vs Market Maker Brokers Explained or choosing a broker.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What moves the price of gold?">Where do I start?</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain: ECN vs Market Maker Brokers Explained">Explain this topic</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">

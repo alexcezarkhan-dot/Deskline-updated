@@ -510,7 +510,7 @@
     <a href="../../calendar.html">Economic Calendar</a>
     <a href="../../news.html">News</a>
     <a href="../../calculator.html">Calculator</a>
-  <a href="../../brokers/index.html">Brokers</a>
+    <a href="../../brokers/index.html">Brokers</a>
   </div>
 </nav>
 
@@ -545,34 +545,32 @@
 
 <a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
 
-<div class="posts" id="postsGrid" style="display:none;"></div>
-<div class="empty-state" id="emptyState">
-  <div class="empty-state-icon">🚧</div>
-  <p>Articles for this category are coming soon — check back shortly, or explore <a href="../forex-basics/index.html" style="color:var(--gold);">Forex Basics</a>, which is fully live now.</p>
-</div>
-
-<script>
-fetch('../posts.json')
-  .then(r => r.json())
-  .then(posts => {
-    const filtered = posts.filter(p => p.category === 'strategy-guides');
-    if(filtered.length){
-      filtered.sort((a,b) => (b.date||'').localeCompare(a.date||''));
-      const grid = document.getElementById('postsGrid');
-      grid.innerHTML = filtered.map(p => `
-        <a class="post-card" href="../post.html?slug=${p.slug}">
-          <div class="post-tag">${p.tag || 'Guide'}</div>
-          <div class="post-title">${p.title}</div>
-          <div class="post-excerpt">${p.excerpt || ''}</div>
-          <div class="post-date">${p.date || ''}</div>
-        </a>
-      `).join('');
-      grid.style.display = 'grid';
-      document.getElementById('emptyState').style.display = 'none';
-    }
-  })
-  .catch(() => { /* keep the coming-soon state on fetch failure */ });
-</script>
+<div class="posts">
+      <a class="post-card" href="scalping-vs-day-trading-vs-swing-trading/index.html">
+        <div class="post-tag">Strategy & Practical Guides</div>
+        <div class="post-title">Scalping vs Day Trading vs Swing Trading</div>
+        <div class="post-excerpt">Compare scalping, day trading, and swing trading by timeframe, holding period, screen time, and tools - so you can pick the style that actually fits your schedule and personality.</div>
+        <div class="post-date">2026-08-08 · 4 min read</div>
+      </a>
+      <a class="post-card" href="best-indicators-for-beginners/index.html">
+        <div class="post-tag">Strategy & Practical Guides</div>
+        <div class="post-title">Best Indicators for Beginners</div>
+        <div class="post-excerpt">Don't stack ten indicators on one chart. Learn the one-per-category framework - trend, momentum, volatility - and which specific indicators to actually start with.</div>
+        <div class="post-date">2026-08-08 · 4 min read</div>
+      </a>
+      <a class="post-card" href="how-to-build-a-trading-plan/index.html">
+        <div class="post-tag">Strategy & Practical Guides</div>
+        <div class="post-title">How to Build a Trading Plan</div>
+        <div class="post-excerpt">Learn how to build a real forex trading plan - the difference between a strategy, a plan, and a journal, and the exact components every plan needs to actually be usable.</div>
+        <div class="post-date">2026-08-08 · 5 min read</div>
+      </a>
+      <a class="post-card" href="backtesting-your-strategy/index.html">
+        <div class="post-tag">Strategy & Practical Guides</div>
+        <div class="post-title">Backtesting Your Strategy: A Step-by-Step Guide</div>
+        <div class="post-excerpt">Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.</div>
+        <div class="post-date">2026-08-08 · 5 min read</div>
+      </a>
+    </div>
 
 <footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
 
@@ -602,9 +600,9 @@ fetch('../posts.json')
     <button class="deskai-close" id="deskaiClose">✕</button>
   </div>
   <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about strategy & practical guides or trading in general.</div>
+    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — ask me anything about trading strategy.</div>
   </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="What is Strategy & Practical Guides?">Tell me about this topic</button></div>
+  <div class="deskai-quick" id="deskaiQuick"><button data-q="Where should I start with trading strategy?">Where do I start?</button></div>
   <div class="deskai-input-row">
     <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
     <button class="deskai-send" id="deskaiSend" aria-label="Send">
@@ -633,7 +631,7 @@ fetch('../posts.json')
 </script>
 
 
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
 // ⚠️ Fill these in with your own Supabase project's values (Project Settings → API).
@@ -853,8 +851,8 @@ async function initAuth(){
 initAuth();
 </script>
 
-
 <script>
+
 /* ---------------- DeskAi floating chatbox (v2) ---------------- */
 (function(){
   const SECTION = "general";
@@ -957,8 +955,8 @@ initAuth();
     btn.addEventListener('click', () => sendToDeskAi(btn.dataset.q));
   });
 })();
-</script>
 
+</script>
 
 </body>
 </html>
