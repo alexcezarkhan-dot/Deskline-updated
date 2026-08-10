@@ -545,7 +545,7 @@
 
 <a class="back-to-academy" href="../../academy/index.html">&larr; All Academy categories</a>
 
-<div class="posts">
+<div class="posts" id="staticPostsGrid">
       <a class="post-card" href="what-is-forex-trading/index.html">
         <div class="post-tag">Forex Basics</div>
         <div class="post-title">What is Forex Trading? A Beginner's Guide</div>
@@ -597,6 +597,29 @@
     </div>
 
 <footer>DeskTerminal · Academy · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></footer>
+<script>
+// Appends any articles added later through /admin (CMS) for this category,
+// alongside the built-in static articles above — keeps the CMS genuinely
+// connected to this page instead of only counting posts elsewhere.
+fetch('../posts.json')
+  .then(r => r.json())
+  .then(posts => {
+    const matches = posts.filter(p => p.category === 'forex-basics');
+    if(!matches.length) return;
+    const grid = document.getElementById('staticPostsGrid');
+    matches.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+    grid.innerHTML += matches.map(p => `
+      <a class="post-card" href="../post.html?slug=${p.slug}">
+        <div class="post-tag">${p.tag || 'Guide'}</div>
+        <div class="post-title">${p.title}</div>
+        <div class="post-excerpt">${p.excerpt || ''}</div>
+        <div class="post-date">${p.date || ''}</div>
+      </a>
+    `).join('');
+  })
+  .catch(() => { /* static articles above still work fine either way */ });
+</script>
+
 
 
 <div class="deskai-toggle-wrap">

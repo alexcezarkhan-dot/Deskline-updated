@@ -626,10 +626,26 @@ fetch('posts.json')
     document.getElementById('emptyMsg').style.display = 'block';
   });
 
+// Real article counts for each category's static pages, since content now
+// lives as built pages, not posts.json entries. Kept additive with posts.json
+// so any future article added through the CMS still counts correctly on top.
+const BASE_ARTICLE_COUNTS = {
+  'forex-basics': 8,
+  'technical-analysis': 8,
+  'risk-management': 6,
+  'fundamental-analysis': 6,
+  'gold-commodities': 4,
+  'strategy-guides': 4,
+  'broker-platform-guides': 3,
+  'glossary': 1,
+};
+
 function renderCategoryLanding(posts){
   const grid = document.getElementById('categoryGrid');
   grid.innerHTML = ACADEMY_CATEGORIES.map(cat => {
-    const count = posts.filter(p => p.category === cat.slug).length;
+    const base = BASE_ARTICLE_COUNTS[cat.slug] || 0;
+    const cmsCount = posts.filter(p => p.category === cat.slug).length;
+    const count = base + cmsCount;
     return `
       <a class="category-card" href="${cat.slug}/index.html">
         <div class="category-icon">${cat.icon}</div>

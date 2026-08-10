@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Backtesting Your Strategy: A Step-by-Step Guide | DeskTerminal Academy</title>
-<meta name="description" content="Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.">
+<meta name="description" content="How to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the metrics that matter.">
 <meta name="keywords" content="backtesting your strategy: a step-by-step guide">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Backtesting Your Strategy: A Step-by-Step Guide">
-<meta property="og:description" content="Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.">
+<meta property="og:description" content="How to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the metrics that matter.">
 <meta property="og:url" content="https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/">
 <meta property="og:site_name" content="DeskTerminal">
 <script type="application/ld+json">
@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Backtesting Your Strategy: A Step-by-Step Guide",
-  "description": "Learn how to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the key metrics (win rate, profit factor, drawdown) that actually matter.",
+  "description": "How to backtest a trading strategy properly - avoiding hindsight bias, out-of-sample testing, and the metrics that matter.",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-08",
   "author": { "@type": "Organization", "name": "DeskTerminal" },
@@ -570,7 +570,7 @@
   </nav>
   <div class="post-tag">Strategy & Practical Guides</div>
   <h1>Backtesting Your Strategy: A Step-by-Step Guide</h1>
-  <div class="post-date mono">August 8, 2026 · Strategy & Practical Guides · 5 min read</div>
+  <div class="post-date mono">August 8, 2026 · Strategy & Practical Guides · 6 min read</div>
   <div id="postBody">
 <h2>What Backtesting Actually Proves (and Doesn't)</h2>
     <p>
@@ -674,6 +674,10 @@
 <li><strong>Insufficient sample size.</strong> Basing conclusions on a few weeks of favorable price action rather than years of data across multiple market conditions.</li>
 <li><strong>Skipping out-of-sample testing entirely.</strong> Testing only on the data used to build the strategy all but guarantees an inflated, unrealistic result.</li>
 </ul>
+    <h2>A Common Backtesting Trap</h2>
+    <p>Say you're backtesting a strategy on EUR/USD daily charts, scrolling forward candle by candle. If you catch yourself glancing slightly ahead — even unconsciously noticing that a big move is coming a few candles later — your entries start getting subtly influenced by information you wouldn't have had in real time. This is hindsight bias, and it's one of the most common ways backtests produce misleadingly good results.</p>
+        <p>A more reliable approach uses dedicated backtesting software that reveals price one candle at a time, with no ability to see ahead, or strictly disciplined manual scrolling with a ruler or cover over the future price action. The extra friction is worth it — a backtest contaminated by hindsight bias isn't just unhelpful, it's actively misleading about how a strategy will perform going forward.
+
     <h2>Frequently Asked Questions</h2>
     <h3>What is hindsight bias in backtesting and how do you avoid it?</h3>
     <p>
