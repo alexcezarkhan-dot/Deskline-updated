@@ -261,7 +261,7 @@
     <a href="../index.html">Market</a>
     <a href="../calendar.html">Economic Calendar</a>
     <a href="../news.html">News</a>
-    <a href="../calculator.html">Forex Tools</a>
+    <a href="../forex-tools.html">Forex Tools</a>
   <a href="../brokers/index.html">Brokers</a>
   </div>
   <div class="auth-slot" id="authSlot">
@@ -278,7 +278,7 @@
   </div>
   <div class="nav-drawer-links">
     <a href="../index.html">Market</a>
-    <a href="../calculator.html">Forex Tools</a>
+    <a href="../forex-tools.html">Forex Tools</a>
     <a href="../news.html">News</a>
     <a href="../calendar.html">Economic Calendar</a>
     <a href="../opinion/index.html">Opinion</a>
@@ -391,7 +391,7 @@ function estimateReadTime(body){
       const allLinks = [
         ...smartLinks,
         { href:'../calendar.html', label:'Economic Calendar' },
-        { href:'../calculator.html', label:'Trade Calculator' },
+        { href:'../forex-tools.html', label:'Trade Calculator' },
       ].filter((link, idx, arr) => arr.findIndex(l => l.href === link.href) === idx); // dedupe
 
       container.innerHTML = `
