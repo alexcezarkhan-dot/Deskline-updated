@@ -1,6 +1,10 @@
-// DeskAi — DeskTerminal's AI assistant, powered by Google Gemini.
-// The Gemini API key lives only in Netlify's environment variables — it is
-// never sent to or visible in the website's front-end code.
+// DeskAi — DeskTerminal's AI assistant. Tries multiple free-tier AI
+// providers in order (see ai-providers.js) so a single provider running out
+// of free quota never takes DeskAi offline. API keys live only in Netlify's
+// environment variables — never sent to or visible in the website's
+// front-end code.
+
+const { callAIWithFallback } = require("./ai-providers");
 
 const SYSTEM_PROMPTS = {
   market: "You are DeskAi, the AI assistant on a trading website called DeskTerminal. Explain price moves, trends, and general market context clearly and concisely for retail traders, using any context data given. Always make clear this is general information, not financial advice, and that exact real-time figures should be checked on the live chart. Keep responses under 150 words, plain language.",
@@ -10,17 +14,21 @@ const SYSTEM_PROMPTS = {
   general: "You are DeskAi, the helpful AI assistant built into DeskTerminal, a financial markets website covering forex, gold, crypto, stock indices, and futures. Answer questions clearly and concisely, in plain language for retail traders of any experience level. Always make clear you provide general information, not financial advice. Keep responses under 150 words.",
 };
 
+// Sections that return structured JSON fields instead of one free-text
+// answer — used by the calendar's per-event detail panel (the "folder icon"
+// breakdown: Measures, Usual Effect, Frequency, Why Traders Care). Written
+// fresh by the AI each time in DeskTerminal's own words — not copied from
+// any other site's editorial content.
+const STRUCTURED_PROMPTS = {
+  "calendar-detail":
+    'You are an economic calendar reference assistant. For the given economic indicator, respond with ONLY valid JSON (no markdown fences), in your own original wording, in exactly this shape: {"measures": "1 sentence on what this indicator actually measures", "usualEffect": "1 short sentence on what a higher-than-forecast actual reading typically means for the currency — be correct about indicators where the relationship is inverted, e.g. a lower unemployment rate is typically positive for a currency, not negative", "frequency": "how often this is typically released, e.g. Released monthly, on the first or second Friday after the month ends", "whyTradersCare": "1-2 sentences on why this specific indicator matters to traders"}. Keep every field concise. Do not fabricate specific dates or numbers you were not given.',
+  "news-impact":
+    'You are a financial news triage assistant. You will be given a numbered list of headlines. For EACH headline, decide if it is HIGH impact (would meaningfully move forex, gold, crypto, or major stock indices — e.g. central bank rate decisions, major geopolitical/war developments, surprise inflation or jobs data, market-wide crashes or shocks) or LOW impact (routine market commentary, minor company news, general analysis). Respond with ONLY valid JSON, no markdown fences, in exactly this shape: {"results": [{"index": 0, "highImpact": true}, {"index": 1, "highImpact": false}]} — one entry per headline, in the same order given, using the 0-based index shown next to each headline.',
+};
+
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
-  }
-
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "DeskAi is not configured yet on this site." }),
-    };
   }
 
   let payload;
@@ -31,7 +39,10 @@ exports.handler = async function (event) {
   }
 
   const { section, question, context, history } = payload;
-  const systemPrompt = SYSTEM_PROMPTS[section] || SYSTEM_PROMPTS.general;
+  const isStructured = Object.prototype.hasOwnProperty.call(STRUCTURED_PROMPTS, section);
+  const systemPrompt = isStructured
+    ? STRUCTURED_PROMPTS[section]
+    : SYSTEM_PROMPTS[section] || SYSTEM_PROMPTS.general;
 
   if (!question || typeof question !== "string" || question.length > 500) {
     return { statusCode: 400, body: JSON.stringify({ error: "Missing or invalid question." }) };
@@ -42,50 +53,34 @@ exports.handler = async function (event) {
     userContent += `\n\n(Context data from the site, may be partial: ${JSON.stringify(context).slice(0, 1000)})`;
   }
 
-  // Build short conversation history (last few turns) for continuity
-  const contents = [];
-  if (Array.isArray(history)) {
-    history.slice(-6).forEach((turn) => {
-      contents.push({
-        role: turn.role === "assistant" ? "model" : "user",
-        parts: [{ text: String(turn.text).slice(0, 500) }],
-      });
-    });
-  }
-  contents.push({ role: "user", parts: [{ text: userContent }] });
-
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": apiKey,
-        },
-        body: JSON.stringify({
-          contents,
-          systemInstruction: { parts: [{ text: systemPrompt }] },
-          generationConfig: { maxOutputTokens: 300, temperature: 0.6 },
-        }),
+    const { text: rawText, provider } = await callAIWithFallback(systemPrompt, userContent, history);
+
+    if (isStructured) {
+      let cleaned = rawText.replace(/^```json\s*/i, "").replace(/```\s*$/, "");
+      try {
+        const parsed = JSON.parse(cleaned);
+        return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(parsed),
+        };
+      } catch (e) {
+        return {
+          statusCode: 502,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ error: "Could not parse structured response." }),
+        };
       }
-    );
-
-    const data = await response.json();
-
-    if (data.error) {
-      return { statusCode: 500, body: JSON.stringify({ error: data.error.message }) };
     }
-
-    const answer =
-      data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "No response generated.";
 
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ answer }),
+      body: JSON.stringify({ answer: rawText || "No response generated.", provider }),
     };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: "DeskAi request failed." }) };
+    return { statusCode: 500, body: JSON.stringify({ error: err.message || "DeskAi request failed." }) };
   }
 };
+

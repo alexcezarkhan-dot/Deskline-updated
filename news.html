@@ -282,6 +282,12 @@
   .news-row .nr-time{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); width:70px; flex-shrink:0; }
   .news-row .nr-source{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--gold); width:120px; flex-shrink:0; }
   .news-row .nr-title{ flex:1; }
+  .nr-impact-badge{
+    display:inline-block; background:#FB6B5B; color:#4A1B0C;
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; font-weight:700;
+    letter-spacing:.04em; padding:.1rem .4rem; border-radius:3px; margin-right:.4rem;
+    vertical-align:middle;
+  }
 
   .news-detail{
     display:none;
@@ -848,7 +854,7 @@
 </section>
 
 <footer>
-  <a href="about.html">About</a> · <a href="contact.html">Contact</a>
+  <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="legal/privacy-policy.html">Privacy</a> · <a href="legal/terms.html">Terms</a>
 </footer>
 
 <script>
@@ -888,14 +894,17 @@ function renderNewsList(){
     return;
   }
 
-  container.innerHTML = filtered.map((item, idx) => `
+  container.innerHTML = filtered.map((item, idx) => {
+    const isHighImpact = classifiedHeadlines.get(item.title) === true;
+    return `
     <div class="news-row" data-idx="${idx}">
       <span class="nr-time">${fmtNewsTime(item.pubDate)}</span>
       <span class="nr-source">${item.source}</span>
-      <span class="nr-title">${item.title}</span>
+      <span class="nr-title">${isHighImpact ? '<span class="nr-impact-badge">HIGH</span> ' : ''}${item.title}</span>
     </div>
     <div class="news-detail" id="newsDetail-${idx}"></div>
-  `).join('');
+  `;
+  }).join('');
 
   container.querySelectorAll('.news-row').forEach(row => {
     row.addEventListener('click', () => toggleNewsDetail(row, filtered, parseInt(row.dataset.idx)));
@@ -939,6 +948,68 @@ function toggleNewsDetail(row, filtered, idx){
 
 let lastNewsFetchTime = null;
 
+// Warning alert sound — generated live via Web Audio API, no audio file needed.
+let audioCtx = null;
+function playWarningTone(){
+  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const tone = (startTime, freq, duration) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(freq, startTime);
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(0.2, startTime + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(startTime);
+    osc.stop(startTime + duration);
+  };
+  tone(audioCtx.currentTime, 660, 0.18);
+  tone(audioCtx.currentTime + 0.2, 880, 0.22);
+}
+
+// Tracks which headlines have already been classified, so re-checking the
+// same 60 headlines every 10-minute refresh doesn't waste AI requests —
+// only genuinely new headlines get sent for classification.
+const classifiedHeadlines = new Map(); // title -> true/false (high impact)
+
+async function classifyNewHeadlines(items){
+  const unclassified = items.filter(item => !classifiedHeadlines.has(item.title));
+  if(!unclassified.length) return;
+
+  // Batch up to 20 at a time per request — keeps each AI call reasonably
+  // sized rather than sending unbounded lists.
+  const batchSize = 20;
+  for(let i = 0; i < unclassified.length; i += batchSize){
+    const batch = unclassified.slice(i, i + batchSize);
+    const question = batch.map((item, idx) => `${idx}. ${item.title}`).join('\n');
+    try{
+      const res = await fetch('/.netlify/functions/deskai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'news-impact', question })
+      });
+      const data = await res.json();
+      if(data.results){
+        let anyNewHighImpact = false;
+        data.results.forEach(r => {
+          const item = batch[r.index];
+          if(!item) return;
+          classifiedHeadlines.set(item.title, !!r.highImpact);
+          if(r.highImpact) anyNewHighImpact = true;
+        });
+        if(anyNewHighImpact){
+          playWarningTone();
+          renderNewsList(); // refresh so HIGH badges actually appear
+        }
+      }
+    } catch(e){
+      // Classification failing shouldn't break the news feed itself —
+      // headlines just won't show a high-impact flag this cycle.
+    }
+  }
+}
+
 async function loadNews(){
   const container = document.getElementById('newsContainer');
   container.innerHTML = '<div class="news-status">Loading live headlines…</div>';
@@ -955,6 +1026,7 @@ async function loadNews(){
     renderTabs();
     renderNewsList();
     refreshHotStoriesWithLatest();
+    classifyNewHeadlines(allNewsItems); // runs in the background, doesn't block rendering
   } catch(e){
     container.innerHTML = '<div class="news-status">Could not load news right now. Please try again shortly.</div>';
   }
