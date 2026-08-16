@@ -3,9 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forex, Gold &amp; Crypto Calculator — Profit/Loss, Pip &amp; Position Size Calculator | DeskTerminal</title>
-<meta name="description" content="Free forex, gold, and crypto trading calculator: calculate profit/loss and pip value for EUR/USD, GBP/USD, USD/JPY, XAUUSD, BTC and 50+ instruments, plus a position size calculator for risk management.">
-<meta name="keywords" content="forex calculator, trading calculator, profit loss calculator, pip calculator, position size calculator, risk management calculator, lot size calculator, EUR/USD pip calculator, GBP/USD calculator, USD/JPY profit calculator, gold calculator, XAUUSD calculator, silver calculator, XAGUSD calculator, bitcoin profit calculator, crypto trading calculator, forex position size calculator, how to calculate forex profit, how to calculate lot size, currency pair calculator, cross currency pair calculator">
+<title>Forex Calculator — Currency Converter, Pip, Profit &amp; Position Size | DeskTerminal</title>
+<meta name="description" content="4 free forex tools in one: live currency converter, pip value calculator, profit/loss calculator, and position size calculator for EUR/USD, GBP/USD, XAUUSD, BTC and 50+ instruments.">
+<meta name="keywords" content="forex calculator, currency converter, trading calculator, profit loss calculator, pip calculator, position size calculator, risk management calculator, lot size calculator, EUR/USD pip calculator, GBP/USD calculator, USD/JPY profit calculator, gold calculator, XAUUSD calculator, silver calculator, XAGUSD calculator, bitcoin profit calculator, crypto trading calculator, forex position size calculator, how to calculate forex profit, how to calculate lot size, currency pair calculator, cross currency pair calculator">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://deskterminal.com/forex-tools.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DeskTerminal">
+<meta property="og:title" content="Forex Calculator — Currency Converter, Pip, Profit &amp; Position Size">
+<meta property="og:description" content="4 free forex tools in one: live currency converter, pip value calculator, profit/loss calculator, and position size calculator for 50+ instruments.">
+<meta property="og:url" content="https://deskterminal.com/forex-tools.html">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Forex Calculator — 4 Free Trading Tools | DeskTerminal">
+<meta name="twitter:description" content="Live currency converter, pip calculator, profit calculator, and position size calculator — all free, live data, 50+ instruments.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Forex Calculator — Currency Converter, Pip, Profit & Position Size",
+  "description": "4 free forex tools in one: live currency converter, pip value calculator, profit/loss calculator, and position size calculator for 50+ instruments.",
+  "url": "https://deskterminal.com/forex-tools.html",
+  "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Forex Tools", "item": "https://deskterminal.com/forex-tools.html" }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this forex calculator free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all 4 tools — currency converter, pip calculator, profit calculator, and position size calculator — are completely free, with no account or sign-up required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is position size calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter your account balance, how much of it you're willing to risk on the trade (as a percentage), and your stop-loss price. The calculator works out the exact lot size that keeps your risk at that amount, based on the real distance between your entry and stop-loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work for gold and crypto, not just forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — all 4 tools support forex pairs, precious metals (gold, silver, platinum, palladium), and major cryptocurrencies, using live prices for each."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the profit calculator for cross pairs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The profit and position size calculators both use live exchange rates to correctly convert results into your deposit currency, including for cross pairs that don't involve USD directly, such as EUR/GBP or AUD/JPY."
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -684,6 +752,7 @@
   <button data-tab="currency" class="active">Currency</button>
   <button data-tab="pip">Pip</button>
   <button data-tab="profit">Profit</button>
+  <button data-tab="size">Position Size</button>
 </div>
 
 <!-- ================= CURRENCY CONVERTER ================= -->
@@ -873,9 +942,68 @@
   </div>
 </div>
 
+<!-- ================= POSITION SIZE CALCULATOR ================= -->
+<div class="layout" id="tab-size" style="display:none;">
+  <div class="panel">
+    <h2>Position Size Calculator</h2>
+    <div class="form-grid">
+      <div class="field wide">
+        <label>Market</label>
+        <div class="toggle-group" id="size-market">
+          <button type="button" class="active" data-val="forex">Forex</button>
+          <button type="button" data-val="metals">Metals</button>
+          <button type="button" data-val="crypto">Crypto</button>
+        </div>
+      </div>
+      <div class="field instrument-search-wrap wide">
+        <label>Currency Pair <span style="color:var(--dim); text-transform:none;">(type to search)</span></label>
+        <input type="text" class="instrument-search" id="size-instrument-search" placeholder="e.g. EUR, Gold, BTC…" autocomplete="off">
+        <div class="instrument-results" id="size-instrument-results"></div>
+      </div>
+      <div class="field">
+        <label>Account Balance</label>
+        <input type="number" step="any" id="size-balance" placeholder="1000" value="1000">
+      </div>
+      <div class="field">
+        <label>Risk per trade (%)</label>
+        <input type="number" step="any" id="size-risk-pct" placeholder="1" value="1">
+      </div>
+      <div class="field">
+        <label>Entry price</label>
+        <input type="number" step="any" id="size-entry" placeholder="Fetching live price…">
+      </div>
+      <div class="field">
+        <label>Stop-loss price</label>
+        <input type="number" step="any" id="size-stop" placeholder="e.g. 4330.00">
+      </div>
+    </div>
+    <div class="hint">Enter your account balance, how much of it you're willing to risk on this one trade (1-2% is a common, conservative range), and where your stop-loss would sit — this tells you the exact position size that keeps your risk at that amount, regardless of how the trade turns out.</div>
+  </div>
+
+  <div class="result-stack">
+    <h2 style="margin-bottom:1rem;">Recommended Position</h2>
+    <div class="result-row">
+      <div class="result-label">Amount at risk</div>
+      <div class="result-value" id="size-riskamt">$0.00</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">Stop distance</div>
+      <div class="result-value" id="size-distance">0.00</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">Recommended lot size</div>
+      <div class="result-value gold" id="size-lots">0.00</div>
+    </div>
+    <div class="result-row">
+      <div class="result-label">Position notional value</div>
+      <div class="result-value" id="size-notional">$0.00</div>
+    </div>
+  </div>
+</div>
+
 <section class="seo-content">
   <h2>Forex, Gold &amp; Crypto Trading Calculators</h2>
-  <p>Three free tools in one: a live currency converter, a pip value calculator, and a profit calculator — covering major forex pairs like EUR/USD, GBP/USD, and USD/JPY, cross pairs, exotic pairs, gold (XAUUSD), silver (XAGUSD), and 15+ cryptocurrencies.</p>
+  <p>4 free tools in one: a live currency converter, a pip value calculator, a profit calculator, and a position size calculator — covering major forex pairs like EUR/USD, GBP/USD, and USD/JPY, cross pairs, exotic pairs, gold (XAUUSD), silver (XAGUSD), and 15+ cryptocurrencies.</p>
 
   <h2>Currency Converter</h2>
   <p>Convert between any two currencies using live exchange rates, refreshed every 5 minutes — useful for checking real-time conversion rates before funding an account or comparing broker quotes.</p>
@@ -885,11 +1013,28 @@
 
   <h2>Profit Calculator</h2>
   <p>Calculate the exact profit or loss on a trade before or after you place it, including your own broker's trading fees if you want to see net profit rather than just the gross figure — handles cross pairs and non-USD quotes automatically using live exchange rates.</p>
+
+  <h2>Position Size Calculator</h2>
+  <p>Work out the exact lot size to trade based on your account balance, risk tolerance, and stop-loss distance — the core risk-management calculation that keeps a single trade from risking more of your account than you intended, regardless of the instrument or account currency.</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Is this forex calculator free to use?</h3>
+  <p>Yes, all 4 tools — currency converter, pip calculator, profit calculator, and position size calculator — are completely free, with no account or sign-up required.</p>
+
+  <h3>How is position size calculated?</h3>
+  <p>Enter your account balance, how much of it you're willing to risk on the trade (as a percentage), and your stop-loss price. The calculator works out the exact lot size that keeps your risk at that amount, based on the real distance between your entry and stop-loss.</p>
+
+  <h3>Does this work for gold and crypto, not just forex?</h3>
+  <p>Yes — all 4 tools support forex pairs, precious metals (gold, silver, platinum, palladium), and major cryptocurrencies, using live prices for each.</p>
+
+  <h3>How accurate is the profit calculator for cross pairs?</h3>
+  <p>The profit and position size calculators both use live exchange rates to correctly convert results into your deposit currency, including for cross pairs that don't involve USD directly, such as EUR/GBP or AUD/JPY.</p>
 </section>
 
 <footer>
   Calculations are estimates using standard contract sizes and live exchange rates for currency conversion — always confirm exact contract specs, spreads, and fees with your own broker. Not financial advice.<br>
-  <a href="about.html">About</a> · <a href="contact.html">Contact</a>
+  <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="legal/privacy-policy.html">Privacy</a> · <a href="legal/terms.html">Terms</a>
 </footer>
 
 <script>
@@ -902,6 +1047,7 @@ document.querySelectorAll('.tabbar button').forEach(btn => {
     document.getElementById('tab-currency').style.display = tab==='currency' ? 'grid' : 'none';
     document.getElementById('tab-pip').style.display = tab==='pip' ? 'grid' : 'none';
     document.getElementById('tab-profit').style.display = tab==='profit' ? 'grid' : 'none';
+    document.getElementById('tab-size').style.display = tab==='size' ? 'grid' : 'none';
   });
 });
 
@@ -1337,7 +1483,77 @@ function calcProfit(){
   netEl.className = 'result-value gold ' + (net>0?'up':net<0?'down':'');
 }
 calcProfit();
+
+/* ================= POSITION SIZE CALCULATOR ================= */
+const sizeMarketGroup = document.getElementById('size-market');
+let sizeCurrentInst = null;
+
+const sizePicker = setupInstrumentPicker('size-instrument-search', 'size-instrument-results', 'forex', async (inst) => {
+  sizeCurrentInst = inst;
+  const entryEl = document.getElementById('size-entry');
+  entryEl.placeholder = 'Fetching live price…';
+  const price = await fetchLivePrice(inst);
+  if(price) entryEl.value = fmt(price, price < 10 ? 4 : 2).replace(/,/g,'');
+  calcSize();
+});
+sizePicker.init();
+
+sizeMarketGroup.querySelectorAll('button').forEach(b => {
+  b.addEventListener('click', () => {
+    sizeMarketGroup.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    sizePicker.setMarket(b.dataset.val);
+  });
+});
+['size-balance','size-risk-pct','size-entry','size-stop'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcSize);
+});
+
+function calcSize(){
+  const inst = sizeCurrentInst || sizePicker.getSelected();
+  const balance = parseFloat(document.getElementById('size-balance').value) || 0;
+  const riskPct = parseFloat(document.getElementById('size-risk-pct').value) || 0;
+  const entry = parseFloat(document.getElementById('size-entry').value) || 0;
+  const stop = parseFloat(document.getElementById('size-stop').value) || 0;
+
+  const riskAmt = balance * (riskPct / 100);
+  const distance = Math.abs(entry - stop);
+
+  const riskAmtEl = document.getElementById('size-riskamt');
+  const lotsEl = document.getElementById('size-lots');
+  const notionalEl = document.getElementById('size-notional');
+
+  riskAmtEl.textContent = '$' + fmt(riskAmt);
+  document.getElementById('size-distance').textContent = fmt(distance, distance < 10 ? 4 : 2);
+
+  if(!distance || !entry){
+    lotsEl.textContent = '0.00';
+    notionalEl.textContent = '$0.00';
+    return;
+  }
+
+  // Value of a 1-unit price movement per lot, converted to USD so risk
+  // sizing works correctly across USD-quote, USD-base, and cross pairs.
+  let valuePerUnitMovePerLot;
+  if(inst.quote === 'USD'){
+    valuePerUnitMovePerLot = inst.contract;
+  } else if(inst.base === 'USD'){
+    valuePerUnitMovePerLot = entry ? inst.contract / entry : 0;
+  } else {
+    const rate = usdValueOf(inst.quote);
+    valuePerUnitMovePerLot = rate ? inst.contract * rate : 0;
+  }
+
+  const riskPerLot = distance * valuePerUnitMovePerLot;
+  const lots = riskPerLot > 0 ? riskAmt / riskPerLot : 0;
+  const notional = lots * inst.contract * entry;
+
+  lotsEl.textContent = fmt(lots, 3);
+  notionalEl.textContent = '$' + fmt(notional);
+}
+calcSize();
 </script>
+
 
 
 
@@ -1403,6 +1619,15 @@ window.getDeskAiContext = async function(){
         lots: document.getElementById('profit-lots')?.value,
         grossProfit: document.getElementById('profit-gross')?.textContent,
         netProfit: document.getElementById('profit-net')?.textContent,
+      },
+      sizeTab: {
+        instrument: document.getElementById('size-instrument-search')?.value,
+        balance: document.getElementById('size-balance')?.value,
+        riskPercent: document.getElementById('size-risk-pct')?.value,
+        entry: document.getElementById('size-entry')?.value,
+        stop: document.getElementById('size-stop')?.value,
+        amountAtRisk: document.getElementById('size-riskamt')?.textContent,
+        recommendedLots: document.getElementById('size-lots')?.textContent,
       }
     };
   } catch(e){ return null; }
