@@ -141,6 +141,37 @@
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
 
+  /* ---------------- Ticker tape ---------------- */
+  .tape-holder{ border-bottom:1px solid var(--line-soft); background:var(--panel-2); overflow:hidden; white-space:nowrap; padding:.7rem 0; }
+  .custom-tape-track{ display:inline-block; animation: scrollTape 42s linear infinite; }
+  @media (prefers-reduced-motion: reduce){ .custom-tape-track{ animation:none; } }
+  @keyframes scrollTape{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+  .tape-chip{
+    display:inline-flex; align-items:center; gap:.5rem;
+    font-family:'JetBrains Mono', monospace; font-size:.8rem;
+    padding: 0 1.4rem;
+    border:none; border-right:1px solid var(--line-soft);
+    background:transparent; color:var(--ink);
+    cursor:pointer;
+  }
+  .tape-chip:hover{ color:var(--gold); }
+  .tape-star{ margin-left:.35rem; color:var(--line-soft); font-size:.85rem; }
+  .tape-star.starred{ color:var(--gold); }
+  .tape-star:hover{ color:var(--gold); }
+  .tape-icon-img{ width:18px; height:18px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+  .tape-flagpair{ display:inline-flex; align-items:center; position:relative; width:22px; height:16px; flex-shrink:0; }
+  .tape-flag{ width:16px; height:12px; border-radius:2px; object-fit:cover; box-shadow:0 0 0 1px var(--panel-2); }
+  .tape-flag-2{ position:absolute; left:8px; top:4px; }
+  .tape-badge{
+    width:18px; height:18px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:.52rem; font-weight:800; color:rgba(26,19,5,0.75); flex-shrink:0;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -1px 2px rgba(0,0,0,0.25);
+  }
+  .tape-chip .sym{ color:var(--dim); }
+  .tape-chip .chg.up{ color:#4ADE80; }
+  .tape-chip .chg.down{ color:#FB6B5B; }
+
 
   /* ---------------- Page-specific: FF-style calendar ---------------- */
   .util-bar{
@@ -160,6 +191,14 @@
     background:#4ADE80; margin-right:.4rem; animation:pulse 2s ease-in-out infinite;
   }
   @keyframes pulse{ 0%,100%{opacity:.35;} 50%{opacity:1;} }
+
+  .sound-toggle-btn{
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    width:32px; height:32px; font-size:.95rem; cursor:pointer; transition: border-color .15s, opacity .15s;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sound-toggle-btn:hover{ border-color:var(--gold); }
+  .sound-toggle-btn.muted{ opacity:.45; }
 
   .last-updated{
     padding: .6rem 6vw 0;
@@ -259,7 +298,7 @@
   .cal-main{ padding: 1.2rem 0 3rem; }
   .table-header-row{
     display:grid;
-    grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px;
+    grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px 26px;
     gap:.5rem;
     font-family:'JetBrains Mono', monospace;
     font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--dim);
@@ -271,7 +310,7 @@
   .date-cell .dnum{ font-size:.62rem; color:var(--dim); display:block; }
   .event-row{
     display:grid;
-    grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px;
+    grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px 26px;
     gap:.5rem;
     align-items:center;
     padding: .55rem .8rem;
@@ -283,6 +322,13 @@
   .event-row .ev-folder{ font-size:.9rem; text-align:center; transition: transform .15s; }
   .event-row .ev-history-icon{
     font-size:.85rem; text-align:center; cursor:pointer; opacity:.55; transition: opacity .15s;
+  }
+  .event-row .ev-bell-icon{
+    font-size:.85rem; text-align:center; cursor:pointer; opacity:.35; transition: opacity .15s, filter .15s;
+  }
+  .event-row .ev-bell-icon:hover{ opacity:.8; }
+  .event-row .ev-bell-icon.active{
+    opacity:1; filter: drop-shadow(0 0 3px rgba(232,177,92,0.6));
   }
   .event-row .ev-history-icon:hover{ opacity:1; }
   .event-row.detail-open .ev-folder{ transform: rotate(90deg); }
@@ -388,7 +434,7 @@
 
   @media (max-width: 700px){
     .table-header-row, .event-row{
-      grid-template-columns: 48px 45px 40px 18px 1fr 20px 60px 20px;
+      grid-template-columns: 48px 45px 40px 18px 1fr 20px 60px 20px 20px;
     }
     .ev-val-secondary{ display:none; }
     .ev-val{ font-size:.68rem; }
@@ -842,10 +888,18 @@
   <div class="nav-drawer-note">DESKTERMINAL · FULL SITE MENU</div>
 </div>
 
+<div class="tape-holder">
+  <div class="custom-tape">
+    <div class="custom-tape-track" id="customTapeTrack">Loading market tape…</div>
+  </div>
+</div>
 
 <div class="util-bar">
   <h1>Economic <span>Calendar</span></h1>
-  <div class="util-clock mono" id="clockLine"><span class="dot"></span>live</div>
+  <div style="display:flex; align-items:center; gap:.8rem;">
+    <button class="sound-toggle-btn" id="soundToggleBtn" title="Toggle high-impact alert sound" aria-label="Toggle alert sound">🔔</button>
+    <div class="util-clock mono" id="clockLine"><span class="dot"></span>live</div>
+  </div>
 </div>
 <div class="last-updated mono" id="lastUpdated"></div>
 
@@ -885,7 +939,7 @@
   <div class="cal-main">
     <div class="table-header-row">
       <span>Date</span><span>Time</span><span>Currency</span><span></span><span>Event</span>
-      <span></span><span style="text-align:right;">Actual</span><span class="ev-val-secondary" style="text-align:right;">Forecast</span><span class="ev-val-secondary" style="text-align:right;">Previous</span><span></span>
+      <span></span><span style="text-align:right;">Actual</span><span class="ev-val-secondary" style="text-align:right;">Forecast</span><span class="ev-val-secondary" style="text-align:right;">Previous</span><span></span><span></span>
     </div>
     <div id="calendarBody">
       <div class="cal-status">Loading calendar…</div>
@@ -1083,6 +1137,7 @@ function renderCalendar(){
         <span class="ev-val ev-val-secondary">${e.forecast || '—'}</span>
         <span class="ev-val ev-val-secondary">${e.previous || '—'}</span>
         <span class="ev-history-icon" title="Historical data">🕒</span>
+        <span class="ev-bell-icon ${subscribedEvents.has(e.event) ? 'active' : ''}" data-event="${e.event}" title="${subscribedEvents.has(e.event) ? 'Alert on — click to unsubscribe from this event' : 'Click to get an alert for this specific event'}">🔔</span>
       </div>
       <div class="event-detail" id="detail-${idx}"></div>
       <div class="event-detail" id="history-${idx}"></div>
@@ -1092,7 +1147,7 @@ function renderCalendar(){
 
   bodyEl.querySelectorAll('.event-row').forEach(row => {
     row.addEventListener('click', (e) => {
-      if(e.target.classList.contains('ev-history-icon')) return; // handled separately below
+      if(e.target.classList.contains('ev-history-icon') || e.target.classList.contains('ev-bell-icon')) return; // handled separately below
       toggleDetail(row, filtered[parseInt(row.dataset.idx)]);
     });
     const historyIcon = row.querySelector('.ev-history-icon');
@@ -1102,13 +1157,30 @@ function renderCalendar(){
         toggleHistory(row, filtered[parseInt(row.dataset.idx)]);
       });
     }
+    const bellIcon = row.querySelector('.ev-bell-icon');
+    if(bellIcon){
+      bellIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const eventName = bellIcon.dataset.event;
+        if(subscribedEvents.has(eventName)){
+          subscribedEvents.delete(eventName);
+        } else {
+          subscribedEvents.add(eventName);
+        }
+        saveSubscriptions();
+        bellIcon.classList.toggle('active');
+        bellIcon.title = subscribedEvents.has(eventName)
+          ? 'Alert on — click to unsubscribe from this event'
+          : 'Click to get an alert for this specific event';
+      });
+    }
   });
 
   // Build the list of events currently within their 10-minute countdown
   // window (scheduled, no Actual value yet) — re-derived every render since
   // filters/refreshes change which events are visible.
   activeCountdowns = filtered
-    .map((e, idx) => ({ idx, date: new Date(e.date), hasActual: !!e.actual, importance: e.importance }))
+    .map((e, idx) => ({ idx, date: new Date(e.date), hasActual: !!e.actual, importance: e.importance, eventName: e.event }))
     .filter(c => !c.hasActual && (c.date - new Date()) > 0 && (c.date - new Date()) <= 10 * 60 * 1000);
   tickCountdowns();
 }
@@ -1122,8 +1194,34 @@ let fastPollTimer = null;
 let fastPollAttempts = 0;
 const alertedEvents = new Set(); // prevents the sound repeating every second
 
+// Per-event alert subscriptions — keyed by event NAME (not date), so
+// subscribing to "Non-Farm Payrolls" once keeps alerting for every future
+// month's release, not just today's. Persisted so it survives a page reload.
+let subscribedEvents = new Set(JSON.parse(localStorage.getItem('deskterminal-calendar-subscriptions') || '[]'));
+function saveSubscriptions(){
+  localStorage.setItem('deskterminal-calendar-subscriptions', JSON.stringify([...subscribedEvents]));
+}
+
 let calAudioCtx = null;
+let calSoundEnabled = localStorage.getItem('deskterminal-calendar-sound') !== 'off';
+
+function updateSoundToggleUI(){
+  const btn = document.getElementById('soundToggleBtn');
+  if(!btn) return;
+  btn.textContent = calSoundEnabled ? '🔔' : '🔕';
+  btn.classList.toggle('muted', !calSoundEnabled);
+  btn.title = calSoundEnabled ? 'Alert sound on — click to mute' : 'Alert sound off — click to unmute';
+}
+
+document.getElementById('soundToggleBtn')?.addEventListener('click', () => {
+  calSoundEnabled = !calSoundEnabled;
+  localStorage.setItem('deskterminal-calendar-sound', calSoundEnabled ? 'on' : 'off');
+  updateSoundToggleUI();
+});
+updateSoundToggleUI();
+
 function playWarningTone(){
+  if(!calSoundEnabled) return; // muted — respects the user's saved preference
   if(!calAudioCtx) calAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
   const tone = (startTime, freq, duration) => {
     const osc = calAudioCtx.createOscillator();
@@ -1157,10 +1255,12 @@ function tickCountdowns(){
       countdownEl.textContent = 'Releasing…';
       countdownEl.classList.add('releasing');
       anyReleasing = true;
-      // Real data classification (importance === 3, from Trading Economics
-      // itself) — not a guess, and only sounds once per event.
+      // Fires for genuinely high-impact events (importance === 3, real data
+      // from Trading Economics) OR any event the user specifically subscribed
+      // to via its bell icon — either way, only sounds once per event.
       const eventKey = c.idx + '-' + c.date.getTime();
-      if(c.importance === 3 && !alertedEvents.has(eventKey)){
+      const shouldAlert = c.importance === 3 || subscribedEvents.has(c.eventName);
+      if(shouldAlert && !alertedEvents.has(eventKey)){
         alertedEvents.add(eventKey);
         playWarningTone();
       }
@@ -1565,6 +1665,95 @@ async function toggleHistory(row, ev){
     historyEl.innerHTML = '<div class="detail-loading">Historical data isn\'t available right now.</div>';
   }
 }
+
+/* ---------------- Custom clickable ticker tape ---------------- */
+const TAPE_ITEMS = [
+  { label: 'Gold',     iconType: 'badge', badgeText: 'Au', badgeColor: 'radial-gradient(circle at 35% 30%, #F5D896, #D4AF37 65%, #A9821E)', tvSymbol: 'OANDA:XAUUSD',   source: 'goldapi', code: 'XAU' },
+  { label: 'Silver',   iconType: 'badge', badgeText: 'Ag', badgeColor: 'radial-gradient(circle at 35% 30%, #F2F4F6, #C6CCD4 65%, #9AA1AB)', tvSymbol: 'OANDA:XAGUSD',   source: 'goldapi', code: 'XAG' },
+  { label: 'Bitcoin',  iconType: 'crypto', iconSymbol: 'btc', tvSymbol: 'BITSTAMP:BTCUSD', source: 'goldapi', code: 'BTC' },
+  { label: 'Ethereum', iconType: 'crypto', iconSymbol: 'eth', tvSymbol: 'BITSTAMP:ETHUSD', source: 'goldapi', code: 'ETH' },
+  { label: 'EUR/USD',  iconType: 'flagpair', flags: ['eu','us'], tvSymbol: 'FX:EURUSD',      source: 'forex', code: 'EUR', invert: true },
+  { label: 'GBP/USD',  iconType: 'flagpair', flags: ['gb','us'], tvSymbol: 'FX:GBPUSD',      source: 'forex', code: 'GBP', invert: true },
+  { label: 'USD/JPY',  iconType: 'flagpair', flags: ['us','jp'], tvSymbol: 'FX:USDJPY',      source: 'forex', code: 'JPY', invert: false },
+  { label: 'AUD/USD',  iconType: 'flagpair', flags: ['au','us'], tvSymbol: 'FX:AUDUSD',      source: 'forex', code: 'AUD', invert: true },
+  { label: 'USD/CAD',  iconType: 'flagpair', flags: ['us','ca'], tvSymbol: 'FX:USDCAD',      source: 'forex', code: 'CAD', invert: false },
+  { label: 'USD/PKR',  iconType: 'flagpair', flags: ['us','pk'], tvSymbol: 'FX_IDC:USDPKR',  source: 'forex', code: 'PKR', invert: false },
+];
+
+function renderTapeIcon(item){
+  if(item.iconType === 'crypto'){
+    return `<img class="tape-icon-img" src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/128/color/${item.iconSymbol}.png" alt="${item.label}" onerror="this.style.display='none'">`;
+  }
+  if(item.iconType === 'flagpair'){
+    return `<span class="tape-flagpair">
+      <img class="tape-flag" src="https://flagcdn.com/24x18/${item.flags[0]}.png" alt="${item.flags[0]}">
+      <img class="tape-flag tape-flag-2" src="https://flagcdn.com/24x18/${item.flags[1]}.png" alt="${item.flags[1]}">
+    </span>`;
+  }
+  if(item.iconType === 'badge'){
+    return `<span class="tape-badge" style="background:${item.badgeColor}">${item.badgeText}</span>`;
+  }
+  return '';
+}
+
+function fmtTape(n, decimals){
+  if(n === undefined || n === null || isNaN(n)) return '—';
+  return Number(n).toLocaleString(undefined, {minimumFractionDigits:decimals, maximumFractionDigits:decimals});
+}
+
+async function loadTickerTape(){
+  const goldApiSymbols = TAPE_ITEMS.filter(i => i.source === 'goldapi');
+  const forexRatesPromise = fetch('https://open.er-api.com/v6/latest/USD').then(r => r.json()).catch(() => null);
+
+  const goldApiResults = await Promise.allSettled(
+    goldApiSymbols.map(i => fetch(`https://api.gold-api.com/price/${i.code}`).then(r => r.json()))
+  );
+  const forexData = await forexRatesPromise;
+
+  const priceMap = {};
+  goldApiSymbols.forEach((item, idx) => {
+    const res = goldApiResults[idx];
+    if(res.status === 'fulfilled' && res.value && res.value.price){
+      priceMap[item.code] = res.value.price;
+    }
+  });
+
+  const track = document.getElementById('customTapeTrack');
+  if(!track) return;
+  const chipsHtml = TAPE_ITEMS.map(item => {
+    let priceText = '—';
+    let decimals = 2;
+    if(item.source === 'goldapi' && priceMap[item.code] !== undefined){
+      priceText = '$' + fmtTape(priceMap[item.code], decimals);
+    } else if(item.source === 'forex' && forexData && forexData.rates && forexData.rates[item.code]){
+      const rate = forexData.rates[item.code];
+      const val = item.invert ? 1 / rate : rate;
+      priceText = fmtTape(val, item.code === 'JPY' || item.code === 'PKR' ? 2 : 4);
+    }
+    const starred = typeof window.isInWatchlist === 'function' && window.isInWatchlist(item.tvSymbol);
+    return `<button class="tape-chip" data-symbol="${item.tvSymbol}">${renderTapeIcon(item)}<span class="sym">${item.label}</span>${priceText}<span class="tape-star ${starred?'starred':''}" data-symbol="${item.tvSymbol}" title="Add to watchlist">${starred?'★':'☆'}</span></button>`;
+  }).join('');
+
+  track.innerHTML = chipsHtml + chipsHtml; // duplicate for seamless scroll
+  track.querySelectorAll('.tape-chip').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      if(e.target.classList.contains('tape-star')){
+        e.stopPropagation();
+        const symbol = e.target.dataset.symbol;
+        window.toggleWatchlist(symbol).then(() => {
+          const inList = window.isInWatchlist(symbol);
+          e.target.textContent = inList ? '★' : '☆';
+          e.target.classList.toggle('starred', inList);
+        });
+        return;
+      }
+      // Calendar has no chart panel of its own — send them to the live chart on Market.
+      window.location.href = 'index.html';
+    });
+  });
+}
+loadTickerTape();
+setInterval(loadTickerTape, 60 * 1000);
 
 loadCalendarData();
 

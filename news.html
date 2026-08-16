@@ -138,6 +138,14 @@
   }
   @keyframes pulse{ 0%,100%{opacity:.35;} 50%{opacity:1;} }
 
+  .sound-toggle-btn{
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    width:32px; height:32px; font-size:.95rem; cursor:pointer; transition: border-color .15s, opacity .15s;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sound-toggle-btn:hover{ border-color:var(--gold); }
+  .sound-toggle-btn.muted{ opacity:.45; }
+
   .last-updated{
     padding: .6rem 6vw 0;
     font-size:.68rem; color:var(--dim); letter-spacing:.02em;
@@ -790,7 +798,10 @@
 
 <div class="util-bar">
   <h1>Market <span>News</span></h1>
-  <div class="util-clock mono" id="clockLine"><span class="dot"></span>live feed</div>
+  <div style="display:flex; align-items:center; gap:.8rem;">
+    <button class="sound-toggle-btn" id="soundToggleBtn" title="Toggle high-impact alert sound" aria-label="Toggle alert sound">🔔</button>
+    <div class="util-clock mono" id="clockLine"><span class="dot"></span>live feed</div>
+  </div>
 </div>
 <div class="last-updated mono" id="lastUpdated"></div>
 
@@ -949,8 +960,27 @@ function toggleNewsDetail(row, filtered, idx){
 let lastNewsFetchTime = null;
 
 // Warning alert sound — generated live via Web Audio API, no audio file needed.
+// User's on/off preference is remembered between visits via localStorage.
 let audioCtx = null;
+let soundEnabled = localStorage.getItem('deskterminal-news-sound') !== 'off';
+
+function updateSoundToggleUI(){
+  const btn = document.getElementById('soundToggleBtn');
+  if(!btn) return;
+  btn.textContent = soundEnabled ? '🔔' : '🔕';
+  btn.classList.toggle('muted', !soundEnabled);
+  btn.title = soundEnabled ? 'Alert sound on — click to mute' : 'Alert sound off — click to unmute';
+}
+
+document.getElementById('soundToggleBtn')?.addEventListener('click', () => {
+  soundEnabled = !soundEnabled;
+  localStorage.setItem('deskterminal-news-sound', soundEnabled ? 'on' : 'off');
+  updateSoundToggleUI();
+});
+updateSoundToggleUI();
+
 function playWarningTone(){
+  if(!soundEnabled) return; // muted — respects the user's saved preference
   if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   const tone = (startTime, freq, duration) => {
     const osc = audioCtx.createOscillator();
