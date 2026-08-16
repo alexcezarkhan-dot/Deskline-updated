@@ -603,7 +603,7 @@
   <p>Read broker reviews and guides covering regulation, spreads, execution models (A-Book, B-Book, ECN, STP), and withdrawal reliability — the factors that actually matter when picking a forex, crypto, or CFD broker.</p>
 </section>
 
-<footer>DeskTerminal · Brokers · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Brokers · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../legal/privacy-policy.html">Privacy</a> · <a href="../legal/terms.html">Terms</a></footer>
 
 <script>
 fetch('featured-brokers.json')
@@ -1073,6 +1073,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

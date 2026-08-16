@@ -547,7 +547,7 @@
 </article>
 
 <footer>
-  DeskTerminal · <a href="about.html">About</a> · <a href="contact.html">Contact</a>
+  DeskTerminal · <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="legal/privacy-policy.html">Privacy</a> · <a href="legal/terms.html">Terms</a>
 </footer>
 
 
@@ -948,6 +948,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

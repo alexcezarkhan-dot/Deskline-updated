@@ -532,7 +532,7 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark">Desk<span>line</span></div>
+    <div class="wordmark">Desk<span>Terminal</span></div>
   </div>
   <div class="navlinks">
     <a href="../../../index.html">Market</a>
@@ -546,7 +546,7 @@
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
-    <div class="wordmark">Desk<span>line</span></div>
+    <div class="wordmark">Desk<span>Terminal</span></div>
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
@@ -726,7 +726,7 @@
   </div>
 </article>
 
-<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a> · <a href="../../../legal/privacy-policy.html">Privacy</a> · <a href="../../../legal/terms.html">Terms</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -992,6 +992,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

@@ -573,10 +573,13 @@
 
     <button type="submit" class="submit-btn">Send message</button>
   </form>
+  <p style="text-align:center; margin-top:1.2rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim);">
+    Or email us directly at <a href="mailto:deskterminalfx@gmail.com" style="color:var(--gold);">deskterminalfx@gmail.com</a>
+  </p>
 </div>
 
 <footer>
-  DeskTerminal · <a href="about.html">About</a> · <a href="contact.html">Contact</a>
+  DeskTerminal · <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="legal/privacy-policy.html">Privacy</a> · <a href="legal/terms.html">Terms</a>
 </footer>
 
 <script>
@@ -982,6 +985,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

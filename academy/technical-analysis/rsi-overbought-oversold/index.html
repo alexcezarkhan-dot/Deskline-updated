@@ -65,6 +65,13 @@
   #postBody ul{ margin: 0 0 1rem 1.2rem; }
   #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
   #postBody strong{ color:var(--ink); }
+  .diagram-figure{
+    margin: 1.5rem 0; padding: 1.2rem; background:var(--panel-2);
+    border:1px solid var(--line-soft); border-radius:8px;
+  }
+  .diagram-figure figcaption{
+    margin-top:.8rem; font-size:.78rem; color:var(--dim); line-height:1.6; text-align:center;
+  }
   #postBody a{ color:var(--gold); }
 
   .related-tools{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line-soft); }
@@ -532,7 +539,7 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark">Desk<span>line</span></div>
+    <div class="wordmark">Desk<span>Terminal</span></div>
   </div>
   <div class="navlinks">
     <a href="../../../index.html">Market</a>
@@ -546,7 +553,7 @@
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
-    <div class="wordmark">Desk<span>line</span></div>
+    <div class="wordmark">Desk<span>Terminal</span></div>
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
@@ -590,6 +597,35 @@
       toward 100, while strong, consistent losses push it toward 0.
     </p>
     <h2>Reading Overbought and Oversold</h2>
+
+    <figure class="diagram-figure">
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+        <rect x="0" y="0" width="700" height="260" fill="#151A22" rx="8"/>
+        <!-- Overbought zone -->
+        <rect x="50" y="20" width="620" height="52" fill="#FB6B5B" opacity="0.08"/>
+        <text x="60" y="42" fill="#FB6B5B" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">70 — Overbought</text>
+        <!-- Oversold zone -->
+        <rect x="50" y="168" width="620" height="52" fill="#4ADE80" opacity="0.08"/>
+        <text x="60" y="200" fill="#4ADE80" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">30 — Oversold</text>
+        <!-- Reference lines -->
+        <line x1="50" y1="72" x2="670" y2="72" stroke="#FB6B5B" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+        <line x1="50" y1="168" x2="670" y2="168" stroke="#4ADE80" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+        <line x1="50" y1="120" x2="670" y2="120" stroke="#7C8598" stroke-width="1" stroke-dasharray="2,4" opacity="0.4"/>
+        <text x="60" y="116" fill="#7C8598" font-family="JetBrains Mono, monospace" font-size="10">50</text>
+        <!-- RSI line, a realistic oscillating path moving between zones -->
+        <polyline points="50,140 90,110 130,95 170,60 210,45 250,65 290,90 330,130 370,175 410,195 450,180 490,150 530,120 570,80 610,55 650,70"
+          fill="none" stroke="#E8B15C" stroke-width="2.5"/>
+        <!-- Highlight dots where RSI enters each zone -->
+        <circle cx="210" cy="45" r="4" fill="#FB6B5B"/>
+        <circle cx="410" cy="195" r="4" fill="#4ADE80"/>
+        <circle cx="610" cy="55" r="4" fill="#FB6B5B"/>
+        <!-- Axis -->
+        <line x1="50" y1="20" x2="50" y2="220" stroke="#7C8598" stroke-width="1" opacity="0.5"/>
+        <line x1="50" y1="220" x2="670" y2="220" stroke="#7C8598" stroke-width="1" opacity="0.5"/>
+      </svg>
+      <figcaption>RSI oscillating between overbought (above 70) and oversold (below 30) zones — the highlighted points show where price would typically be flagged for a potential pause or reversal.</figcaption>
+    </figure>
+
     <p>
       Using the standard 14-period setting, an RSI reading above <strong>70</strong> is
       conventionally labeled overbought, suggesting price has risen quickly and may be due
@@ -724,7 +760,7 @@
   </div>
 </article>
 
-<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../../../about.html">About</a> · <a href="../../../contact.html">Contact</a> · <a href="../../../legal/privacy-policy.html">Privacy</a> · <a href="../../../legal/terms.html">Terms</a></footer>
 
 
 <div class="deskai-toggle-wrap">
@@ -990,6 +1026,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

@@ -593,7 +593,7 @@
   <p>Educational content only — not financial advice. Always do your own research and understand the risks before trading.</p>
 </section>
 
-<footer>DeskTerminal · Academy · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Academy · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../legal/privacy-policy.html">Privacy</a> · <a href="../legal/terms.html">Terms</a></footer>
 
 <script>
 const ACADEMY_CATEGORIES = [
@@ -1113,6 +1113,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

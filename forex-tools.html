@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forex Calculator — Currency Converter, Pip, Profit &amp; Position Size | DeskTerminal</title>
-<meta name="description" content="4 free forex tools in one: live currency converter, pip value calculator, profit/loss calculator, and position size calculator for EUR/USD, GBP/USD, XAUUSD, BTC and 50+ instruments.">
-<meta name="keywords" content="forex calculator, currency converter, trading calculator, profit loss calculator, pip calculator, position size calculator, risk management calculator, lot size calculator, EUR/USD pip calculator, GBP/USD calculator, USD/JPY profit calculator, gold calculator, XAUUSD calculator, silver calculator, XAGUSD calculator, bitcoin profit calculator, crypto trading calculator, forex position size calculator, how to calculate forex profit, how to calculate lot size, currency pair calculator, cross currency pair calculator">
+<title>Forex Tools — Currency, Pip, Profit &amp; Position Size Calculators | DeskTerminal</title>
+<meta name="description" content="4 free forex calculators: currency converter, pip calculator, profit calculator, and position size calculator — each with live data, covering forex, gold, and crypto.">
+<meta name="keywords" content="forex tools, forex calculator, currency converter, pip calculator, profit calculator, position size calculator, risk management calculator, trading tools">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://deskterminal.com/forex-tools.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DeskTerminal">
-<meta property="og:title" content="Forex Calculator — Currency Converter, Pip, Profit &amp; Position Size">
-<meta property="og:description" content="4 free forex tools in one: live currency converter, pip value calculator, profit/loss calculator, and position size calculator for 50+ instruments.">
+<meta property="og:title" content="Forex Tools — Currency, Pip, Profit &amp; Position Size Calculators">
+<meta property="og:description" content="4 free forex calculators, each with live data, covering forex, gold, and crypto.">
 <meta property="og:url" content="https://deskterminal.com/forex-tools.html">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Forex Calculator — 4 Free Trading Tools | DeskTerminal">
-<meta name="twitter:description" content="Live currency converter, pip calculator, profit calculator, and position size calculator — all free, live data, 50+ instruments.">
+<meta name="twitter:title" content="Forex Tools — 4 Free Trading Calculators | DeskTerminal">
+<meta name="twitter:description" content="Currency converter, pip calculator, profit calculator, and position size calculator — all free, live data.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Forex Calculator — Currency Converter, Pip, Profit & Position Size",
-  "description": "4 free forex tools in one: live currency converter, pip value calculator, profit/loss calculator, and position size calculator for 50+ instruments.",
+  "@type": "CollectionPage",
+  "name": "Forex Tools — Currency, Pip, Profit & Position Size Calculators",
+  "description": "4 free forex calculators, each with live data, covering forex, gold, and crypto.",
   "url": "https://deskterminal.com/forex-tools.html",
   "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
   "breadcrumb": {
@@ -32,46 +32,6 @@
       { "@type": "ListItem", "position": 2, "name": "Forex Tools", "item": "https://deskterminal.com/forex-tools.html" }
     ]
   }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this forex calculator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, all 4 tools — currency converter, pip calculator, profit calculator, and position size calculator — are completely free, with no account or sign-up required."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is position size calculated?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Enter your account balance, how much of it you're willing to risk on the trade (as a percentage), and your stop-loss price. The calculator works out the exact lot size that keeps your risk at that amount, based on the real distance between your entry and stop-loss."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does this work for gold and crypto, not just forex?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes — all 4 tools support forex pairs, precious metals (gold, silver, platinum, palladium), and major cryptocurrencies, using live prices for each."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How accurate is the profit calculator for cross pairs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The profit and position size calculators both use live exchange rates to correctly convert results into your deposit currency, including for cross pairs that don't involve USD directly, such as EUR/GBP or AUD/JPY."
-      }
-    }
-  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,6 +123,21 @@
   }
   .field input:focus, .field select:focus{ border-color:var(--gold); }
   .field.wide{ grid-column: 1 / -1; }
+
+  .tool-hub-grid{
+    padding: 0 6vw 1rem;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 1rem;
+  }
+  .tool-hub-card{
+    background: var(--panel); border:1px solid var(--line-soft); border-radius:10px;
+    padding: 1.5rem; text-decoration:none; color:var(--ink); transition: border-color .15s, transform .15s;
+  }
+  .tool-hub-card:hover{ border-color:var(--gold); transform: translateY(-2px); }
+  .tool-hub-icon{ font-size:1.8rem; margin-bottom:.7rem; }
+  .tool-hub-title{ font-size:1.05rem; font-weight:700; margin-bottom:.4rem; }
+  .tool-hub-desc{ font-size:.85rem; color:var(--dim); line-height:1.6; }
 
   .swap-btn{
     width:38px; height:38px; border-radius:50%;
@@ -745,292 +720,37 @@
 
 <div class="pagehead">
   <h1>Forex Tools</h1>
-  <p>CURRENCY CONVERTER, PIP CALCULATOR &amp; PROFIT CALCULATOR</p>
+  <p>CURRENCY CONVERTER, PIP, PROFIT &amp; POSITION SIZE CALCULATORS</p>
 </div>
 
-<div class="tabbar">
-  <button data-tab="currency" class="active">Currency</button>
-  <button data-tab="pip">Pip</button>
-  <button data-tab="profit">Profit</button>
-  <button data-tab="size">Position Size</button>
-</div>
-
-<!-- ================= CURRENCY CONVERTER ================= -->
-<div class="layout" id="tab-currency">
-  <div class="panel">
-    <h2>Currency Converter</h2>
-    <div class="form-grid">
-      <div class="field wide">
-        <label>Amount</label>
-        <input type="number" step="any" id="cur-amount" placeholder="1.00" value="1">
-      </div>
-      <div class="field currency-dropdown-wrap">
-        <label>From</label>
-        <button type="button" class="currency-dropdown-btn" id="cur-from-btn">
-          <span id="cur-from-display">USD — US Dollar</span>
-          <span class="dd-arrow">▾</span>
-        </button>
-        <div class="currency-dropdown-panel" id="cur-from-panel">
-          <input type="text" class="currency-dropdown-search" id="cur-from-search" placeholder="Search currency…" autocomplete="off">
-          <div class="currency-dropdown-list" id="cur-from-results"></div>
-        </div>
-      </div>
-      <div class="field" style="display:flex; align-items:flex-end; justify-content:center; padding-bottom:.65rem;">
-        <button type="button" class="swap-btn" id="cur-swap" aria-label="Swap currencies">⇄</button>
-      </div>
-      <div class="field currency-dropdown-wrap">
-        <label>To</label>
-        <button type="button" class="currency-dropdown-btn" id="cur-to-btn">
-          <span id="cur-to-display">EUR — Euro</span>
-          <span class="dd-arrow">▾</span>
-        </button>
-        <div class="currency-dropdown-panel" id="cur-to-panel">
-          <input type="text" class="currency-dropdown-search" id="cur-to-search" placeholder="Search currency…" autocomplete="off">
-          <div class="currency-dropdown-list" id="cur-to-results"></div>
-        </div>
-      </div>
-    </div>
-    <div class="quick-amounts">
-      <button type="button" data-val="100">100</button>
-      <button type="button" data-val="500">500</button>
-      <button type="button" data-val="1000">1,000</button>
-      <button type="button" data-val="5000">5,000</button>
-      <button type="button" data-val="10000">10,000</button>
-    </div>
-    <div class="hint">Uses live exchange rates, refreshed every 5 minutes.</div>
-  </div>
-
-  <div class="result-stack">
-    <div class="result-row">
-      <div class="result-label">Converted amount</div>
-      <div class="result-value gold" id="cur-result">0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Exchange rate</div>
-      <div class="result-value" id="cur-rate">—</div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= PIP CALCULATOR ================= -->
-<div class="layout" id="tab-pip" style="display:none;">
-  <div class="panel">
-    <h2>Pip Calculator</h2>
-    <div class="form-grid">
-      <div class="field wide">
-        <label>Market</label>
-        <div class="toggle-group" id="pip-market">
-          <button type="button" class="active" data-val="forex">Forex</button>
-          <button type="button" data-val="metals">Metals</button>
-          <button type="button" data-val="crypto">Crypto</button>
-        </div>
-      </div>
-      <div class="field instrument-search-wrap wide">
-        <label>Currency Pair <span style="color:var(--dim); text-transform:none;">(type to search)</span></label>
-        <input type="text" class="instrument-search" id="pip-instrument-search" placeholder="e.g. EUR, Gold, BTC…" autocomplete="off">
-        <div class="instrument-results" id="pip-instrument-results"></div>
-      </div>
-      <div class="field">
-        <label>Deposit Currency</label>
-        <select id="pip-deposit"><option value="USD">USD</option></select>
-      </div>
-      <div class="field">
-        <label>Trade Size (lot)</label>
-        <input type="number" step="any" id="pip-lots" value="1.00">
-      </div>
-      <div class="field">
-        <label>Pip Amount</label>
-        <input type="number" step="any" id="pip-amount" value="1.0">
-      </div>
-    </div>
-    <div class="quick-amounts" id="pip-quick-lots">
-      <button type="button" data-val="0.01">0.01</button>
-      <button type="button" data-val="0.10">0.10</button>
-      <button type="button" data-val="0.50">0.50</button>
-      <button type="button" data-val="1.00">1.00</button>
-      <button type="button" data-val="5.00">5.00</button>
-    </div>
-  </div>
-
-  <div class="result-stack">
-    <div class="result-row">
-      <div class="result-label">Pip Value</div>
-      <div class="result-value gold" id="pip-value">$0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Market Price (Live)</div>
-      <div class="result-value" id="pip-price">—</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Spread</div>
-      <div class="result-value" id="pip-spread" style="font-size:.8rem; color:var(--dim);">Varies by broker</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Pip Size</div>
-      <div class="result-value" id="pip-size">—</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Trading Days</div>
-      <div class="result-value" style="font-size:.85rem;">Sunday – Friday</div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= PROFIT CALCULATOR ================= -->
-<div class="layout" id="tab-profit" style="display:none;">
-  <div class="panel">
-    <h2>Profit Calculator</h2>
-    <div class="form-grid">
-      <div class="field wide">
-        <label>Market</label>
-        <div class="toggle-group" id="profit-market">
-          <button type="button" class="active" data-val="forex">Forex</button>
-          <button type="button" data-val="metals">Metals</button>
-          <button type="button" data-val="crypto">Crypto</button>
-        </div>
-      </div>
-      <div class="field instrument-search-wrap wide">
-        <label>Currency Pair <span style="color:var(--dim); text-transform:none;">(type to search)</span></label>
-        <input type="text" class="instrument-search" id="profit-instrument-search" placeholder="e.g. EUR, Gold, BTC…" autocomplete="off">
-        <div class="instrument-results" id="profit-instrument-results"></div>
-      </div>
-      <div class="field">
-        <label>Deposit Currency</label>
-        <select id="profit-deposit"><option value="USD">USD</option></select>
-      </div>
-      <div class="field">
-        <label>Open price</label>
-        <input type="number" step="any" id="profit-open" placeholder="Fetching live price…">
-      </div>
-      <div class="field">
-        <label>Close price</label>
-        <input type="number" step="any" id="profit-close" placeholder="Close price">
-      </div>
-      <div class="field">
-        <label>Trade Size (lots)</label>
-        <input type="number" step="any" id="profit-lots" placeholder="0.10" value="0.10">
-      </div>
-      <div class="field">
-        <label>Trading fees (optional, your broker's)</label>
-        <input type="number" step="any" id="profit-fees" placeholder="0.00" value="0">
-      </div>
-      <div class="field wide">
-        <label>Direction</label>
-        <div class="toggle-group" id="profit-direction">
-          <button type="button" class="active buy" data-val="buy">Buy</button>
-          <button type="button" class="sell" data-val="sell">Sell</button>
-        </div>
-      </div>
-    </div>
-    <div class="hint">Open price auto-fills with the live market price when you pick an instrument — edit it if you want to check a past or hypothetical trade instead.</div>
-  </div>
-
-  <div class="result-stack">
-    <h2 style="margin-bottom:1rem;">Profit</h2>
-    <div class="result-row">
-      <div class="result-label">Gross profit</div>
-      <div class="result-value" id="profit-gross">$0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Trading fees</div>
-      <div class="result-value" id="profit-fees-out">$0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Net profit</div>
-      <div class="result-value gold" id="profit-net">$0.00</div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= POSITION SIZE CALCULATOR ================= -->
-<div class="layout" id="tab-size" style="display:none;">
-  <div class="panel">
-    <h2>Position Size Calculator</h2>
-    <div class="form-grid">
-      <div class="field wide">
-        <label>Market</label>
-        <div class="toggle-group" id="size-market">
-          <button type="button" class="active" data-val="forex">Forex</button>
-          <button type="button" data-val="metals">Metals</button>
-          <button type="button" data-val="crypto">Crypto</button>
-        </div>
-      </div>
-      <div class="field instrument-search-wrap wide">
-        <label>Currency Pair <span style="color:var(--dim); text-transform:none;">(type to search)</span></label>
-        <input type="text" class="instrument-search" id="size-instrument-search" placeholder="e.g. EUR, Gold, BTC…" autocomplete="off">
-        <div class="instrument-results" id="size-instrument-results"></div>
-      </div>
-      <div class="field">
-        <label>Account Balance</label>
-        <input type="number" step="any" id="size-balance" placeholder="1000" value="1000">
-      </div>
-      <div class="field">
-        <label>Risk per trade (%)</label>
-        <input type="number" step="any" id="size-risk-pct" placeholder="1" value="1">
-      </div>
-      <div class="field">
-        <label>Entry price</label>
-        <input type="number" step="any" id="size-entry" placeholder="Fetching live price…">
-      </div>
-      <div class="field">
-        <label>Stop-loss price</label>
-        <input type="number" step="any" id="size-stop" placeholder="e.g. 4330.00">
-      </div>
-    </div>
-    <div class="hint">Enter your account balance, how much of it you're willing to risk on this one trade (1-2% is a common, conservative range), and where your stop-loss would sit — this tells you the exact position size that keeps your risk at that amount, regardless of how the trade turns out.</div>
-  </div>
-
-  <div class="result-stack">
-    <h2 style="margin-bottom:1rem;">Recommended Position</h2>
-    <div class="result-row">
-      <div class="result-label">Amount at risk</div>
-      <div class="result-value" id="size-riskamt">$0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Stop distance</div>
-      <div class="result-value" id="size-distance">0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Recommended lot size</div>
-      <div class="result-value gold" id="size-lots">0.00</div>
-    </div>
-    <div class="result-row">
-      <div class="result-label">Position notional value</div>
-      <div class="result-value" id="size-notional">$0.00</div>
-    </div>
-  </div>
+<div class="tool-hub-grid">
+  <a class="tool-hub-card" href="forex-tools/currency-converter/">
+    <div class="tool-hub-icon">💱</div>
+    <div class="tool-hub-title">Currency Converter</div>
+    <div class="tool-hub-desc">Live exchange rates across 150+ world currencies, refreshed every 5 minutes.</div>
+  </a>
+  <a class="tool-hub-card" href="forex-tools/pip-calculator/">
+    <div class="tool-hub-icon">📏</div>
+    <div class="tool-hub-title">Pip Calculator</div>
+    <div class="tool-hub-desc">Work out exact pip value in your deposit currency, for any trade size.</div>
+  </a>
+  <a class="tool-hub-card" href="forex-tools/profit-calculator/">
+    <div class="tool-hub-icon">💰</div>
+    <div class="tool-hub-title">Profit Calculator</div>
+    <div class="tool-hub-desc">Calculate real profit or loss on a trade, including your broker's fees.</div>
+  </a>
+  <a class="tool-hub-card" href="forex-tools/position-size-calculator/">
+    <div class="tool-hub-icon">🛡️</div>
+    <div class="tool-hub-title">Position Size Calculator</div>
+    <div class="tool-hub-desc">Find the exact lot size that keeps your risk at the amount you choose.</div>
+  </a>
 </div>
 
 <section class="seo-content">
-  <h2>Forex, Gold &amp; Crypto Trading Calculators</h2>
-  <p>4 free tools in one: a live currency converter, a pip value calculator, a profit calculator, and a position size calculator — covering major forex pairs like EUR/USD, GBP/USD, and USD/JPY, cross pairs, exotic pairs, gold (XAUUSD), silver (XAGUSD), and 15+ cryptocurrencies.</p>
-
-  <h2>Currency Converter</h2>
-  <p>Convert between any two currencies using live exchange rates, refreshed every 5 minutes — useful for checking real-time conversion rates before funding an account or comparing broker quotes.</p>
-
-  <h2>Pip Calculator</h2>
-  <p>Work out exactly how much a pip is worth in your deposit currency, based on your trade size — essential for setting accurate stop-loss and take-profit levels in real money terms rather than just price points.</p>
-
-  <h2>Profit Calculator</h2>
-  <p>Calculate the exact profit or loss on a trade before or after you place it, including your own broker's trading fees if you want to see net profit rather than just the gross figure — handles cross pairs and non-USD quotes automatically using live exchange rates.</p>
-
-  <h2>Position Size Calculator</h2>
-  <p>Work out the exact lot size to trade based on your account balance, risk tolerance, and stop-loss distance — the core risk-management calculation that keeps a single trade from risking more of your account than you intended, regardless of the instrument or account currency.</p>
-
-  <h2>Frequently Asked Questions</h2>
-
-  <h3>Is this forex calculator free to use?</h3>
-  <p>Yes, all 4 tools — currency converter, pip calculator, profit calculator, and position size calculator — are completely free, with no account or sign-up required.</p>
-
-  <h3>How is position size calculated?</h3>
-  <p>Enter your account balance, how much of it you're willing to risk on the trade (as a percentage), and your stop-loss price. The calculator works out the exact lot size that keeps your risk at that amount, based on the real distance between your entry and stop-loss.</p>
-
-  <h3>Does this work for gold and crypto, not just forex?</h3>
-  <p>Yes — all 4 tools support forex pairs, precious metals (gold, silver, platinum, palladium), and major cryptocurrencies, using live prices for each.</p>
-
-  <h3>How accurate is the profit calculator for cross pairs?</h3>
-  <p>The profit and position size calculators both use live exchange rates to correctly convert results into your deposit currency, including for cross pairs that don't involve USD directly, such as EUR/GBP or AUD/JPY.</p>
+  <h2>4 Free Forex Trading Tools</h2>
+  <p>DeskTerminal's Forex Tools cover the calculations every trader needs before and during a trade — converting currencies, valuing pips, checking profit or loss, and sizing a position correctly for real risk management. Each tool uses live prices and live exchange rates, supporting forex pairs, precious metals (gold, silver, platinum, palladium), and major cryptocurrencies. Click any tool above to open it.</p>
 </section>
+
 
 <footer>
   Calculations are estimates using standard contract sizes and live exchange rates for currency conversion — always confirm exact contract specs, spreads, and fees with your own broker. Not financial advice.<br>
@@ -1038,599 +758,11 @@
 </footer>
 
 <script>
-/* -------- tab switching -------- */
-document.querySelectorAll('.tabbar button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tabbar button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const tab = btn.dataset.tab;
-    document.getElementById('tab-currency').style.display = tab==='currency' ? 'grid' : 'none';
-    document.getElementById('tab-pip').style.display = tab==='pip' ? 'grid' : 'none';
-    document.getElementById('tab-profit').style.display = tab==='profit' ? 'grid' : 'none';
-    document.getElementById('tab-size').style.display = tab==='size' ? 'grid' : 'none';
-  });
-});
-
-function fmt(n, decimals=2){
-  if(n===undefined||n===null||isNaN(n)) return '0.00';
-  return Number(n).toLocaleString(undefined,{minimumFractionDigits:decimals, maximumFractionDigits:decimals});
-}
-
-/* -------- Instrument data, grouped by market -------- */
-// Forex: base/quote currencies given so P/L can be converted to USD accurately,
-// including cross pairs that don't involve USD directly (via live cross-rates).
-const INSTRUMENTS = {
-  forex: [
-    // Majors
-    { key:'EURUSD', label:'EUR/USD', contract:100000, base:'EUR', quote:'USD' },
-    { key:'GBPUSD', label:'GBP/USD', contract:100000, base:'GBP', quote:'USD' },
-    { key:'USDJPY', label:'USD/JPY', contract:100000, base:'USD', quote:'JPY' },
-    { key:'USDCHF', label:'USD/CHF', contract:100000, base:'USD', quote:'CHF' },
-    { key:'USDCAD', label:'USD/CAD', contract:100000, base:'USD', quote:'CAD' },
-    { key:'AUDUSD', label:'AUD/USD', contract:100000, base:'AUD', quote:'USD' },
-    { key:'NZDUSD', label:'NZD/USD', contract:100000, base:'NZD', quote:'USD' },
-    // EUR crosses
-    { key:'EURGBP', label:'EUR/GBP', contract:100000, base:'EUR', quote:'GBP' },
-    { key:'EURJPY', label:'EUR/JPY', contract:100000, base:'EUR', quote:'JPY' },
-    { key:'EURCHF', label:'EUR/CHF', contract:100000, base:'EUR', quote:'CHF' },
-    { key:'EURCAD', label:'EUR/CAD', contract:100000, base:'EUR', quote:'CAD' },
-    { key:'EURAUD', label:'EUR/AUD', contract:100000, base:'EUR', quote:'AUD' },
-    { key:'EURNZD', label:'EUR/NZD', contract:100000, base:'EUR', quote:'NZD' },
-    // GBP crosses
-    { key:'GBPJPY', label:'GBP/JPY', contract:100000, base:'GBP', quote:'JPY' },
-    { key:'GBPCHF', label:'GBP/CHF', contract:100000, base:'GBP', quote:'CHF' },
-    { key:'GBPCAD', label:'GBP/CAD', contract:100000, base:'GBP', quote:'CAD' },
-    { key:'GBPAUD', label:'GBP/AUD', contract:100000, base:'GBP', quote:'AUD' },
-    { key:'GBPNZD', label:'GBP/NZD', contract:100000, base:'GBP', quote:'NZD' },
-    // AUD / NZD / CAD / CHF crosses
-    { key:'AUDJPY', label:'AUD/JPY', contract:100000, base:'AUD', quote:'JPY' },
-    { key:'AUDCHF', label:'AUD/CHF', contract:100000, base:'AUD', quote:'CHF' },
-    { key:'AUDCAD', label:'AUD/CAD', contract:100000, base:'AUD', quote:'CAD' },
-    { key:'AUDNZD', label:'AUD/NZD', contract:100000, base:'AUD', quote:'NZD' },
-    { key:'NZDJPY', label:'NZD/JPY', contract:100000, base:'NZD', quote:'JPY' },
-    { key:'NZDCHF', label:'NZD/CHF', contract:100000, base:'NZD', quote:'CHF' },
-    { key:'NZDCAD', label:'NZD/CAD', contract:100000, base:'NZD', quote:'CAD' },
-    { key:'CADJPY', label:'CAD/JPY', contract:100000, base:'CAD', quote:'JPY' },
-    { key:'CADCHF', label:'CAD/CHF', contract:100000, base:'CAD', quote:'CHF' },
-    { key:'CHFJPY', label:'CHF/JPY', contract:100000, base:'CHF', quote:'JPY' },
-    // Exotics vs USD
-    { key:'USDPKR', label:'USD/PKR', contract:100000, base:'USD', quote:'PKR' },
-    { key:'USDINR', label:'USD/INR', contract:100000, base:'USD', quote:'INR' },
-    { key:'USDTRY', label:'USD/TRY', contract:100000, base:'USD', quote:'TRY' },
-    { key:'USDZAR', label:'USD/ZAR', contract:100000, base:'USD', quote:'ZAR' },
-    { key:'USDMXN', label:'USD/MXN', contract:100000, base:'USD', quote:'MXN' },
-    { key:'USDSEK', label:'USD/SEK', contract:100000, base:'USD', quote:'SEK' },
-    { key:'USDNOK', label:'USD/NOK', contract:100000, base:'USD', quote:'NOK' },
-    { key:'USDDKK', label:'USD/DKK', contract:100000, base:'USD', quote:'DKK' },
-    { key:'USDSGD', label:'USD/SGD', contract:100000, base:'USD', quote:'SGD' },
-    { key:'USDHKD', label:'USD/HKD', contract:100000, base:'USD', quote:'HKD' },
-    { key:'USDCNH', label:'USD/CNH', contract:100000, base:'USD', quote:'CNH' },
-    { key:'USDTHB', label:'USD/THB', contract:100000, base:'USD', quote:'THB' },
-    { key:'USDAED', label:'USD/AED', contract:100000, base:'USD', quote:'AED' },
-    { key:'USDSAR', label:'USD/SAR', contract:100000, base:'USD', quote:'SAR' },
-  ],
-  metals: [
-    { key:'XAUUSD', label:'Gold (XAUUSD)', contract:100, base:'XAU', quote:'USD' },
-    { key:'XAGUSD', label:'Silver (XAGUSD)', contract:5000, base:'XAG', quote:'USD' },
-    { key:'XPTUSD', label:'Platinum (XPTUSD)', contract:50, base:'XPT', quote:'USD' },
-    { key:'XPDUSD', label:'Palladium (XPDUSD)', contract:100, base:'XPD', quote:'USD' },
-  ],
-  crypto: [
-    { key:'BTCUSD', label:'Bitcoin (BTCUSD)', contract:1, base:'BTC', quote:'USD' },
-    { key:'ETHUSD', label:'Ethereum (ETHUSD)', contract:1, base:'ETH', quote:'USD' },
-    { key:'SOLUSD', label:'Solana (SOLUSD)', contract:1, base:'SOL', quote:'USD' },
-    { key:'XRPUSD', label:'XRP (XRPUSD)', contract:1, base:'XRP', quote:'USD' },
-    { key:'BNBUSD', label:'BNB (BNBUSD)', contract:1, base:'BNB', quote:'USD' },
-    { key:'DOGEUSD', label:'Dogecoin (DOGEUSD)', contract:1, base:'DOGE', quote:'USD' },
-    { key:'ADAUSD', label:'Cardano (ADAUSD)', contract:1, base:'ADA', quote:'USD' },
-    { key:'LTCUSD', label:'Litecoin (LTCUSD)', contract:1, base:'LTC', quote:'USD' },
-    { key:'MATICUSD', label:'Polygon (MATICUSD)', contract:1, base:'MATIC', quote:'USD' },
-    { key:'DOTUSD', label:'Polkadot (DOTUSD)', contract:1, base:'DOT', quote:'USD' },
-  ],
-};
-
-/* -------- Live FX rates (base: USD), used for currency conversion and cross-pair math -------- */
-let fxRatesCache = null;
-async function loadFxRates(){
-  try{
-    const res = await fetch('https://open.er-api.com/v6/latest/USD');
-    const data = await res.json();
-    if(data && data.rates){
-      fxRatesCache = data.rates;
-      // Every currency the live API actually provides, not a curated subset —
-      // USD included since it's the base and isn't in its own rates object.
-      if(typeof CURRENCY_LIST !== 'undefined'){
-        CURRENCY_LIST = ['USD', ...Object.keys(data.rates)].sort();
-      }
-    }
-  } catch(e){ /* keep old cache if refresh fails */ }
-}
-loadFxRates();
-setInterval(loadFxRates, 5*60*1000);
-
-// Value of 1 unit of `currencyCode` expressed in USD, or null if unknown/not yet loaded.
-function usdValueOf(currencyCode){
-  if(currencyCode === 'USD') return 1;
-  if(!fxRatesCache || !fxRatesCache[currencyCode]) return null;
-  return 1 / fxRatesCache[currencyCode];
-}
-
-/* -------- Live instrument price lookup (real sources, same as rest of site) -------- */
-async function fetchLivePrice(inst){
-  try{
-    if(inst.base === 'XAU' || inst.base === 'XAG' || inst.base === 'XPT' || inst.base === 'XPD'){
-      const res = await fetch(`https://api.gold-api.com/price/${inst.base}`);
-      const data = await res.json();
-      return data.price || null;
-    }
-    if(['BTC','ETH','SOL','XRP','BNB','DOGE','ADA','LTC','MATIC','DOT'].includes(inst.base)){
-      const res = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${inst.base}USDT`);
-      const data = await res.json();
-      return parseFloat(data.price) || null;
-    }
-    // Forex — derive from live FX rates cache
-    if(!fxRatesCache) await loadFxRates();
-    if(!fxRatesCache) return null;
-    if(inst.base === 'USD') return fxRatesCache[inst.quote] || null;
-    if(inst.quote === 'USD') return fxRatesCache[inst.base] ? 1 / fxRatesCache[inst.base] : null;
-    const baseRate = fxRatesCache[inst.base];
-    const quoteRate = fxRatesCache[inst.quote];
-    if(!baseRate || !quoteRate) return null;
-    return quoteRate / baseRate;
-  } catch(e){ return null; }
-}
-
-// Real, standard pip sizes by instrument type.
-function pipSizeFor(inst){
-  if(inst.key === 'XAUUSD') return 0.1;
-  if(inst.key === 'XAGUSD') return 0.01;
-  if(inst.key === 'XPTUSD' || inst.key === 'XPDUSD') return 0.1;
-  if(inst.quote === 'JPY') return 0.01;
-  if(INSTRUMENTS.crypto.some(c => c.key === inst.key)) return 0.01;
-  return 0.0001;
-}
-
-/* -------- Reusable searchable instrument picker -------- */
-function setupInstrumentPicker(searchId, resultsId, market0, onSelect){
-  const searchEl = document.getElementById(searchId);
-  const resultsEl = document.getElementById(resultsId);
-  let market = market0;
-  let selected = INSTRUMENTS[market][0];
-
-  function renderResults(query){
-    const q = query.trim().toLowerCase();
-    const list = INSTRUMENTS[market].filter(i =>
-      !q || i.label.toLowerCase().includes(q) || i.key.toLowerCase().includes(q)
-    );
-    if(!list.length){
-      resultsEl.innerHTML = `<div class="instrument-empty">No matches.</div>`;
-    } else {
-      resultsEl.innerHTML = list.slice(0,30).map(i =>
-        `<div class="instrument-result-item" data-key="${i.key}">
-          <span class="ir-label">${i.label}</span>
-          <span class="ir-tag">${i.contract.toLocaleString()}/lot</span>
-        </div>`
-      ).join('');
-      resultsEl.querySelectorAll('.instrument-result-item').forEach(row => {
-        row.addEventListener('click', () => {
-          const inst = INSTRUMENTS[market].find(i => i.key === row.dataset.key);
-          selected = inst;
-          searchEl.value = inst.label;
-          resultsEl.classList.remove('open');
-          onSelect(inst);
-        });
-      });
-    }
-    resultsEl.classList.add('open');
-  }
-
-  searchEl.addEventListener('focus', () => renderResults(searchEl.value === selected?.label ? '' : searchEl.value));
-  searchEl.addEventListener('input', () => renderResults(searchEl.value));
-  document.addEventListener('click', (e) => {
-    if(!searchEl.contains(e.target) && !resultsEl.contains(e.target)){
-      resultsEl.classList.remove('open');
-    }
-  });
-
-  return {
-    setMarket(newMarket){
-      market = newMarket;
-      selected = INSTRUMENTS[market][0];
-      searchEl.value = selected.label;
-      onSelect(selected);
-    },
-    getSelected(){ return selected; },
-    init(){
-      searchEl.value = selected.label;
-      onSelect(selected);
-    }
-  };
-}
-
-/* ================= CURRENCY CONVERTER ================= */
-// Friendly display names for common currencies — any currency the live API
-// returns that isn't in this list still works fine, just shown by code alone.
-const CURRENCY_NAMES = {
-  USD:'US Dollar', EUR:'Euro', GBP:'British Pound', JPY:'Japanese Yen', CHF:'Swiss Franc',
-  CAD:'Canadian Dollar', AUD:'Australian Dollar', NZD:'New Zealand Dollar', PKR:'Pakistani Rupee',
-  INR:'Indian Rupee', TRY:'Turkish Lira', ZAR:'South African Rand', MXN:'Mexican Peso',
-  SEK:'Swedish Krona', NOK:'Norwegian Krone', DKK:'Danish Krone', SGD:'Singapore Dollar',
-  HKD:'Hong Kong Dollar', CNY:'Chinese Yuan', THB:'Thai Baht', AED:'UAE Dirham', SAR:'Saudi Riyal',
-  BDT:'Bangladeshi Taka', LKR:'Sri Lankan Rupee', NPR:'Nepalese Rupee', PHP:'Philippine Peso',
-  IDR:'Indonesian Rupiah', MYR:'Malaysian Ringgit', VND:'Vietnamese Dong', KRW:'South Korean Won',
-  BRL:'Brazilian Real', ARS:'Argentine Peso', EGP:'Egyptian Pound', NGN:'Nigerian Naira',
-  KES:'Kenyan Shilling', PLN:'Polish Zloty', CZK:'Czech Koruna', HUF:'Hungarian Forint',
-  RON:'Romanian Leu', ILS:'Israeli Shekel', QAR:'Qatari Riyal', KWD:'Kuwaiti Dinar',
-  BHD:'Bahraini Dinar', OMR:'Omani Rial', JOD:'Jordanian Dinar', RUB:'Russian Ruble',
-};
-
-// Populated once live rates load — genuinely every currency the free API
-// provides, not a hand-picked subset.
-let CURRENCY_LIST = ['USD'];
-
-function setupCurrencyPicker(btnId, panelId, searchId, resultsId, displayId, defaultCode, onSelect){
-  const btnEl = document.getElementById(btnId);
-  const panelEl = document.getElementById(panelId);
-  const searchEl = document.getElementById(searchId);
-  const resultsEl = document.getElementById(resultsId);
-  const displayEl = document.getElementById(displayId);
-  let selected = defaultCode;
-
-  function labelFor(code){
-    return CURRENCY_NAMES[code] ? `${code} — ${CURRENCY_NAMES[code]}` : code;
-  }
-
-  function renderResults(query){
-    const q = query.trim().toLowerCase();
-    const list = CURRENCY_LIST.filter(c =>
-      !q || c.toLowerCase().includes(q) || (CURRENCY_NAMES[c] || '').toLowerCase().includes(q)
-    );
-    resultsEl.innerHTML = !list.length
-      ? `<div class="instrument-empty">No matches.</div>`
-      : list.slice(0,60).map(c => `<div class="instrument-result-item" data-code="${c}">${labelFor(c)}</div>`).join('');
-    resultsEl.querySelectorAll('.instrument-result-item').forEach(row => {
-      row.addEventListener('click', () => {
-        selected = row.dataset.code;
-        displayEl.textContent = labelFor(selected);
-        closePanel();
-        onSelect(selected);
-      });
-    });
-  }
-
-  function openPanel(){
-    document.querySelectorAll('.currency-dropdown-panel.open').forEach(p => { if(p !== panelEl) p.classList.remove('open'); });
-    panelEl.classList.add('open');
-    searchEl.value = '';
-    renderResults('');
-    searchEl.focus();
-  }
-  function closePanel(){ panelEl.classList.remove('open'); }
-
-  btnEl.addEventListener('click', (e) => {
-    e.stopPropagation();
-    panelEl.classList.contains('open') ? closePanel() : openPanel();
-  });
-  searchEl.addEventListener('input', () => renderResults(searchEl.value));
-  document.addEventListener('click', (e) => {
-    if(!panelEl.contains(e.target) && !btnEl.contains(e.target)) closePanel();
-  });
-
-  return {
-    getSelected(){ return selected; },
-    setSelected(code){ selected = code; displayEl.textContent = labelFor(code); onSelect(code); }
-  };
-}
-
-const curFromPicker = setupCurrencyPicker('cur-from-btn', 'cur-from-panel', 'cur-from-search', 'cur-from-results', 'cur-from-display', 'USD', () => calcCurrency());
-const curToPicker = setupCurrencyPicker('cur-to-btn', 'cur-to-panel', 'cur-to-search', 'cur-to-results', 'cur-to-display', 'EUR', () => calcCurrency());
-
-async function calcCurrency(){
-  const amount = parseFloat(document.getElementById('cur-amount').value) || 0;
-  const from = curFromPicker.getSelected();
-  const to = curToPicker.getSelected();
-  if(!fxRatesCache) await loadFxRates();
-  if(!fxRatesCache){
-    document.getElementById('cur-result').textContent = 'Loading…';
-    return;
-  }
-  const fromRate = from === 'USD' ? 1 : fxRatesCache[from];
-  const toRate = to === 'USD' ? 1 : fxRatesCache[to];
-  if(!fromRate || !toRate){
-    document.getElementById('cur-result').textContent = 'Rate unavailable';
-    return;
-  }
-  const usdAmount = amount / fromRate;
-  const result = usdAmount * toRate;
-  const rate = toRate / fromRate;
-  document.getElementById('cur-result').textContent = fmt(result, result < 10 ? 4 : 2) + ' ' + to;
-  document.getElementById('cur-rate').textContent = `1 ${from} = ${fmt(rate, rate < 10 ? 4 : 2)} ${to}`;
-}
-document.getElementById('cur-amount').addEventListener('input', calcCurrency);
-document.getElementById('cur-swap').addEventListener('click', () => {
-  const f = curFromPicker.getSelected(), t = curToPicker.getSelected();
-  curFromPicker.setSelected(t);
-  curToPicker.setSelected(f);
-  calcCurrency();
-});
-document.querySelectorAll('#tab-currency .quick-amounts button').forEach(b => {
-  b.addEventListener('click', () => {
-    document.getElementById('cur-amount').value = b.dataset.val;
-    calcCurrency();
-  });
-});
-loadFxRates().then(calcCurrency);
-
-/* ================= PIP CALCULATOR ================= */
-const pipMarketGroup = document.getElementById('pip-market');
-let pipCurrentInst = null;
-
-const pipPicker = setupInstrumentPicker('pip-instrument-search', 'pip-instrument-results', 'forex', async (inst) => {
-  pipCurrentInst = inst;
-  await calcPip();
-});
-pipPicker.init();
-
-pipMarketGroup.querySelectorAll('button').forEach(b => {
-  b.addEventListener('click', () => {
-    pipMarketGroup.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    pipPicker.setMarket(b.dataset.val);
-  });
-});
-['pip-lots','pip-amount'].forEach(id => document.getElementById(id).addEventListener('input', calcPip));
-document.querySelectorAll('#pip-quick-lots button').forEach(b => {
-  b.addEventListener('click', () => {
-    document.getElementById('pip-lots').value = b.dataset.val;
-    calcPip();
-  });
-});
-
-async function calcPip(){
-  const inst = pipCurrentInst || pipPicker.getSelected();
-  const lots = parseFloat(document.getElementById('pip-lots').value) || 0;
-  const pips = parseFloat(document.getElementById('pip-amount').value) || 0;
-  const pipSize = pipSizeFor(inst);
-  const units = lots * inst.contract;
-
-  document.getElementById('pip-size').textContent = pipSize;
-  document.getElementById('pip-price').textContent = 'Loading…';
-
-  const price = await fetchLivePrice(inst);
-  document.getElementById('pip-price').textContent = price ? fmt(price, price < 10 ? 4 : 2) : 'Unavailable';
-
-  let pipValueUSD = 0;
-  if(inst.quote === 'USD'){
-    pipValueUSD = pipSize * units;
-  } else if(inst.base === 'USD'){
-    pipValueUSD = price ? (pipSize * units) / price : 0;
-  } else {
-    const rate = usdValueOf(inst.quote);
-    pipValueUSD = rate ? pipSize * units * rate : 0;
-  }
-  document.getElementById('pip-value').textContent = '$' + fmt(pipValueUSD * pips);
-}
-
-/* ================= PROFIT CALCULATOR ================= */
-const profitMarketGroup = document.getElementById('profit-market');
-const profitDirectionGroup = document.getElementById('profit-direction');
-let profitDirection = 'buy';
-let profitCurrentInst = null;
-
-const profitPicker = setupInstrumentPicker('profit-instrument-search', 'profit-instrument-results', 'forex', async (inst) => {
-  profitCurrentInst = inst;
-  const openEl = document.getElementById('profit-open');
-  openEl.placeholder = 'Fetching live price…';
-  const price = await fetchLivePrice(inst);
-  if(price) openEl.value = fmt(price, price < 10 ? 4 : 2).replace(/,/g,'');
-  calcProfit();
-});
-profitPicker.init();
-
-profitMarketGroup.querySelectorAll('button').forEach(b => {
-  b.addEventListener('click', () => {
-    profitMarketGroup.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    profitPicker.setMarket(b.dataset.val);
-  });
-});
-profitDirectionGroup.querySelectorAll('button').forEach(b => {
-  b.addEventListener('click', () => {
-    profitDirectionGroup.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    profitDirection = b.dataset.val;
-    calcProfit();
-  });
-});
-['profit-open','profit-close','profit-lots','profit-fees'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calcProfit);
-});
-
-function calcProfit(){
-  const inst = profitCurrentInst || profitPicker.getSelected();
-  const open = parseFloat(document.getElementById('profit-open').value) || 0;
-  const close = parseFloat(document.getElementById('profit-close').value) || 0;
-  const lots = parseFloat(document.getElementById('profit-lots').value) || 0;
-  const fees = parseFloat(document.getElementById('profit-fees').value) || 0;
-
-  const units = lots * inst.contract;
-  const movement = close - open;
-  const dirMult = profitDirection === 'buy' ? 1 : -1;
-  const plQuote = movement * units * dirMult;
-
-  let gross = 0;
-  if(inst.quote === 'USD'){
-    gross = plQuote;
-  } else if(inst.base === 'USD'){
-    gross = close ? plQuote / close : 0;
-  } else {
-    const rate = usdValueOf(inst.quote);
-    if(rate === null){
-      document.getElementById('profit-gross').textContent = 'Loading rates…';
-      return;
-    }
-    gross = plQuote * rate;
-  }
-
-  const net = gross - fees;
-
-  const grossEl = document.getElementById('profit-gross');
-  const netEl = document.getElementById('profit-net');
-  grossEl.textContent = (gross>=0?'+':'') + '$' + fmt(gross);
-  grossEl.className = 'result-value ' + (gross>0?'up':gross<0?'down':'');
-  document.getElementById('profit-fees-out').textContent = '$' + fmt(fees);
-  netEl.textContent = (net>=0?'+':'') + '$' + fmt(net);
-  netEl.className = 'result-value gold ' + (net>0?'up':net<0?'down':'');
-}
-calcProfit();
-
-/* ================= POSITION SIZE CALCULATOR ================= */
-const sizeMarketGroup = document.getElementById('size-market');
-let sizeCurrentInst = null;
-
-const sizePicker = setupInstrumentPicker('size-instrument-search', 'size-instrument-results', 'forex', async (inst) => {
-  sizeCurrentInst = inst;
-  const entryEl = document.getElementById('size-entry');
-  entryEl.placeholder = 'Fetching live price…';
-  const price = await fetchLivePrice(inst);
-  if(price) entryEl.value = fmt(price, price < 10 ? 4 : 2).replace(/,/g,'');
-  calcSize();
-});
-sizePicker.init();
-
-sizeMarketGroup.querySelectorAll('button').forEach(b => {
-  b.addEventListener('click', () => {
-    sizeMarketGroup.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    sizePicker.setMarket(b.dataset.val);
-  });
-});
-['size-balance','size-risk-pct','size-entry','size-stop'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calcSize);
-});
-
-function calcSize(){
-  const inst = sizeCurrentInst || sizePicker.getSelected();
-  const balance = parseFloat(document.getElementById('size-balance').value) || 0;
-  const riskPct = parseFloat(document.getElementById('size-risk-pct').value) || 0;
-  const entry = parseFloat(document.getElementById('size-entry').value) || 0;
-  const stop = parseFloat(document.getElementById('size-stop').value) || 0;
-
-  const riskAmt = balance * (riskPct / 100);
-  const distance = Math.abs(entry - stop);
-
-  const riskAmtEl = document.getElementById('size-riskamt');
-  const lotsEl = document.getElementById('size-lots');
-  const notionalEl = document.getElementById('size-notional');
-
-  riskAmtEl.textContent = '$' + fmt(riskAmt);
-  document.getElementById('size-distance').textContent = fmt(distance, distance < 10 ? 4 : 2);
-
-  if(!distance || !entry){
-    lotsEl.textContent = '0.00';
-    notionalEl.textContent = '$0.00';
-    return;
-  }
-
-  // Value of a 1-unit price movement per lot, converted to USD so risk
-  // sizing works correctly across USD-quote, USD-base, and cross pairs.
-  let valuePerUnitMovePerLot;
-  if(inst.quote === 'USD'){
-    valuePerUnitMovePerLot = inst.contract;
-  } else if(inst.base === 'USD'){
-    valuePerUnitMovePerLot = entry ? inst.contract / entry : 0;
-  } else {
-    const rate = usdValueOf(inst.quote);
-    valuePerUnitMovePerLot = rate ? inst.contract * rate : 0;
-  }
-
-  const riskPerLot = distance * valuePerUnitMovePerLot;
-  const lots = riskPerLot > 0 ? riskAmt / riskPerLot : 0;
-  const notional = lots * inst.contract * entry;
-
-  lotsEl.textContent = fmt(lots, 3);
-  notionalEl.textContent = '$' + fmt(notional);
-}
-calcSize();
-</script>
-
-
-
-
-<div class="deskai-toggle-wrap">
-  <button class="deskai-toggle" id="deskaiToggle" aria-label="Open DeskAi">
-    <svg class="deskai-spark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/>
-    </svg>
-  </button>
-  <span class="deskai-toggle-label">Ask DeskAi</span>
-</div>
-
-<div class="deskai-panel" id="deskaiPanel">
-  <div class="deskai-header">
-    <div class="deskai-header-title">
-      <div class="mark">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="#1A1305"/>
-        </svg>
-      </div>
-      <div>
-        <div><span>DeskAi</span></div>
-        <div class="deskai-header-sub"><span class="live-dot"></span>Powered by Gemini</div>
-      </div>
-    </div>
-    <button class="deskai-close" id="deskaiClose">✕</button>
-  </div>
-  <div class="deskai-messages" id="deskaiMessages">
-    <div class="deskai-welcome" id="deskaiWelcome">Hi! I'm DeskAi — fill in the calculator above, then ask me to explain your risk or trade result.</div>
-  </div>
-  <div class="deskai-quick" id="deskaiQuick"><button data-q="Explain what my current position size and risk setup means for my trading — is it conservative, reasonable, or aggressive?">Explain my risk setup</button></div>
-  <div class="deskai-input-row">
-    <input type="text" class="deskai-input" id="deskaiInput" placeholder="Ask DeskAi…" autocomplete="off">
-    <button class="deskai-send" id="deskaiSend" aria-label="Send">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 12h15M13 6l6 6-6 6" stroke="#1A1305" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-  </div>
-</div>
-<script>
 
 window.getDeskAiContext = async function(){
-  try{
-    return {
-      currencyTab: {
-        amount: document.getElementById('cur-amount')?.value,
-        from: curFromPicker?.getSelected(),
-        to: curToPicker?.getSelected(),
-        result: document.getElementById('cur-result')?.textContent,
-      },
-      pipTab: {
-        instrument: document.getElementById('pip-instrument-search')?.value,
-        lots: document.getElementById('pip-lots')?.value,
-        pips: document.getElementById('pip-amount')?.value,
-        pipValue: document.getElementById('pip-value')?.textContent,
-        marketPrice: document.getElementById('pip-price')?.textContent,
-      },
-      profitTab: {
-        instrument: document.getElementById('profit-instrument-search')?.value,
-        open: document.getElementById('profit-open')?.value,
-        close: document.getElementById('profit-close')?.value,
-        lots: document.getElementById('profit-lots')?.value,
-        grossProfit: document.getElementById('profit-gross')?.textContent,
-        netProfit: document.getElementById('profit-net')?.textContent,
-      },
-      sizeTab: {
-        instrument: document.getElementById('size-instrument-search')?.value,
-        balance: document.getElementById('size-balance')?.value,
-        riskPercent: document.getElementById('size-risk-pct')?.value,
-        entry: document.getElementById('size-entry')?.value,
-        stop: document.getElementById('size-stop')?.value,
-        amountAtRisk: document.getElementById('size-riskamt')?.textContent,
-        recommendedLots: document.getElementById('size-lots')?.textContent,
-      }
-    };
-  } catch(e){ return null; }
+  return {
+    page: 'Forex Tools hub — lists 4 dedicated calculators: Currency Converter, Pip Calculator, Profit Calculator, and Position Size Calculator, each on its own page.'
+  };
 };
 
 
@@ -1989,6 +1121,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){

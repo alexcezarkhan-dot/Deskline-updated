@@ -542,7 +542,7 @@
   <p>Opinion pieces reflect the author's own view and analysis at the time of writing — markets change, and these are perspectives, not guarantees or financial advice.</p>
 </section>
 
-<footer>DeskTerminal · Opinion · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></footer>
+<footer>DeskTerminal · Opinion · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../legal/privacy-policy.html">Privacy</a> · <a href="../legal/terms.html">Terms</a></footer>
 
 <script>
 fetch('posts.json')
@@ -968,6 +968,8 @@ async function initAuth(){
   if(session?.user){
     await loadProfileUI(session.user);
     closeAuthModal();
+  } else {
+    showLoggedOutUI();
   }
   sb.auth.onAuthStateChange(async (event, session) => {
     if(event === 'SIGNED_IN' && session?.user){
