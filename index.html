@@ -1293,6 +1293,18 @@ const REPLAY_SYMBOL_MAP = {
   'BINANCE:DOTUSDT': 'DOTUSDT',
 };
 
+// Real historical forex/metals data via FCS API — separate map since these
+// route to a different backend function (replay-data-forex.js), not Binance.
+const REPLAY_FOREX_MAP = {
+  'FX:EURUSD': 'EURUSD',
+  'FX:GBPUSD': 'GBPUSD',
+  'FX:USDJPY': 'USDJPY',
+  'FX:AUDUSD': 'AUDUSD',
+  'FX:USDCAD': 'USDCAD',
+  'OANDA:XAUUSD': 'XAUUSD',
+  'OANDA:XAGUSD': 'XAGUSD',
+};
+
 const replayBtn = document.getElementById('replayBtn');
 const replayModalOverlay = document.getElementById('replayModalOverlay');
 const replayModalClose = document.getElementById('replayModalClose');
@@ -1355,13 +1367,14 @@ function stopReplayPlayback(){
 
 async function openReplay(){
   const binanceSymbol = REPLAY_SYMBOL_MAP[currentSymbol];
+  const forexSymbol = REPLAY_FOREX_MAP[currentSymbol];
   replayModalOverlay.classList.add('open');
   replaySymbolLabel.textContent = currentSymbol;
   stopReplayPlayback();
 
-  if(!binanceSymbol){
+  if(!binanceSymbol && !forexSymbol){
     replayChartContainer.innerHTML = '';
-    replayStatus.textContent = 'Replay currently supports crypto pairs only (BTC, ETH, SOL, etc.) — real historical data for forex and metals needs a paid provider, which isn\'t wired up yet.';
+    replayStatus.textContent = 'Replay isn\'t available for this instrument yet — currently supports major crypto, forex, and gold/silver pairs.';
     replayProgress.textContent = '0 / 0';
     return;
   }
@@ -1374,10 +1387,16 @@ async function openReplay(){
     }
     if(!replayChart) initReplayChart();
 
-    const res = await fetch(`/.netlify/functions/replay-data?symbol=${binanceSymbol}&interval=1h&limit=300`);
+    const endpoint = binanceSymbol
+      ? `/.netlify/functions/replay-data?symbol=${binanceSymbol}&interval=1h&limit=300`
+      : `/.netlify/functions/replay-data-forex?symbol=${forexSymbol}&interval=1h&limit=300`;
+
+    const res = await fetch(endpoint);
     const data = await res.json();
     if(data.error || !data.candles || !data.candles.length){
-      replayStatus.textContent = 'Replay data is not available right now — it may not be set up on this site yet.';
+      replayStatus.textContent = forexSymbol
+        ? 'Historical data for this pair isn\'t available right now — the free data source may be temporarily limited.'
+        : 'Replay data is not available right now — it may not be set up on this site yet.';
       return;
     }
     replayCandles = data.candles;
