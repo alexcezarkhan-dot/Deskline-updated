@@ -583,8 +583,39 @@
 </footer>
 
 <script>
-// Netlify forms handle submission natively; this just shows a friendly confirmation
-// without a full page reload, since the form posts via standard Netlify handling.
+// Intercepts the form submit and sends it via fetch (Netlify's documented
+// AJAX pattern for forms), so the visitor sees a real confirmation message
+// right here on the page — instead of the browser navigating away to
+// Netlify's own generic, unbranded default success page.
+const contactForm = document.getElementById('contactForm');
+const successMsg = document.getElementById('successMsg');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn ? submitBtn.textContent : '';
+  if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+  const formData = new FormData(contactForm);
+  const body = new URLSearchParams(formData).toString();
+
+  try{
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    });
+    if(res.ok){
+      contactForm.style.display = 'none';
+      successMsg.classList.add('show');
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch(err){
+    if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = originalBtnText; }
+    alert("Something went wrong sending your message — please try again, or email us directly at deskterminalfx@gmail.com.");
+  }
+});
 </script>
 
 
