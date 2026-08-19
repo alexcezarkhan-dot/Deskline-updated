@@ -2,6 +2,83 @@
 // Every /forex, /commodities, /crypto, /indices page reads from this single
 // config so nothing is duplicated across pages (per project architecture).
 window.INSTRUMENTS = {
+  'eur-gbp': {
+    category: 'forex', name: 'EUR/GBP', fullName: 'Euro vs British Pound',
+    tvSymbol: 'FX:EURGBP', priceSource: 'frankfurter', base: 'EUR', quote: 'GBP',
+    newsKeywords: ['EUR/GBP','euro','pound','ECB','Bank of England'], calendarCountries: ['EUR','GBP'],
+    related: [
+      { key:'eur-usd', cat:'forex', label:'EUR/USD' },
+      { key:'gbp-usd', cat:'forex', label:'GBP/USD' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
+  'aud-usd': {
+    category: 'forex', name: 'AUD/USD', fullName: 'Australian Dollar vs US Dollar',
+    tvSymbol: 'FX:AUDUSD', priceSource: 'frankfurter', base: 'AUD', quote: 'USD',
+    newsKeywords: ['AUD/USD','aussie','Reserve Bank of Australia','RBA'], calendarCountries: ['AUD','USD'],
+    related: [
+      { key:'eur-usd', cat:'forex', label:'EUR/USD' },
+      { key:'gbp-usd', cat:'forex', label:'GBP/USD' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
+  'usd-chf': {
+    category: 'forex', name: 'USD/CHF', fullName: 'US Dollar vs Swiss Franc',
+    tvSymbol: 'FX:USDCHF', priceSource: 'frankfurter', base: 'USD', quote: 'CHF',
+    newsKeywords: ['USD/CHF','franc','Swiss National Bank','SNB'], calendarCountries: ['USD','CHF'],
+    related: [
+      { key:'eur-usd', cat:'forex', label:'EUR/USD' },
+      { key:'usd-jpy', cat:'forex', label:'USD/JPY' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
+  'usd-hkd': {
+    category: 'forex', name: 'USD/HKD', fullName: 'US Dollar vs Hong Kong Dollar',
+    tvSymbol: 'FX:USDHKD', priceSource: 'frankfurter', base: 'USD', quote: 'HKD',
+    newsKeywords: ['USD/HKD','Hong Kong Dollar','Hong Kong Monetary Authority'], calendarCountries: ['USD','HKD'],
+    related: [
+      { key:'usd-sgd', cat:'forex', label:'USD/SGD' },
+      { key:'usd-cnh', cat:'forex', label:'USD/CNH' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
+  'usd-sgd': {
+    category: 'forex', name: 'USD/SGD', fullName: 'US Dollar vs Singapore Dollar',
+    tvSymbol: 'FX:USDSGD', priceSource: 'frankfurter', base: 'USD', quote: 'SGD',
+    newsKeywords: ['USD/SGD','Singapore Dollar','Monetary Authority of Singapore'], calendarCountries: ['USD','SGD'],
+    related: [
+      { key:'usd-hkd', cat:'forex', label:'USD/HKD' },
+      { key:'usd-cnh', cat:'forex', label:'USD/CNH' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
+  'usd-inr': {
+    category: 'forex', name: 'USD/INR', fullName: 'US Dollar vs Indian Rupee',
+    tvSymbol: 'FX_IDC:USDINR', priceSource: 'frankfurter', base: 'USD', quote: 'INR',
+    newsKeywords: ['USD/INR','Indian Rupee','Reserve Bank of India','RBI'], calendarCountries: ['USD','INR'],
+    related: [
+      { key:'usd-sgd', cat:'forex', label:'USD/SGD' },
+      { key:'usd-hkd', cat:'forex', label:'USD/HKD' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
+  'usd-cnh': {
+    category: 'forex', name: 'USD/CNH', fullName: 'US Dollar vs Offshore Chinese Yuan',
+    tvSymbol: 'FX_IDC:USDCNH', priceSource: 'frankfurter', base: 'USD', quote: 'CNH',
+    newsKeywords: ['USD/CNH','Chinese Yuan','yuan','renminbi','People\'s Bank of China'], calendarCountries: ['USD','CNY'],
+    related: [
+      { key:'usd-hkd', cat:'forex', label:'USD/HKD' },
+      { key:'usd-sgd', cat:'forex', label:'USD/SGD' },
+      { key:'gold', cat:'commodities', label:'Gold' },
+    ],
+    session: 'forex',
+  },
   'eur-usd': {
     category: 'forex', name: 'EUR/USD', fullName: 'Euro vs US Dollar',
     tvSymbol: 'FX:EURUSD', priceSource: 'frankfurter', base: 'EUR', quote: 'USD',
