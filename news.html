@@ -297,6 +297,13 @@
     vertical-align:middle;
   }
 
+  .nr-effect{
+    font-family:'JetBrains Mono', monospace; font-size:.68rem; font-weight:600;
+    padding:.3rem .9rem .5rem; margin-top:-.3rem;
+  }
+  .nr-effect.strengthen{ color:#4ADE80; }
+  .nr-effect.weaken{ color:#FB6B5B; }
+
   .news-detail{
     display:none;
     padding: 1rem .9rem 1.4rem;
@@ -921,13 +928,19 @@ function renderNewsList(){
   }
 
   container.innerHTML = filtered.map((item, idx) => {
-    const isHighImpact = classifiedHeadlines.get(item.title) === true;
+    const classification = classifiedHeadlines.get(item.title);
+    const isHighImpact = classification?.highImpact === true;
+    const hasEffect = classification?.currency && classification?.effect;
+    const effectHtml = hasEffect
+      ? `<div class="nr-effect ${classification.effect}">Effect on ${escapeHtml(classification.currency)}: ${classification.effect === 'strengthen' ? '▲ Strengthen' : '▼ Weaken'}</div>`
+      : '';
     return `
     <div class="news-row" data-idx="${idx}">
       <span class="nr-time">${fmtNewsTime(item.pubDate)}</span>
       <span class="nr-source">${escapeHtml(item.source)}</span>
       <span class="nr-title">${isHighImpact ? '<span class="nr-impact-badge">HIGH</span> ' : ''}${escapeHtml(item.title)}</span>
     </div>
+    ${effectHtml}
     <div class="news-detail" id="newsDetail-${idx}"></div>
   `;
   }).join('');
@@ -1016,7 +1029,7 @@ function playWarningTone(){
 // Tracks which headlines have already been classified, so re-checking the
 // same 60 headlines every 10-minute refresh doesn't waste AI requests —
 // only genuinely new headlines get sent for classification.
-const classifiedHeadlines = new Map(); // title -> true/false (high impact)
+const classifiedHeadlines = new Map(); // title -> { highImpact, currency, effect }
 
 async function classifyNewHeadlines(items){
   const unclassified = items.filter(item => !classifiedHeadlines.has(item.title));
@@ -1040,7 +1053,11 @@ async function classifyNewHeadlines(items){
         data.results.forEach(r => {
           const item = batch[r.index];
           if(!item) return;
-          classifiedHeadlines.set(item.title, !!r.highImpact);
+          classifiedHeadlines.set(item.title, {
+            highImpact: !!r.highImpact,
+            currency: r.currency || null,
+            effect: (r.effect === 'strengthen' || r.effect === 'weaken') ? r.effect : null,
+          });
           if(r.highImpact) anyNewHighImpact = true;
         });
         if(anyNewHighImpact){
