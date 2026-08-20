@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Forex, Gold (XAUUSD), Crypto &amp; Stock Prices — Real-Time Charts | DeskTerminal</title>
-<meta name="description" content="Live forex rates, gold and silver spot prices (XAUUSD, XAGUSD), Bitcoin and crypto prices, stock indices (S&P 500, Nasdaq), and real-time TradingView charts — all in one place on DeskTerminal.">
-<meta name="keywords" content="forex, fx, live forex rates, gold price, XAUUSD, silver price, XAGUSD, crypto prices, bitcoin price, ethereum price, stock market, stock indices, S&P 500, live trading chart">
+<title>DeskTerminal — Trading Sessions, Today's Events &amp; Latest Market News</title>
+<meta name="description" content="Your trading day at a glance: live forex session times, today's key economic events, and the latest market news — all in one dashboard on DeskTerminal.">
+<meta name="keywords" content="forex trading sessions, forex market hours, today's economic events, forex news today, trading session times, London New York session overlap">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="DeskTerminal">
 <meta name="theme-color" content="#0E1116">
 <link rel="canonical" href="https://deskterminal.com/index.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DeskTerminal">
-<meta property="og:title" content="Live Forex, Gold, Crypto & Stock Prices — Real-Time Charts | DeskTerminal">
-<meta property="og:description" content="Live forex rates, gold and silver spot prices (XAUUSD, XAGUSD), Bitcoin and crypto prices, stock indices (S&P 500, Nasdaq), and real-time TradingView charts — all in one place on DeskTerminal.">
+<meta property="og:title" content="DeskTerminal — Trading Sessions, Today's Events & Latest Market News">
+<meta property="og:description" content="Your trading day at a glance: live forex session times, today's key economic events, and the latest market news — all in one dashboard.">
 <meta property="og:url" content="https://deskterminal.com/index.html">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Live Forex, Gold, Crypto & Stock Prices | DeskTerminal">
-<meta name="twitter:description" content="Live forex rates, gold and silver spot prices (XAUUSD, XAGUSD), Bitcoin and crypto prices, stock indices, and real-time TradingView charts — all in one place.">
+<meta name="twitter:title" content="DeskTerminal — Trading Sessions, Events & News | DeskTerminal">
+<meta name="twitter:description" content="Your trading day at a glance: live forex session times, today's key economic events, and the latest market news.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Live Forex, Gold, Crypto & Stock Prices — Real-Time Charts",
-  "description": "Live forex rates, gold and silver spot prices (XAUUSD, XAGUSD), Bitcoin and crypto prices, stock indices (S&P 500, Nasdaq), and real-time TradingView charts.",
+  "name": "DeskTerminal — Trading Sessions, Today's Events & Latest Market News",
+  "description": "Your trading day at a glance: live forex session times, today's key economic events, and the latest market news.",
   "url": "https://deskterminal.com/index.html",
   "isPartOf": { "@type": "WebSite", "name": "DeskTerminal", "url": "https://deskterminal.com/" },
   "breadcrumb": {
@@ -33,46 +33,6 @@
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deskterminal.com/index.html" }
     ]
   }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this real-time market data?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes — forex, gold, silver, and crypto prices update live from real market data sources, and charts are powered by TradingView. There's no manual refresh needed; prices update automatically as the market moves."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is DeskTerminal free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, DeskTerminal is completely free to use, including live prices, charts, the trade calculator, economic calendar, and AI-powered market analysis — no account required to browse."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What markets does DeskTerminal cover?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "DeskTerminal covers forex (major, minor, and exotic currency pairs), precious metals (gold and silver), major cryptocurrencies including Bitcoin and Ethereum, and global stock indices including the S&P 500 and Nasdaq 100."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I save a watchlist on DeskTerminal?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes — sign in with Google or Facebook, then click the star icon on any instrument to add it to your personal watchlist, which is saved privately to your account."
-      }
-    }
-  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,10 +60,35 @@
   }
   .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
   .wordmark span{ color:var(--gold); }
+  .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
+  .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
   .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
-  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
+  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; display:flex; align-items:center; gap:.4rem; }
   .navlinks a:hover{ color:var(--ink); }
   .navlinks a.active{ color:var(--gold); }
+  .nav-icon{ width:15px; height:15px; flex-shrink:0; }
+  .nav-right{ display:flex; align-items:center; gap:1.2rem; }
+  .nav-clock{ font-size:.72rem; color:var(--dim); white-space:nowrap; }
+
+  .mobile-subnav{
+    display:none;
+    overflow-x:auto; white-space:nowrap;
+    background:var(--panel-2); border-bottom:1px solid var(--line-soft);
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  .mobile-subnav::-webkit-scrollbar{ display:none; }
+  .mobile-subnav a{
+    display:inline-block; padding:.65rem .9rem;
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    text-decoration:none; border-bottom:2px solid transparent;
+  }
+  .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+
+  @media (max-width:860px){
+    .navlinks{ display:none; }
+    .nav-clock{ display:none; }
+    .mobile-subnav{ display:flex; }
+  }
 
   /* ---------------- Ticker tape ---------------- */
   .tape-holder{ border-bottom:1px solid var(--line-soft); background:var(--panel-2); overflow:hidden; white-space:nowrap; padding:.7rem 0; }
@@ -137,183 +122,48 @@
   .tape-chip .chg.down{ color:#FB6B5B; }
 
   /* ---------------- Page head ---------------- */
-  .pagehead{ padding: 2rem 6vw 1.2rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); margin-top:.4rem; }
+  /* ---------------- Home dashboard (date, sessions, mini previews) ---------------- */
+  /* ---------------- Market Scanner ---------------- */
+  .scanner-section{ padding: 1.4rem 6vw 0; }
+  .scanner-title{ font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:.7rem; }
+  .scanner-sub{ font-family:'JetBrains Mono', monospace; font-size:.68rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
 
-  /* ---------------- Category + search ---------------- */
-  .category-bar{
-    display:flex; gap:.5rem; flex-wrap:wrap;
-    padding: 0 6vw 1rem;
+  .scanner-grid{
+    display:grid; grid-template-columns:repeat(8, 1fr); gap:.5rem; margin-bottom:1.4rem;
   }
-  .category-bar button{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.75rem;
-    background:transparent;
-    border:1px solid var(--line-soft);
-    color:var(--dim);
-    padding:.55rem 1rem;
-    border-radius:5px;
-    cursor:pointer;
-    transition: all .15s;
+  .scanner-box{
+    display:block; background:var(--panel); border:1px solid var(--line-soft); border-radius:6px;
+    padding:.5rem; text-decoration:none; transition:border-color .15s;
   }
-  .category-bar button.active, .category-bar button:hover{
-    border-color:var(--gold); color:var(--gold);
-  }
-  .search-wrap{
-    position:relative;
-    padding: 0 6vw 1.2rem;
-    display:none;
-  }
-  .search-wrap.open{ display:block; }
-  .search-box{
-    width:100%;
-    max-width:480px;
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:6px;
-    padding:.8rem 1rem;
-    color:var(--ink);
-    font-family:'JetBrains Mono', monospace;
-    font-size:.88rem;
-    outline:none;
-  }
-  .search-box:focus{ border-color:var(--gold); }
-  .search-results{
-    max-width:480px;
-    margin-top:.4rem;
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:6px;
-    overflow:hidden;
-    display:none;
-  }
-  .search-results.open{ display:block; }
-  .search-result-item{
-    padding:.75rem 1rem;
-    cursor:pointer;
-    border-bottom:1px solid var(--line-soft);
-    display:flex; justify-content:space-between; align-items:center; gap:.6rem;
-    transition: background .12s;
-  }
-  .result-star{
-    background:transparent; border:none; cursor:pointer; font-size:.95rem;
-    color:var(--dim); flex-shrink:0; line-height:1; padding:.1rem;
-  }
-  .result-star:hover{ color:var(--gold); }
-  .result-star.starred{ color:var(--gold); }
-  .search-result-info{ display:flex; justify-content:space-between; align-items:center; flex:1; gap:.5rem; min-width:0; }
-  .search-result-item:last-child{ border-bottom:none; }
-  .search-result-item:hover{ background: var(--panel-2); }
-  .search-result-name{ font-size:.85rem; }
-  .search-result-symbol{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
-  .search-empty{ padding:.9rem 1rem; font-family:'JetBrains Mono', monospace; font-size:.78rem; color:var(--dim); }
+  .scanner-box:hover{ border-color:var(--gold); }
+  .scanner-box-label{ font-size:.64rem; font-weight:700; color:var(--ink); margin-bottom:.2rem; }
+  .scanner-box-price{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--ink); margin-bottom:.3rem; }
+  .scanner-box-chart{ width:100%; height:32px; display:block; margin-bottom:.3rem; }
+  .scanner-box-chg{ font-family:'JetBrains Mono', monospace; font-size:.6rem; text-align:right; }
+  .scanner-box-chg.up{ color:#4ADE80; }
+  .scanner-box-chg.down{ color:#FB6B5B; }
 
-  /* ---------------- Chart panel ---------------- */
-  .chart-panel{
-    margin: 0 6vw 2.5rem;
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: 1rem;
-    height: 560px;
-    position: relative;
+  .strength-collapsible{
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
+    overflow:hidden; margin-bottom:1.4rem;
   }
-  .chart-panel:fullscreen{
-    border-radius:0;
-    height:100vh;
-    padding: 1rem;
+  .strength-toggle{
+    width:100%; display:flex; justify-content:space-between; align-items:center;
+    background:none; border:none; padding:.8rem 1.1rem; cursor:pointer;
+    font-size:.78rem; font-weight:700; color:var(--ink);
   }
-  .chart-toolbar{
-    display:flex; justify-content:space-between; margin-bottom:.6rem; gap:.6rem; flex-wrap:wrap;
-  }
-  .expand-btn.in-watchlist{ border-color:var(--gold); color:var(--gold); }
-
-  /* ---------------- Replay tool ---------------- */
-  .replay-modal-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1200; display:none;
-    align-items:center; justify-content:center; padding:2rem;
-  }
-  .replay-modal-overlay.open{ display:flex; }
-  .replay-modal{
-    width:900px; max-width:100%;
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
-    padding:1.4rem; display:flex; flex-direction:column; gap:1rem;
-  }
-  .replay-modal-header{ display:flex; justify-content:space-between; align-items:flex-start; }
-  .replay-modal-header h2{ font-size:1.05rem; font-weight:700; }
-  .replay-modal-header h2 span{ color:var(--gold); }
-  .replay-modal-sub{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim); margin-top:.3rem; }
-  .replay-modal-close{ background:transparent; border:none; color:var(--dim); font-size:1.1rem; cursor:pointer; }
-  .replay-modal-close:hover{ color:var(--ink); }
-  #replayChartContainer{ height:380px; width:100%; border-radius:6px; overflow:hidden; }
-  .replay-controls{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
-  .replay-ctrl-btn{
-    width:38px; height:38px; border-radius:6px;
-    background:var(--panel-2); border:1px solid var(--line-soft); color:var(--ink);
-    cursor:pointer; font-size:.9rem; display:flex; align-items:center; justify-content:center;
-  }
-  .replay-ctrl-btn:hover{ border-color:var(--gold); }
-  .replay-ctrl-btn.primary{
-    background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A); border:none; color:#1A1305;
-  }
-  .replay-speed{
-    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:6px;
-    color:var(--ink); font-family:'JetBrains Mono', monospace; font-size:.72rem; padding:.5rem .6rem;
-  }
-  .replay-progress{
-    margin-left:auto; font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
-  }
-  .replay-status{
-    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); text-align:center;
-  }
-  @media (max-width:700px){
-    .replay-modal{ padding:1rem; }
-    #replayChartContainer{ height:280px; }
-  }
-  .expand-btn{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.72rem;
-    background:transparent;
-    border:1px solid var(--line-soft);
-    color:var(--dim);
-    padding:.4rem .8rem;
-    border-radius:5px;
-    cursor:pointer;
-    transition: all .15s;
-    display:flex; align-items:center; gap:.4rem;
-  }
-  .expand-btn:hover{ border-color:var(--gold); color:var(--gold); }
-  #chartContainer{ height: calc(100% - 2.2rem); width:100%; }
-  .chart-panel:fullscreen #chartContainer{ height: calc(100% - 2.2rem); }
-
-  /* ---------------- Overview ---------------- */
-  section.overview{ padding: 0 6vw 3rem; }
-  .group-label{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.68rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color: var(--dim);
-    margin-bottom:1rem;
-    display:flex; align-items:center; gap:.6rem;
-  }
-  .group-label::after{ content:""; flex:1; height:1px; background:var(--line-soft); }
-  .overview-panel{
-    background: var(--panel);
-    border:1px solid var(--line-soft);
-    border-radius:8px;
-    padding: .8rem;
-  }
-
-  /* ---------------- SEO content section ---------------- */
-  .seo-content{
-    padding: 0 6vw 3rem;
-    max-width: 900px;
-  }
-  .seo-content h2{ font-size:1.1rem; font-weight:600; margin: 1.6rem 0 .6rem; }
-  .seo-content h2:first-child{ margin-top:0; }
-  .seo-content p{ font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem; }
+  .strength-arrow{ color:var(--gold); font-size:.7rem; transition:transform .15s; }
+  .strength-body{ display:none; padding:0 1.1rem 1rem; }
+  .strength-body.open{ display:block; }
+  .strength-row{ display:grid; grid-template-columns:40px 1fr 55px; align-items:center; gap:.6rem; padding:.3rem 0; }
+  .strength-code{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--ink); }
+  .strength-track{ height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden; }
+  .strength-fill{ height:100%; border-radius:3px; }
+  .strength-fill.up{ background:#4ADE80; }
+  .strength-fill.down{ background:#FB6B5B; }
+  .strength-score{ font-family:'JetBrains Mono', monospace; font-size:.68rem; text-align:right; }
+  .strength-score.up{ color:#4ADE80; }
+  .strength-score.down{ color:#FB6B5B; }
 
   footer{
     text-align:center;
@@ -325,24 +175,61 @@
   }
   footer a{ color:var(--gold); text-decoration:none; }
 
-    /* ---------------- DeskAi floating chatbox (v2) ---------------- */
-  @keyframes deskaiPulseRing{
-    0%{ box-shadow: 0 0 0 0 rgba(232,177,92,0.45); }
-    70%{ box-shadow: 0 0 0 14px rgba(232,177,92,0); }
-    100%{ box-shadow: 0 0 0 0 rgba(232,177,92,0); }
+  @media (max-width:900px){
+    .scanner-grid{
+      grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:110px;
+      overflow-x:auto; padding-bottom:.4rem; -ms-overflow-style:none; scrollbar-width:none;
+    }
+    .scanner-grid::-webkit-scrollbar{ display:none; }
   }
-  @keyframes deskaiPanelIn{
-    from{ opacity:0; transform: translateY(12px) scale(.97); }
-    to{ opacity:1; transform: translateY(0) scale(1); }
+
+  .home-dashboard{ padding: 1.4rem 6vw 0; }
+  .home-date{
+    font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:1rem;
   }
-  @keyframes deskaiBounce{
-    0%,80%,100%{ transform: scale(0.6); opacity:.4; }
-    40%{ transform: scale(1); opacity:1; }
+  .sessions-widget{
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
+    padding:1rem 1.2rem; margin-bottom:1rem;
   }
-  @keyframes deskaiShimmer{
-    0%,100%{ transform: rotate(0deg) scale(1); }
-    50%{ transform: rotate(12deg) scale(1.08); }
+  .sessions-title{ font-size:.85rem; font-weight:700; color:var(--ink); margin-bottom:.8rem; }
+  .sessions-bar{ position:relative; height:112px; background:var(--panel-2); border-radius:5px; overflow:hidden; }
+  .session-block{
+    position:absolute; height:22px; border-radius:4px;
+    display:flex; flex-direction:column; justify-content:center; padding:0 8px; white-space:nowrap; overflow:hidden;
+    transition: box-shadow .2s;
   }
+  .session-name{ font-size:.68rem; font-weight:600; line-height:1.3; }
+  .session-local{ font-size:.58rem; line-height:1.3; opacity:.85; }
+  .session-block.open{
+    background:rgba(74,222,128,0.18); color:#4ADE80;
+    box-shadow: 0 0 8px rgba(74,222,128,0.25);
+  }
+  .session-block.closed{ background:var(--line-soft); color:var(--dim); }
+  .sessions-now-line{
+    position:absolute; top:0; bottom:0; width:2px; background:#FB6B5B; z-index:2;
+  }
+  .sessions-now-line::before{
+    content:"now"; position:absolute; top:-16px; left:-12px;
+    font-family:'JetBrains Mono', monospace; font-size:.55rem; color:#FB6B5B;
+  }
+  .sessions-hours{ display:flex; justify-content:space-between; font-size:.6rem; color:var(--dim); margin-top:.4rem; }
+  .home-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.4rem; }
+  @media (max-width:700px){ .home-grid{ grid-template-columns:1fr; } }
+  .home-card{ background:var(--panel); border:1px solid var(--line-soft); border-radius:8px; padding:1rem 1.2rem; }
+  .home-card-title{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:.85rem; font-weight:700; color:var(--ink); margin-bottom:.7rem;
+  }
+  .home-card-title a{ font-family:'JetBrains Mono', monospace; font-size:.65rem; color:var(--gold); text-decoration:none; font-weight:400; }
+  .home-card-loading{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
+  .home-preview-row{
+    display:flex; justify-content:space-between; gap:.6rem;
+    padding:.45rem 0; border-bottom:1px solid var(--line-soft); font-size:.72rem;
+  }
+  .home-preview-row:last-child{ border-bottom:none; }
+  .home-preview-meta{ font-family:'JetBrains Mono', monospace; color:var(--dim); flex-shrink:0; white-space:nowrap; }
+  .home-preview-text{ color:var(--ink); text-align:right; }
 
   .deskai-toggle-wrap{
     position: fixed;
@@ -737,20 +624,36 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <div class="wordmark-wrap">
+      <span class="wordmark-bar"></span>
+      <div class="wordmark">Desk<span>Terminal</span></div>
+    </div>
   </div>
   <div class="navlinks">
-    <a href="index.html" class="active">Market</a>
-    <a href="calendar.html">Economic Calendar</a>
-    <a href="news.html">News</a>
-    <a href="forex-tools.html">Forex Tools</a>
-  <a href="brokers/index.html">Brokers</a>
+    <a href="index.html" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
+    <a href="market.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-5"/></svg>Market</a>
+    <a href="calendar.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Economic Calendar</a>
+    <a href="news.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V4z"/><path d="M8 8h7M8 12h7M8 16h4"/></svg>News</a>
+    <a href="forex-tools.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h2M8 15h2M12 15h2M16 15h2"/></svg>Forex Tools</a>
+  <a href="brokers/index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg>Brokers</a>
   </div>
-  <div class="auth-slot" id="authSlot">
-  <button class="auth-btn" id="loginBtn">Login</button>
-  <button class="auth-btn primary" id="signupBtn">Sign Up</button>
+  <div class="nav-right">
+    <span class="nav-clock mono" id="navClock"></span>
+    <div class="auth-slot" id="authSlot">
+    <button class="auth-btn" id="loginBtn">Login</button>
+    <button class="auth-btn primary" id="signupBtn">Sign Up</button>
 </div>
+  </div>
 </nav>
+
+<div class="mobile-subnav" id="mobileSubnav">
+  <a href="index.html" class="active">Home</a>
+  <a href="market.html">Market</a>
+  <a href="news.html">News</a>
+  <a href="calendar.html">Calendar</a>
+  <a href="forex-tools.html">Forex Tools</a>
+  <a href="brokers/index.html">Brokers</a>
+</div>
 
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
@@ -759,7 +662,9 @@
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="index.html" class="active">Market</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="market.html">Market</a>
+    <a href="instruments.html">Instruments</a>
     <a href="forex-tools.html">Forex Tools</a>
     <a href="news.html">News</a>
     <a href="calendar.html">Economic Calendar</a>
@@ -770,166 +675,44 @@
   <div class="nav-drawer-note">DESKTERMINAL · FULL SITE MENU</div>
 </div>
 
-<div class="tape-holder">
-  <div class="custom-tape">
-    <div class="custom-tape-track" id="customTapeTrack">Loading market tape…</div>
+<div class="scanner-section">
+  <div class="scanner-title">Market Scanner <span class="scanner-sub">Today's real movers</span></div>
+  <div class="scanner-grid" id="scannerGrid">
+    <div class="home-card-loading" style="padding:1rem;">Loading market scanner…</div>
+  </div>
+
+  <div class="strength-collapsible">
+    <button class="strength-toggle" id="strengthToggle">
+      <span>Currency Strength — Today</span>
+      <span class="strength-arrow" id="strengthArrow">▾</span>
+    </button>
+    <div class="strength-body" id="strengthBody"></div>
   </div>
 </div>
 
-<div class="pagehead">
-  <h1>Market</h1>
-  <p>LIVE FOREX, GOLD (XAUUSD), CRYPTO &amp; STOCK PRICES</p>
-</div>
+<div class="home-dashboard">
+  <div class="home-date mono" id="homeDate"></div>
 
-<div class="category-bar" id="categoryBar"></div>
-<div class="search-wrap" id="searchWrap">
-  <input type="text" class="search-box" id="searchBox" placeholder="Search…" autocomplete="off">
-  <div class="search-results" id="searchResults"></div>
-</div>
-
-
-<div class="chart-panel" id="chartPanel">
-  <div class="chart-toolbar">
-    <button class="expand-btn" id="watchlistBtn">☆ Add to Watchlist</button>
-    <button class="expand-btn" id="replayBtn">▶ Replay</button>
-    <button class="expand-btn" id="expandBtn">⛶ Expand chart</button>
-  </div>
-  <div id="chartContainer"></div>
-</div>
-
-<div class="replay-modal-overlay" id="replayModalOverlay">
-  <div class="replay-modal">
-    <div class="replay-modal-header">
-      <div>
-        <h2>Replay — <span id="replaySymbolLabel">—</span></h2>
-        <div class="replay-modal-sub">Step or play back through real historical candles for backtesting practice</div>
-      </div>
-      <button class="replay-modal-close" id="replayModalClose">✕</button>
+  <div class="home-grid">
+    <div class="home-card">
+      <div class="home-card-title">Latest News <a href="news.html">More →</a></div>
+      <div id="homeNewsPreview" class="home-card-loading">Loading latest headlines…</div>
     </div>
-    <div id="replayChartContainer"></div>
-    <div class="replay-controls">
-      <button class="replay-ctrl-btn" id="replayResetBtn" title="Reset">⟲</button>
-      <button class="replay-ctrl-btn" id="replayStepBackBtn" title="Step back">⏮</button>
-      <button class="replay-ctrl-btn primary" id="replayPlayBtn" title="Play/Pause">▶</button>
-      <button class="replay-ctrl-btn" id="replayStepBtn" title="Step forward">⏭</button>
-      <select class="replay-speed" id="replaySpeed">
-        <option value="1200">0.5x</option>
-        <option value="600" selected>1x</option>
-        <option value="300">2x</option>
-        <option value="120">4x</option>
-      </select>
-      <div class="replay-progress" id="replayProgress">0 / 0</div>
-    </div>
-    <div class="replay-status" id="replayStatus"></div>
-  </div>
-</div>
-
-<section class="overview">
-  <div class="group-label">Watchlist overview</div>
-  <div class="overview-panel">
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-      {
-        "colorTheme": "dark",
-        "dateRange": "12M",
-        "showChart": false,
-        "locale": "en",
-        "isTransparent": true,
-        "showSymbolLogo": true,
-        "showFloatingTooltip": false,
-        "width": "100%",
-        "height": "420",
-        "plotLineColorGrowing": "rgba(232, 177, 92, 1)",
-        "plotLineColorFalling": "rgba(232, 177, 92, 1)",
-        "gridLineColor": "rgba(255, 255, 255, 0.06)",
-        "scaleFontColor": "rgba(124, 133, 152, 1)",
-        "belowLineFillColorGrowing": "rgba(232, 177, 92, 0.12)",
-        "belowLineFillColorFalling": "rgba(251, 107, 91, 0.12)",
-        "tabs": [
-          {
-            "title": "Metals",
-            "symbols": [
-              {"s": "OANDA:XAUUSD", "d": "Gold"},
-              {"s": "OANDA:XAGUSD", "d": "Silver"},
-              {"s": "TVC:PLATINUM", "d": "Platinum"},
-              {"s": "TVC:PALLADIUM", "d": "Palladium"}
-            ]
-          },
-          {
-            "title": "Crypto",
-            "symbols": [
-              {"s": "BITSTAMP:BTCUSD", "d": "Bitcoin"},
-              {"s": "BITSTAMP:ETHUSD", "d": "Ethereum"},
-              {"s": "BINANCE:SOLUSDT", "d": "Solana"},
-              {"s": "BINANCE:XRPUSDT", "d": "XRP"},
-              {"s": "BINANCE:DOGEUSDT", "d": "Dogecoin"}
-            ]
-          },
-          {
-            "title": "Forex",
-            "symbols": [
-              {"s": "FX:EURUSD", "d": "EUR/USD"},
-              {"s": "FX:GBPUSD", "d": "GBP/USD"},
-              {"s": "FX:USDJPY", "d": "USD/JPY"},
-              {"s": "FX_IDC:USDPKR", "d": "USD/PKR"},
-              {"s": "FX:AUDUSD", "d": "AUD/USD"}
-            ]
-          },
-          {
-            "title": "Indices",
-            "symbols": [
-              {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
-              {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
-              {"s": "FOREXCOM:DJI", "d": "Dow Jones"},
-              {"s": "TVC:UKX", "d": "FTSE 100"},
-              {"s": "TVC:NI225", "d": "Nikkei 225"}
-            ]
-          },
-          {
-            "title": "Futures",
-            "symbols": [
-              {"s": "TVC:USOIL", "d": "Crude Oil WTI"},
-              {"s": "TVC:UKOIL", "d": "Brent Oil"},
-              {"s": "TVC:NATURALGAS", "d": "Natural Gas"},
-              {"s": "COMEX:GC1!", "d": "Gold Futures"},
-              {"s": "COMEX:SI1!", "d": "Silver Futures"}
-            ]
-          }
-        ]
-      }
-      </script>
+    <div class="home-card">
+      <div class="home-card-title">Today's Events <a href="calendar.html">More →</a></div>
+      <div id="homeCalendarPreview" class="home-card-loading">Loading today's events…</div>
     </div>
   </div>
-</section>
 
-<section class="seo-content">
-  <h2>Live Forex Rates</h2>
-  <p>Track live forex (FX) rates for major currency pairs including EUR/USD, GBP/USD, USD/JPY, AUD/USD, USD/CAD, and USD/PKR. Prices update in real time so you can follow forex market movements as they happen, whether you're day trading or just checking today's exchange rate.</p>
+  <div class="sessions-widget">
+    <div class="sessions-title">Sessions</div>
+    <div class="sessions-bar" id="sessionsBar">
+      <div class="sessions-now-line" id="sessionsNowLine"></div>
+    </div>
+    <div class="sessions-hours mono" id="sessionsHours"></div>
+  </div>
+</div>
 
-  <h2>Gold and Silver Price Today (XAUUSD, XAGUSD)</h2>
-  <p>Check the live gold price (XAUUSD) and silver price (XAGUSD) in US dollars per troy ounce, updated continuously from spot market data. Gold and silver are among the most searched precious metal prices worldwide, and DeskTerminal shows the real-time chart and price movement for both.</p>
-
-  <h2>Cryptocurrency Prices</h2>
-  <p>Follow live crypto prices for Bitcoin (BTC), Ethereum (ETH), Solana (SOL), XRP, and other major cryptocurrencies. Charts update in real time so you can track crypto market volatility as it happens.</p>
-
-  <h2>Stock Market Indices</h2>
-  <p>View live stock market index prices including the S&amp;P 500, Nasdaq 100, Dow Jones, FTSE 100, Nikkei 225, and KSE 100 (Pakistan Stock Exchange) — a quick way to see how global and regional stock markets are performing today.</p>
-
-  <h2>Frequently Asked Questions</h2>
-
-  <h3>Is this real-time market data?</h3>
-  <p>Yes — forex, gold, silver, and crypto prices update live from real market data sources, and charts are powered by TradingView. There's no manual refresh needed; prices update automatically as the market moves.</p>
-
-  <h3>Is DeskTerminal free to use?</h3>
-  <p>Yes, DeskTerminal is completely free to use, including live prices, charts, the trade calculator, economic calendar, and AI-powered market analysis — no account required to browse.</p>
-
-  <h3>What markets does DeskTerminal cover?</h3>
-  <p>DeskTerminal covers forex (major, minor, and exotic currency pairs), precious metals (gold and silver), major cryptocurrencies including Bitcoin and Ethereum, and global stock indices including the S&amp;P 500 and Nasdaq 100.</p>
-
-  <h3>Can I save a watchlist on DeskTerminal?</h3>
-  <p>Yes — sign in with Google or Facebook, then click the star icon on any instrument to add it to your personal watchlist, which is saved privately to your account.</p>
-</section>
 
 <footer>
   Prices for information only — not financial advice.<br>
@@ -937,543 +720,189 @@
 </footer>
 
 <script>
-/* ---------------- Category + search database ---------------- */
-const CATEGORIES = {
-  Forex: [
-    { symbol:'FX:EURUSD', name:'Euro / US Dollar', kw:'eur usd euro dollar eurusd' },
-    { symbol:'FX:GBPUSD', name:'British Pound / US Dollar', kw:'gbp usd pound sterling gbpusd cable' },
-    { symbol:'FX:USDJPY', name:'US Dollar / Japanese Yen', kw:'usd jpy yen dollar usdjpy' },
-    { symbol:'FX:AUDUSD', name:'Australian Dollar / US Dollar', kw:'aud usd aussie audusd' },
-    { symbol:'FX:USDCAD', name:'US Dollar / Canadian Dollar', kw:'usd cad loonie usdcad' },
-    { symbol:'FX:USDCHF', name:'US Dollar / Swiss Franc', kw:'usd chf franc usdchf' },
-    { symbol:'FX:NZDUSD', name:'New Zealand Dollar / US Dollar', kw:'nzd usd kiwi nzdusd' },
-    { symbol:'FX:EURGBP', name:'Euro / British Pound', kw:'eur gbp eurgbp' },
-    { symbol:'FX:EURJPY', name:'Euro / Japanese Yen', kw:'eur jpy eurjpy' },
-    { symbol:'FX:GBPJPY', name:'British Pound / Japanese Yen', kw:'gbp jpy gbpjpy' },
-    { symbol:'FX_IDC:USDPKR', name:'US Dollar / Pakistani Rupee', kw:'usd pkr rupee pakistan usdpkr' },
-    { symbol:'FX_IDC:USDINR', name:'US Dollar / Indian Rupee', kw:'usd inr rupee india usdinr' },
-  ],
-  Metals: [
-    { symbol:'OANDA:XAUUSD', name:'Gold Spot / US Dollar', kw:'gold xau xauusd sona' },
-    { symbol:'OANDA:XAGUSD', name:'Silver Spot / US Dollar', kw:'silver xag xagusd chandi' },
-    { symbol:'TVC:PLATINUM', name:'Platinum Spot', kw:'platinum xpt' },
-    { symbol:'TVC:PALLADIUM', name:'Palladium Spot', kw:'palladium xpd' },
-    { symbol:'COMEX:GC1!', name:'Gold Futures', kw:'gold futures comex gc' },
-    { symbol:'COMEX:SI1!', name:'Silver Futures', kw:'silver futures comex si' },
-  ],
-  Crypto: [
-    { symbol:'BITSTAMP:BTCUSD', name:'Bitcoin / US Dollar', kw:'bitcoin btc btcusd' },
-    { symbol:'BITSTAMP:ETHUSD', name:'Ethereum / US Dollar', kw:'ethereum eth ethusd' },
-    { symbol:'BINANCE:SOLUSDT', name:'Solana / USDT', kw:'solana sol solusdt' },
-    { symbol:'BINANCE:XRPUSDT', name:'XRP / USDT', kw:'xrp ripple xrpusdt' },
-    { symbol:'BINANCE:BNBUSDT', name:'BNB / USDT', kw:'bnb binance coin' },
-    { symbol:'BINANCE:DOGEUSDT', name:'Dogecoin / USDT', kw:'doge dogecoin' },
-    { symbol:'BINANCE:ADAUSDT', name:'Cardano / USDT', kw:'ada cardano' },
-    { symbol:'BINANCE:LTCUSDT', name:'Litecoin / USDT', kw:'ltc litecoin' },
-    { symbol:'BINANCE:MATICUSDT', name:'Polygon / USDT', kw:'matic polygon' },
-    { symbol:'BINANCE:DOTUSDT', name:'Polkadot / USDT', kw:'dot polkadot' },
-  ],
-  Indices: [
-    { symbol:'FOREXCOM:SPXUSD', name:'S&P 500', kw:'sp500 spx s&p us500' },
-    { symbol:'FOREXCOM:NSXUSD', name:'Nasdaq 100', kw:'nasdaq ndx us100' },
-    { symbol:'FOREXCOM:DJI', name:'Dow Jones Industrial Average', kw:'dow jones dji us30' },
-    { symbol:'TVC:UKX', name:'FTSE 100', kw:'ftse uk100 london' },
-    { symbol:'TVC:DAX', name:'DAX Germany', kw:'dax germany ger40' },
-    { symbol:'TVC:NI225', name:'Nikkei 225', kw:'nikkei japan jp225' },
-    { symbol:'TVC:CAC40', name:'CAC 40 France', kw:'cac france fra40' },
-    { symbol:'HSI:HSI', name:'Hang Seng Index', kw:'hang seng hongkong hk50' },
-    { symbol:'PSX:KSE100', name:'KSE 100 Pakistan', kw:'kse100 psx pakistan stock exchange' },
-  ],
-  Stocks: [
-    { symbol:'NASDAQ:AAPL', name:'Apple Inc.', kw:'apple aapl' },
-    { symbol:'NASDAQ:MSFT', name:'Microsoft Corp.', kw:'microsoft msft' },
-    { symbol:'NASDAQ:GOOGL', name:'Alphabet (Google)', kw:'google alphabet googl' },
-    { symbol:'NASDAQ:AMZN', name:'Amazon.com Inc.', kw:'amazon amzn' },
-    { symbol:'NASDAQ:TSLA', name:'Tesla Inc.', kw:'tesla tsla' },
-    { symbol:'NASDAQ:META', name:'Meta Platforms', kw:'meta facebook' },
-    { symbol:'NASDAQ:NVDA', name:'NVIDIA Corp.', kw:'nvidia nvda' },
-    { symbol:'NASDAQ:NFLX', name:'Netflix Inc.', kw:'netflix nflx' },
-    { symbol:'NYSE:JPM', name:'JPMorgan Chase', kw:'jpmorgan jpm bank' },
-    { symbol:'NYSE:V', name:'Visa Inc.', kw:'visa v' },
-  ],
-  Futures: [
-    { symbol:'TVC:USOIL', name:'Crude Oil WTI', kw:'crude oil wti' },
-    { symbol:'TVC:UKOIL', name:'Brent Oil', kw:'brent oil' },
-    { symbol:'TVC:NATURALGAS', name:'Natural Gas', kw:'natural gas' },
-    { symbol:'COMEX:GC1!', name:'Gold Futures', kw:'gold futures' },
-    { symbol:'COMEX:SI1!', name:'Silver Futures', kw:'silver futures' },
-    { symbol:'CBOT:ZC1!', name:'Corn Futures', kw:'corn futures' },
-    { symbol:'CBOT:ZW1!', name:'Wheat Futures', kw:'wheat futures' },
-    { symbol:'COMEX:HG1!', name:'Copper Futures', kw:'copper futures' },
-  ],
-};
+function updateNavClock(){
+  const el = document.getElementById('navClock');
+  if(!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+}
+updateNavClock();
+setInterval(updateNavClock, 1000);
 
-const SEARCH_PLACEHOLDERS = {
-  Forex: 'Search Forex… (e.g. "EURUSD", "GBPUSD")',
-  Metals: 'Search Metals… (e.g. "gold", "XAUUSD")',
-  Crypto: 'Search Crypto… (e.g. "BTC", "ETH")',
-  Indices: 'Search Indices… (e.g. "S&P 500", "Nasdaq")',
-  Stocks: 'Search Stocks… (e.g. "AAPL", "Tesla")',
-  Futures: 'Search Futures… (e.g. "Crude Oil", "Gold Futures")',
-};
-
-let activeCategory = null;
-const categoryBar = document.getElementById('categoryBar');
-const searchWrap = document.getElementById('searchWrap');
-const searchBox = document.getElementById('searchBox');
-const searchResults = document.getElementById('searchResults');
-
-Object.keys(CATEGORIES).forEach(cat => {
-  const b = document.createElement('button');
-  b.textContent = cat;
-  b.dataset.cat = cat;
-  categoryBar.appendChild(b);
-});
-
-categoryBar.querySelectorAll('button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const cat = btn.dataset.cat;
-    const wasActive = activeCategory === cat;
-    categoryBar.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    if(wasActive){
-      activeCategory = null;
-      searchWrap.classList.remove('open');
-    } else {
-      activeCategory = cat;
-      btn.classList.add('active');
-      searchWrap.classList.add('open');
-      searchBox.value = '';
-      searchBox.placeholder = SEARCH_PLACEHOLDERS[cat] || `Search ${cat}…`;
-      searchResults.classList.remove('open');
-      searchBox.focus();
-    }
-  });
-});
-
-searchBox.addEventListener('input', () => {
-  const q = searchBox.value.trim().toLowerCase();
-  if(!activeCategory || q.length < 1){
-    searchResults.classList.remove('open');
-    return;
-  }
-  const list = CATEGORIES[activeCategory].filter(item =>
-    item.name.toLowerCase().includes(q) ||
-    item.symbol.toLowerCase().includes(q) ||
-    item.kw.includes(q)
-  );
-  if(!list.length){
-    searchResults.innerHTML = `<div class="search-empty">No matches in ${activeCategory}.</div>`;
-  } else {
-    searchResults.innerHTML = list.slice(0,8).map(item => {
-      const starred = typeof window.isInWatchlist === 'function' && window.isInWatchlist(item.symbol);
-      return `
-      <div class="search-result-item" data-symbol="${item.symbol}">
-        <span class="search-result-info">
-          <span class="search-result-name">${item.name}</span>
-          <span class="search-result-symbol">${item.symbol}</span>
-        </span>
-        <button class="result-star ${starred?'starred':''}" data-symbol="${item.symbol}" title="Add to watchlist">${starred?'★':'☆'}</button>
-      </div>
-    `;}).join('');
-    searchResults.querySelectorAll('.result-star').forEach(star => {
-      star.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        await window.toggleWatchlist(star.dataset.symbol);
-        const inList = window.isInWatchlist(star.dataset.symbol);
-        star.textContent = inList ? '★' : '☆';
-        star.classList.toggle('starred', inList);
-      });
-    });
-    searchResults.querySelectorAll('.search-result-item').forEach(row => {
-      row.addEventListener('click', (e) => {
-        if(e.target.classList.contains('result-star')) return;
-        const symbol = row.dataset.symbol;
-        loadChart(symbol);
-        currentSymbol = symbol;
-        searchResults.classList.remove('open');
-        searchBox.value = '';
-        document.getElementById('chartContainer').scrollIntoView({behavior:'smooth', block:'center'});
-      });
-    });
-  }
-  searchResults.classList.add('open');
-});
-
-document.addEventListener('click', (e) => {
-  if(!searchWrap.contains(e.target) && !categoryBar.contains(e.target)){
-    searchResults.classList.remove('open');
-  }
-});
-
-/* ---------------- Custom clickable ticker tape ---------------- */
-const TAPE_ITEMS = [
-  { label: 'Gold',     iconType: 'badge', badgeText: 'Au', badgeColor: 'radial-gradient(circle at 35% 30%, #F5D896, #D4AF37 65%, #A9821E)', tvSymbol: 'OANDA:XAUUSD',   source: 'goldapi', code: 'XAU' },
-  { label: 'Silver',   iconType: 'badge', badgeText: 'Ag', badgeColor: 'radial-gradient(circle at 35% 30%, #F2F4F6, #C6CCD4 65%, #9AA1AB)', tvSymbol: 'OANDA:XAGUSD',   source: 'goldapi', code: 'XAG' },
-  { label: 'Bitcoin',  iconType: 'crypto', iconSymbol: 'btc', tvSymbol: 'BITSTAMP:BTCUSD', source: 'goldapi', code: 'BTC' },
-  { label: 'Ethereum', iconType: 'crypto', iconSymbol: 'eth', tvSymbol: 'BITSTAMP:ETHUSD', source: 'goldapi', code: 'ETH' },
-  { label: 'EUR/USD',  iconType: 'flagpair', flags: ['eu','us'], tvSymbol: 'FX:EURUSD',      source: 'forex', code: 'EUR', invert: true },
-  { label: 'GBP/USD',  iconType: 'flagpair', flags: ['gb','us'], tvSymbol: 'FX:GBPUSD',      source: 'forex', code: 'GBP', invert: true },
-  { label: 'USD/JPY',  iconType: 'flagpair', flags: ['us','jp'], tvSymbol: 'FX:USDJPY',      source: 'forex', code: 'JPY', invert: false },
-  { label: 'AUD/USD',  iconType: 'flagpair', flags: ['au','us'], tvSymbol: 'FX:AUDUSD',      source: 'forex', code: 'AUD', invert: true },
-  { label: 'USD/CAD',  iconType: 'flagpair', flags: ['us','ca'], tvSymbol: 'FX:USDCAD',      source: 'forex', code: 'CAD', invert: false },
-  { label: 'USD/PKR',  iconType: 'flagpair', flags: ['us','pk'], tvSymbol: 'FX_IDC:USDPKR',  source: 'forex', code: 'PKR', invert: false },
-];
-
-function renderTapeIcon(item){
-  if(item.iconType === 'crypto'){
-    return `<img class="tape-icon-img" src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/128/color/${item.iconSymbol}.png" alt="${item.label}" onerror="this.style.display='none'">`;
-  }
-  if(item.iconType === 'flagpair'){
-    return `<span class="tape-flagpair">
-      <img class="tape-flag" src="https://flagcdn.com/24x18/${item.flags[0]}.png" alt="${item.flags[0]}">
-      <img class="tape-flag tape-flag-2" src="https://flagcdn.com/24x18/${item.flags[1]}.png" alt="${item.flags[1]}">
-    </span>`;
-  }
-  if(item.iconType === 'badge'){
-    return `<span class="tape-badge" style="background:${item.badgeColor}">${item.badgeText}</span>`;
-  }
-  return '';
+/* ---------------- Market Scanner (real data, box-grid layout) ---------------- */
+function fmtScannerPrice(n){
+  return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 4 : 2, maximumFractionDigits: n < 10 ? 4 : 2 });
 }
 
-function fmtTape(n, decimals){
-  if(n === undefined || n === null || isNaN(n)) return '—';
-  return Number(n).toLocaleString(undefined, {minimumFractionDigits:decimals, maximumFractionDigits:decimals});
-}
+function buildCandlestickSVG(trend){
+  if(!trend || trend.length < 2) return '';
+  const allVals = trend.flatMap(c => [c.h, c.l]);
+  const min = Math.min(...allVals), max = Math.max(...allVals);
+  const range = (max - min) || 1;
+  const w = 100 / trend.length;
+  const toY = (v) => 32 - ((v - min) / range) * 30;
 
-async function loadTickerTape(){
-  const goldApiSymbols = TAPE_ITEMS.filter(i => i.source === 'goldapi');
-  const forexRatesPromise = fetch('https://open.er-api.com/v6/latest/USD').then(r => r.json()).catch(() => null);
-
-  const goldApiResults = await Promise.allSettled(
-    goldApiSymbols.map(i => fetch(`https://api.gold-api.com/price/${i.code}`).then(r => r.json()))
-  );
-  const forexData = await forexRatesPromise;
-
-  const priceMap = {};
-  goldApiSymbols.forEach((item, idx) => {
-    const res = goldApiResults[idx];
-    if(res.status === 'fulfilled' && res.value && res.value.price){
-      priceMap[item.code] = res.value.price;
-    }
-  });
-
-  const track = document.getElementById('customTapeTrack');
-  const chipsHtml = TAPE_ITEMS.map(item => {
-    let priceText = '—';
-    let decimals = item.source === 'goldapi' ? (item.code === 'BTC' || item.code === 'ETH' ? 2 : 2) : 4;
-    if(item.source === 'goldapi' && priceMap[item.code] !== undefined){
-      priceText = '$' + fmtTape(priceMap[item.code], decimals);
-    } else if(item.source === 'forex' && forexData && forexData.rates && forexData.rates[item.code]){
-      const rate = forexData.rates[item.code];
-      const val = item.invert ? 1 / rate : rate;
-      priceText = fmtTape(val, item.code === 'JPY' || item.code === 'PKR' ? 2 : 4);
-    }
-    const starred = typeof window.isInWatchlist === 'function' && window.isInWatchlist(item.tvSymbol);
-    return `<button class="tape-chip" data-symbol="${item.tvSymbol}">${renderTapeIcon(item)}<span class="sym">${item.label}</span>${priceText}<span class="tape-star ${starred?'starred':''}" data-symbol="${item.tvSymbol}" title="Add to watchlist">${starred?'★':'☆'}</span></button>`;
+  const bars = trend.map((c, i) => {
+    const x = i * w + w / 2;
+    const yO = toY(c.o), yC = toY(c.c), yH = toY(c.h), yL = toY(c.l);
+    const up = c.c >= c.o;
+    const color = up ? '#4ADE80' : '#FB6B5B';
+    const bodyTop = Math.min(yO, yC);
+    const bodyH = Math.max(Math.abs(yC - yO), 1);
+    return `<line x1="${x}" y1="${yH}" x2="${x}" y2="${yL}" stroke="${color}" stroke-width="0.7"/><rect x="${x - w*0.3}" y="${bodyTop}" width="${w*0.6}" height="${bodyH}" fill="${color}"/>`;
   }).join('');
 
-  track.innerHTML = chipsHtml + chipsHtml; // duplicate for seamless scroll
-  track.querySelectorAll('.tape-chip').forEach(chip => {
-    chip.addEventListener('click', (e) => {
-      if(e.target.classList.contains('tape-star')){
-        e.stopPropagation();
-        const symbol = e.target.dataset.symbol;
-        window.toggleWatchlist(symbol).then(() => {
-          const inList = window.isInWatchlist(symbol);
-          e.target.textContent = inList ? '★' : '☆';
-          e.target.classList.toggle('starred', inList);
-        });
-        return;
-      }
-      const symbol = chip.dataset.symbol;
-      currentSymbol = symbol;
-      loadChart(symbol);
-      document.getElementById('chartPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  });
+  return `<svg viewBox="0 0 100 32" class="scanner-box-chart">${bars}</svg>`;
 }
 
-loadTickerTape();
-setInterval(loadTickerTape, 45000);
-
-let currentSymbol = 'OANDA:XAUUSD';
-let tvWidgetLoaded = false;
-
-function loadChart(symbol){
-  const container = document.getElementById('chartContainer');
-  container.innerHTML = `<div id="tv_chart_inner" style="height:100%;width:100%;"></div>`;
-  updateWatchlistBtn();
-
-  function createWidget(){
-    new TradingView.widget({
-      autosize: true,
-      symbol: symbol,
-      interval: "60",
-      timezone: "Etc/UTC",
-      theme: "dark",
-      style: "1",
-      locale: "en",
-      toolbar_bg: "#151A22",
-      enable_publishing: false,
-      allow_symbol_change: true,
-      hide_side_toolbar: false,
-      hide_top_toolbar: false,
-      withdateranges: true,
-      details: false,
-      hotlist: false,
-      calendar: false,
-      show_popup_button: false,
-      container_id: "tv_chart_inner"
-    });
-  }
-
-  if(window.TradingView){
-    createWidget();
-  } else if(!tvWidgetLoaded){
-    tvWidgetLoaded = true;
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/tv.js';
-    script.onload = createWidget;
-    document.body.appendChild(script);
-  } else {
-    // script already loading, wait for it
-    const check = setInterval(() => {
-      if(window.TradingView){
-        clearInterval(check);
-        createWidget();
-      }
-    }, 150);
-  }
-}
-
-/* ---------------- Fullscreen expand button ---------------- */
-const chartPanel = document.getElementById('chartPanel');
-const expandBtn = document.getElementById('expandBtn');
-const watchlistBtn = document.getElementById('watchlistBtn');
-
-function updateWatchlistBtn(){
-  const inList = typeof window.isInWatchlist === 'function' && window.isInWatchlist(currentSymbol);
-  watchlistBtn.textContent = inList ? '★ In Watchlist' : '☆ Add to Watchlist';
-  watchlistBtn.classList.toggle('in-watchlist', inList);
-}
-function syncAllStars(){
-  if(typeof window.isInWatchlist !== 'function') return;
-  document.querySelectorAll('.tape-star, .result-star').forEach(el => {
-    const inList = window.isInWatchlist(el.dataset.symbol);
-    el.textContent = inList ? '★' : '☆';
-    el.classList.toggle('starred', inList);
-  });
-}
-function syncAllWatchlistUI(){
-  updateWatchlistBtn();
-  syncAllStars();
-}
-watchlistBtn.addEventListener('click', async () => {
-  await window.toggleWatchlist(currentSymbol);
-  syncAllWatchlistUI();
-});
-// Re-sync every star on the page whenever auth state or the watchlist itself changes
-window.onAuthReady = syncAllWatchlistUI;
-window.onWatchlistChanged = syncAllWatchlistUI;
-
-/* ---------------- Replay tool ---------------- */
-// Real historical candles, via Binance's free public API — currently supports
-// crypto pairs only, since there's no free keyless historical OHLC source for
-// forex/metals. Uses TradingView's own open-source Lightweight Charts library.
-const REPLAY_SYMBOL_MAP = {
-  'BITSTAMP:BTCUSD': 'BTCUSDT',
-  'BITSTAMP:ETHUSD': 'ETHUSDT',
-  'BINANCE:SOLUSDT': 'SOLUSDT',
-  'BINANCE:XRPUSDT': 'XRPUSDT',
-  'BINANCE:BNBUSDT': 'BNBUSDT',
-  'BINANCE:DOGEUSDT': 'DOGEUSDT',
-  'BINANCE:ADAUSDT': 'ADAUSDT',
-  'BINANCE:LTCUSDT': 'LTCUSDT',
-  'BINANCE:MATICUSDT': 'MATICUSDT',
-  'BINANCE:DOTUSDT': 'DOTUSDT',
-};
-
-// Real historical forex/metals data via FCS API — separate map since these
-// route to a different backend function (replay-data-forex.js), not Binance.
-const REPLAY_FOREX_MAP = {
-  'FX:EURUSD': 'EURUSD',
-  'FX:GBPUSD': 'GBPUSD',
-  'FX:USDJPY': 'USDJPY',
-  'FX:AUDUSD': 'AUDUSD',
-  'FX:USDCAD': 'USDCAD',
-  'OANDA:XAUUSD': 'XAUUSD',
-  'OANDA:XAGUSD': 'XAGUSD',
-};
-
-const replayBtn = document.getElementById('replayBtn');
-const replayModalOverlay = document.getElementById('replayModalOverlay');
-const replayModalClose = document.getElementById('replayModalClose');
-const replaySymbolLabel = document.getElementById('replaySymbolLabel');
-const replayChartContainer = document.getElementById('replayChartContainer');
-const replayPlayBtn = document.getElementById('replayPlayBtn');
-const replayStepBtn = document.getElementById('replayStepBtn');
-const replayStepBackBtn = document.getElementById('replayStepBackBtn');
-const replayResetBtn = document.getElementById('replayResetBtn');
-const replaySpeed = document.getElementById('replaySpeed');
-const replayProgress = document.getElementById('replayProgress');
-const replayStatus = document.getElementById('replayStatus');
-
-let replayChart = null;
-let replaySeries = null;
-let replayCandles = [];
-let replayIndex = 0;
-let replayTimer = null;
-let replayLoaded = false;
-let lwcScriptLoading = false;
-
-function loadLwcScript(){
-  return new Promise((resolve, reject) => {
-    if(window.LightweightCharts){ resolve(); return; }
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/lightweight-charts@5/dist/lightweight-charts.standalone.production.js';
-    script.onload = resolve;
-    script.onerror = reject;
-    document.body.appendChild(script);
-  });
-}
-
-function initReplayChart(){
-  replayChartContainer.innerHTML = '';
-  replayChart = LightweightCharts.createChart(replayChartContainer, {
-    autoSize: true,
-    layout: { background: { color: '#151A22' }, textColor: '#7C8598' },
-    grid: { vertLines: { color: 'rgba(255,255,255,0.05)' }, horzLines: { color: 'rgba(255,255,255,0.05)' } },
-    timeScale: { timeVisible: true, borderColor: 'rgba(255,255,255,0.08)' },
-    rightPriceScale: { borderColor: 'rgba(255,255,255,0.08)' },
-  });
-  replaySeries = replayChart.addSeries(LightweightCharts.CandlestickSeries, {
-    upColor: '#4ADE80', downColor: '#FB6B5B',
-    borderUpColor: '#4ADE80', borderDownColor: '#FB6B5B',
-    wickUpColor: '#4ADE80', wickDownColor: '#FB6B5B',
-  });
-}
-
-function renderReplayFrame(){
-  const visible = replayCandles.slice(0, replayIndex);
-  replaySeries.setData(visible);
-  replayProgress.textContent = `${replayIndex} / ${replayCandles.length}`;
-}
-
-function stopReplayPlayback(){
-  clearInterval(replayTimer);
-  replayTimer = null;
-  replayPlayBtn.textContent = '▶';
-}
-
-async function openReplay(){
-  const binanceSymbol = REPLAY_SYMBOL_MAP[currentSymbol];
-  const forexSymbol = REPLAY_FOREX_MAP[currentSymbol];
-  replayModalOverlay.classList.add('open');
-  replaySymbolLabel.textContent = currentSymbol;
-  stopReplayPlayback();
-
-  if(!binanceSymbol && !forexSymbol){
-    replayChartContainer.innerHTML = '';
-    replayStatus.textContent = 'Replay isn\'t available for this instrument yet — currently supports major crypto, forex, and gold/silver pairs.';
-    replayProgress.textContent = '0 / 0';
-    return;
-  }
-
-  replayStatus.textContent = 'Loading historical candles…';
+async function loadScanner(){
+  const gridEl = document.getElementById('scannerGrid');
+  const strengthBodyEl = document.getElementById('strengthBody');
   try{
-    if(!window.LightweightCharts){
-      replayStatus.textContent = 'Loading chart engine…';
-      await loadLwcScript();
-    }
-    if(!replayChart) initReplayChart();
-
-    const endpoint = binanceSymbol
-      ? `/.netlify/functions/replay-data?symbol=${binanceSymbol}&interval=1h&limit=300`
-      : `/.netlify/functions/replay-data-forex?symbol=${forexSymbol}&interval=1h&limit=300`;
-
-    const res = await fetch(endpoint);
+    const res = await fetch('/.netlify/functions/scanner-data');
     const data = await res.json();
-    if(data.error || !data.candles || !data.candles.length){
-      replayStatus.textContent = forexSymbol
-        ? 'Historical data for this pair isn\'t available right now — the free data source may be temporarily limited.'
-        : 'Replay data is not available right now — it may not be set up on this site yet.';
+    if(data.error || !data.pairs){
+      gridEl.innerHTML = '<div class="home-card-loading" style="padding:1rem;">Market scanner isn\'t available right now.</div>';
       return;
     }
-    replayCandles = data.candles;
-    replayIndex = Math.min(30, replayCandles.length); // start with a small window already visible
-    renderReplayFrame();
-    replayStatus.textContent = 'Ready — press play or step through candle by candle.';
-  } catch(e){
-    replayStatus.textContent = 'Could not load replay data. Please try again shortly.';
-  }
-}
 
-function closeReplay(){
-  replayModalOverlay.classList.remove('open');
-  stopReplayPlayback();
-}
+    gridEl.innerHTML = data.pairs.map(p => {
+      const isUp = p.pctChange >= 0;
+      return `
+        <a class="scanner-box" href="market.html">
+          <div class="scanner-box-label">${p.label}</div>
+          <div class="scanner-box-price mono">${fmtScannerPrice(p.price)}</div>
+          ${buildCandlestickSVG(p.trend)}
+          <div class="scanner-box-chg ${isUp ? 'up' : 'down'}">${isUp ? '+' : ''}${p.pctChange.toFixed(2)}%</div>
+        </a>`;
+    }).join('');
 
-replayBtn.addEventListener('click', openReplay);
-replayModalClose.addEventListener('click', closeReplay);
-replayModalOverlay.addEventListener('click', (e) => { if(e.target === replayModalOverlay) closeReplay(); });
-
-replayStepBtn.addEventListener('click', () => {
-  if(replayIndex < replayCandles.length){
-    replayIndex++;
-    renderReplayFrame();
-  }
-});
-replayStepBackBtn.addEventListener('click', () => {
-  if(replayIndex > 1){
-    replayIndex--;
-    renderReplayFrame();
-  }
-});
-replayResetBtn.addEventListener('click', () => {
-  stopReplayPlayback();
-  replayIndex = Math.min(30, replayCandles.length);
-  renderReplayFrame();
-});
-replayPlayBtn.addEventListener('click', () => {
-  if(!replayCandles.length) return;
-  if(replayTimer){
-    stopReplayPlayback();
-    return;
-  }
-  replayPlayBtn.textContent = '⏸';
-  const tick = () => {
-    if(replayIndex >= replayCandles.length){
-      stopReplayPlayback();
-      return;
+    if(data.strength && strengthBodyEl){
+      const maxAbs = Math.max(...data.strength.map(s => Math.abs(s.score)), 0.01);
+      strengthBodyEl.innerHTML = data.strength.map(s => {
+        const pct = Math.min(Math.abs(s.score) / maxAbs * 100, 100);
+        const isUp = s.score >= 0;
+        return `
+          <div class="strength-row">
+            <span class="strength-code">${s.code}</span>
+            <div class="strength-track"><div class="strength-fill ${isUp ? 'up' : 'down'}" style="width:${pct}%;"></div></div>
+            <span class="strength-score ${isUp ? 'up' : 'down'}">${isUp ? '+' : ''}${s.score.toFixed(2)}</span>
+          </div>`;
+      }).join('');
     }
-    replayIndex++;
-    renderReplayFrame();
-  };
-  replayTimer = setInterval(tick, parseInt(replaySpeed.value, 10));
-});
-replaySpeed.addEventListener('change', () => {
-  if(replayTimer){
-    clearInterval(replayTimer);
-    replayTimer = setInterval(() => {
-      if(replayIndex >= replayCandles.length){ stopReplayPlayback(); return; }
-      replayIndex++;
-      renderReplayFrame();
-    }, parseInt(replaySpeed.value, 10));
+  } catch(err){
+    gridEl.innerHTML = '<div class="home-card-loading" style="padding:1rem;">Could not load market scanner right now.</div>';
   }
+}
+loadScanner();
+setInterval(loadScanner, 5 * 60 * 1000); // 5 min — matches the function's own cache window
+
+let strengthOpen = false;
+document.getElementById('strengthToggle')?.addEventListener('click', () => {
+  strengthOpen = !strengthOpen;
+  document.getElementById('strengthBody').classList.toggle('open', strengthOpen);
+  document.getElementById('strengthArrow').textContent = strengthOpen ? '▴' : '▾';
 });
 
-expandBtn.addEventListener('click', () => {
-  if(!document.fullscreenElement){
-    chartPanel.requestFullscreen().catch(() => {});
-  } else {
-    document.exitFullscreen();
-  }
-});
-document.addEventListener('fullscreenchange', () => {
-  expandBtn.textContent = document.fullscreenElement ? '⤡ Exit fullscreen' : '⛶ Expand chart';
-});
+/* ---------------- Home dashboard: date header ---------------- */
+function updateHomeDate(){
+  const el = document.getElementById('homeDate');
+  if(!el) return;
+  el.textContent = 'Today — ' + new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+}
+updateHomeDate();
 
-loadChart(currentSymbol);
+/* ---------------- Home dashboard: Sessions widget ---------------- */
+// Standard forex session hours in UTC — the widely-used industry reference
+// (approximate; actual hours shift slightly with regional daylight saving).
+const SESSIONS = [
+  { name: 'Sydney',   startUTC: 22, endUTC: 7,  tz: 'Australia/Sydney' },
+  { name: 'Tokyo',    startUTC: 0,  endUTC: 9,  tz: 'Asia/Tokyo' },
+  { name: 'London',   startUTC: 8,  endUTC: 17, tz: 'Europe/London' },
+  { name: 'New York', startUTC: 13, endUTC: 22, tz: 'America/New_York' },
+];
+
+function renderSessions(){
+  const bar = document.getElementById('sessionsBar');
+  const hoursEl = document.getElementById('sessionsHours');
+  if(!bar) return;
+
+  const now = new Date();
+  const nowUTCHour = now.getUTCHours() + now.getUTCMinutes()/60;
+  const nowPct = (nowUTCHour / 24) * 100;
+
+  let blocksHtml = '';
+  SESSIONS.forEach((s, i) => {
+    const isOpen = s.endUTC > s.startUTC
+      ? (nowUTCHour >= s.startUTC && nowUTCHour < s.endUTC)
+      : (nowUTCHour >= s.startUTC || nowUTCHour < s.endUTC);
+
+    // Real local time for that city, DST-aware via the browser's own timezone data.
+    const localTime = now.toLocaleTimeString('en-US', { timeZone: s.tz, hour: 'numeric', minute: '2-digit' });
+    const labelHtml = `<span class="session-name">${isOpen ? '● ' : ''}${s.name}</span><span class="session-local mono">${localTime} local</span>`;
+
+    if(s.endUTC > s.startUTC){
+      // Normal same-day session — one bar, no wraparound.
+      const startPct = (s.startUTC / 24) * 100;
+      const widthPct = ((s.endUTC - s.startUTC) / 24) * 100;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${i*28}px; left:${startPct}%; width:${widthPct}%;">${labelHtml}</div>`;
+    } else {
+      // Overnight session (e.g. Sydney 22:00-07:00 UTC) — genuinely split into
+      // two segments in the same row, so the full session is visible instead
+      // of one part being silently clipped past the container's 100% edge.
+      const eveningStartPct = (s.startUTC / 24) * 100;
+      const eveningWidthPct = ((24 - s.startUTC) / 24) * 100;
+      const morningWidthPct = (s.endUTC / 24) * 100;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${i*28}px; left:${eveningStartPct}%; width:${eveningWidthPct}%;"></div>`;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${i*28}px; left:0%; width:${morningWidthPct}%;">${labelHtml}</div>`;
+    }
+  });
+
+  bar.innerHTML = blocksHtml + `<div class="sessions-now-line" id="sessionsNowLine" style="left:${nowPct}%;"></div>`;
+  if(hoursEl) hoursEl.innerHTML = '<span>00:00 UTC</span><span>12:00 UTC</span><span>24:00 UTC</span>';
+}
+renderSessions();
+setInterval(renderSessions, 60 * 1000); // refresh the "now" line position every minute
+
+/* ---------------- Home dashboard: mini Today's Events preview ---------------- */
+async function loadHomeCalendarPreview(){
+  const el = document.getElementById('homeCalendarPreview');
+  if(!el) return;
+  try{
+    const res = await fetch('/.netlify/functions/econ-calendar');
+    const data = await res.json();
+    if(!data.events){ el.textContent = 'Economic calendar isn\'t available right now.'; return; }
+    const todayStr = new Date().toDateString();
+    const todayEvents = data.events
+      .filter(e => new Date(e.date).toDateString() === todayStr && e.importance >= 2)
+      .slice(0, 5);
+    if(!todayEvents.length){ el.innerHTML = '<div class="home-card-loading">No major events scheduled for today.</div>'; return; }
+    el.innerHTML = todayEvents.map(e => {
+      const time = new Date(e.date).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+      return `<div class="home-preview-row"><span class="home-preview-meta">${time}</span><span class="home-preview-text">${e.event}</span></div>`;
+    }).join('');
+  } catch(err){
+    el.textContent = 'Could not load today\'s events right now.';
+  }
+}
+loadHomeCalendarPreview();
+
+/* ---------------- Home dashboard: mini Latest News preview ---------------- */
+async function loadHomeNewsPreview(){
+  const el = document.getElementById('homeNewsPreview');
+  if(!el) return;
+  try{
+    const res = await fetch('/.netlify/functions/news-feed');
+    const data = await res.json();
+    if(!data.items || !data.items.length){ el.textContent = 'News feed isn\'t available right now.'; return; }
+    el.innerHTML = data.items.slice(0, 5).map(item =>
+      `<div class="home-preview-row"><span class="home-preview-meta">${item.source}</span><span class="home-preview-text">${item.title}</span></div>`
+    ).join('');
+  } catch(err){
+    el.textContent = 'Could not load news right now.';
+  }
+}
+loadHomeNewsPreview();
+
 </script>
 
 
