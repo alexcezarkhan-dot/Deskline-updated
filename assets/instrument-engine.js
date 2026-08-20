@@ -9,6 +9,20 @@
   const inst = window.INSTRUMENTS[key];
   if (!inst) { console.error('Unknown instrument key:', key); return; }
 
+  // Escapes HTML special characters before inserting external text (news
+  // headlines, economic event names, AI-generated analysis) into the page.
+  // Since this one file drives all 18 instrument pages, this single fix
+  // protects every one of them.
+  function escapeHtml(str){
+    if(str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   /* ---------------- Market session / status (computed live, not hardcoded) ---------------- */
   function getForexStatus() {
     const now = new Date();
@@ -184,18 +198,18 @@
 
       mainEl.innerHTML = `
         <h3>Today's Market Summary</h3>
-        <p>${data.summary || '—'}</p>
-        <h3>Why ${inst.name} Is Moving Today</h3>
-        <p>${data.whyMoving || '—'}</p>
+        <p>${escapeHtml(data.summary) || '—'}</p>
+        <h3>Why ${escapeHtml(inst.name)} Is Moving Today</h3>
+        <p>${escapeHtml(data.whyMoving) || '—'}</p>
         <h3>Technical Summary</h3>
-        <p>${data.technicalSummary || '—'}</p>
+        <p>${escapeHtml(data.technicalSummary) || '—'}</p>
       `;
       sideEl.innerHTML = `
-        <div class="insight-stat"><div class="insight-stat-label">Sentiment</div><div class="insight-stat-value ${data.sentiment}">${data.sentiment || '—'}</div></div>
-        <div class="insight-stat"><div class="insight-stat-label">Trend</div><div class="insight-stat-value ${data.trend}">${data.trend || '—'}</div></div>
-        <div class="insight-stat"><div class="insight-stat-label">Volatility</div><div class="insight-stat-value">${data.volatility || '—'}</div></div>
-        <div class="insight-stat"><div class="insight-stat-label">Est. Support</div><div class="insight-stat-value">${data.supportLevel || '—'}</div></div>
-        <div class="insight-stat"><div class="insight-stat-label">Est. Resistance</div><div class="insight-stat-value">${data.resistanceLevel || '—'}</div></div>
+        <div class="insight-stat"><div class="insight-stat-label">Sentiment</div><div class="insight-stat-value ${escapeHtml(data.sentiment)}">${escapeHtml(data.sentiment) || '—'}</div></div>
+        <div class="insight-stat"><div class="insight-stat-label">Trend</div><div class="insight-stat-value ${escapeHtml(data.trend)}">${escapeHtml(data.trend) || '—'}</div></div>
+        <div class="insight-stat"><div class="insight-stat-label">Volatility</div><div class="insight-stat-value">${escapeHtml(data.volatility) || '—'}</div></div>
+        <div class="insight-stat"><div class="insight-stat-label">Est. Support</div><div class="insight-stat-value">${escapeHtml(data.supportLevel) || '—'}</div></div>
+        <div class="insight-stat"><div class="insight-stat-label">Est. Resistance</div><div class="insight-stat-value">${escapeHtml(data.resistanceLevel) || '—'}</div></div>
       `;
 
       renderFaq(data.faq || []);
@@ -214,8 +228,8 @@
     }
     container.innerHTML = faqItems.map(item => `
       <div class="faq-item">
-        <div class="faq-q">${item.q}</div>
-        <div class="faq-a">${item.a}</div>
+        <div class="faq-q">${escapeHtml(item.q)}</div>
+        <div class="faq-a">${escapeHtml(item.a)}</div>
       </div>
     `).join('');
 
@@ -248,14 +262,14 @@
         return [];
       }
       container.innerHTML = data.items.slice(0, 9).map(item => `
-        <a class="news-card" href="${item.link}" target="_blank" rel="noopener">
+        <a class="news-card" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">
           ${item.image
-            ? `<img class="news-card-img" src="${item.image}" alt="" onerror="this.outerHTML='<div class=&quot;news-card-img placeholder&quot;>📰</div>'">`
+            ? `<img class="news-card-img" src="${escapeHtml(item.image)}" alt="" onerror="this.outerHTML='<div class=&quot;news-card-img placeholder&quot;>📰</div>'">`
             : `<div class="news-card-img placeholder">📰</div>`}
           <div class="news-card-body">
-            <div class="news-card-title">${item.title}</div>
-            <div class="news-card-summary">${item.description || ''}</div>
-            <div class="news-card-meta">${item.source} · ${item.pubDate ? new Date(item.pubDate).toLocaleString([], {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : ''}</div>
+            <div class="news-card-title">${escapeHtml(item.title)}</div>
+            <div class="news-card-summary">${escapeHtml(item.description) || ''}</div>
+            <div class="news-card-meta">${escapeHtml(item.source)} · ${item.pubDate ? new Date(item.pubDate).toLocaleString([], {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : ''}</div>
           </div>
         </a>
       `).join('');
@@ -284,12 +298,12 @@
       container.innerHTML = filtered.map(e => `
         <div class="event-row">
           <span class="mono">${new Date(e.date).toLocaleDateString([], {month:'short', day:'numeric'})}</span>
-          <span class="mono">${e.currency || ''}</span>
+          <span class="mono">${escapeHtml(e.currency) || ''}</span>
           <span class="event-impact" style="background:${e.importance===3?'#FB6B5B':e.importance===2?'#E8B15C':'#7C8598'}"></span>
-          <span>${e.event}</span>
-          <span class="event-val">${e.actual || '—'}</span>
-          <span class="event-val">${e.forecast || '—'}</span>
-          <span class="event-val">${e.previous || '—'}</span>
+          <span>${escapeHtml(e.event)}</span>
+          <span class="event-val">${escapeHtml(e.actual) || '—'}</span>
+          <span class="event-val">${escapeHtml(e.forecast) || '—'}</span>
+          <span class="event-val">${escapeHtml(e.previous) || '—'}</span>
         </div>
       `).join('');
     } catch (e) {

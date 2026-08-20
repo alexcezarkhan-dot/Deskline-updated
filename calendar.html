@@ -1087,6 +1087,19 @@ function fmtTime(dateStr){
   const d = new Date(dateStr);
   return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
 }
+// Escapes HTML special characters before inserting external text (economic
+// event names, currency codes) into the page — same protection as News,
+// since this data comes from Trading Economics, an external source.
+function escapeHtml(str){
+  if(str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function impactClass(level){
   return level === 3 ? 'high' : level === 2 ? 'med' : 'low';
 }
@@ -1128,17 +1141,17 @@ function renderCalendar(){
       <div class="event-row" data-idx="${idx}" data-key="ev-${idx}" data-eventtime="${new Date(e.date).toISOString()}">
         ${dateCellHtml}
         <span class="ev-time">${fmtTime(e.date)}</span>
-        <span class="ev-currency">${e.currency || e.country || ''}</span>
+        <span class="ev-currency">${escapeHtml(e.currency || e.country || '')}</span>
         <span class="ev-impact ${impactClass(e.importance)}" style="background:${e.importance===3?'#FB6B5B':e.importance===2?'#E8B15C':'#7C8598'}"></span>
-        <span class="ev-name">${e.event}</span>
+        <span class="ev-name">${escapeHtml(e.event)}</span>
         <span class="ev-folder">📁</span>
         <span class="ev-val ${actualClass}" id="actual-${idx}">
-          <span class="ev-actual-num">${e.actual || '—'}</span>
+          <span class="ev-actual-num">${escapeHtml(e.actual) || '—'}</span>
         </span>
-        <span class="ev-val ev-val-secondary">${e.forecast || '—'}</span>
-        <span class="ev-val ev-val-secondary">${e.previous || '—'}</span>
+        <span class="ev-val ev-val-secondary">${escapeHtml(e.forecast) || '—'}</span>
+        <span class="ev-val ev-val-secondary">${escapeHtml(e.previous) || '—'}</span>
         <span class="ev-history-icon" title="Historical data">🕒</span>
-        <span class="ev-bell-icon ${subscribedEvents.has(e.event) ? 'active' : ''}" data-event="${e.event}" title="${subscribedEvents.has(e.event) ? 'Alert on — click to unsubscribe from this event' : 'Click to get an alert for this specific event'}">🔔</span>
+        <span class="ev-bell-icon ${subscribedEvents.has(e.event) ? 'active' : ''}" data-event="${escapeHtml(e.event)}" title="${subscribedEvents.has(e.event) ? 'Alert on — click to unsubscribe from this event' : 'Click to get an alert for this specific event'}">🔔</span>
       </div>
       <div class="event-detail" id="detail-${idx}"></div>
       <div class="event-detail" id="history-${idx}"></div>
@@ -1652,9 +1665,9 @@ async function toggleHistory(row, ev){
         ${rows.map(h => `
           <div class="history-row">
             <span>${new Date(h.date).toLocaleDateString(undefined, {month:'short', day:'numeric', year:'numeric'})}</span>
-            <span class="hist-actual">${h.actual || '—'}</span>
-            <span>${h.forecast || '—'}</span>
-            <span>${h.previous || '—'}</span>
+            <span class="hist-actual">${escapeHtml(h.actual) || '—'}</span>
+            <span>${escapeHtml(h.forecast) || '—'}</span>
+            <span>${escapeHtml(h.previous) || '—'}</span>
           </div>
         `).join('')}
       </div>

@@ -1555,6 +1555,19 @@ document.addEventListener('fullscreenchange', () => {
 /* ---------------- AI Analysis (below the chart) ---------------- */
 // Finds the real display name for a TradingView symbol by searching the
 // same CATEGORIES data that powers the search box — never invents a name.
+// Escapes HTML special characters before inserting AI-generated text into
+// the page. Defense-in-depth: even though the AI isn't expected to output
+// executable markup, this ensures it's always rendered as plain text.
+function escapeHtml(str){
+  if(str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function findInstrumentName(symbol){
   for(const cat in CATEGORIES){
     const match = CATEGORIES[cat].find(i => i.symbol === symbol);
@@ -1623,18 +1636,18 @@ async function loadInsight(symbol){
 
     mainEl.innerHTML = `
       <h3>Today's Market Summary</h3>
-      <p>${data.summary || '—'}</p>
-      <h3>Why ${name} Is Moving</h3>
-      <p>${data.whyMoving || '—'}</p>
+      <p>${escapeHtml(data.summary) || '—'}</p>
+      <h3>Why ${escapeHtml(name)} Is Moving</h3>
+      <p>${escapeHtml(data.whyMoving) || '—'}</p>
       <h3>Technical Summary</h3>
-      <p>${data.technicalSummary || '—'}</p>
+      <p>${escapeHtml(data.technicalSummary) || '—'}</p>
     `;
     sideEl.innerHTML = `
-      <div class="insight-stat"><div class="insight-stat-label">Sentiment</div><div class="insight-stat-value ${data.sentiment}">${data.sentiment || '—'}</div></div>
-      <div class="insight-stat"><div class="insight-stat-label">Trend</div><div class="insight-stat-value ${data.trend}">${data.trend || '—'}</div></div>
-      <div class="insight-stat"><div class="insight-stat-label">Volatility</div><div class="insight-stat-value">${data.volatility || '—'}</div></div>
-      <div class="insight-stat"><div class="insight-stat-label">Est. Support</div><div class="insight-stat-value">${data.supportLevel || '—'}</div></div>
-      <div class="insight-stat"><div class="insight-stat-label">Est. Resistance</div><div class="insight-stat-value">${data.resistanceLevel || '—'}</div></div>
+      <div class="insight-stat"><div class="insight-stat-label">Sentiment</div><div class="insight-stat-value ${escapeHtml(data.sentiment)}">${escapeHtml(data.sentiment) || '—'}</div></div>
+      <div class="insight-stat"><div class="insight-stat-label">Trend</div><div class="insight-stat-value ${escapeHtml(data.trend)}">${escapeHtml(data.trend) || '—'}</div></div>
+      <div class="insight-stat"><div class="insight-stat-label">Volatility</div><div class="insight-stat-value">${escapeHtml(data.volatility) || '—'}</div></div>
+      <div class="insight-stat"><div class="insight-stat-label">Est. Support</div><div class="insight-stat-value">${escapeHtml(data.supportLevel) || '—'}</div></div>
+      <div class="insight-stat"><div class="insight-stat-label">Est. Resistance</div><div class="insight-stat-value">${escapeHtml(data.resistanceLevel) || '—'}</div></div>
     `;
   } catch(e){
     mainEl.innerHTML = '<p class="insight-loading">AI market analysis isn\'t available right now — please try again shortly.</p>';

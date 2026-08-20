@@ -729,6 +729,18 @@ updateNavClock();
 setInterval(updateNavClock, 1000);
 
 /* ---------------- Market Scanner (real data, box-grid layout) ---------------- */
+// Escapes HTML special characters before inserting external text (news
+// headlines, economic event names) into the page.
+function escapeHtml(str){
+  if(str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function fmtScannerPrice(n){
   return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 4 : 2, maximumFractionDigits: n < 10 ? 4 : 2 });
 }
@@ -878,7 +890,7 @@ async function loadHomeCalendarPreview(){
     if(!todayEvents.length){ el.innerHTML = '<div class="home-card-loading">No major events scheduled for today.</div>'; return; }
     el.innerHTML = todayEvents.map(e => {
       const time = new Date(e.date).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-      return `<div class="home-preview-row"><span class="home-preview-meta">${time}</span><span class="home-preview-text">${e.event}</span></div>`;
+      return `<div class="home-preview-row"><span class="home-preview-meta">${time}</span><span class="home-preview-text">${escapeHtml(e.event)}</span></div>`;
     }).join('');
   } catch(err){
     el.textContent = 'Could not load today\'s events right now.';
@@ -895,7 +907,7 @@ async function loadHomeNewsPreview(){
     const data = await res.json();
     if(!data.items || !data.items.length){ el.textContent = 'News feed isn\'t available right now.'; return; }
     el.innerHTML = data.items.slice(0, 5).map(item =>
-      `<div class="home-preview-row"><span class="home-preview-meta">${item.source}</span><span class="home-preview-text">${item.title}</span></div>`
+      `<div class="home-preview-row"><span class="home-preview-meta">${escapeHtml(item.source)}</span><span class="home-preview-text">${escapeHtml(item.title)}</span></div>`
     ).join('');
   } catch(err){
     el.textContent = 'Could not load news right now.';

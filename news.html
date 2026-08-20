@@ -888,6 +888,21 @@ function renderTabs(){
   });
 }
 
+// Escapes HTML special characters before inserting external text (RSS
+// headlines) into the page. Without this, a malicious or compromised feed
+// could inject a script tag or event handler that would actually execute
+// in visitors' browsers — this ensures external text is always shown as
+// plain, inert text, never as executable markup.
+function escapeHtml(str){
+  if(str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function fmtNewsTime(iso){
   if(!iso) return '—';
   const d = new Date(iso);
@@ -910,8 +925,8 @@ function renderNewsList(){
     return `
     <div class="news-row" data-idx="${idx}">
       <span class="nr-time">${fmtNewsTime(item.pubDate)}</span>
-      <span class="nr-source">${item.source}</span>
-      <span class="nr-title">${isHighImpact ? '<span class="nr-impact-badge">HIGH</span> ' : ''}${item.title}</span>
+      <span class="nr-source">${escapeHtml(item.source)}</span>
+      <span class="nr-title">${isHighImpact ? '<span class="nr-impact-badge">HIGH</span> ' : ''}${escapeHtml(item.title)}</span>
     </div>
     <div class="news-detail" id="newsDetail-${idx}"></div>
   `;
@@ -937,19 +952,19 @@ function toggleNewsDetail(row, filtered, idx){
   const moreHtml = others.length ? `
     <div class="more-stories">
       <div class="more-stories-label">More Stories</div>
-      ${others.map(o => `<a class="more-story-link" href="${o.link}" target="_blank" rel="noopener"><span class="ms-source">${o.source}</span>${o.title}</a>`).join('')}
+      ${others.map(o => `<a class="more-story-link" href="${escapeHtml(o.link)}" target="_blank" rel="noopener"><span class="ms-source">${escapeHtml(o.source)}</span>${escapeHtml(o.title)}</a>`).join('')}
     </div>
   ` : '';
 
   detailEl.innerHTML = `
     <div class="news-detail-body">
       ${item.image
-        ? `<img class="news-detail-img" src="${item.image}" alt="" onerror="this.style.display='none'">`
+        ? `<img class="news-detail-img" src="${escapeHtml(item.image)}" alt="" onerror="this.style.display='none'">`
         : `<div class="news-detail-img placeholder">📰</div>`}
       <div class="news-detail-text">
-        <div class="news-detail-from">From ${item.source}</div>
-        <div class="news-detail-snippet">${item.description || 'No summary available for this story.'}</div>
-        <a class="news-detail-fullstory" href="${item.link}" target="_blank" rel="noopener">Read full story →</a>
+        <div class="news-detail-from">From ${escapeHtml(item.source)}</div>
+        <div class="news-detail-snippet">${escapeHtml(item.description) || 'No summary available for this story.'}</div>
+        <a class="news-detail-fullstory" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Read full story →</a>
       </div>
     </div>
     ${moreHtml}
@@ -1109,24 +1124,24 @@ function renderHotStories(stories){
   const rest = stories.slice(2);
 
   featuredEl.innerHTML = featured.map(s => `
-    <a class="hot-story-featured-card" href="${s.sourceUrl || '#'}" target="_blank" rel="noopener">
+    <a class="hot-story-featured-card" href="${escapeHtml(s.sourceUrl || '#')}" target="_blank" rel="noopener">
       ${s.imageUrl
-        ? `<img class="hot-story-img" src="${s.imageUrl}" alt="" onerror="this.style.display='none'">`
+        ? `<img class="hot-story-img" src="${escapeHtml(s.imageUrl)}" alt="" onerror="this.style.display='none'">`
         : `<div class="hot-story-img placeholder">📰</div>`}
       <div>
-        <div class="hot-story-title">${s.title}</div>
-        <div class="hot-story-meta"><span class="src">${s.source || 'Source'}</span> · ${fmtHotTime(s.timestamp)}${s.auto ? ' · <span style="color:var(--dim);">live</span>' : ''}</div>
+        <div class="hot-story-title">${escapeHtml(s.title)}</div>
+        <div class="hot-story-meta"><span class="src">${escapeHtml(s.source || 'Source')}</span> · ${fmtHotTime(s.timestamp)}${s.auto ? ' · <span style="color:var(--dim);">live</span>' : ''}</div>
       </div>
     </a>
   `).join('');
 
   listEl.innerHTML = rest.map(s => `
-    <a class="hot-story-row" href="${s.sourceUrl || '#'}" target="_blank" rel="noopener">
+    <a class="hot-story-row" href="${escapeHtml(s.sourceUrl || '#')}" target="_blank" rel="noopener">
       ${s.imageUrl
-        ? `<img class="hot-story-img" src="${s.imageUrl}" alt="" onerror="this.style.display='none'">`
+        ? `<img class="hot-story-img" src="${escapeHtml(s.imageUrl)}" alt="" onerror="this.style.display='none'">`
         : `<div class="hot-story-img placeholder" style="font-size:.9rem;">📰</div>`}
-      <div class="hot-story-title">${s.title}</div>
-      <div class="hot-story-meta"><span class="src">${s.source || ''}</span> · ${fmtHotTime(s.timestamp)}</div>
+      <div class="hot-story-title">${escapeHtml(s.title)}</div>
+      <div class="hot-story-meta"><span class="src">${escapeHtml(s.source || '')}</span> · ${fmtHotTime(s.timestamp)}</div>
     </a>
   `).join('');
 }
