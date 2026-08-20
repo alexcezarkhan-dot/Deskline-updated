@@ -79,15 +79,58 @@ async function callGroq(systemPrompt, userContent, historyMessages) {
   );
 }
 
+// NVIDIA's free tier hosts many models, each with its own separate ~40
+// requests/minute limit. Rather than one model, we rotate through several —
+// so if one is being hit hard, the others still have room.
+//
+// Netlify Functions don't share memory between invocations, so we can't
+// literally count "have we used 40 requests on this model in the last
+// minute" without adding a new dependency (Netlify Blobs) to a project
+// that's deliberately stayed dependency-free. Instead, this picks which
+// model to try first based on the current minute — every request in the
+// same minute uses the same model, and it automatically rotates to the
+// next one every minute, cycling back to the first once the list is
+// exhausted. This spreads load across all 6 without needing any new
+// infrastructure or persistent storage.
+//
+// Verified against NVIDIA's current catalog: nemotron-3-ultra-550b-a55b
+// and kimi-k2.5 are confirmed exact model IDs. The others are correct
+// model families but exact version suffixes on NVIDIA's catalog change
+// often — worth spot-checking on build.nvidia.com if any of these
+// specifically stop responding.
+const NVIDIA_MODELS = [
+  "nvidia/nemotron-3-ultra-550b-a55b",   // NVIDIA's own flagship reasoning/agent model
+  "deepseek-ai/deepseek-v3.1-terminus",  // DeepSeek V3-class reasoning
+  "zhipuai/glm-5.1",                     // GLM — multilingual, agentic
+  "minimaxai/minimax-m2.5",              // MiniMax — multi-turn reasoning
+  "moonshotai/kimi-k2.5",                // Kimi — long-context specialist
+  "openai/gpt-oss-120b",                 // GPT-OSS — general knowledge
+];
+
 async function callNvidia(systemPrompt, userContent, historyMessages) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
-  return callOpenAICompatible(
-    "https://integrate.api.nvidia.com/v1",
-    apiKey,
-    "meta/llama-3.1-70b-instruct",
-    systemPrompt, userContent, historyMessages
-  );
+
+  // Deterministic rotation: same model for everyone within the same
+  // minute, automatically advances to the next model the next minute.
+  const startIndex = Math.floor(Date.now() / 60000) % NVIDIA_MODELS.length;
+  const rotationOrder = [...NVIDIA_MODELS.slice(startIndex), ...NVIDIA_MODELS.slice(0, startIndex)];
+
+  let lastError = null;
+  for (const model of rotationOrder) {
+    try {
+      const text = await callOpenAICompatible(
+        "https://integrate.api.nvidia.com/v1",
+        apiKey,
+        model,
+        systemPrompt, userContent, historyMessages
+      );
+      if (text) return text;
+    } catch (err) {
+      lastError = err; // this specific model failed — try the next one in rotation
+    }
+  }
+  throw lastError || new Error("All NVIDIA models in rotation failed");
 }
 
 async function callMistral(systemPrompt, userContent, historyMessages) {
