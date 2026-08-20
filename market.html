@@ -1885,7 +1885,7 @@ window.getDeskAiContext = async function(){
 const SUPABASE_URL = 'https://odlyvhxhktdjrydpkmta.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_zTpEf6S1XsS4JgPpjpXTFg_7atZZvFu';
 
-const sb = (SUPABASE_URL !== 'https://odlyvhxhktdjrydpkmta.supabase.co' && window.supabase)
+const sb = window.supabase
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   : null;
 
