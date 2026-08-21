@@ -13,6 +13,7 @@
 import { handleHistoricalFx } from "./functions/historical-fx.js";
 import { handleEventHistory } from "./functions/event-history.js";
 import { handleNewsFeed } from "./functions/news-feed.js";
+import { handleEconCalendar } from "./functions/econ-calendar.js";
 
 export default {
   async fetch(request, env) {
@@ -27,6 +28,9 @@ export default {
     }
     if (url.pathname === "/news-feed") {
       return handleNewsFeed(request, env);
+    }
+    if (url.pathname === "/econ-calendar") {
+      return handleEconCalendar(request, env);
     }
 
     // Everything else — your actual site's pages — served as static files,
