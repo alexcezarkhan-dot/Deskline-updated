@@ -15,6 +15,7 @@ import { handleEventHistory } from "./functions/event-history.js";
 import { handleNewsFeed } from "./functions/news-feed.js";
 import { handleEconCalendar } from "./functions/econ-calendar.js";
 import { handleReplayData } from "./functions/replay-data.js";
+import { handleReplayDataForex } from "./functions/replay-data-forex.js";
 
 export default {
   async fetch(request, env) {
@@ -35,6 +36,9 @@ export default {
     }
     if (url.pathname === "/replay-data") {
       return handleReplayData(request);
+    }
+    if (url.pathname === "/replay-data-forex") {
+      return handleReplayDataForex(request, env);
     }
 
     // Everything else — your actual site's pages — served as static files,
