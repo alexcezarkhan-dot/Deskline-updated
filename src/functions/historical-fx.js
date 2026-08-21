@@ -1,13 +1,10 @@
 // DeskTerminal Forex Historical — real historical performance (% change) for
 // a forex pair across standard lookback periods, using Frankfurter's free ECB
 // exchange rate data (no key, ECB-sourced, daily rates back to 1999).
-// Note: ECB data has no weekend/holiday entries, so dates are nudged back a
-// few days when needed to land on the nearest published rate.
 //
-// Cloudflare Pages Functions version — same real logic and data source as
-// the original Netlify function, only the request/response wrapper differs
-// (Cloudflare uses standard Web API Request/Response objects, not Netlify's
-// event/statusCode object shape).
+// Exported as a plain handler function, imported and called by src/index.js
+// (the single combined Worker script Cloudflare's static-assets model needs)
+// rather than as its own standalone route file.
 
 function isoDaysAgo(days) {
   const d = new Date();
@@ -23,11 +20,11 @@ const PERIODS = [
   { key: "6M", days: 182 },
   { key: "1Y", days: 365 },
   { key: "5Y", days: 365 * 5 },
-  { key: "Max", days: 365 * 25 }, // Frankfurter's practical history depth
+  { key: "Max", days: 365 * 25 },
 ];
 
-export async function onRequest(context) {
-  const url = new URL(context.request.url);
+export async function handleHistoricalFx(request) {
+  const url = new URL(request.url);
   const base = (url.searchParams.get("base") || "").toUpperCase();
   const quote = (url.searchParams.get("quote") || "").toUpperCase();
 
@@ -51,8 +48,6 @@ export async function onRequest(context) {
 
     const results = await Promise.allSettled(
       PERIODS.map(async (p) => {
-        // Try the exact date, then step back a few days to find a published rate
-        // (ECB doesn't publish for weekends/holidays).
         for (let attempt = 0; attempt < 5; attempt++) {
           const date = isoDaysAgo(p.days + attempt);
           const res = await fetch(`https://api.frankfurter.dev/v1/${date}?base=${base}&symbols=${quote}`);
