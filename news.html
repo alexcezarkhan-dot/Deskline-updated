@@ -372,10 +372,17 @@
   .news-row .nr-source{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--gold); width:120px; flex-shrink:0; }
   .news-row .nr-title{ flex:1; }
   .nr-impact-badge{
-    display:inline-block; background:#FB6B5B; color:#4A1B0C;
+    display:inline-block; color:#4A1B0C;
     font-family:'JetBrains Mono', monospace; font-size:.62rem; font-weight:700;
     letter-spacing:.04em; padding:.1rem .4rem; border-radius:3px; margin-right:.4rem;
     vertical-align:middle;
+  }
+  .nr-impact-badge.high{ background:#FB6B5B; }
+  .nr-impact-badge.medium{ background:#E8B15C; }
+
+  .nr-hidden-notice{
+    font-family:'JetBrains Mono', monospace; font-size:.66rem; color:var(--dim);
+    padding:.6rem .9rem; border-bottom:1px solid var(--line-soft); font-style:italic;
   }
 
   .nr-effect{
@@ -1075,20 +1082,68 @@ function fmtNewsTime(iso){
   return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
 }
 
+// Real daily cap on low-impact stories — resets automatically each day
+// since the key includes today's date. Only counts stories that actually
+// get shown, so refreshing the page doesn't silently let more through.
+const LOW_IMPACT_DAILY_CAP = 3;
+const lowImpactCountedThisSession = new Set(); // prevents double-counting the same story across re-renders
+function getLowImpactShownToday(){
+  const key = 'deskterminal-lowimpact-' + new Date().toISOString().slice(0, 10);
+  return parseInt(localStorage.getItem(key) || '0', 10);
+}
+function incrementLowImpactShownToday(){
+  const key = 'deskterminal-lowimpact-' + new Date().toISOString().slice(0, 10);
+  localStorage.setItem(key, String(getLowImpactShownToday() + 1));
+}
+
 function renderNewsList(){
   const container = document.getElementById('newsContainer');
-  const filtered = currentSourceFilter === 'all'
+  const sourceFiltered = currentSourceFilter === 'all'
     ? allNewsItems
     : allNewsItems.filter(i => i.source === currentSourceFilter);
+
+  // Apply the real low-impact daily cap — high/medium always show; low-impact
+  // items only show up to today's remaining allowance. Items not yet
+  // classified (AI hasn't responded yet) are shown normally, since we
+  // genuinely don't know their impact level yet.
+  let lowImpactBudget = LOW_IMPACT_DAILY_CAP - getLowImpactShownToday();
+  let lowImpactHiddenCount = 0;
+  const filtered = sourceFiltered.filter(item => {
+    const classification = classifiedHeadlines.get(item.title);
+    if(classification?.impact !== 'low') return true; // high, medium, or not-yet-classified
+
+    // Already counted this specific story earlier in this session (e.g. an
+    // earlier render before this classification batch came in) — keep
+    // showing it consistently, don't count it a second time.
+    if(lowImpactCountedThisSession.has(item.title)) return true;
+
+    if(lowImpactBudget > 0){
+      lowImpactBudget--;
+      lowImpactCountedThisSession.add(item.title);
+      incrementLowImpactShownToday();
+      return true;
+    }
+    lowImpactHiddenCount++;
+    return false;
+  });
 
   if(!filtered.length){
     container.innerHTML = '<div class="news-status">No headlines available right now.</div>';
     return;
   }
 
-  container.innerHTML = filtered.map((item, idx) => {
+  const hiddenNoticeHtml = lowImpactHiddenCount > 0
+    ? `<div class="nr-hidden-notice">${lowImpactHiddenCount} lower-impact ${lowImpactHiddenCount === 1 ? 'story' : 'stories'} hidden today — focusing on what actually moves markets.</div>`
+    : '';
+
+  container.innerHTML = hiddenNoticeHtml + filtered.map((item, idx) => {
     const classification = classifiedHeadlines.get(item.title);
-    const isHighImpact = classification?.highImpact === true;
+    const impact = classification?.impact;
+    const badgeHtml = impact === 'high'
+      ? '<span class="nr-impact-badge high">HIGH</span> '
+      : impact === 'medium'
+        ? '<span class="nr-impact-badge medium">MED</span> '
+        : '';
     const hasEffect = classification?.currency && classification?.effect;
     const effectHtml = hasEffect
       ? `<div class="nr-effect ${classification.effect}">Effect on ${escapeHtml(classification.currency)}: ${classification.effect === 'strengthen' ? '▲ Strengthen' : '▼ Weaken'}</div>`
@@ -1097,7 +1152,7 @@ function renderNewsList(){
     <div class="news-row" data-idx="${idx}">
       <span class="nr-time">${fmtNewsTime(item.pubDate)}</span>
       <span class="nr-source">${escapeHtml(item.source)}</span>
-      <span class="nr-title">${isHighImpact ? '<span class="nr-impact-badge">HIGH</span> ' : ''}${escapeHtml(item.title)}</span>
+      <span class="nr-title">${badgeHtml}${escapeHtml(item.title)}</span>
     </div>
     ${effectHtml}
     <div class="news-detail" id="newsDetail-${idx}"></div>
@@ -1212,17 +1267,18 @@ async function classifyNewHeadlines(items){
         data.results.forEach(r => {
           const item = batch[r.index];
           if(!item) return;
+          const impact = (r.impact === 'high' || r.impact === 'medium' || r.impact === 'low') ? r.impact : 'medium';
           classifiedHeadlines.set(item.title, {
-            highImpact: !!r.highImpact,
+            impact,
             currency: r.currency || null,
             effect: (r.effect === 'strengthen' || r.effect === 'weaken') ? r.effect : null,
           });
-          if(r.highImpact) anyNewHighImpact = true;
+          if(impact === 'high') anyNewHighImpact = true;
         });
         if(anyNewHighImpact){
           playWarningTone();
-          renderNewsList(); // refresh so HIGH badges actually appear
         }
+        renderNewsList(); // refresh so real impact badges and low-impact filtering apply
       }
     } catch(e){
       // Classification failing shouldn't break the news feed itself —
