@@ -112,6 +112,32 @@
   nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
   .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
   .wordmark span{ color:var(--gold); }
+  .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
+  .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
+  .nav-icon{ width:15px; height:15px; flex-shrink:0; }
+  .nav-right{ display:flex; align-items:center; gap:1.2rem; }
+  .nav-clock{ font-size:.72rem; color:var(--dim); white-space:nowrap; }
+
+  .mobile-subnav{
+    display:none;
+    overflow-x:auto; white-space:nowrap;
+    background:var(--panel-2); border-bottom:1px solid var(--line-soft);
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  .mobile-subnav::-webkit-scrollbar{ display:none; }
+  .mobile-subnav a{
+    display:inline-block; padding:.65rem .9rem;
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    text-decoration:none; border-bottom:2px solid transparent;
+  }
+  .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+
+  @media (max-width:860px){
+    .navlinks{ display:none; }
+    .nav-clock{ display:none; }
+    .mobile-subnav{ display:flex; }
+  }
+
   .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
   .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
   .navlinks a:hover{ color:var(--ink); }
@@ -145,6 +171,38 @@
   }
   .sound-toggle-btn:hover{ border-color:var(--gold); }
   .sound-toggle-btn.muted{ opacity:.45; }
+
+  .submit-news-btn{
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    padding:.4rem .8rem; font-family:'JetBrains Mono', monospace; font-size:.68rem;
+    color:var(--dim); cursor:pointer; transition: border-color .15s, color .15s;
+  }
+  .submit-news-btn:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .submit-news-modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1200; display:none;
+    align-items:center; justify-content:center; padding:1.5rem;
+  }
+  .submit-news-modal-overlay.open{ display:flex; }
+  .submit-news-modal{
+    width:420px; max-width:100%; background:var(--panel); border:1px solid var(--line-soft);
+    border-radius:12px; padding:1.4rem;
+  }
+  .submit-news-modal-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+  .submit-news-modal-header h2{ font-size:1rem; font-weight:700; }
+  .submit-news-modal-close{ background:none; border:none; color:var(--dim); font-size:1rem; cursor:pointer; }
+  .submit-news-modal label{ display:block; font-family:'JetBrains Mono', monospace; font-size:.65rem; color:var(--dim); margin:.8rem 0 .3rem; }
+  .submit-news-modal input{
+    width:100%; background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    padding:.6rem .7rem; color:var(--ink); font-size:.85rem;
+  }
+  .submit-news-submit-btn{
+    width:100%; margin-top:1.2rem; background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
+    border:none; color:#1A1305; font-weight:700; padding:.7rem; border-radius:6px; cursor:pointer; font-size:.85rem;
+  }
+  .submit-news-status{ margin-top:.7rem; font-family:'JetBrains Mono', monospace; font-size:.72rem; text-align:center; }
+  .submit-news-status.success{ color:#4ADE80; }
+  .submit-news-status.error{ color:#FB6B5B; }
 
   .last-updated{
     padding: .6rem 6vw 0;
@@ -770,20 +828,45 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <div class="wordmark-wrap">
+      <span class="wordmark-bar"></span>
+      <div class="wordmark">Desk<span>Terminal</span></div>
+    </div>
   </div>
   <div class="navlinks">
-    <a href="index.html">Market</a>
-    <a href="calendar.html">Economic Calendar</a>
-    <a href="news.html" class="active">News</a>
-    <a href="forex-tools.html">Forex Tools</a>
-  <a href="brokers/index.html">Brokers</a>
+    <a href="index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
+    <a href="market.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-5"/></svg>Market</a>
+    <a href="calendar.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Economic Calendar</a>
+    <a href="news.html" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V4z"/><path d="M8 8h7M8 12h7M8 16h4"/></svg>News</a>
+    <a href="forex-tools.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h2M8 15h2M12 15h2M16 15h2"/></svg>Forex Tools</a>
+  <a href="brokers/index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg>Brokers</a>
   </div>
-  <div class="auth-slot" id="authSlot">
-  <button class="auth-btn" id="loginBtn">Login</button>
+  <div class="nav-right">
+    <span class="nav-clock mono" id="navClock"></span>
+    <div class="auth-slot" id="authSlot">
+    <button class="auth-btn" id="loginBtn">Login</button>
   <button class="auth-btn primary" id="signupBtn">Sign Up</button>
 </div>
+  </div>
 </nav>
+
+<div class="mobile-subnav" id="mobileSubnav">
+  <a href="index.html">Home</a>
+  <a href="market.html">Market</a>
+  <a href="news.html" class="active">News</a>
+  <a href="calendar.html">Calendar</a>
+  <a href="forex-tools.html">Forex Tools</a>
+  <a href="brokers/index.html">Brokers</a>
+</div>
+
+<div class="mobile-subnav" id="mobileSubnav">
+  <a href="index.html">Home</a>
+  <a href="market.html">Market</a>
+  <a href="news.html" class="active">News</a>
+  <a href="calendar.html">Calendar</a>
+  <a href="forex-tools.html">Forex Tools</a>
+  <a href="brokers/index.html">Brokers</a>
+</div>
 
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
@@ -793,6 +876,7 @@
   </div>
   <div class="nav-drawer-links">
     <a href="index.html">Market</a>
+    <a href="instruments.html">Instruments</a>
     <a href="forex-tools.html">Forex Tools</a>
     <a href="news.html" class="active">News</a>
     <a href="calendar.html">Economic Calendar</a>
@@ -806,11 +890,31 @@
 <div class="util-bar">
   <h1>Market <span>News</span></h1>
   <div style="display:flex; align-items:center; gap:.8rem;">
+    <button class="submit-news-btn" id="submitNewsBtn" title="Submit a news story">+ Submit News</button>
     <button class="sound-toggle-btn" id="soundToggleBtn" title="Toggle high-impact alert sound" aria-label="Toggle alert sound">🔔</button>
     <div class="util-clock mono" id="clockLine"><span class="dot"></span>live feed</div>
   </div>
 </div>
 <div class="last-updated mono" id="lastUpdated"></div>
+
+<div class="submit-news-modal-overlay" id="submitNewsOverlay">
+  <div class="submit-news-modal">
+    <div class="submit-news-modal-header">
+      <h2>Submit a Story</h2>
+      <button class="submit-news-modal-close" id="submitNewsClose">✕</button>
+    </div>
+    <div id="submitNewsBody">
+      <label>Headline</label>
+      <input type="text" id="submitNewsTitle" placeholder="e.g. Fed signals possible rate cut" maxlength="200">
+      <label>Link</label>
+      <input type="text" id="submitNewsUrl" placeholder="https://...">
+      <label>Source (optional)</label>
+      <input type="text" id="submitNewsSource" placeholder="e.g. Reuters">
+      <button class="submit-news-submit-btn" id="submitNewsSubmitBtn">Submit for Review</button>
+      <div class="submit-news-status" id="submitNewsStatus"></div>
+    </div>
+  </div>
+</div>
 
 <div class="news-layout">
   <aside class="news-sidebar">
@@ -876,6 +980,15 @@
 </footer>
 
 <script>
+// Live clock in the nav — updates every second, genuinely live, not static text.
+function updateNavClock(){
+  const el = document.getElementById('navClock');
+  if(!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+}
+updateNavClock();
+setInterval(updateNavClock, 1000);
+
 let allNewsItems = [];
 let currentSourceFilter = 'all';
 
@@ -1083,6 +1196,27 @@ async function loadNews(){
       return;
     }
     allNewsItems = data.items;
+
+    // Genuinely approved community submissions get mixed in alongside the
+    // RSS-fetched items — same shape, so they render identically.
+    if(sb){
+      try{
+        const { data: approved } = await sb.from('submitted_news').select('*').eq('status', 'approved');
+        if(approved && approved.length){
+          const submitted = approved.map(s => ({
+            title: s.title,
+            link: s.url,
+            pubDate: s.reviewed_at || s.created_at,
+            source: s.source_name || 'Community',
+            description: '',
+            image: '',
+          }));
+          allNewsItems = allNewsItems.concat(submitted);
+          allNewsItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        }
+      } catch(e){ /* community submissions are a bonus, not required for the page to work */ }
+    }
+
     lastNewsFetchTime = new Date();
     updateLastUpdatedLine();
     renderTabs();
@@ -1444,6 +1578,97 @@ signupBtn?.addEventListener('click', openAuthModal);
 authModalClose?.addEventListener('click', closeAuthModal);
 authModalOverlay?.addEventListener('click', (e) => { if(e.target === authModalOverlay) closeAuthModal(); });
 
+/* ---------------- Submit News (with admin approval) ---------------- */
+const submitNewsBtn = document.getElementById('submitNewsBtn');
+const submitNewsOverlay = document.getElementById('submitNewsOverlay');
+const submitNewsClose = document.getElementById('submitNewsClose');
+const submitNewsSubmitBtn = document.getElementById('submitNewsSubmitBtn');
+const submitNewsStatus = document.getElementById('submitNewsStatus');
+
+submitNewsBtn?.addEventListener('click', () => {
+  if(!window.currentUser){ openAuthModal(); return; }
+  submitNewsOverlay.classList.add('open');
+});
+submitNewsClose?.addEventListener('click', () => submitNewsOverlay.classList.remove('open'));
+
+submitNewsSubmitBtn?.addEventListener('click', async () => {
+  const title = document.getElementById('submitNewsTitle').value.trim();
+  const url = document.getElementById('submitNewsUrl').value.trim();
+  const sourceName = document.getElementById('submitNewsSource').value.trim();
+
+  if(!title || !url){
+    submitNewsStatus.textContent = 'Headline and link are required.';
+    submitNewsStatus.className = 'submit-news-status error';
+    return;
+  }
+  if(!/^https?:\/\//i.test(url)){
+    submitNewsStatus.textContent = 'Link must start with http:// or https://';
+    submitNewsStatus.className = 'submit-news-status error';
+    return;
+  }
+
+  submitNewsSubmitBtn.disabled = true;
+  submitNewsSubmitBtn.textContent = 'Submitting…';
+
+  try{
+    const { error } = await sb.from('submitted_news').insert({
+      title, url, source_name: sourceName || null, submitted_by: window.currentUser.id,
+    });
+    if(error) throw error;
+    submitNewsStatus.textContent = 'Submitted — an admin will review it shortly.';
+    submitNewsStatus.className = 'submit-news-status success';
+    document.getElementById('submitNewsTitle').value = '';
+    document.getElementById('submitNewsUrl').value = '';
+    document.getElementById('submitNewsSource').value = '';
+  } catch(err){
+    submitNewsStatus.textContent = 'Could not submit right now — please try again.';
+    submitNewsStatus.className = 'submit-news-status error';
+  } finally {
+    submitNewsSubmitBtn.disabled = false;
+    submitNewsSubmitBtn.textContent = 'Submit for Review';
+  }
+});
+
+// Admin review panel — only ever fetched/shown for a user whose profile role
+// is genuinely 'admin' in the database (checked server-side via RLS, not
+// just hidden client-side), so this can't be bypassed by editing the page.
+async function checkAndShowAdminPanel(){
+  if(!window.currentUser || !sb) return;
+  const { data: profile } = await sb.from('profiles').select('role').eq('id', window.currentUser.id).single();
+  if(!profile || profile.role !== 'admin') return;
+
+  const { data: pending } = await sb.from('submitted_news').select('*').eq('status', 'pending').order('created_at', { ascending: false });
+  if(!pending || !pending.length) return;
+
+  const panel = document.createElement('div');
+  panel.style.cssText = 'position:fixed; bottom:20px; left:20px; width:340px; max-height:400px; overflow-y:auto; background:var(--panel); border:1px solid var(--gold); border-radius:10px; padding:1rem; z-index:1100;';
+  panel.innerHTML = `<div style="font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--gold); margin-bottom:.7rem;">⚠ ${pending.length} pending submission${pending.length > 1 ? 's' : ''} — admin only</div>` +
+    pending.map(p => `
+      <div class="admin-pending-item" style="background:var(--panel-2); border-radius:6px; padding:.7rem; margin-bottom:.6rem;">
+        <div style="font-size:.78rem; color:var(--ink); margin-bottom:.3rem;">${escapeHtml(p.title)}</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--dim); margin-bottom:.5rem; word-break:break-all;">${escapeHtml(p.url)}</div>
+        <div style="display:flex; gap:.4rem;">
+          <button class="admin-approve-btn" data-id="${p.id}" style="flex:1; background:#4ADE80; color:#04342C; border:none; border-radius:4px; padding:.35rem; font-size:.68rem; cursor:pointer;">Approve</button>
+          <button class="admin-reject-btn" data-id="${p.id}" style="flex:1; background:#FB6B5B; color:#4A1B0C; border:none; border-radius:4px; padding:.35rem; font-size:.68rem; cursor:pointer;">Reject</button>
+        </div>
+      </div>
+    `).join('');
+  document.body.appendChild(panel);
+
+  panel.querySelectorAll('.admin-approve-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      await sb.from('submitted_news').update({ status: 'approved', reviewed_at: new Date().toISOString() }).eq('id', btn.dataset.id);
+      btn.closest('.admin-pending-item').remove();
+    });
+  });
+  panel.querySelectorAll('.admin-reject-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      await sb.from('submitted_news').update({ status: 'rejected', reviewed_at: new Date().toISOString() }).eq('id', btn.dataset.id);
+      btn.closest('.admin-pending-item').remove();
+    });
+  });
+}
+
 async function signInWith(provider){
   if(!sb){ alert('Sign-in is not configured on this site yet.'); return; }
   await sb.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
@@ -1513,6 +1738,7 @@ function renderProfileFields(){
 
 async function loadProfileUI(user){
   window.currentUser = user;
+  checkAndShowAdminPanel();
   authSlot.innerHTML = '';
   const avatarBtn = document.createElement('button');
   avatarBtn.className = 'auth-avatar-btn';

@@ -13,8 +13,34 @@ nav{ display:flex; justify-content:space-between; align-items:center; padding: 1
 .nav-left{ display:flex; align-items:center; gap:.9rem; }
 .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
 .wordmark span{ color:var(--gold); }
+.wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
+.wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
+.nav-icon{ width:15px; height:15px; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; gap:1.2rem; }
+.nav-clock{ font-size:.72rem; color:var(--dim); white-space:nowrap; }
+
+.mobile-subnav{
+  display:none;
+  overflow-x:auto; white-space:nowrap;
+  background:var(--panel-2); border-bottom:1px solid var(--line-soft);
+  -ms-overflow-style:none; scrollbar-width:none;
+}
+.mobile-subnav::-webkit-scrollbar{ display:none; }
+.mobile-subnav a{
+  display:inline-block; padding:.65rem .9rem;
+  font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+  text-decoration:none; border-bottom:2px solid transparent;
+}
+.mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+
+@media (max-width:860px){
+  .navlinks{ display:none; }
+  .nav-clock{ display:none; }
+  .mobile-subnav{ display:flex; }
+}
+
 .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
-.navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
+.navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; display:flex; align-items:center; gap:.4rem; }
 .navlinks a:hover{ color:var(--ink); }
 
 /* ---------------- Breadcrumb ---------------- */
