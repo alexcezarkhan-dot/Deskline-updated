@@ -11,6 +11,7 @@
 // model supported automatically.
 
 import { handleHistoricalFx } from "./functions/historical-fx.js";
+import { handleEventHistory } from "./functions/event-history.js";
 
 export default {
   async fetch(request, env) {
@@ -19,6 +20,9 @@ export default {
     // Route API requests to their real handler.
     if (url.pathname === "/historical-fx") {
       return handleHistoricalFx(request);
+    }
+    if (url.pathname === "/event-history") {
+      return handleEventHistory(request, env);
     }
 
     // Everything else — your actual site's pages — served as static files,
