@@ -196,6 +196,29 @@
     width:100%; background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
     padding:.6rem .7rem; color:var(--ink); font-size:.85rem;
   }
+  .submit-news-modal select{
+    width:100%; background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    padding:.6rem .7rem; color:var(--ink); font-size:.85rem;
+  }
+  .submit-news-image-tabs{ display:flex; gap:.4rem; margin-top:.3rem; }
+  .submit-news-image-tab{
+    flex:1; background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
+    padding:.4rem .3rem; font-size:.62rem; color:var(--dim); cursor:pointer;
+  }
+  .submit-news-image-tab.active{ border-color:var(--gold); color:var(--gold); }
+  .submit-news-image-panel{ margin-top:.5rem; }
+  .submit-news-preview{
+    display:flex; gap:.7rem; align-items:center; background:var(--panel-2);
+    border:1px solid var(--line-soft); border-radius:8px; padding:.7rem;
+  }
+  .submit-news-preview-img{
+    width:60px; height:60px; border-radius:5px; background:var(--panel); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:.6rem; color:var(--dim);
+    overflow:hidden;
+  }
+  .submit-news-preview-img img{ width:100%; height:100%; object-fit:cover; }
+  .submit-news-preview-title{ font-size:.78rem; color:var(--ink); margin-bottom:.2rem; }
+  .submit-news-preview-meta{ font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim); }
   .submit-news-submit-btn{
     width:100%; margin-top:1.2rem; background: linear-gradient(145deg, #FFD98E, var(--gold) 60%, #B9803A);
     border:none; color:#1A1305; font-weight:700; padding:.7rem; border-radius:6px; cursor:pointer; font-size:.85rem;
@@ -910,6 +933,38 @@
       <input type="text" id="submitNewsUrl" placeholder="https://...">
       <label>Source (optional)</label>
       <input type="text" id="submitNewsSource" placeholder="e.g. Reuters">
+
+      <label>Image</label>
+      <div class="submit-news-image-tabs">
+        <button type="button" class="submit-news-image-tab active" data-tab="device">Upload From Device</button>
+        <button type="button" class="submit-news-image-tab" data-tab="url">Upload From URL</button>
+        <button type="button" class="submit-news-image-tab" data-tab="screenshot">Upload Screenshot</button>
+      </div>
+      <input type="file" id="submitNewsImageFile" accept="image/*" class="submit-news-image-panel" data-panel="device">
+      <input type="text" id="submitNewsImageUrl" placeholder="https://... image link" class="submit-news-image-panel" data-panel="url" style="display:none;">
+      <input type="file" id="submitNewsScreenshotFile" accept="image/*" class="submit-news-image-panel" data-panel="screenshot" style="display:none;">
+
+      <label>Category</label>
+      <select id="submitNewsCategory">
+        <option value="Breaking News (high)">Breaking News (high)</option>
+        <option value="Breaking News (medium)">Breaking News (medium)</option>
+        <option value="Breaking News (low)">Breaking News (low)</option>
+        <option value="Fundamental Analysis">Fundamental Analysis</option>
+        <option value="Technical Analysis">Technical Analysis</option>
+        <option value="Entertainment News">Entertainment News</option>
+        <option value="Forex Industry News">Forex Industry News</option>
+        <option value="Educational News" selected>Educational News</option>
+      </select>
+
+      <label>Preview</label>
+      <div class="submit-news-preview" id="submitNewsPreview">
+        <div class="submit-news-preview-img" id="submitNewsPreviewImg">No image</div>
+        <div class="submit-news-preview-text">
+          <div class="submit-news-preview-title" id="submitNewsPreviewTitle">Your headline will appear here</div>
+          <div class="submit-news-preview-meta" id="submitNewsPreviewMeta">Source · Category</div>
+        </div>
+      </div>
+
       <button class="submit-news-submit-btn" id="submitNewsSubmitBtn">Submit for Review</button>
       <div class="submit-news-status" id="submitNewsStatus"></div>
     </div>
@@ -1209,7 +1264,7 @@ async function loadNews(){
             pubDate: s.reviewed_at || s.created_at,
             source: s.source_name || 'Community',
             description: '',
-            image: '',
+            image: s.image_url || '',
           }));
           allNewsItems = allNewsItems.concat(submitted);
           allNewsItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
@@ -1591,10 +1646,74 @@ submitNewsBtn?.addEventListener('click', () => {
 });
 submitNewsClose?.addEventListener('click', () => submitNewsOverlay.classList.remove('open'));
 
+// Image method tabs — switches which input is visible, doesn't touch the others' values.
+document.querySelectorAll('.submit-news-image-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.submit-news-image-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.submit-news-image-panel').forEach(p => {
+      p.style.display = p.dataset.panel === tab.dataset.tab ? '' : 'none';
+    });
+  });
+});
+
+// Live preview — updates as the user types/picks, so they see exactly what
+// gets submitted before sending it.
+function updateSubmitPreview(){
+  const title = document.getElementById('submitNewsTitle').value.trim();
+  const source = document.getElementById('submitNewsSource').value.trim();
+  const category = document.getElementById('submitNewsCategory').value;
+  document.getElementById('submitNewsPreviewTitle').textContent = title || 'Your headline will appear here';
+  document.getElementById('submitNewsPreviewMeta').textContent = `${source || 'Source'} · ${category}`;
+}
+['submitNewsTitle', 'submitNewsSource', 'submitNewsCategory'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updateSubmitPreview);
+});
+
+function previewImageFile(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    document.getElementById('submitNewsPreviewImg').innerHTML = `<img src="${e.target.result}" alt="">`;
+  };
+  reader.readAsDataURL(file);
+}
+document.getElementById('submitNewsImageFile')?.addEventListener('change', (e) => previewImageFile(e.target.files[0]));
+document.getElementById('submitNewsScreenshotFile')?.addEventListener('change', (e) => previewImageFile(e.target.files[0]));
+document.getElementById('submitNewsImageUrl')?.addEventListener('input', (e) => {
+  const url = e.target.value.trim();
+  if(url) document.getElementById('submitNewsPreviewImg').innerHTML = `<img src="${escapeHtml(url)}" alt="">`;
+});
+
+// Uploads whichever real file input is currently active to Supabase Storage,
+// returns the real public URL — or null if the URL-only tab is active
+// (no upload needed) or nothing was provided.
+async function uploadSubmissionImage(){
+  const activeTab = document.querySelector('.submit-news-image-tab.active')?.dataset.tab;
+
+  if(activeTab === 'url'){
+    return document.getElementById('submitNewsImageUrl').value.trim() || null;
+  }
+
+  const fileInput = activeTab === 'screenshot'
+    ? document.getElementById('submitNewsScreenshotFile')
+    : document.getElementById('submitNewsImageFile');
+  const file = fileInput?.files[0];
+  if(!file) return null;
+
+  const filePath = `${window.currentUser.id}/${Date.now()}_${file.name}`;
+  const { error: uploadError } = await sb.storage.from('news-submissions').upload(filePath, file);
+  if(uploadError) throw new Error('Image upload failed: ' + uploadError.message);
+
+  const { data } = sb.storage.from('news-submissions').getPublicUrl(filePath);
+  return data.publicUrl;
+}
+
 submitNewsSubmitBtn?.addEventListener('click', async () => {
   const title = document.getElementById('submitNewsTitle').value.trim();
   const url = document.getElementById('submitNewsUrl').value.trim();
   const sourceName = document.getElementById('submitNewsSource').value.trim();
+  const category = document.getElementById('submitNewsCategory').value;
 
   if(!title || !url){
     submitNewsStatus.textContent = 'Headline and link are required.';
@@ -1611,8 +1730,11 @@ submitNewsSubmitBtn?.addEventListener('click', async () => {
   submitNewsSubmitBtn.textContent = 'Submitting…';
 
   try{
+    const imageUrl = await uploadSubmissionImage();
+
     const { error } = await sb.from('submitted_news').insert({
-      title, url, source_name: sourceName || null, submitted_by: window.currentUser.id,
+      title, url, source_name: sourceName || null, category, image_url: imageUrl,
+      submitted_by: window.currentUser.id,
     });
     if(error) throw error;
     submitNewsStatus.textContent = 'Submitted — an admin will review it shortly.';
@@ -1620,8 +1742,13 @@ submitNewsSubmitBtn?.addEventListener('click', async () => {
     document.getElementById('submitNewsTitle').value = '';
     document.getElementById('submitNewsUrl').value = '';
     document.getElementById('submitNewsSource').value = '';
+    document.getElementById('submitNewsImageUrl').value = '';
+    document.getElementById('submitNewsImageFile').value = '';
+    document.getElementById('submitNewsScreenshotFile').value = '';
+    document.getElementById('submitNewsPreviewImg').innerHTML = 'No image';
+    updateSubmitPreview();
   } catch(err){
-    submitNewsStatus.textContent = 'Could not submit right now — please try again.';
+    submitNewsStatus.textContent = err.message || 'Could not submit right now — please try again.';
     submitNewsStatus.className = 'submit-news-status error';
   } finally {
     submitNewsSubmitBtn.disabled = false;
@@ -1645,7 +1772,13 @@ async function checkAndShowAdminPanel(){
   panel.innerHTML = `<div style="font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--gold); margin-bottom:.7rem;">⚠ ${pending.length} pending submission${pending.length > 1 ? 's' : ''} — admin only</div>` +
     pending.map(p => `
       <div class="admin-pending-item" style="background:var(--panel-2); border-radius:6px; padding:.7rem; margin-bottom:.6rem;">
-        <div style="font-size:.78rem; color:var(--ink); margin-bottom:.3rem;">${escapeHtml(p.title)}</div>
+        <div style="display:flex; gap:.6rem; margin-bottom:.5rem;">
+          ${p.image_url ? `<img src="${escapeHtml(p.image_url)}" style="width:44px; height:44px; border-radius:4px; object-fit:cover; flex-shrink:0;" alt="">` : ''}
+          <div>
+            <div style="font-size:.78rem; color:var(--ink); margin-bottom:.2rem;">${escapeHtml(p.title)}</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--gold);">${escapeHtml(p.category || 'Educational News')}</div>
+          </div>
+        </div>
         <div style="font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--dim); margin-bottom:.5rem; word-break:break-all;">${escapeHtml(p.url)}</div>
         <div style="display:flex; gap:.4rem;">
           <button class="admin-approve-btn" data-id="${p.id}" style="flex:1; background:#4ADE80; color:#04342C; border:none; border-radius:4px; padding:.35rem; font-size:.68rem; cursor:pointer;">Approve</button>
