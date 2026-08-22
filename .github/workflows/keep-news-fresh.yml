@@ -1,0 +1,21 @@
+name: Keep News Cache Fresh
+
+# Runs automatically, on a real schedule, whether or not anyone visits your
+# site — this "warms" the news cache proactively, so real visitors are
+# never the ones waiting on a stale 10-minute-old cache to expire.
+#
+# GitHub's cron scheduling is "best effort" — it can occasionally run a
+# few minutes late during high platform load, not a mathematically exact
+# guarantee. In practice this is close, genuinely close, to real-time.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"  # every 5 minutes — GitHub's practical minimum interval for scheduled runs
+  workflow_dispatch: {}      # lets you also trigger it manually from GitHub's Actions tab
+
+jobs:
+  refresh-news-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the real news fetch, so the shared cache stays current
+        run: curl -sf "https://deskterminal.com/.netlify/functions/cache-news" > /dev/null

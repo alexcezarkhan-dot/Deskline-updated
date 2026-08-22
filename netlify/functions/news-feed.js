@@ -1,116 +1,58 @@
-// DeskTerminal News Feed — fetches real, live headlines from legitimate financial
-// RSS feeds (not scraping, not X/Twitter — publishers publish RSS specifically
-// for syndication like this). Parsed with a small dependency-free regex parser
-// so no npm install step is needed for this function.
-
-const FEEDS = [
-  { url: "https://www.forexlive.com/feed/", source: "InvestingLive" },
-  { url: "https://feeds.content.dowjones.io/public/rss/mw_topstories", source: "MarketWatch" },
-];
-
-function extractTag(xml, tag) {
-  const m = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
-  if (!m) return "";
-  return m[1]
-    .replace(/<!\[CDATA\[/g, "")
-    .replace(/\]\]>/g, "")
-    .replace(/<[^>]+>/g, "")
-    .trim();
-}
-
-function stripHtml(str) {
-  return str.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
-}
-
-function parseRSS(xml, sourceName) {
-  const items = [];
-  const itemMatches = xml.match(/<item[\s\S]*?<\/item>/g) || [];
-  itemMatches.forEach((itemXml) => {
-    const title = extractTag(itemXml, "title");
-    const link = extractTag(itemXml, "link");
-    const pubDate = extractTag(itemXml, "pubDate");
-    let description = extractTag(itemXml, "description");
-    description = description ? stripHtml(description).slice(0, 200) : "";
-
-    let image = "";
-    const enclosureMatch = itemXml.match(/<enclosure[^>]*url="([^"]+)"/i);
-    const mediaMatch = itemXml.match(/<media:(?:thumbnail|content)[^>]*url="([^"]+)"/i);
-    if (enclosureMatch) image = enclosureMatch[1];
-    else if (mediaMatch) image = mediaMatch[1];
-
-    if (title && link) {
-      items.push({
-        title,
-        link,
-        pubDate: pubDate ? new Date(pubDate).toISOString() : null,
-        source: sourceName,
-        description,
-        image,
-      });
-    }
-  });
-  return items;
-}
+// DeskTerminal News Feed — the function visitors' browsers actually call.
+// -----------------------------------------------------------------------
+// This no longer fetches RSS feeds itself — it just reads whatever
+// cache-news.js already stored in Supabase. Every visitor gets the same
+// shared, pre-fetched data instantly; no RSS source is ever polled
+// per-visitor, and this function is genuinely fast since it's just one
+// database read.
 
 exports.handler = async function (event) {
-  const params = (event && event.queryStringParameters) || {};
-  const filterParam = params.filter || "";
-  const keywords = filterParam
-    .split(",")
-    .map((k) => k.trim().toLowerCase())
-    .filter(Boolean);
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const anonKey = process.env.SUPABASE_ANON_KEY;
+  if (!supabaseUrl || !anonKey) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "News cache isn't configured yet on this site." }),
+    };
+  }
+
+  const filterParam = (event.queryStringParameters && event.queryStringParameters.filter) || "";
+  const keywords = filterParam.split(",").map((k) => k.trim().toLowerCase()).filter(Boolean);
 
   try {
-    const results = await Promise.allSettled(
-      FEEDS.map(async (feed) => {
-        const res = await fetch(feed.url, {
-          headers: { "User-Agent": "Mozilla/5.0 (compatible; DeskTerminalBot/1.0)" },
-        });
-        const xml = await res.text();
-        return parseRSS(xml, feed.source);
-      })
+    const res = await fetch(
+      `${supabaseUrl}/rest/v1/cached_news?select=*&order=pub_date.desc.nullslast&limit=100`,
+      { headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` } }
     );
+    const rows = await res.json();
+    if (!Array.isArray(rows)) {
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ error: "Unexpected response from news cache." }),
+      };
+    }
 
-    let allItems = [];
-    results.forEach((r) => {
-      if (r.status === "fulfilled") allItems = allItems.concat(r.value);
-    });
+    let items = rows.map((r) => ({
+      title: r.title, link: r.link, pubDate: r.pub_date,
+      source: r.source, description: r.description || "", image: r.image || "",
+    }));
 
-    // Dedupe near-identical titles (some feeds post the same story twice)
-    const seen = new Set();
-    allItems = allItems.filter((item) => {
-      const key = item.title.toLowerCase().slice(0, 60);
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-
-    // Optional instrument-specific filtering (used by /forex, /commodities,
-    // /crypto, /indices landing pages) — leaves the main News page untouched
-    // since it never sends a filter param.
     if (keywords.length) {
-      allItems = allItems.filter((item) => {
+      items = items.filter((item) => {
         const title = item.title.toLowerCase();
         return keywords.some((kw) => title.includes(kw));
       });
+      items = items.slice(0, 12);
+    } else {
+      items = items.slice(0, 60);
     }
-
-    allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-    allItems = allItems.slice(0, keywords.length ? 12 : 60);
 
     return {
       statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=120",
-      },
-      body: JSON.stringify({ items: allItems }),
+      headers: { "Cache-Control": "public, max-age=30" },
+      body: JSON.stringify({ items }),
     };
   } catch (err) {
-    return {
-      statusCode: 500,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Could not load news feed." }),
-    };
+    return { statusCode: 500, body: JSON.stringify({ error: "Could not load news feed." }) };
   }
 };

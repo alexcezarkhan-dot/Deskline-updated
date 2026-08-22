@@ -124,3 +124,35 @@ create policy "Anyone can view submission images"
   on storage.objects for select
   using (bucket_id = 'news-submissions');
 
+-- ---------------------------------------------------------------------
+-- Shared, server-cached news — fetched once by a scheduled job (not by
+-- every visitor's browser), stored here, and read by everyone. This is
+-- what makes "fetch once, everyone sees the same cached result" real:
+-- link is UNIQUE, so re-inserting the same real story is a genuine no-op
+-- at the database level, not just something the app code has to remember.
+-- ---------------------------------------------------------------------
+create table public.cached_news (
+  id uuid default gen_random_uuid() primary key,
+  title text not null,
+  link text not null unique,
+  source text,
+  image text,
+  description text,
+  pub_date timestamptz,
+  fetched_at timestamptz default now()
+);
+
+alter table public.cached_news enable row level security;
+
+-- Everyone — including logged-out visitors — can read the cache. This is
+-- the whole point: one fetch serves every visitor.
+create policy "Anyone can view cached news"
+  on public.cached_news for select
+  using (true);
+
+-- Deliberately NO insert/update/delete policy for the public anon key.
+-- Only the service role key (used exclusively by the scheduled
+-- cache-news function, never exposed to browsers) can write here —
+-- Supabase's service role bypasses RLS entirely for legitimate
+-- server-side jobs like this one.
+
