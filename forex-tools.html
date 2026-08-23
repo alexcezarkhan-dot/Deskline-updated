@@ -79,16 +79,17 @@
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
 
-  @media (max-width:860px){
+    .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
+  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
+  .navlinks a:hover{ color:var(--ink); }
+  .navlinks a.active{ color:var(--gold); }
+
+@media (max-width:860px){
     .navlinks{ display:none; }
     .nav-clock{ display:none; }
     .mobile-subnav{ display:flex; }
   }
 
-  .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
-  .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; }
-  .navlinks a:hover{ color:var(--ink); }
-  .navlinks a.active{ color:var(--gold); }
 
   .pagehead{ padding: 2rem 6vw 1.2rem; }
   .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
