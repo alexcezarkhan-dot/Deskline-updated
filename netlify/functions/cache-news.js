@@ -17,6 +17,48 @@
 // Security for legitimate server-side writes like this one, and must
 // never be exposed to the browser. Find it in Supabase: Project Settings
 // → API → service_role key (marked "secret").
+//
+// Classification (impact tier + currency effect) now happens HERE, once,
+// at cache time — not per-visitor. This is the same real improvement we
+// already made for the raw headline fetch, applied one layer up: a
+// headline gets classified by AI exactly once, the moment it's newly
+// cached, and every visitor afterward just reads that stored result.
+
+const { callAIWithFallback } = require("./ai-providers");
+
+const NEWS_IMPACT_PROMPT =
+  'You are a financial news triage assistant. You will be given a numbered list of headlines. For EACH headline, determine: (1) its market impact level — "high" (central bank rate decisions, major geopolitical/war developments, surprise inflation or jobs data, market-wide crashes or shocks — the kind of headline that would meaningfully move forex, gold, crypto, or major indices), "medium" (real but more routine data releases, notable company/sector news, moderate policy commentary), or "low" (minor company news, general market chatter, opinion pieces, lifestyle/entertainment content with little to no real market relevance); (2) IF the headline clearly relates to a specific major currency (USD, EUR, GBP, JPY, AUD, CAD, CHF, NZD) or Gold, name it and say whether the news would typically STRENGTHEN or WEAKEN it — be honest and conservative: if the headline is too general, ambiguous, or does not clearly relate to one specific currency, leave currency and effect as null rather than guessing. Respond with ONLY valid JSON, no markdown fences, in exactly this shape: {"results": [{"index": 0, "impact": "high", "currency": "USD", "effect": "strengthen"}, {"index": 1, "impact": "low", "currency": null, "effect": null}]} — one entry per headline, in the same order given, using the 0-based index shown next to each headline. "impact" must be exactly "high", "medium", or "low". "effect" must be exactly "strengthen", "weaken", or null.';
+
+// Classifies a batch of genuinely new headlines (max 20 per AI call, same
+// batching limit used everywhere else in this project). Returns a map of
+// title -> { impact, currency, effect }. Never throws — if classification
+// fails for any reason, affected headlines just get null values and are
+// still cached with their real title/link/source intact; a failed AI
+// call should never block genuinely new news from being cached.
+async function classifyHeadlines(items) {
+  const results = new Map();
+  const batchSize = 20;
+  for (let i = 0; i < items.length; i += batchSize) {
+    const batch = items.slice(i, i + batchSize);
+    const question = batch.map((item, idx) => `${idx}. ${item.title}`).join("\n");
+    try {
+      const { text } = await callAIWithFallback(NEWS_IMPACT_PROMPT, question, []);
+      const cleaned = text.replace(/^```json\s*/i, "").replace(/```\s*$/, "");
+      const parsed = JSON.parse(cleaned);
+      (parsed.results || []).forEach((r) => {
+        const item = batch[r.index];
+        if (!item) return;
+        const impact = (r.impact === "high" || r.impact === "medium" || r.impact === "low") ? r.impact : null;
+        const effect = (r.effect === "strengthen" || r.effect === "weaken") ? r.effect : null;
+        results.set(item.title, { impact, currency: r.currency || null, effect });
+      });
+    } catch (err) {
+      // Classification failed for this batch — those headlines simply get
+      // cached without impact/currency data, not blocked entirely.
+    }
+  }
+  return results;
+}
 
 const FEEDS = [
   { url: "https://www.forexlive.com/feed/", source: "InvestingLive" },
@@ -133,11 +175,38 @@ exports.handler = async function () {
       "Authorization": `Bearer ${serviceKey}`,
       "Prefer": "resolution=ignore-duplicates",
     };
-    const rows = deduped.map((item) => ({
-      title: item.title, link: item.link, source: item.source,
-      image: item.image || null, description: item.description || null,
-      pub_date: item.pubDate,
-    }));
+
+    // Check which headlines are already cached, so we only ever classify
+    // a genuinely new one once — this is the real fix: without this
+    // check, every scheduled run would re-classify the same ~60
+    // headlines that were already classified 5 minutes ago.
+    const linksParam = deduped.map((item) => `"${item.link.replace(/"/g, '\\"')}"`).join(",");
+    let existingLinks = new Set();
+    if (linksParam) {
+      const existingRes = await fetch(
+        `${supabaseUrl}/rest/v1/cached_news?select=link&link=in.(${linksParam})`,
+        { headers }
+      );
+      const existingRows = await existingRes.json();
+      if (Array.isArray(existingRows)) {
+        existingLinks = new Set(existingRows.map((r) => r.link));
+      }
+    }
+
+    const genuinelyNew = deduped.filter((item) => !existingLinks.has(item.link));
+    const classifications = genuinelyNew.length ? await classifyHeadlines(genuinelyNew) : new Map();
+
+    const rows = deduped.map((item) => {
+      const c = classifications.get(item.title);
+      return {
+        title: item.title, link: item.link, source: item.source,
+        image: item.image || null, description: item.description || null,
+        pub_date: item.pubDate,
+        impact: c ? c.impact : null,
+        currency: c ? c.currency : null,
+        effect: c ? c.effect : null,
+      };
+    });
 
     if (rows.length) {
       await fetch(`${supabaseUrl}/rest/v1/cached_news`, {
@@ -153,7 +222,7 @@ exports.handler = async function () {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ fetched: allItems.length, newOrUpdated: rows.length }),
+      body: JSON.stringify({ fetched: allItems.length, newOrUpdated: rows.length, newlyClassified: genuinelyNew.length }),
     };
   } catch (err) {
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };

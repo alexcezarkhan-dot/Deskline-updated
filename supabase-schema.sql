@@ -139,7 +139,10 @@ create table public.cached_news (
   image text,
   description text,
   pub_date timestamptz,
-  fetched_at timestamptz default now()
+  fetched_at timestamptz default now(),
+  impact text check (impact in ('high', 'medium', 'low')),
+  currency text,
+  effect text check (effect in ('strengthen', 'weaken'))
 );
 
 alter table public.cached_news enable row level security;

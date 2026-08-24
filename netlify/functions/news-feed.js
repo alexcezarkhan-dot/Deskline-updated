@@ -35,6 +35,7 @@ exports.handler = async function (event) {
     let items = rows.map((r) => ({
       title: r.title, link: r.link, pubDate: r.pub_date,
       source: r.source, description: r.description || "", image: r.image || "",
+      impact: r.impact || null, currency: r.currency || null, effect: r.effect || null,
     }));
 
     if (keywords.length) {

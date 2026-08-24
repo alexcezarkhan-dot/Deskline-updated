@@ -1227,52 +1227,10 @@ function playWarningTone(){
   tone(audioCtx.currentTime + 0.2, 880, 0.22);
 }
 
-// Tracks which headlines have already been classified, so re-checking the
-// same 60 headlines every 10-minute refresh doesn't waste AI requests —
-// only genuinely new headlines get sent for classification.
-const classifiedHeadlines = new Map(); // title -> { highImpact, currency, effect }
-
-async function classifyNewHeadlines(items){
-  const unclassified = items.filter(item => !classifiedHeadlines.has(item.title));
-  if(!unclassified.length) return;
-
-  // Batch up to 20 at a time per request — keeps each AI call reasonably
-  // sized rather than sending unbounded lists.
-  const batchSize = 20;
-  for(let i = 0; i < unclassified.length; i += batchSize){
-    const batch = unclassified.slice(i, i + batchSize);
-    const question = batch.map((item, idx) => `${idx}. ${item.title}`).join('\n');
-    try{
-      const res = await fetch('/.netlify/functions/deskai', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section: 'news-impact', question })
-      });
-      const data = await res.json();
-      if(data.results){
-        let anyNewHighImpact = false;
-        data.results.forEach(r => {
-          const item = batch[r.index];
-          if(!item) return;
-          const impact = (r.impact === 'high' || r.impact === 'medium' || r.impact === 'low') ? r.impact : 'medium';
-          classifiedHeadlines.set(item.title, {
-            impact,
-            currency: r.currency || null,
-            effect: (r.effect === 'strengthen' || r.effect === 'weaken') ? r.effect : null,
-          });
-          if(impact === 'high') anyNewHighImpact = true;
-        });
-        if(anyNewHighImpact){
-          playWarningTone();
-        }
-        renderNewsList(); // refresh so real impact badges and low-impact filtering apply
-      }
-    } catch(e){
-      // Classification failing shouldn't break the news feed itself —
-      // headlines just won't show a high-impact flag this cycle.
-    }
-  }
-}
+// Populated directly from cache-news.js's already-computed classification
+// (see loadNews below) — no longer triggers its own AI calls client-side.
+const classifiedHeadlines = new Map(); // title -> { impact, currency, effect }
+const seenHighImpactLinks = new Set(); // tracks which HIGH stories already triggered the sound alert
 
 async function loadNews(){
   const container = document.getElementById('newsContainer');
@@ -1285,6 +1243,32 @@ async function loadNews(){
       return;
     }
     allNewsItems = data.items;
+
+    // Classification (impact tier, currency effect) now comes pre-computed
+    // from the shared cache — cache-news.js classifies each headline
+    // exactly once, server-side, when it's first cached. This just reads
+    // that already-done work, instead of triggering a fresh AI call for
+    // every visitor on every page load.
+    let anyNewHighImpact = false;
+    allNewsItems.forEach((item) => {
+      if(item.impact){
+        classifiedHeadlines.set(item.title, {
+          impact: item.impact,
+          currency: item.currency || null,
+          effect: item.effect || null,
+        });
+        // Sound alert only for a HIGH-impact story genuinely not seen in
+        // a previous refresh — seenHighImpactLinks persists across the
+        // 10-minute auto-refresh cycle (declared once, outside this
+        // function), so this correctly fires once per real new story,
+        // not every time the same story gets re-fetched.
+        if(item.impact === 'high' && !seenHighImpactLinks.has(item.link)){
+          seenHighImpactLinks.add(item.link);
+          anyNewHighImpact = true;
+        }
+      }
+    });
+    if(anyNewHighImpact) playWarningTone();
 
     // Genuinely approved community submissions get mixed in alongside the
     // RSS-fetched items — same shape, so they render identically.
@@ -1311,7 +1295,6 @@ async function loadNews(){
     renderTabs();
     renderNewsList();
     refreshHotStoriesWithLatest();
-    classifyNewHeadlines(allNewsItems); // runs in the background, doesn't block rendering
   } catch(e){
     container.innerHTML = '<div class="news-status">Could not load news right now. Please try again shortly.</div>';
   }
