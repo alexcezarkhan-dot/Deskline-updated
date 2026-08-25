@@ -4,7 +4,15 @@
 [functions.render-news]
   included_files = ["news.html"]
 
+[functions.render-calendar]
+  included_files = ["calendar.html"]
+
 [[redirects]]
   from = "/news.html"
   to = "/.netlify/functions/render-news"
+  status = 200
+
+[[redirects]]
+  from = "/calendar.html"
+  to = "/.netlify/functions/render-calendar"
   status = 200
