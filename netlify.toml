@@ -1,2 +1,10 @@
 [build]
   functions = "netlify/functions"
+
+[functions.render-news]
+  included_files = ["news.html"]
+
+[[redirects]]
+  from = "/news.html"
+  to = "/.netlify/functions/render-news"
+  status = 200
