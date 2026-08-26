@@ -44,7 +44,7 @@
       "name": "Is this currency converter free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, completely free with no sign-up required, using live exchange rates refreshed every 5 minutes."
+        "text": "Yes — no sign-up, and rates refresh automatically every 5 minutes."
       }
     },
     {
@@ -52,7 +52,7 @@
       "name": "How many currencies does it support?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Every currency the live exchange rate API provides \u2014 typically 150+ world currencies, not just a limited list of majors."
+        "text": "Whatever the live rate provider offers, generally upward of 150 — far beyond the handful of majors some simpler converters limit you to."
       }
     },
     {
@@ -60,7 +60,63 @@
       "name": "How often are exchange rates updated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Rates refresh automatically every 5 minutes, sourced from a live exchange rate API."
+        "text": "Every 5 minutes, automatically, from a live rate feed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between the mid-market rate and what my broker actually offers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This shows the real mid-market rate — the true midpoint between global buy and sell prices, the same benchmark you'd see quoted in financial news. Brokers and banks add a spread on top as part of how they earn revenue, so your actual exchange will land slightly less favorably than the number shown here. Treat this as a planning reference, not a guaranteed execution price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for trading, not just travel money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Checking a live forex rate before placing a trade uses the exact same feed as converting money for a trip — there's no separate trading mode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it cover less common currencies, or only USD, EUR, and GBP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Search any supported currency by name or code — the coverage extends well past the major pairs most people default to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the rate here differ slightly from Google or my bank?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every converter pulls from its own live data provider, and rates shift by the second in real markets — small gaps between sources are normal, usually fractions of a percent, rarely enough to matter for everyday decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert a large amount, like for an international transfer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, any amount — the mid-market rate applies proportionally regardless of size. A real transfer service will still apply its own rate and fees on top of this reference figure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the interbank rate, and should I use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's the rate banks use trading currency amongst themselves, with no markup — the cleanest available reference for what a currency is genuinely worth right now, which is what this tool shows. Useful for judging how fair a broker's quote is; just don't expect a retail counter to match it exactly, since their margin sits on top of it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I search by currency name, not just the code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Euro and EUR both find the same result."
       }
     }
   ]
@@ -301,18 +357,31 @@
     padding: 0 6vw 3rem;
     max-width: 900px;
   }
+  .popular-conversions{ max-width:520px; margin:0 auto 2rem; padding:0 1rem; }
+  .pc-label{ font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim); letter-spacing:.05em; margin-bottom:.6rem; text-align:center; }
+  .pc-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:.6rem; }
+  .pc-item{
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:6px;
+    padding:.6rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--ink);
+    cursor:pointer; transition:border-color .15s;
+  }
+  .pc-item:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .currency-flag{
+    width:20px; height:20px; border-radius:50%; object-fit:cover;
+    flex-shrink:0; vertical-align:middle; margin-right:.5rem;
+  }
+  .currency-flag-blank{
+    display:inline-block; width:20px; height:20px; border-radius:50%;
+    background:var(--panel-2); border:1px solid var(--line-soft);
+    flex-shrink:0; vertical-align:middle; margin-right:.5rem;
+  }
+  .instrument-result-item{ display:flex; align-items:center; }
+  #cur-from-display, #cur-to-display{ display:flex; align-items:center; }
+
   .seo-content h2{ font-size:1.1rem; font-weight:600; margin: 1.6rem 0 .6rem; }
   .seo-content h2:first-child{ margin-top:0; }
   .seo-content p{ font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem; }
-
-  footer{
-    text-align:center;
-    padding: 1.8rem;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.65rem;
-    color: var(--dim);
-    border-top:1px solid var(--line-soft);
-  }
 
     /* ---------------- DeskAi floating chatbox (v2) ---------------- */
   @keyframes deskaiPulseRing{
@@ -342,6 +411,7 @@
     text-align:center; padding:1.8rem; font-family:'JetBrains Mono', monospace;
     font-size:.65rem; color:var(--dim); border-top:1px solid var(--line-soft); line-height:1.8;
   }
+  footer a{ color:var(--gold); text-decoration:none; }
   .deskai-toggle-wrap{
     position: fixed;
     right: 24px; bottom: 24px;
@@ -609,7 +679,7 @@
     <div class="form-grid">
       <div class="field wide">
         <label>Amount</label>
-        <input type="number" step="any" id="cur-amount" placeholder="1.00" value="1">
+        <input type="number" step="0.01" min="0" id="cur-amount" placeholder="1.00" value="1">
       </div>
       <div class="field currency-dropdown-wrap">
         <label>From</label>
@@ -659,18 +729,55 @@
   </div>
 </div>
 
-
+<div class="popular-conversions">
+  <div class="pc-label">Popular Conversions</div>
+  <div class="pc-grid" id="popularConversionsGrid">
+    <button class="pc-item" data-from="EUR" data-to="USD">EUR to USD</button>
+    <button class="pc-item" data-from="GBP" data-to="USD">GBP to USD</button>
+    <button class="pc-item" data-from="USD" data-to="INR">USD to INR</button>
+    <button class="pc-item" data-from="CAD" data-to="USD">CAD to USD</button>
+  </div>
+</div>
 
 <section class="seo-content">
-  <p>Convert between any two of 150+ world currencies using live exchange rates. Whether you're comparing broker quotes, funding a trading account, or just checking today's rate, this tool gives you an accurate, real-time conversion in seconds.</p>
+  <h2>What is DeskTerminal's Currency Converter?</h2>
+  <p>DeskTerminal's Currency Converter converts between world currencies using live, real-time exchange rates — the same rate data behind the rest of DeskTerminal's market tools. Traders use it to check a rate before funding an account or comparing a broker's quote; everyone else uses it for ordinary, everyday conversions.</p>
+  <p>Of roughly 180 currencies recognized as legal tender worldwide, 137 are shown here with a full name and country flag, searchable either way. Every currency our live rate provider offers can still be converted, flag or no flag — the display simply focuses on making the most common ones instantly recognizable.</p>
+  <p>There's no sign-up, no account required, and no catch — it's part of a free trading platform, and the converter is one small piece of that.</p>
+
+  <h2>How to use this currency converter</h2>
+  <p>Enter an amount, choose your "from" currency, choose your "to" currency, and the result updates instantly. The swap button reverses the pair in one click, and each Popular Conversion below jumps straight to that exact pair.</p>
 
   <h2>Frequently Asked Questions</h2>
   <h3>Is this currency converter free?</h3>
-  <p>Yes, completely free with no sign-up required, using live exchange rates refreshed every 5 minutes.</p>
+  <p>Yes — no sign-up, and rates refresh automatically every 5 minutes.</p>
+
   <h3>How many currencies does it support?</h3>
-  <p>Every currency the live exchange rate API provides — typically 150+ world currencies, not just a limited list of majors.</p>
+  <p>Whatever the live rate provider offers, generally upward of 150 — far beyond the handful of majors some simpler converters limit you to.</p>
+
   <h3>How often are exchange rates updated?</h3>
-  <p>Rates refresh automatically every 5 minutes, sourced from a live exchange rate API.</p>
+  <p>Every 5 minutes, automatically, from a live rate feed.</p>
+
+  <h3>What's the difference between the mid-market rate and what my broker actually offers?</h3>
+  <p>This shows the real mid-market rate — the true midpoint between global buy and sell prices, the same benchmark you'd see quoted in financial news. Brokers and banks add a spread on top as part of how they earn revenue, so your actual exchange will land slightly less favorably than the number shown here. Treat this as a planning reference, not a guaranteed execution price.</p>
+
+  <h3>Can I use this for trading, not just travel money?</h3>
+  <p>Yes. Checking a live forex rate before placing a trade uses the exact same feed as converting money for a trip — there's no separate "trading mode."</p>
+
+  <h3>Does it cover less common currencies, or only USD, EUR, and GBP?</h3>
+  <p>Search any supported currency by name or code — the coverage extends well past the major pairs most people default to.</p>
+
+  <h3>Why does the rate here differ slightly from Google or my bank?</h3>
+  <p>Every converter pulls from its own live data provider, and rates shift by the second in real markets — small gaps between sources are normal, usually fractions of a percent, rarely enough to matter for everyday decisions.</p>
+
+  <h3>Can I convert a large amount, like for an international transfer?</h3>
+  <p>Yes, any amount — the mid-market rate applies proportionally regardless of size. A real transfer service will still apply its own rate and fees on top of this reference figure.</p>
+
+  <h3>What is the interbank rate, and should I use it?</h3>
+  <p>It's the rate banks use trading currency amongst themselves, with no markup — the cleanest available reference for what a currency is genuinely worth right now, which is what this tool shows. Useful for judging how fair a broker's quote is; just don't expect a retail counter to match it exactly, since their margin sits on top of it.</p>
+
+  <h3>Can I search by currency name, not just the code?</h3>
+  <p>Yes — "Euro" and "EUR" both find the same result.</p>
 </section>
 
 <footer>
@@ -822,7 +929,7 @@ async function loadFxRates(){
       // Every currency the live API actually provides, not a curated subset —
       // USD included since it's the base and isn't in its own rates object.
       if(typeof CURRENCY_LIST !== 'undefined'){
-        CURRENCY_LIST = ['USD', ...Object.keys(data.rates)].sort();
+        CURRENCY_LIST = [...new Set(['USD', ...Object.keys(data.rates)])].sort();
       }
     }
   } catch(e){ /* keep old cache if refresh fails */ }
@@ -935,18 +1042,89 @@ function setupInstrumentPicker(searchId, resultsId, market0, onSelect){
 // Friendly display names for common currencies — any currency the live API
 // returns that isn't in this list still works fine, just shown by code alone.
 const CURRENCY_NAMES = {
+  // Major / G10
   USD:'US Dollar', EUR:'Euro', GBP:'British Pound', JPY:'Japanese Yen', CHF:'Swiss Franc',
-  CAD:'Canadian Dollar', AUD:'Australian Dollar', NZD:'New Zealand Dollar', PKR:'Pakistani Rupee',
-  INR:'Indian Rupee', TRY:'Turkish Lira', ZAR:'South African Rand', MXN:'Mexican Peso',
-  SEK:'Swedish Krona', NOK:'Norwegian Krone', DKK:'Danish Krone', SGD:'Singapore Dollar',
-  HKD:'Hong Kong Dollar', CNY:'Chinese Yuan', THB:'Thai Baht', AED:'UAE Dirham', SAR:'Saudi Riyal',
-  BDT:'Bangladeshi Taka', LKR:'Sri Lankan Rupee', NPR:'Nepalese Rupee', PHP:'Philippine Peso',
-  IDR:'Indonesian Rupiah', MYR:'Malaysian Ringgit', VND:'Vietnamese Dong', KRW:'South Korean Won',
-  BRL:'Brazilian Real', ARS:'Argentine Peso', EGP:'Egyptian Pound', NGN:'Nigerian Naira',
-  KES:'Kenyan Shilling', PLN:'Polish Zloty', CZK:'Czech Koruna', HUF:'Hungarian Forint',
-  RON:'Romanian Leu', ILS:'Israeli Shekel', QAR:'Qatari Riyal', KWD:'Kuwaiti Dinar',
-  BHD:'Bahraini Dinar', OMR:'Omani Rial', JOD:'Jordanian Dinar', RUB:'Russian Ruble',
+  CAD:'Canadian Dollar', AUD:'Australian Dollar', NZD:'New Zealand Dollar',
+  // South & Southeast Asia
+  PKR:'Pakistani Rupee', INR:'Indian Rupee', BDT:'Bangladeshi Taka', LKR:'Sri Lankan Rupee',
+  NPR:'Nepalese Rupee', PHP:'Philippine Peso', IDR:'Indonesian Rupiah', MYR:'Malaysian Ringgit',
+  VND:'Vietnamese Dong', THB:'Thai Baht', SGD:'Singapore Dollar', MMK:'Myanmar Kyat',
+  KHR:'Cambodian Riel', LAK:'Lao Kip', BND:'Brunei Dollar', MVR:'Maldivian Rufiyaa',
+  BTN:'Bhutanese Ngultrum',
+  // East Asia
+  CNY:'Chinese Yuan', HKD:'Hong Kong Dollar', KRW:'South Korean Won', TWD:'Taiwan Dollar',
+  MNT:'Mongolian Tugrik', MOP:'Macanese Pataca',
+  // Middle East
+  AED:'UAE Dirham', SAR:'Saudi Riyal', QAR:'Qatari Riyal', KWD:'Kuwaiti Dinar',
+  BHD:'Bahraini Dinar', OMR:'Omani Rial', JOD:'Jordanian Dinar', ILS:'Israeli Shekel',
+  TRY:'Turkish Lira', IQD:'Iraqi Dinar', IRR:'Iranian Rial', LBP:'Lebanese Pound',
+  SYP:'Syrian Pound', YER:'Yemeni Rial',
+  // Africa
+  ZAR:'South African Rand', EGP:'Egyptian Pound', NGN:'Nigerian Naira', KES:'Kenyan Shilling',
+  GHS:'Ghanaian Cedi', MAD:'Moroccan Dirham', DZD:'Algerian Dinar', TND:'Tunisian Dinar',
+  UGX:'Ugandan Shilling', TZS:'Tanzanian Shilling', ETB:'Ethiopian Birr', ZMW:'Zambian Kwacha',
+  BWP:'Botswana Pula', NAD:'Namibian Dollar', MUR:'Mauritian Rupee', XOF:'West African CFA Franc',
+  XAF:'Central African CFA Franc', RWF:'Rwandan Franc', MZN:'Mozambican Metical', SDG:'Sudanese Pound',
+  LYD:'Libyan Dinar', AOA:'Angolan Kwanza', GNF:'Guinean Franc', SLL:'Sierra Leonean Leone',
+  MWK:'Malawian Kwacha', MGA:'Malagasy Ariary', SCR:'Seychellois Rupee', SZL:'Eswatini Lilangeni',
+  LSL:'Lesotho Loti', CVE:'Cape Verdean Escudo', GMD:'Gambian Dalasi', DJF:'Djiboutian Franc',
+  BIF:'Burundian Franc', SOS:'Somali Shilling', ERN:'Eritrean Nakfa', STN:'São Tomé and Príncipe Dobra',
+  KMF:'Comorian Franc',
+  // Europe (non-Euro)
+  SEK:'Swedish Krona', NOK:'Norwegian Krone', DKK:'Danish Krone', PLN:'Polish Zloty',
+  CZK:'Czech Koruna', HUF:'Hungarian Forint', RON:'Romanian Leu', RUB:'Russian Ruble',
+  UAH:'Ukrainian Hryvnia', ISK:'Icelandic Krona', BGN:'Bulgarian Lev', HRK:'Croatian Kuna',
+  RSD:'Serbian Dinar', ALL:'Albanian Lek', MKD:'Macedonian Denar', BAM:'Bosnia-Herzegovina Mark',
+  MDL:'Moldovan Leu', GEL:'Georgian Lari', AMD:'Armenian Dram', AZN:'Azerbaijani Manat',
+  BYN:'Belarusian Ruble', KZT:'Kazakhstani Tenge', UZS:'Uzbekistani Som',
+  // Americas
+  MXN:'Mexican Peso', BRL:'Brazilian Real', ARS:'Argentine Peso', CLP:'Chilean Peso',
+  COP:'Colombian Peso', PEN:'Peruvian Sol', UYU:'Uruguayan Peso', BOB:'Bolivian Boliviano',
+  PYG:'Paraguayan Guarani', VES:'Venezuelan Bolívar', GTQ:'Guatemalan Quetzal', CRC:'Costa Rican Colón',
+  DOP:'Dominican Peso', JMD:'Jamaican Dollar', TTD:'Trinidad & Tobago Dollar', BSD:'Bahamian Dollar',
+  BBD:'Barbadian Dollar', BZD:'Belize Dollar', HNL:'Honduran Lempira', NIO:'Nicaraguan Córdoba',
+  PAB:'Panamanian Balboa', XCD:'East Caribbean Dollar', HTG:'Haitian Gourde', GYD:'Guyanese Dollar',
+  SRD:'Surinamese Dollar', CUP:'Cuban Peso',
+  // Oceania & Pacific
+  FJD:'Fijian Dollar', PGK:'Papua New Guinean Kina', WST:'Samoan Tala', TOP:'Tongan Paʻanga',
+  SBD:'Solomon Islands Dollar', VUV:'Vanuatu Vatu',
 };
+
+// Currency code -> real ISO country code, used to fetch an accurate flag
+// image. Flags are inherently per-country, not per-currency — EUR uses
+// the EU's own flag since it isn't one single country, and regional
+// currencies like XOF/XAF use the flag of a real representative member
+// country rather than an invented symbol. Anything genuinely not mapped
+// here shows with no flag rather than a guessed, possibly wrong one.
+const CURRENCY_TO_COUNTRY = {
+  USD:'us', EUR:'eu', GBP:'gb', JPY:'jp', CHF:'ch', CAD:'ca', AUD:'au', NZD:'nz',
+  PKR:'pk', INR:'in', BDT:'bd', LKR:'lk', NPR:'np', PHP:'ph', IDR:'id', MYR:'my',
+  VND:'vn', THB:'th', SGD:'sg', MMK:'mm', KHR:'kh', LAK:'la', BND:'bn', MVR:'mv', BTN:'bt',
+  CNY:'cn', HKD:'hk', KRW:'kr', TWD:'tw', MNT:'mn', MOP:'mo',
+  AED:'ae', SAR:'sa', QAR:'qa', KWD:'kw', BHD:'bh', OMR:'om', JOD:'jo', ILS:'il',
+  TRY:'tr', IQD:'iq', IRR:'ir', LBP:'lb', SYP:'sy', YER:'ye',
+  ZAR:'za', EGP:'eg', NGN:'ng', KES:'ke', GHS:'gh', MAD:'ma', DZD:'dz', TND:'tn',
+  UGX:'ug', TZS:'tz', ETB:'et', ZMW:'zm', BWP:'bw', NAD:'na', MUR:'mu', XOF:'sn',
+  XAF:'cm', RWF:'rw', MZN:'mz', SDG:'sd', LYD:'ly', AOA:'ao', GNF:'gn', SLL:'sl',
+  MWK:'mw', MGA:'mg', SCR:'sc', SZL:'sz', LSL:'ls', CVE:'cv', GMD:'gm', DJF:'dj',
+  BIF:'bi', SOS:'so', ERN:'er', STN:'st', KMF:'km',
+  SEK:'se', NOK:'no', DKK:'dk', PLN:'pl', CZK:'cz', HUF:'hu', RON:'ro', RUB:'ru',
+  UAH:'ua', ISK:'is', BGN:'bg', HRK:'hr', RSD:'rs', ALL:'al', MKD:'mk', BAM:'ba',
+  MDL:'md', GEL:'ge', AMD:'am', AZN:'az', BYN:'by', KZT:'kz', UZS:'uz',
+  MXN:'mx', BRL:'br', ARS:'ar', CLP:'cl', COP:'co', PEN:'pe', UYU:'uy', BOB:'bo',
+  PYG:'py', VES:'ve', GTQ:'gt', CRC:'cr', DOP:'do', JMD:'jm', TTD:'tt', BSD:'bs',
+  BBD:'bb', BZD:'bz', HNL:'hn', NIO:'ni', PAB:'pa', XCD:'ag', HTG:'ht', GYD:'gy',
+  SRD:'sr', CUP:'cu',
+  FJD:'fj', PGK:'pg', WST:'ws', TOP:'to', SBD:'sb', VUV:'vu',
+};
+function flagUrlFor(code){
+  const country = CURRENCY_TO_COUNTRY[code];
+  return country ? `https://flagcdn.com/24x24/${country}.png` : null;
+}
+function flagHtmlFor(code){
+  const url = flagUrlFor(code);
+  return url ? `<img class="currency-flag" src="${url}" alt="" loading="lazy">` : `<span class="currency-flag currency-flag-blank"></span>`;
+}
 
 // Populated once live rates load — genuinely every currency the free API
 // provides, not a hand-picked subset.
@@ -971,7 +1149,7 @@ function setupCurrencyPicker(btnId, panelId, searchId, resultsId, displayId, def
     );
     resultsEl.innerHTML = !list.length
       ? `<div class="instrument-empty">No matches.</div>`
-      : list.slice(0,60).map(c => `<div class="instrument-result-item" data-code="${c}">${labelFor(c)}</div>`).join('');
+      : list.slice(0,60).map(c => `<div class="instrument-result-item" data-code="${c}">${flagHtmlFor(c)}<span>${labelFor(c)}</span></div>`).join('');
     resultsEl.querySelectorAll('.instrument-result-item').forEach(row => {
       row.addEventListener('click', () => {
         selected = row.dataset.code;
@@ -1002,12 +1180,17 @@ function setupCurrencyPicker(btnId, panelId, searchId, resultsId, displayId, def
 
   return {
     getSelected(){ return selected; },
-    setSelected(code){ selected = code; displayEl.textContent = labelFor(code); onSelect(code); }
+    setSelected(code){ selected = code; displayEl.innerHTML = flagHtmlFor(code) + `<span>${labelFor(code)}</span>`; onSelect(code); }
   };
 }
 
 const curFromPicker = setupCurrencyPicker('cur-from-btn', 'cur-from-panel', 'cur-from-search', 'cur-from-results', 'cur-from-display', 'USD', () => calcCurrency());
 const curToPicker = setupCurrencyPicker('cur-to-btn', 'cur-to-panel', 'cur-to-search', 'cur-to-results', 'cur-to-display', 'EUR', () => calcCurrency());
+// Show the real flag immediately on page load, not just after the user
+// changes selection — without this, the default USD/EUR pair would only
+// show plain text until something triggered setSelected.
+document.getElementById('cur-from-display').innerHTML = flagHtmlFor('USD') + '<span>USD — US Dollar</span>';
+document.getElementById('cur-to-display').innerHTML = flagHtmlFor('EUR') + '<span>EUR — Euro</span>';
 
 async function calcCurrency(){
   const amount = parseFloat(document.getElementById('cur-amount').value) || 0;
@@ -1036,6 +1219,14 @@ document.getElementById('cur-swap').addEventListener('click', () => {
   curFromPicker.setSelected(t);
   curToPicker.setSelected(f);
   calcCurrency();
+});
+document.querySelectorAll('.pc-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    curFromPicker.setSelected(btn.dataset.from);
+    curToPicker.setSelected(btn.dataset.to);
+    calcCurrency();
+    document.getElementById('cur-amount').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 });
 document.querySelectorAll('#tab-currency .quick-amounts button').forEach(b => {
   b.addEventListener('click', () => {

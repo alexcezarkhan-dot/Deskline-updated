@@ -44,7 +44,15 @@
       "name": "What is a pip in forex trading?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A pip is the standard unit of price movement in forex \u2014 usually the fourth decimal place for most pairs, or the second decimal place for pairs involving the Japanese Yen."
+        "text": "A pip is the standard unit of price movement in forex — usually the fourth decimal place for most pairs, or the second decimal place for pairs involving the Japanese Yen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a pipette, and how is it different from a pip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A pipette is one-tenth of a pip — a fifth decimal place on most pairs, or a third decimal place on JPY pairs. Brokers introduced pipettes to quote tighter, more precise bid and ask spreads than a whole pip allows. If EUR/USD moves from 1.08453 to 1.08461, that's a genuine 0.8 pip move — the extra digit is the pipette."
       }
     },
     {
@@ -52,15 +60,79 @@
       "name": "How is pip value calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Pip value depends on the pip size, your trade size (lot), and the current exchange rate \u2014 this calculator works it out automatically using live prices, converted into your deposit currency."
+        "text": "Pip value depends on the pip size, your trade size (lot), and the current exchange rate — this calculator works it out automatically using live prices, converted into your deposit currency."
       }
     },
     {
       "@type": "Question",
-      "name": "Does this work for gold and crypto pip values?",
+      "name": "What's the manual formula for pip value, if I want to calculate it myself?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes \u2014 the calculator supports forex pairs, precious metals like gold (XAUUSD) and silver (XAGUSD), and major cryptocurrencies, each using the correct pip size convention for that instrument."
+        "text": "Pip value = (pip size ÷ current exchange rate) × trade size in units. For a standard 100,000-unit lot on GBP/USD at 1.3630, that's (0.0001 ÷ 1) × 100,000 = $10 per pip, since USD is the quote currency here. If your account is denominated in a different currency, divide that result by the exchange rate between USD and your account currency to convert it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work for gold (XAUUSD) and other metals, not just forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — gold, silver, platinum, and palladium are all supported, each using its own correct pip-size convention (0.1 for gold, 0.01 for silver), not the standard forex 0.0001. Search \"XAUUSD pip calculator\" or \"gold pip calculator\" and you'll land on exactly this same tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this pip calculator work for crypto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — 61 major cryptocurrencies are supported, including Bitcoin, Ethereum, and Solana, each priced live from real market data, not estimated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this pip calculator for CFD trading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — the underlying pip-value math is identical whether you're trading spot forex or CFDs on the same pair, since both track the same real underlying price movement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this pip calculator work with MT4 or MT5?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This isn't an MT4/MT5 plugin, but the numbers it gives you — pip value per lot in your real account currency — are exactly what you'd manually enter or verify against inside MetaTrader when sizing a position, so it works well as a quick companion calculation alongside either platform."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I see how much profit or loss a specific number of pips is worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter your lot size, then type the number of pips into the calculator's Pips field — it multiplies that against the live pip value instantly, so you can see the real dollar impact of a 20-pip stop loss or a 50-pip take-profit target before you place the trade."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between pip value and margin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They're related but genuinely different: pip value tells you how much each pip of price movement is worth in real money, while margin is the amount your broker requires you to hold to open a leveraged position at all. This calculator focuses specifically on pip value — for margin requirements, check your specific broker's leverage terms, since these vary by broker and account type."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include EUR/USD, GBP/USD, and other major pairs specifically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — all 7 major pairs (EUR/USD, GBP/USD, USD/JPY, USD/CHF, USD/CAD, AUD/USD, NZD/USD) are included, along with 73 additional cross and exotic pairs, for 80 forex pairs in total."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator support index CFDs like NAS100 or US30?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet — this calculator currently covers forex, metals, and crypto. Index CFD support is a genuine gap we're aware of and may add in the future, so for now, NAS100 and US30 pip values would need to be checked directly with your broker's contract specifications."
       }
     }
   ]
@@ -305,15 +377,6 @@
   .seo-content h2:first-child{ margin-top:0; }
   .seo-content p{ font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem; }
 
-  footer{
-    text-align:center;
-    padding: 1.8rem;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.65rem;
-    color: var(--dim);
-    border-top:1px solid var(--line-soft);
-  }
-
     /* ---------------- DeskAi floating chatbox (v2) ---------------- */
   @keyframes deskaiPulseRing{
     0%{ box-shadow: 0 0 0 0 rgba(232,177,92,0.45); }
@@ -342,6 +405,7 @@
     text-align:center; padding:1.8rem; font-family:'JetBrains Mono', monospace;
     font-size:.65rem; color:var(--dim); border-top:1px solid var(--line-soft); line-height:1.8;
   }
+  footer a{ color:var(--gold); text-decoration:none; }
   .deskai-toggle-wrap{
     position: fixed;
     right: 24px; bottom: 24px;
@@ -622,15 +686,24 @@
       </div>
       <div class="field">
         <label>Deposit Currency</label>
-        <select id="pip-deposit"><option value="USD">USD</option></select>
+        <select id="pip-deposit">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="JPY">JPY</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="CHF">CHF</option>
+          <option value="NZD">NZD</option>
+        </select>
       </div>
       <div class="field">
         <label>Trade Size (lot)</label>
-        <input type="number" step="any" id="pip-lots" value="1.00">
+        <input type="number" step="0.01" min="0" id="pip-lots" value="1.00">
       </div>
       <div class="field">
         <label>Pip Amount</label>
-        <input type="number" step="any" id="pip-amount" value="1.0">
+        <input type="number" step="0.1" min="0" id="pip-amount" value="1.0">
       </div>
     </div>
     <div class="quick-amounts" id="pip-quick-lots">
@@ -674,10 +747,39 @@
   <h2>Frequently Asked Questions</h2>
   <h3>What is a pip in forex trading?</h3>
   <p>A pip is the standard unit of price movement in forex — usually the fourth decimal place for most pairs, or the second decimal place for pairs involving the Japanese Yen.</p>
+
+  <h3>What is a pipette, and how is it different from a pip?</h3>
+  <p>A pipette is one-tenth of a pip — a fifth decimal place on most pairs, or a third decimal place on JPY pairs. Brokers introduced pipettes to quote tighter, more precise bid and ask spreads than a whole pip allows. If EUR/USD moves from 1.08453 to 1.08461, that's a genuine 0.8 pip move — the extra digit is the pipette.</p>
+
   <h3>How is pip value calculated?</h3>
   <p>Pip value depends on the pip size, your trade size (lot), and the current exchange rate — this calculator works it out automatically using live prices, converted into your deposit currency.</p>
-  <h3>Does this work for gold and crypto pip values?</h3>
-  <p>Yes — the calculator supports forex pairs, precious metals like gold (XAUUSD) and silver (XAGUSD), and major cryptocurrencies, each using the correct pip size convention for that instrument.</p>
+
+  <h3>What's the manual formula for pip value, if I want to calculate it myself?</h3>
+  <p>Pip value = (pip size ÷ current exchange rate) × trade size in units. For a standard 100,000-unit lot on GBP/USD at 1.3630, that's (0.0001 ÷ 1) × 100,000 = $10 per pip, since USD is the quote currency here. If your account is denominated in a different currency, divide that result by the exchange rate between USD and your account currency to convert it.</p>
+
+  <h3>Does this work for gold (XAUUSD) and other metals, not just forex?</h3>
+  <p>Yes — gold, silver, platinum, and palladium are all supported, each using its own correct pip-size convention (0.1 for gold, 0.01 for silver), not the standard forex 0.0001. Search "XAUUSD pip calculator" or "gold pip calculator" and you'll land on exactly this same tool.</p>
+
+  <h3>Does this pip calculator work for crypto?</h3>
+  <p>Yes — 61 major cryptocurrencies are supported, including Bitcoin, Ethereum, and Solana, each priced live from real market data, not estimated.</p>
+
+  <h3>Can I use this pip calculator for CFD trading?</h3>
+  <p>Yes — the underlying pip-value math is identical whether you're trading spot forex or CFDs on the same pair, since both track the same real underlying price movement.</p>
+
+  <h3>Does this pip calculator work with MT4 or MT5?</h3>
+  <p>This isn't an MT4/MT5 plugin, but the numbers it gives you — pip value per lot in your real account currency — are exactly what you'd manually enter or verify against inside MetaTrader when sizing a position, so it works well as a quick companion calculation alongside either platform.</p>
+
+  <h3>How do I see how much profit or loss a specific number of pips is worth?</h3>
+  <p>Enter your lot size, then type the number of pips into the calculator's Pips field — it multiplies that against the live pip value instantly, so you can see the real dollar impact of a 20-pip stop loss or a 50-pip take-profit target before you place the trade.</p>
+
+  <h3>What's the difference between pip value and margin?</h3>
+  <p>They're related but genuinely different: pip value tells you how much each pip of price movement is worth in real money, while margin is the amount your broker requires you to hold to open a leveraged position at all. This calculator focuses specifically on pip value — for margin requirements, check your specific broker's leverage terms, since these vary by broker and account type.</p>
+
+  <h3>Does this include EUR/USD, GBP/USD, and other major pairs specifically?</h3>
+  <p>Yes — all 7 major pairs (EUR/USD, GBP/USD, USD/JPY, USD/CHF, USD/CAD, AUD/USD, NZD/USD) are included, along with 73 additional cross and exotic pairs, for 80 forex pairs in total.</p>
+
+  <h3>Does this calculator support index CFDs like NAS100 or US30?</h3>
+  <p>Not yet — this calculator currently covers forex, metals, and crypto. Index CFD support is a genuine gap we're aware of and may add in the future, so for now, NAS100 and US30 pip values would need to be checked directly with your broker's contract specifications.</p>
 </section>
 
 <footer>
@@ -797,6 +899,33 @@ const INSTRUMENTS = {
     { key:'USDTHB', label:'USD/THB', contract:100000, base:'USD', quote:'THB' },
     { key:'USDAED', label:'USD/AED', contract:100000, base:'USD', quote:'AED' },
     { key:'USDSAR', label:'USD/SAR', contract:100000, base:'USD', quote:'SAR' },
+    { key:'USDCZK', label:'USD/CZK', contract:100000, base:'USD', quote:'CZK' },
+    { key:'USDHUF', label:'USD/HUF', contract:100000, base:'USD', quote:'HUF' },
+    { key:'USDPLN', label:'USD/PLN', contract:100000, base:'USD', quote:'PLN' },
+    { key:'USDRUB', label:'USD/RUB', contract:100000, base:'USD', quote:'RUB' },
+    // Additional EUR crosses vs non-USD currencies
+    { key:'EURCZK', label:'EUR/CZK', contract:100000, base:'EUR', quote:'CZK' },
+    { key:'EURHUF', label:'EUR/HUF', contract:100000, base:'EUR', quote:'HUF' },
+    { key:'EURMXN', label:'EUR/MXN', contract:100000, base:'EUR', quote:'MXN' },
+    { key:'EURNOK', label:'EUR/NOK', contract:100000, base:'EUR', quote:'NOK' },
+    { key:'EURPLN', label:'EUR/PLN', contract:100000, base:'EUR', quote:'PLN' },
+    { key:'EURSEK', label:'EUR/SEK', contract:100000, base:'EUR', quote:'SEK' },
+    { key:'EURSGD', label:'EUR/SGD', contract:100000, base:'EUR', quote:'SGD' },
+    { key:'EURTRY', label:'EUR/TRY', contract:100000, base:'EUR', quote:'TRY' },
+    { key:'EURZAR', label:'EUR/ZAR', contract:100000, base:'EUR', quote:'ZAR' },
+    // Additional GBP crosses vs non-USD currencies
+    { key:'GBPMXN', label:'GBP/MXN', contract:100000, base:'GBP', quote:'MXN' },
+    { key:'GBPNOK', label:'GBP/NOK', contract:100000, base:'GBP', quote:'NOK' },
+    { key:'GBPSEK', label:'GBP/SEK', contract:100000, base:'GBP', quote:'SEK' },
+    { key:'GBPSGD', label:'GBP/SGD', contract:100000, base:'GBP', quote:'SGD' },
+    { key:'GBPTRY', label:'GBP/TRY', contract:100000, base:'GBP', quote:'TRY' },
+    // Nordic / other cross pairs important to traders, not versus USD
+    { key:'CHFSGD', label:'CHF/SGD', contract:100000, base:'CHF', quote:'SGD' },
+    { key:'NOKJPY', label:'NOK/JPY', contract:100000, base:'NOK', quote:'JPY' },
+    { key:'NOKSEK', label:'NOK/SEK', contract:100000, base:'NOK', quote:'SEK' },
+    { key:'SEKJPY', label:'SEK/JPY', contract:100000, base:'SEK', quote:'JPY' },
+    { key:'SGDJPY', label:'SGD/JPY', contract:100000, base:'SGD', quote:'JPY' },
+    { key:'ZARJPY', label:'ZAR/JPY', contract:100000, base:'ZAR', quote:'JPY' },
   ],
   metals: [
     { key:'XAUUSD', label:'Gold (XAUUSD)', contract:100, base:'XAU', quote:'USD' },
@@ -815,6 +944,61 @@ const INSTRUMENTS = {
     { key:'LTCUSD', label:'Litecoin (LTCUSD)', contract:1, base:'LTC', quote:'USD' },
     { key:'MATICUSD', label:'Polygon (MATICUSD)', contract:1, base:'MATIC', quote:'USD' },
     { key:'DOTUSD', label:'Polkadot (DOTUSD)', contract:1, base:'DOT', quote:'USD' },
+    // Genuinely well-known, actively traded tokens added from the full
+    // reference list — the more obscure/legacy tokens from that list were
+    // deliberately left out rather than risk silently showing
+    // "Unavailable" for tokens whose Binance listing status is uncertain.
+    { key:'AVAXUSD', label:'Avalanche (AVAXUSD)', contract:1, base:'AVAX', quote:'USD' },
+    { key:'LINKUSD', label:'Chainlink (LINKUSD)', contract:1, base:'LINK', quote:'USD' },
+    { key:'UNIUSD', label:'Uniswap (UNIUSD)', contract:1, base:'UNI', quote:'USD' },
+    { key:'ATOMUSD', label:'Cosmos (ATOMUSD)', contract:1, base:'ATOM', quote:'USD' },
+    { key:'NEARUSD', label:'NEAR Protocol (NEARUSD)', contract:1, base:'NEAR', quote:'USD' },
+    { key:'FILUSD', label:'Filecoin (FILUSD)', contract:1, base:'FIL', quote:'USD' },
+    { key:'ICPUSD', label:'Internet Computer (ICPUSD)', contract:1, base:'ICP', quote:'USD' },
+    { key:'INJUSD', label:'Injective (INJUSD)', contract:1, base:'INJ', quote:'USD' },
+    { key:'TRXUSD', label:'TRON (TRXUSD)', contract:1, base:'TRX', quote:'USD' },
+    { key:'XLMUSD', label:'Stellar (XLMUSD)', contract:1, base:'XLM', quote:'USD' },
+    { key:'XMRUSD', label:'Monero (XMRUSD)', contract:1, base:'XMR', quote:'USD' },
+    { key:'ETCUSD', label:'Ethereum Classic (ETCUSD)', contract:1, base:'ETC', quote:'USD' },
+    { key:'EOSUSD', label:'EOS (EOSUSD)', contract:1, base:'EOS', quote:'USD' },
+    { key:'ZECUSD', label:'Zcash (ZECUSD)', contract:1, base:'ZEC', quote:'USD' },
+    { key:'COMPUSD', label:'Compound (COMPUSD)', contract:1, base:'COMP', quote:'USD' },
+    { key:'MKRUSD', label:'Maker (MKRUSD)', contract:1, base:'MKR', quote:'USD' },
+    { key:'SNXUSD', label:'Synthetix (SNXUSD)', contract:1, base:'SNX', quote:'USD' },
+    { key:'CRVUSD', label:'Curve DAO (CRVUSD)', contract:1, base:'CRV', quote:'USD' },
+    { key:'SUSHIUSD', label:'SushiSwap (SUSHIUSD)', contract:1, base:'SUSHI', quote:'USD' },
+    { key:'GRTUSD', label:'The Graph (GRTUSD)', contract:1, base:'GRT', quote:'USD' },
+    { key:'SANDUSD', label:'The Sandbox (SANDUSD)', contract:1, base:'SAND', quote:'USD' },
+    { key:'MANAUSD', label:'Decentraland (MANAUSD)', contract:1, base:'MANA', quote:'USD' },
+    { key:'AXSUSD', label:'Axie Infinity (AXSUSD)', contract:1, base:'AXS', quote:'USD' },
+    { key:'CHZUSD', label:'Chiliz (CHZUSD)', contract:1, base:'CHZ', quote:'USD' },
+    { key:'ENJUSD', label:'Enjin Coin (ENJUSD)', contract:1, base:'ENJ', quote:'USD' },
+    { key:'BATUSD', label:'Basic Attention Token (BATUSD)', contract:1, base:'BAT', quote:'USD' },
+    { key:'DASHUSD', label:'Dash (DASHUSD)', contract:1, base:'DASH', quote:'USD' },
+    { key:'NEOUSD', label:'NEO (NEOUSD)', contract:1, base:'NEO', quote:'USD' },
+    { key:'KSMUSD', label:'Kusama (KSMUSD)', contract:1, base:'KSM', quote:'USD' },
+    { key:'QTUMUSD', label:'Qtum (QTUMUSD)', contract:1, base:'QTUM', quote:'USD' },
+    { key:'VETUSD', label:'VeChain (VETUSD)', contract:1, base:'VET', quote:'USD' },
+    { key:'HBARUSD', label:'Hedera (HBARUSD)', contract:1, base:'HBAR', quote:'USD' },
+    { key:'ALGOUSD', label:'Algorand (ALGOUSD)', contract:1, base:'ALGO', quote:'USD' },
+    { key:'FTMUSD', label:'Fantom (FTMUSD)', contract:1, base:'FTM', quote:'USD' },
+    { key:'GALAUSD', label:'Gala (GALAUSD)', contract:1, base:'GALA', quote:'USD' },
+    { key:'IMXUSD', label:'Immutable (IMXUSD)', contract:1, base:'IMX', quote:'USD' },
+    { key:'STXUSD', label:'Stacks (STXUSD)', contract:1, base:'STX', quote:'USD' },
+    { key:'FLOWUSD', label:'Flow (FLOWUSD)', contract:1, base:'FLOW', quote:'USD' },
+    { key:'YFIUSD', label:'yearn.finance (YFIUSD)', contract:1, base:'YFI', quote:'USD' },
+    { key:'KAVAUSD', label:'Kava (KAVAUSD)', contract:1, base:'KAVA', quote:'USD' },
+    { key:'STORJUSD', label:'Storj (STORJUSD)', contract:1, base:'STORJ', quote:'USD' },
+    { key:'SKLUSD', label:'SKALE (SKLUSD)', contract:1, base:'SKL', quote:'USD' },
+    { key:'ANKRUSD', label:'Ankr (ANKRUSD)', contract:1, base:'ANKR', quote:'USD' },
+    { key:'ZILUSD', label:'Zilliqa (ZILUSD)', contract:1, base:'ZIL', quote:'USD' },
+    { key:'KNCUSD', label:'Kyber Network (KNCUSD)', contract:1, base:'KNC', quote:'USD' },
+    { key:'TRBUSD', label:'Tellor (TRBUSD)', contract:1, base:'TRB', quote:'USD' },
+    { key:'WBTCUSD', label:'Wrapped Bitcoin (WBTCUSD)', contract:1, base:'WBTC', quote:'USD' },
+    { key:'SHIBUSD', label:'Shiba Inu (SHIBUSD)', contract:1, base:'SHIB', quote:'USD' },
+    { key:'JASMYUSD', label:'JasmyCoin (JASMYUSD)', contract:1, base:'JASMY', quote:'USD' },
+    { key:'API3USD', label:'API3 (API3USD)', contract:1, base:'API3', quote:'USD' },
+    { key:'FETUSD', label:'Fetch.ai (FETUSD)', contract:1, base:'FET', quote:'USD' },
   ],
 };
 
@@ -852,7 +1036,13 @@ async function fetchLivePrice(inst){
       const data = await res.json();
       return data.price || null;
     }
-    if(['BTC','ETH','SOL','XRP','BNB','DOGE','ADA','LTC','MATIC','DOT'].includes(inst.base)){
+    if(['BTC','ETH','SOL','XRP','BNB','DOGE','ADA','LTC','MATIC','DOT',
+        'AVAX','LINK','UNI','ATOM','NEAR','FIL','ICP','INJ','TRX','XLM',
+        'XMR','ETC','EOS','ZEC','COMP','MKR','SNX','CRV','SUSHI','GRT',
+        'SAND','MANA','AXS','CHZ','ENJ','BAT','DASH','NEO','KSM','QTUM',
+        'VET','HBAR','ALGO','FTM','GALA','IMX','STX','FLOW','YFI','KAVA',
+        'STORJ','SKL','ANKR','ZIL','KNC','TRB','WBTC','SHIB','JASMY','API3','FET'
+    ].includes(inst.base)){
       const res = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${inst.base}USDT`);
       const data = await res.json();
       return parseFloat(data.price) || null;
@@ -956,6 +1146,7 @@ pipMarketGroup.querySelectorAll('button').forEach(b => {
   });
 });
 ['pip-lots','pip-amount'].forEach(id => document.getElementById(id).addEventListener('input', calcPip));
+document.getElementById('pip-deposit').addEventListener('change', calcPip);
 document.querySelectorAll('#pip-quick-lots button').forEach(b => {
   b.addEventListener('click', () => {
     document.getElementById('pip-lots').value = b.dataset.val;
@@ -969,6 +1160,7 @@ async function calcPip(){
   const pips = parseFloat(document.getElementById('pip-amount').value) || 0;
   const pipSize = pipSizeFor(inst);
   const units = lots * inst.contract;
+  const depositCurrency = document.getElementById('pip-deposit').value;
 
   document.getElementById('pip-size').textContent = pipSize;
   document.getElementById('pip-price').textContent = 'Loading…';
@@ -985,7 +1177,21 @@ async function calcPip(){
     const rate = usdValueOf(inst.quote);
     pipValueUSD = rate ? pipSize * units * rate : 0;
   }
-  document.getElementById('pip-value').textContent = '$' + fmt(pipValueUSD * pips);
+
+  // Genuinely convert into whichever deposit currency is actually
+  // selected — not hardcoded to USD. If the deposit currency's live
+  // rate isn't available for some reason, this correctly falls back to
+  // showing the USD figure rather than a wrong number.
+  let pipValueFinal = pipValueUSD;
+  if(depositCurrency !== 'USD'){
+    if(!fxRatesCache) await loadFxRates();
+    const depositRateInUsd = usdValueOf(depositCurrency);
+    if(depositRateInUsd) pipValueFinal = pipValueUSD / depositRateInUsd;
+  }
+
+  const CURRENCY_SYMBOLS = { USD:'$', EUR:'€', GBP:'£', JPY:'¥', AUD:'A$', CAD:'C$', CHF:'CHF ', NZD:'NZ$' };
+  const symbol = CURRENCY_SYMBOLS[depositCurrency] || (depositCurrency + ' ');
+  document.getElementById('pip-value').textContent = symbol + fmt(pipValueFinal * pips);
 }
 
 

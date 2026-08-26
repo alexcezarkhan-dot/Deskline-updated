@@ -52,7 +52,7 @@
       "name": "Why is position sizing important?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Position sizing is one of the most important risk management habits in trading \u2014 it ensures a single losing trade never risks more of your account than you intended, regardless of the instrument or its volatility."
+        "text": "It's the mechanism that actually enforces your risk tolerance. Two traders can each decide to risk 1% per trade, but only the one calculating lot size from that percentage \u2014 rather than guessing \u2014 genuinely keeps that promise trade after trade."
       }
     },
     {
@@ -61,6 +61,46 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Many experienced traders risk 1-2% of their account per trade as a conservative, sustainable approach, though this is a personal risk decision, not a fixed rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my account currency actually affect the result?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 select it correctly and both the risk amount and notional value convert properly using live exchange rates, rather than assuming your balance is already in USD."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between risk amount and notional value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Risk amount is what you'd actually lose if the stop-loss is hit \u2014 the number tied directly to your risk percentage. Notional value is the full size of the position itself, which is typically far larger than the risk amount, since leverage means you're controlling more than you're risking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for gold or crypto, not just forex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 the same risk-based sizing works across forex, metals, and major cryptocurrencies, using each instrument's real contract size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I don't know my stop-loss price yet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Decide your stop-loss first, based on where the trade setup is genuinely invalidated \u2014 not based on what lot size you'd like to trade. Position size should follow from your stop, not the other way around."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does this relate to the profit calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool decides how large a position should be before you enter; the profit calculator shows what that position would actually earn or lose once you know your entry and exit prices. Used together, they cover both sides of planning a trade."
       }
     }
   ]
@@ -304,15 +344,10 @@
   .seo-content h2{ font-size:1.1rem; font-weight:600; margin: 1.6rem 0 .6rem; }
   .seo-content h2:first-child{ margin-top:0; }
   .seo-content p{ font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem; }
-
-  footer{
-    text-align:center;
-    padding: 1.8rem;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.65rem;
-    color: var(--dim);
-    border-top:1px solid var(--line-soft);
-  }
+  .how-to-list{ margin:0 0 1rem 1.2rem; padding:0; }
+  .how-to-list li{ font-size:.92rem; line-height:1.8; color:#B7BECC; }
+  .how-to-list strong{ color:var(--ink); }
+  .seo-content a{ color:var(--gold); }
 
     /* ---------------- DeskAi floating chatbox (v2) ---------------- */
   @keyframes deskaiPulseRing{
@@ -342,6 +377,7 @@
     text-align:center; padding:1.8rem; font-family:'JetBrains Mono', monospace;
     font-size:.65rem; color:var(--dim); border-top:1px solid var(--line-soft); line-height:1.8;
   }
+  footer a{ color:var(--gold); text-decoration:none; }
   .deskai-toggle-wrap{
     position: fixed;
     right: 24px; bottom: 24px;
@@ -622,19 +658,32 @@
       </div>
       <div class="field">
         <label>Account Balance</label>
-        <input type="number" step="any" id="size-balance" placeholder="1000" value="1000">
+        <input type="number" step="1" min="0" id="size-balance" placeholder="1000" value="1000">
+      </div>
+      <div class="field">
+        <label>Deposit Currency</label>
+        <select id="size-deposit">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="JPY">JPY</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="CHF">CHF</option>
+          <option value="NZD">NZD</option>
+        </select>
       </div>
       <div class="field">
         <label>Risk per trade (%)</label>
-        <input type="number" step="any" id="size-risk-pct" placeholder="1" value="1">
+        <input type="number" step="0.1" min="0" max="100" id="size-risk-pct" placeholder="1" value="1">
       </div>
       <div class="field">
         <label>Entry price</label>
-        <input type="number" step="any" id="size-entry" placeholder="Fetching live price…">
+        <input type="number" step="0.0001" min="0" id="size-entry" placeholder="Fetching live price…">
       </div>
       <div class="field">
         <label>Stop-loss price</label>
-        <input type="number" step="any" id="size-stop" placeholder="e.g. 4330.00">
+        <input type="number" step="0.0001" min="0" id="size-stop" placeholder="e.g. 4330.00">
       </div>
     </div>
     <div class="hint">Enter your account balance, how much of it you're willing to risk on this one trade (1-2% is a common, conservative range), and where your stop-loss would sit — this tells you the exact position size that keeps your risk at that amount, regardless of how the trade turns out.</div>
@@ -664,15 +713,43 @@
 
 
 <section class="seo-content">
-  <p>Work out the exact lot size to trade based on your account balance, risk tolerance, and stop-loss distance — the core risk-management calculation that keeps a single trade from risking more of your account than you intended, regardless of the instrument or account currency.</p>
+  <h2>What is DeskTerminal's Position Size Calculator?</h2>
+  <p>This calculator answers a different question than a typical pip or profit calculator: not "what will this trade earn," but "how large should this trade actually be." Given your account balance, how much of it you're willing to risk, and where your stop-loss sits, it works out the exact lot size that keeps a single losing trade within that limit — regardless of which instrument you're trading or what currency your account is funded in.</p>
+  <p>It's the risk-management step most beginners skip, and the one experienced traders treat as non-negotiable: deciding position size from your actual risk tolerance, rather than picking a lot size first and hoping the loss stays manageable.</p>
+
+  <h2>How to use this calculator</h2>
+  <ul class="how-to-list">
+    <li><strong>Instrument</strong> — the pair, metal, or crypto you're planning to trade</li>
+    <li><strong>Account balance</strong> — your current trading account balance</li>
+    <li><strong>Deposit currency</strong> — the currency that balance is actually held in</li>
+    <li><strong>Risk per trade</strong> — the percentage of your account you're willing to lose if the stop-loss is hit</li>
+    <li><strong>Entry price</strong> — where you plan to open the position</li>
+    <li><strong>Stop price</strong> — where your stop-loss sits</li>
+  </ul>
+  <p>The result gives you three numbers: the actual money amount at risk, the lot size that produces exactly that risk, and the total notional value of the resulting position.</p>
 
   <h2>Frequently Asked Questions</h2>
   <h3>How is position size calculated?</h3>
   <p>Enter your account balance, how much of it you're willing to risk on the trade (as a percentage), and your stop-loss price. The calculator works out the exact lot size that keeps your risk at that amount, based on the real distance between your entry and stop-loss.</p>
   <h3>Why is position sizing important?</h3>
-  <p>Position sizing is one of the most important risk management habits in trading — it ensures a single losing trade never risks more of your account than you intended, regardless of the instrument or its volatility.</p>
+  <p>It's the mechanism that actually enforces your risk tolerance. Two traders can each decide to "risk 1% per trade," but only the one calculating lot size from that percentage — rather than guessing — genuinely keeps that promise trade after trade.</p>
   <h3>What risk percentage should I use per trade?</h3>
   <p>Many experienced traders risk 1-2% of their account per trade as a conservative, sustainable approach, though this is a personal risk decision, not a fixed rule.</p>
+
+  <h3>Does my account currency actually affect the result?</h3>
+  <p>Yes — select it correctly and both the risk amount and notional value convert properly using live exchange rates, rather than assuming your balance is already in USD.</p>
+
+  <h3>What's the difference between risk amount and notional value?</h3>
+  <p>Risk amount is what you'd actually lose if the stop-loss is hit — the number tied directly to your risk percentage. Notional value is the full size of the position itself, which is typically far larger than the risk amount, since leverage means you're controlling more than you're risking.</p>
+
+  <h3>Can I use this for gold or crypto, not just forex?</h3>
+  <p>Yes — the same risk-based sizing works across forex, metals, and major cryptocurrencies, using each instrument's real contract size.</p>
+
+  <h3>What if I don't know my stop-loss price yet?</h3>
+  <p>Decide your stop-loss first, based on where the trade setup is genuinely invalidated — not based on what lot size you'd like to trade. Position size should follow from your stop, not the other way around.</p>
+
+  <h3>How does this relate to the profit calculator?</h3>
+  <p>This tool decides how large a position should be before you enter; the <a href="../profit-calculator/">profit calculator</a> shows what that position would actually earn or lose once you know your entry and exit prices. Used together, they cover both sides of planning a trade.</p>
 </section>
 
 <footer>
@@ -960,24 +1037,45 @@ sizeMarketGroup.querySelectorAll('button').forEach(b => {
 
 function calcSize(){
   const inst = sizeCurrentInst || sizePicker.getSelected();
-  const balance = parseFloat(document.getElementById('size-balance').value) || 0;
+  const balanceInput = parseFloat(document.getElementById('size-balance').value) || 0;
   const riskPct = parseFloat(document.getElementById('size-risk-pct').value) || 0;
   const entry = parseFloat(document.getElementById('size-entry').value) || 0;
   const stop = parseFloat(document.getElementById('size-stop').value) || 0;
+  const depositCurrency = document.getElementById('size-deposit').value;
 
-  const riskAmt = balance * (riskPct / 100);
+  // Convert the entered balance into USD first, since the rest of this
+  // function's math is USD-normalized (same real fix as Pip and Profit
+  // Calculator — a balance entered in EUR or GBP was previously silently
+  // treated as if it were USD, with no conversion happening at all).
+  let balance = balanceInput;
+  if(depositCurrency !== 'USD'){
+    const depositRateInUsd = usdValueOf(depositCurrency);
+    if(depositRateInUsd) balance = balanceInput * depositRateInUsd;
+  }
+
+  const riskAmtUSD = balance * (riskPct / 100);
   const distance = Math.abs(entry - stop);
+
+  const CURRENCY_SYMBOLS = { USD:'$', EUR:'€', GBP:'£', JPY:'¥', AUD:'A$', CAD:'C$', CHF:'CHF ', NZD:'NZ$' };
+  const symbol = CURRENCY_SYMBOLS[depositCurrency] || (depositCurrency + ' ');
+
+  // Convert results back into the selected deposit currency for display.
+  let riskAmtDisplay = riskAmtUSD;
+  if(depositCurrency !== 'USD'){
+    const depositRateInUsd = usdValueOf(depositCurrency);
+    if(depositRateInUsd) riskAmtDisplay = riskAmtUSD / depositRateInUsd;
+  }
 
   const riskAmtEl = document.getElementById('size-riskamt');
   const lotsEl = document.getElementById('size-lots');
   const notionalEl = document.getElementById('size-notional');
 
-  riskAmtEl.textContent = '$' + fmt(riskAmt);
+  riskAmtEl.textContent = symbol + fmt(riskAmtDisplay);
   document.getElementById('size-distance').textContent = fmt(distance, distance < 10 ? 4 : 2);
 
   if(!distance || !entry){
     lotsEl.textContent = '0.00';
-    notionalEl.textContent = '$0.00';
+    notionalEl.textContent = symbol + '0.00';
     return;
   }
 
@@ -994,13 +1092,19 @@ function calcSize(){
   }
 
   const riskPerLot = distance * valuePerUnitMovePerLot;
-  const lots = riskPerLot > 0 ? riskAmt / riskPerLot : 0;
-  const notional = lots * inst.contract * entry;
+  const lots = riskPerLot > 0 ? riskAmtUSD / riskPerLot : 0;
+  const notionalUSD = lots * inst.contract * entry;
+  let notionalDisplay = notionalUSD;
+  if(depositCurrency !== 'USD'){
+    const depositRateInUsd = usdValueOf(depositCurrency);
+    if(depositRateInUsd) notionalDisplay = notionalUSD / depositRateInUsd;
+  }
 
   lotsEl.textContent = fmt(lots, 3);
-  notionalEl.textContent = '$' + fmt(notional);
+  notionalEl.textContent = symbol + fmt(notionalDisplay);
 }
 calcSize();
+document.getElementById('size-deposit').addEventListener('change', calcSize);
 
 </script>
 <script>
