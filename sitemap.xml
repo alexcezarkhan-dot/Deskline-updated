@@ -1,418 +1,413 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://deskterminal.com/index.html</loc>
-    <changefreq>always</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/market.html</loc>
-    <changefreq>always</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/calendar.html</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex-tools.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex-tools/currency-converter/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex-tools/pip-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex-tools/profit-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex-tools/position-size-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/news.html</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/brokers/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/brokers/post.html?slug=how-to-choose-a-forex-broker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/opinion/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/opinion/post.html?slug=why-gold-is-in-a-structural-bull-market</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/post.html?slug=what-is-xauusd</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/eur-usd/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/gbp-usd/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-jpy/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-cad/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/eur-gbp/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/aud-usd/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-chf/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-hkd/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-sgd/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-inr/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/forex/usd-cnh/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/instruments.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/commodities/gold/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/commodities/silver/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/commodities/crude-oil/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/crypto/bitcoin/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/crypto/ethereum/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/indices/sp500/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/indices/nasdaq/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/what-is-forex-trading/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/how-does-the-forex-market-work/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/currency-pairs-explained/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/pips-lots-leverage-explained/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/margin-calls-and-stop-outs/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/how-to-read-a-forex-quote/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/forex-market-sessions/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/forex-basics/demo-vs-live-trading/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/support-and-resistance/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/trendlines-and-channels/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/chart-patterns/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/candlestick-patterns/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/moving-averages-sma-vs-ema/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/rsi-overbought-oversold/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/macd-indicator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/technical-analysis/fibonacci-retracement/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/understanding-the-economic-calendar/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/what-is-nfp/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/inflation-cpi-and-trading/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/central-bank-policies-fed-ecb-boe/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/gold-commodities/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/gold-commodities/what-moves-gold-prices/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/gold-commodities/why-gold-is-a-safe-haven-asset/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/gold-commodities/gold-vs-usd-correlation/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/gold-commodities/how-to-trade-gold-during-news/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/position-sizing/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/stop-loss-take-profit/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/risk-reward-ratio/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/overtrading/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/trading-psychology-fear-greed/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/risk-management/why-most-traders-fail/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/strategy-guides/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/strategy-guides/scalping-vs-day-trading-vs-swing-trading/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/strategy-guides/best-indicators-for-beginners/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/strategy-guides/how-to-build-a-trading-plan/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/broker-platform-guides/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/broker-platform-guides/how-to-choose-a-forex-broker/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/broker-platform-guides/understanding-broker-regulation/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/broker-platform-guides/ecn-vs-market-maker-brokers/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deskterminal.com/academy/glossary/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
+<url>
+<loc>https://deskterminal.com/index.html</loc>
+<changefreq>always</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/market.html</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/calendar.html</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/news.html</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/eur-usd/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/gbp-usd/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-jpy/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-chf/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-cad/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/aud-usd/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/eur-gbp/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-cnh/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-hkd/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-inr/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex/usd-sgd/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/commodities/gold/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/commodities/silver/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/commodities/crude-oil/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/crypto/bitcoin/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/crypto/ethereum/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/indices/sp500/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/indices/nasdaq/</loc>
+<changefreq>hourly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex-tools.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/instruments.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex-tools/currency-converter/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex-tools/pip-calculator/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex-tools/profit-calculator/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/forex-tools/position-size-calculator/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/brokers/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/opinion/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/strategy-guides/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/gold-commodities/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/broker-platform-guides/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/glossary/index.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/what-is-forex-trading/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/how-does-the-forex-market-work/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/currency-pairs-explained/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/how-to-read-a-forex-quote/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/pips-lots-leverage-explained/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/demo-vs-live-trading/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/forex-market-sessions/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/forex-basics/margin-calls-and-stop-outs/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/understanding-the-economic-calendar/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/what-is-nfp/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/how-interest-rates-affect-currency-prices/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/central-bank-policies-fed-ecb-boe/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/inflation-cpi-and-trading/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/fundamental-analysis/how-fomc-decisions-impact-forex-and-gold/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/support-and-resistance/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/trendlines-and-channels/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/chart-patterns/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/candlestick-patterns/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/moving-averages-sma-vs-ema/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/rsi-overbought-oversold/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/macd-indicator/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/technical-analysis/fibonacci-retracement/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/why-most-traders-fail/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/position-sizing/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/stop-loss-take-profit/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/risk-reward-ratio/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/overtrading/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/risk-management/trading-psychology-fear-greed/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/strategy-guides/how-to-build-a-trading-plan/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/strategy-guides/scalping-vs-day-trading-vs-swing-trading/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/strategy-guides/best-indicators-for-beginners/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/strategy-guides/backtesting-your-strategy/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/gold-commodities/why-gold-is-a-safe-haven-asset/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/gold-commodities/what-moves-gold-prices/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/gold-commodities/gold-vs-usd-correlation/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/gold-commodities/how-to-trade-gold-during-news/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/broker-platform-guides/how-to-choose-a-forex-broker/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/broker-platform-guides/understanding-broker-regulation/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/academy/broker-platform-guides/ecn-vs-market-maker-brokers/</loc>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/about.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/contact.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.3</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/legal/privacy-policy.html</loc>
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+<url>
+<loc>https://deskterminal.com/legal/terms.html</loc>
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
 </urlset>
