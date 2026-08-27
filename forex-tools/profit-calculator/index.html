@@ -151,6 +151,21 @@
     .mobile-subnav{ display:flex; }
   }
 
+.mobile-sticky-result{ display:none; }
+@media (max-width:640px){
+  body{ padding-bottom:64px; }
+  .mobile-sticky-result{
+    display:flex; justify-content:space-between; align-items:center;
+    position:fixed; bottom:0; left:0; right:0;
+    background:var(--panel); border-top:1px solid var(--gold);
+    padding:.9rem 1.2rem; z-index:50;
+    box-shadow:0 -4px 16px rgba(0,0,0,0.3);
+  }
+  .msr-label{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
+  .msr-value{ font-family:'JetBrains Mono', monospace; font-size:1.15rem; font-weight:700; }
+  .deskai-toggle-wrap{ bottom:78px !important; }
+}
+
 
   .breadcrumb-nav{
     font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
@@ -713,6 +728,11 @@
   </div>
 </div>
 
+<div class="mobile-sticky-result" id="mobileStickyResult">
+  <span class="msr-label">Net Profit</span>
+  <span class="msr-value result-value gold" id="profit-net-mobile">$0.00</span>
+</div>
+
 
 
 <section class="seo-content">
@@ -1106,6 +1126,11 @@ function calcProfit(){
   document.getElementById('profit-fees-out').textContent = symbol + fmt(feesConverted);
   netEl.textContent = (net>=0?'+':'') + symbol + fmt(net);
   netEl.className = 'result-value gold ' + (net>0?'up':net<0?'down':'');
+  const mobileNetEl = document.getElementById('profit-net-mobile');
+  if(mobileNetEl){
+    mobileNetEl.textContent = (net>=0?'+':'') + symbol + fmt(net);
+    mobileNetEl.className = 'msr-value result-value gold ' + (net>0?'up':net<0?'down':'');
+  }
 }
 calcProfit();
 document.getElementById('profit-deposit').addEventListener('change', calcProfit);

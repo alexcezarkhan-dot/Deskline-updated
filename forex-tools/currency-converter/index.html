@@ -167,6 +167,21 @@
     .mobile-subnav{ display:flex; }
   }
 
+.mobile-sticky-result{ display:none; }
+@media (max-width:640px){
+  body{ padding-bottom:64px; }
+  .mobile-sticky-result{
+    display:flex; justify-content:space-between; align-items:center;
+    position:fixed; bottom:0; left:0; right:0;
+    background:var(--panel); border-top:1px solid var(--gold);
+    padding:.9rem 1.2rem; z-index:50;
+    box-shadow:0 -4px 16px rgba(0,0,0,0.3);
+  }
+  .msr-label{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
+  .msr-value{ font-family:'JetBrains Mono', monospace; font-size:1.15rem; font-weight:700; }
+  .deskai-toggle-wrap{ bottom:78px !important; }
+}
+
 
   .breadcrumb-nav{
     font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); margin-bottom:1.4rem;
@@ -729,6 +744,11 @@
   </div>
 </div>
 
+<div class="mobile-sticky-result" id="mobileStickyResult">
+  <span class="msr-label">Converted</span>
+  <span class="msr-value gold" id="cur-result-mobile">0.00</span>
+</div>
+
 <div class="popular-conversions">
   <div class="pc-label">Popular Conversions</div>
   <div class="pc-grid" id="popularConversionsGrid">
@@ -1211,6 +1231,8 @@ async function calcCurrency(){
   const result = usdAmount * toRate;
   const rate = toRate / fromRate;
   document.getElementById('cur-result').textContent = fmt(result, result < 10 ? 4 : 2) + ' ' + to;
+  const mobileVal = document.getElementById('cur-result-mobile');
+  if(mobileVal) mobileVal.textContent = fmt(result, result < 10 ? 4 : 2) + ' ' + to;
   document.getElementById('cur-rate').textContent = `1 ${from} = ${fmt(rate, rate < 10 ? 4 : 2)} ${to}`;
 }
 document.getElementById('cur-amount').addEventListener('input', calcCurrency);
