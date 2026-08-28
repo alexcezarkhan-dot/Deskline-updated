@@ -1,11 +1,10 @@
 // DeskTerminal — Server-rendered Calendar page
 // -----------------------------------------------------------------------
-// Same real fix as render-news.js, adapted for Calendar's data source:
-// Calendar reads live from Trading Economics via econ-calendar.js (not a
-// Supabase cache like News), so this calls that same live source
-// directly, then injects real event rows into the page's initial HTML —
-// visible to any crawler that doesn't run JavaScript, while the existing
-// client-side JS still takes over normally for real visitors.
+// Same real fix as render-news.js. Reads from the shared Supabase cache
+// (populated by cache-calendar.js on a schedule) instead of hitting
+// Trading Economics directly on every single page load — genuinely
+// cuts real Netlify function compute and external API calls on every
+// visit, not just in principle.
 //
 // Reads the REAL calendar.html directly via included_files bundling —
 // no duplicate template to drift out of sync.
@@ -34,25 +33,30 @@ exports.handler = async function () {
 
   let realContentHtml = "";
   try {
-    const apiKey = process.env.TE_API_KEY || "guest:guest";
-    const url = `https://api.tradingeconomics.com/calendar?c=${encodeURIComponent(apiKey)}&f=json`;
-    const res = await fetch(url);
-    const data = await res.json();
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const anonKey = process.env.SUPABASE_ANON_KEY;
+    if (supabaseUrl && anonKey) {
+      const res = await fetch(
+        `${supabaseUrl}/rest/v1/cached_calendar_events?select=*&order=event_date.asc&limit=200`,
+        { headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` } }
+      );
+      const rows = await res.json();
 
-    if (Array.isArray(data) && data.length) {
-      const today = new Date().toDateString();
-      const todayEvents = data.filter((e) => new Date(e.Date).toDateString() === today).slice(0, 30);
-      realContentHtml = todayEvents.map((e) => `
-        <div class="ssr-cal-row">
-          <span>${escapeHtml(e.Currency || e.Country)}</span>
-          <span>${escapeHtml(e.Event)}</span>
-          <span>${escapeHtml(e.Actual || "—")}</span>
-          <span>${escapeHtml(e.Forecast || "—")}</span>
-          <span>${escapeHtml(e.Previous || "—")}</span>
-        </div>`).join("");
+      if (Array.isArray(rows) && rows.length) {
+        const today = new Date().toDateString();
+        const todayEvents = rows.filter((e) => new Date(e.event_date).toDateString() === today).slice(0, 30);
+        realContentHtml = todayEvents.map((e) => `
+          <div class="ssr-cal-row">
+            <span>${escapeHtml(e.currency || e.country)}</span>
+            <span>${escapeHtml(e.event)}</span>
+            <span>${escapeHtml(e.actual || "—")}</span>
+            <span>${escapeHtml(e.forecast || "—")}</span>
+            <span>${escapeHtml(e.previous || "—")}</span>
+          </div>`).join("");
+      }
     }
   } catch (err) {
-    // A failed live fetch here should never break the page — it just
+    // A failed cache read here should never break the page — it just
     // means this specific request falls back to the client-side JS
     // path only, exactly like before this feature existed.
   }
@@ -66,7 +70,7 @@ exports.handler = async function () {
 
   return {
     statusCode: 200,
-    headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=180" },
+    headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=60" },
     body: htmlContent,
   };
 };

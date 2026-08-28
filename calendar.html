@@ -1387,11 +1387,11 @@ function updateLastUpdatedLine(){
   el.textContent = text;
 }
 
-async function loadCalendarData(){
+async function loadCalendarData(useLive = false){
   const bodyEl = document.getElementById('calendarBody');
   bodyEl.innerHTML = '<div class="cal-status">Loading calendar…</div>';
   try{
-    const res = await fetch('/.netlify/functions/econ-calendar');
+    const res = await fetch('/.netlify/functions/econ-calendar' + (useLive ? '?live=true' : ''));
     const data = await res.json();
     if(data.error || !data.events){
       bodyEl.innerHTML = '<div class="cal-status">Calendar is not available right now — it may not be set up on this site yet.</div>';
@@ -1663,7 +1663,7 @@ function startFastPoll(){
   fastPollAttempts = 0;
   fastPollTimer = setInterval(() => {
     fastPollAttempts++;
-    loadCalendarData();
+    loadCalendarData(true); // bypass the cache — this is the one case where a few minutes of staleness would defeat the point
     // Give up after ~3 minutes (18 × 10s) if the actual value still hasn't
     // appeared in the data source yet — falls back to the normal refresh cycle.
     if(fastPollAttempts >= 18){

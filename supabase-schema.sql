@@ -331,3 +331,36 @@ create policy "Users can mark their own notifications as read"
 -- logic), not directly by the acting user — this is intentionally left
 -- for the real build phase, since it needs care to prevent someone
 -- spoofing notifications for actions they didn't actually take.
+
+-- ---------------------------------------------------------------------
+-- Shared, server-cached calendar events — fetched once by a scheduled
+-- job, not by every visitor's browser. Same real fix as News: one fetch
+-- serves every visitor, cutting real Netlify function + bandwidth cost
+-- on every single Calendar page view.
+-- ---------------------------------------------------------------------
+create table public.cached_calendar_events (
+  id uuid default gen_random_uuid() primary key,
+  event_date timestamptz not null,
+  country text,
+  currency text,
+  event text not null,
+  category text,
+  actual text,
+  forecast text,
+  previous text,
+  importance int,
+  source text,
+  source_url text,
+  reference text,
+  fetched_at timestamptz default now(),
+  unique(event_date, event, currency)
+);
+
+alter table public.cached_calendar_events enable row level security;
+
+create policy "Anyone can view cached calendar events"
+  on public.cached_calendar_events for select
+  using (true);
+
+-- Same deliberate gap as cached_news — only the service role key
+-- (used exclusively by the scheduled cache job) can write here.

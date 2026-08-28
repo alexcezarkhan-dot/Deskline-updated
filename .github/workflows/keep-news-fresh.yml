@@ -19,3 +19,9 @@ jobs:
     steps:
       - name: Trigger the real news fetch, so the shared cache stays current
         run: curl -sf "https://deskterminal.com/.netlify/functions/cache-news" > /dev/null
+
+  refresh-calendar-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the real calendar fetch, so the shared cache stays current
+        run: curl -sf "https://deskterminal.com/.netlify/functions/cache-calendar" > /dev/null
