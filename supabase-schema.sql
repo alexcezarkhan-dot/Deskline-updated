@@ -65,7 +65,10 @@ create table public.submitted_news (
   submitted_by uuid references auth.users on delete set null,
   status text default 'pending' check (status in ('pending', 'approved', 'rejected')),
   created_at timestamptz default now(),
-  reviewed_at timestamptz
+  reviewed_at timestamptz,
+  impact text check (impact in ('high', 'medium', 'low')),
+  currency text,
+  effect text check (effect in ('strengthen', 'weaken'))
 );
 
 alter table public.submitted_news enable row level security;
@@ -159,3 +162,172 @@ create policy "Anyone can view cached news"
 -- Supabase's service role bypasses RLS entirely for legitimate
 -- server-side jobs like this one.
 
+
+-- ==========================================================================
+-- DeskFeed — social feed schema (PLANNED, not yet built into the live site)
+-- ==========================================================================
+-- Shares the same Supabase project as the main site, so one account works
+-- on both deskterminal.com and feed.deskterminal.com automatically — no
+-- separate signup needed. Every table below follows the same real
+-- discipline as the rest of this file: RLS enforced at the database level,
+-- not just hidden in the UI.
+
+-- ---------------------------------------------------------------------
+-- Posts — the core content table
+-- ---------------------------------------------------------------------
+create table public.feed_posts (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references auth.users on delete cascade not null,
+  content text not null,
+  linked_symbol text, -- optional, e.g. 'XAUUSD' — lets a post tag a specific instrument
+  likes_count int default 0,
+  comments_count int default 0,
+  created_at timestamptz default now()
+);
+
+alter table public.feed_posts enable row level security;
+
+create policy "Anyone can view posts"
+  on public.feed_posts for select
+  using (true);
+
+create policy "Signed-in users can create their own posts"
+  on public.feed_posts for insert
+  with check (auth.uid() = user_id);
+
+create policy "Users can delete their own posts"
+  on public.feed_posts for delete
+  using (auth.uid() = user_id);
+
+-- ---------------------------------------------------------------------
+-- Likes — a real join table, not just a counter, so double-likes are
+-- genuinely impossible at the database level, not just prevented in JS.
+-- ---------------------------------------------------------------------
+create table public.feed_likes (
+  id uuid default gen_random_uuid() primary key,
+  post_id uuid references public.feed_posts on delete cascade not null,
+  user_id uuid references auth.users on delete cascade not null,
+  created_at timestamptz default now(),
+  unique(post_id, user_id) -- the real constraint that makes double-liking impossible
+);
+
+alter table public.feed_likes enable row level security;
+
+create policy "Anyone can view likes"
+  on public.feed_likes for select
+  using (true);
+
+create policy "Signed-in users can like posts as themselves"
+  on public.feed_likes for insert
+  with check (auth.uid() = user_id);
+
+create policy "Users can unlike their own likes"
+  on public.feed_likes for delete
+  using (auth.uid() = user_id);
+
+-- ---------------------------------------------------------------------
+-- Comments
+-- ---------------------------------------------------------------------
+create table public.feed_comments (
+  id uuid default gen_random_uuid() primary key,
+  post_id uuid references public.feed_posts on delete cascade not null,
+  user_id uuid references auth.users on delete cascade not null,
+  content text not null,
+  created_at timestamptz default now()
+);
+
+alter table public.feed_comments enable row level security;
+
+create policy "Anyone can view comments"
+  on public.feed_comments for select
+  using (true);
+
+create policy "Signed-in users can comment as themselves"
+  on public.feed_comments for insert
+  with check (auth.uid() = user_id);
+
+create policy "Users can delete their own comments"
+  on public.feed_comments for delete
+  using (auth.uid() = user_id);
+
+-- ---------------------------------------------------------------------
+-- Follows — a user can only control their OWN follow relationships,
+-- never force someone else to follow or unfollow on their behalf.
+-- ---------------------------------------------------------------------
+create table public.feed_follows (
+  id uuid default gen_random_uuid() primary key,
+  follower_id uuid references auth.users on delete cascade not null,
+  following_id uuid references auth.users on delete cascade not null,
+  created_at timestamptz default now(),
+  unique(follower_id, following_id),
+  check (follower_id != following_id) -- can't follow yourself
+);
+
+alter table public.feed_follows enable row level security;
+
+create policy "Anyone can view follow relationships"
+  on public.feed_follows for select
+  using (true);
+
+create policy "Users can follow others as themselves"
+  on public.feed_follows for insert
+  with check (auth.uid() = follower_id);
+
+create policy "Users can unfollow as themselves"
+  on public.feed_follows for delete
+  using (auth.uid() = follower_id);
+
+-- ---------------------------------------------------------------------
+-- Bookmarks — deliberately PRIVATE, unlike likes/follows. What someone
+-- has bookmarked isn't public information the way a like is.
+-- ---------------------------------------------------------------------
+create table public.feed_bookmarks (
+  id uuid default gen_random_uuid() primary key,
+  post_id uuid references public.feed_posts on delete cascade not null,
+  user_id uuid references auth.users on delete cascade not null,
+  created_at timestamptz default now(),
+  unique(post_id, user_id)
+);
+
+alter table public.feed_bookmarks enable row level security;
+
+create policy "Users can view only their own bookmarks"
+  on public.feed_bookmarks for select
+  using (auth.uid() = user_id);
+
+create policy "Users can bookmark as themselves"
+  on public.feed_bookmarks for insert
+  with check (auth.uid() = user_id);
+
+create policy "Users can remove their own bookmarks"
+  on public.feed_bookmarks for delete
+  using (auth.uid() = user_id);
+
+-- ---------------------------------------------------------------------
+-- Notifications — also private. Only the recipient can see their own.
+-- ---------------------------------------------------------------------
+create table public.feed_notifications (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references auth.users on delete cascade not null, -- who receives it
+  actor_id uuid references auth.users on delete cascade not null, -- who triggered it
+  type text check (type in ('like', 'comment', 'follow')) not null,
+  post_id uuid references public.feed_posts on delete cascade, -- null for follow notifications
+  read boolean default false,
+  created_at timestamptz default now()
+);
+
+alter table public.feed_notifications enable row level security;
+
+create policy "Users can view only their own notifications"
+  on public.feed_notifications for select
+  using (auth.uid() = user_id);
+
+create policy "Users can mark their own notifications as read"
+  on public.feed_notifications for update
+  using (auth.uid() = user_id);
+
+-- Note: inserting a notification happens as part of the like/comment/follow
+-- action itself (via a real database function or the app's own backend
+-- logic), not directly by the acting user — this is intentionally left
+-- for the real build phase, since it needs care to prevent someone
+-- spoofing notifications for actions they didn't actually take.

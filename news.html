@@ -1244,11 +1244,37 @@ async function loadNews(){
     }
     allNewsItems = data.items;
 
+    // Genuinely approved community submissions get mixed in alongside the
+    // RSS-fetched items — same shape, so they render identically. This
+    // now happens BEFORE the classification-reading pass below, so a
+    // submission's real impact/currency/effect (classified once, at
+    // approval time) genuinely gets picked up too, not silently dropped.
+    if(sb){
+      try{
+        const { data: approved } = await sb.from('submitted_news').select('*').eq('status', 'approved');
+        if(approved && approved.length){
+          const submitted = approved.map(s => ({
+            title: s.title,
+            link: s.url,
+            pubDate: s.reviewed_at || s.created_at,
+            source: s.source_name || 'Community',
+            description: '',
+            image: s.image_url || '',
+            impact: s.impact || null,
+            currency: s.currency || null,
+            effect: s.effect || null,
+          }));
+          allNewsItems = allNewsItems.concat(submitted);
+          allNewsItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        }
+      } catch(e){ /* community submissions are a bonus, not required for the page to work */ }
+    }
+
     // Classification (impact tier, currency effect) now comes pre-computed
-    // from the shared cache — cache-news.js classifies each headline
-    // exactly once, server-side, when it's first cached. This just reads
-    // that already-done work, instead of triggering a fresh AI call for
-    // every visitor on every page load.
+    // for both sources — cache-news.js classifies RSS headlines at cache
+    // time, and the admin approve action classifies community
+    // submissions at approval time. This just reads whatever's already
+    // there, for every item, instead of triggering a fresh AI call.
     let anyNewHighImpact = false;
     allNewsItems.forEach((item) => {
       if(item.impact){
@@ -1269,26 +1295,6 @@ async function loadNews(){
       }
     });
     if(anyNewHighImpact) playWarningTone();
-
-    // Genuinely approved community submissions get mixed in alongside the
-    // RSS-fetched items — same shape, so they render identically.
-    if(sb){
-      try{
-        const { data: approved } = await sb.from('submitted_news').select('*').eq('status', 'approved');
-        if(approved && approved.length){
-          const submitted = approved.map(s => ({
-            title: s.title,
-            link: s.url,
-            pubDate: s.reviewed_at || s.created_at,
-            source: s.source_name || 'Community',
-            description: '',
-            image: s.image_url || '',
-          }));
-          allNewsItems = allNewsItems.concat(submitted);
-          allNewsItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-        }
-      } catch(e){ /* community submissions are a bonus, not required for the page to work */ }
-    }
 
     lastNewsFetchTime = new Date();
     updateLastUpdatedLine();
@@ -1807,7 +1813,38 @@ async function checkAndShowAdminPanel(){
 
   panel.querySelectorAll('.admin-approve-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
-      await sb.from('submitted_news').update({ status: 'approved', reviewed_at: new Date().toISOString() }).eq('id', btn.dataset.id);
+      btn.disabled = true;
+      btn.textContent = 'Classifying…';
+
+      const item = pending.find(p => p.id === btn.dataset.id);
+      let classification = { impact: null, currency: null, effect: null };
+
+      // Classify once, right here at approval time — same real pattern
+      // as the RSS pipeline, just triggered by an admin action instead
+      // of a scheduled cache refresh. A failed classification should
+      // never block a genuinely good submission from being approved.
+      if(item){
+        try{
+          const res = await fetch('/.netlify/functions/deskai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ section: 'news-impact', question: `0. ${item.title}` })
+          });
+          const data = await res.json();
+          const r = data.results?.[0];
+          if(r){
+            classification = {
+              impact: (r.impact === 'high' || r.impact === 'medium' || r.impact === 'low') ? r.impact : null,
+              currency: r.currency || null,
+              effect: (r.effect === 'strengthen' || r.effect === 'weaken') ? r.effect : null,
+            };
+          }
+        } catch(e){ /* approval still proceeds even if classification fails */ }
+      }
+
+      await sb.from('submitted_news').update({
+        status: 'approved', reviewed_at: new Date().toISOString(), ...classification,
+      }).eq('id', btn.dataset.id);
       btn.closest('.admin-pending-item').remove();
     });
   });
