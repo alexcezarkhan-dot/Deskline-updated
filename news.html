@@ -58,7 +58,7 @@
       "name": "Where does DeskTerminal's forex news come from?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Headlines are pulled live from trusted, established financial news publishers — including InvestingLive (formerly ForexLive), MarketWatch, Yahoo Finance, Kitco News, CoinDesk, Marketaux, and Finnhub. Every headline links to the original article."
+        "text": "Headlines are pulled live from trusted, established financial news publishers — including InvestingLive, MarketWatch, Yahoo Finance, Kitco News, CoinDesk, the Federal Reserve, and Investing.com. Every headline links to the original article."
       }
     },
     {
@@ -91,6 +91,38 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes, use the filter tabs above the headline list to view news from all sources or a specific publisher only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Submit News feature?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anyone signed in can submit a market-relevant story through the Submit News button. DeskAi reviews it immediately — genuinely relevant, market-moving stories go live on the site right away, while low-impact or off-topic submissions are automatically filtered out. There's no waiting period and no manual approval queue for stories DeskAi can confidently classify."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check the impact of news on USD, XAUUSD, or other currencies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every headline on DeskTerminal is automatically tagged with a real impact level — High, Medium, or Low — and, where the connection is clear, which currency or Gold it affects and whether that effect is a strengthening or weakening one. This runs continuously across all major currencies (USD, EUR, GBP, JPY, AUD, CAD, CHF, NZD) and Gold (XAUUSD), so checking a specific pair's news impact is as simple as scanning the current headlines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I submit a specific news story to see how it affects the market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — this is exactly what the Submit News feature is for. Paste in a story you've seen elsewhere, and DeskAi will classify its real market impact and likely currency effect the moment it's reviewed, the same way it evaluates every other headline on the site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best way to find out how a piece of news will move a currency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check DeskTerminal's News page, where every headline already carries an AI-generated impact tag and currency effect — genuinely useful as a first, fast reference point before deciding whether a story is worth acting on, though it should never replace your own judgment or research on a specific trade."
       }
     }
   ]
@@ -208,8 +240,16 @@
   }
   .submit-news-image-tab.active{ border-color:var(--gold); color:var(--gold); }
   .submit-news-image-panel{ margin-top:.5rem; }
+  .submit-news-preview-topline{
+    grid-column:1/-1; width:100%; font-family:'JetBrains Mono', monospace; font-size:.62rem;
+    color:var(--dim); margin-bottom:.5rem;
+  }
+  .submit-news-ai-note{
+    margin-top:.9rem; font-size:.72rem; line-height:1.5; color:var(--dim);
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:6px; padding:.7rem;
+  }
   .submit-news-preview{
-    display:flex; gap:.7rem; align-items:center; background:var(--panel-2);
+    display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; background:var(--panel-2);
     border:1px solid var(--line-soft); border-radius:8px; padding:.7rem;
   }
   .submit-news-preview-img{
@@ -912,11 +952,11 @@
       <button class="submit-news-modal-close" id="submitNewsClose">✕</button>
     </div>
     <div id="submitNewsBody">
-      <label>Headline</label>
+      <label>Title</label>
       <input type="text" id="submitNewsTitle" placeholder="e.g. Fed signals possible rate cut" maxlength="200">
-      <label>Link</label>
+      <label>URL</label>
       <input type="text" id="submitNewsUrl" placeholder="https://...">
-      <label>Source (optional)</label>
+      <label>Source</label>
       <input type="text" id="submitNewsSource" placeholder="e.g. Reuters">
 
       <label>Image</label>
@@ -929,28 +969,19 @@
       <input type="text" id="submitNewsImageUrl" placeholder="https://... image link" class="submit-news-image-panel" data-panel="url" style="display:none;">
       <input type="file" id="submitNewsScreenshotFile" accept="image/*" class="submit-news-image-panel" data-panel="screenshot" style="display:none;">
 
-      <label>Category</label>
-      <select id="submitNewsCategory">
-        <option value="Breaking News (high)">Breaking News (high)</option>
-        <option value="Breaking News (medium)">Breaking News (medium)</option>
-        <option value="Breaking News (low)">Breaking News (low)</option>
-        <option value="Fundamental Analysis">Fundamental Analysis</option>
-        <option value="Technical Analysis">Technical Analysis</option>
-        <option value="Entertainment News">Entertainment News</option>
-        <option value="Forex Industry News">Forex Industry News</option>
-        <option value="Educational News" selected>Educational News</option>
-      </select>
-
-      <label>Preview</label>
+      <label>Story Preview</label>
       <div class="submit-news-preview" id="submitNewsPreview">
+        <div class="submit-news-preview-topline">Market · From deskterminal.com</div>
         <div class="submit-news-preview-img" id="submitNewsPreviewImg">No image</div>
         <div class="submit-news-preview-text">
           <div class="submit-news-preview-title" id="submitNewsPreviewTitle">Your headline will appear here</div>
-          <div class="submit-news-preview-meta" id="submitNewsPreviewMeta">Source · Category</div>
+          <div class="submit-news-preview-meta" id="submitNewsPreviewMeta">Source</div>
         </div>
       </div>
 
-      <button class="submit-news-submit-btn" id="submitNewsSubmitBtn">Submit for Review</button>
+      <div class="submit-news-ai-note">DeskAi automatically reviews every submission — genuinely relevant, market-moving stories go live immediately, while low-impact or off-topic submissions are automatically filtered out. No manual review, no waiting.</div>
+
+      <button class="submit-news-submit-btn" id="submitNewsSubmitBtn">Submit Story</button>
       <div class="submit-news-status" id="submitNewsStatus"></div>
     </div>
   </div>
@@ -997,7 +1028,7 @@
   <h2>Frequently Asked Questions</h2>
 
   <h3>Where does DeskTerminal's forex news come from?</h3>
-  <p>Headlines are pulled live from trusted, established financial news publishers — including InvestingLive (formerly ForexLive), MarketWatch, Yahoo Finance, Kitco News, CoinDesk, Marketaux, and Finnhub. Every headline links to the original article.</p>
+  <p>Headlines are pulled live from trusted, established financial news publishers — including InvestingLive, MarketWatch, Yahoo Finance, Kitco News, CoinDesk, the Federal Reserve, and Investing.com. Every headline links to the original article.</p>
 
   <h3>What are Hot Stories?</h3>
   <p>Hot Stories is a curated selection of the most important headlines, capped at 15. It automatically shows the latest breaking story until an editor manually highlights a specific story as more important, similar to how major financial news aggregators curate their top section.</p>
@@ -1010,6 +1041,18 @@
 
   <h3>Can I filter news by source?</h3>
   <p>Yes, use the filter tabs above the headline list to view news from all sources or a specific publisher only.</p>
+
+  <h3>What is the Submit News feature?</h3>
+  <p>Anyone signed in can submit a market-relevant story through the "+ Submit News" button. DeskAi reviews it immediately — genuinely relevant, market-moving stories go live on the site right away, while low-impact or off-topic submissions are automatically filtered out. There's no waiting period and no manual approval queue for stories DeskAi can confidently classify.</p>
+
+  <h3>How do I check the impact of news on USD, XAUUSD, or other currencies?</h3>
+  <p>Every headline on DeskTerminal is automatically tagged with a real impact level — High, Medium, or Low — and, where the connection is clear, which currency or Gold it affects and whether that effect is a strengthening or weakening one. This runs continuously across all major currencies (USD, EUR, GBP, JPY, AUD, CAD, CHF, NZD) and Gold (XAUUSD), so checking a specific pair's news impact is as simple as scanning the current headlines.</p>
+
+  <h3>Can I submit a specific news story to see how it affects the market?</h3>
+  <p>Yes — this is exactly what the Submit News feature is for. Paste in a story you've seen elsewhere, and DeskAi will classify its real market impact and likely currency effect the moment it's reviewed, the same way it evaluates every other headline on the site.</p>
+
+  <h3>What's the best way to find out how a piece of news will move a currency?</h3>
+  <p>Check DeskTerminal's News page, where every headline already carries an AI-generated impact tag and currency effect — genuinely useful as a first, fast reference point before deciding whether a story is worth acting on, though it should never replace your own judgment or research on a specific trade.</p>
 
   <h2>Explore more on DeskTerminal</h2>
   <p>Check live prices on the <a href="index.html">Market</a> page, see upcoming releases on the <a href="calendar.html">Economic Calendar</a>, or work out your trade risk with the <a href="forex-tools.html">Trade Calculator</a>.</p>
@@ -1685,11 +1728,10 @@ document.querySelectorAll('.submit-news-image-tab').forEach(tab => {
 function updateSubmitPreview(){
   const title = document.getElementById('submitNewsTitle').value.trim();
   const source = document.getElementById('submitNewsSource').value.trim();
-  const category = document.getElementById('submitNewsCategory').value;
   document.getElementById('submitNewsPreviewTitle').textContent = title || 'Your headline will appear here';
-  document.getElementById('submitNewsPreviewMeta').textContent = `${source || 'Source'} · ${category}`;
+  document.getElementById('submitNewsPreviewMeta').textContent = source || 'Source';
 }
-['submitNewsTitle', 'submitNewsSource', 'submitNewsCategory'].forEach(id => {
+['submitNewsTitle', 'submitNewsSource'].forEach(id => {
   document.getElementById(id)?.addEventListener('input', updateSubmitPreview);
 });
 
@@ -1736,32 +1778,78 @@ submitNewsSubmitBtn?.addEventListener('click', async () => {
   const title = document.getElementById('submitNewsTitle').value.trim();
   const url = document.getElementById('submitNewsUrl').value.trim();
   const sourceName = document.getElementById('submitNewsSource').value.trim();
-  const category = document.getElementById('submitNewsCategory').value;
 
   if(!title || !url){
-    submitNewsStatus.textContent = 'Headline and link are required.';
+    submitNewsStatus.textContent = 'Title and URL are required.';
     submitNewsStatus.className = 'submit-news-status error';
     return;
   }
   if(!/^https?:\/\//i.test(url)){
-    submitNewsStatus.textContent = 'Link must start with http:// or https://';
+    submitNewsStatus.textContent = 'URL must start with http:// or https://';
     submitNewsStatus.className = 'submit-news-status error';
     return;
   }
 
   submitNewsSubmitBtn.disabled = true;
-  submitNewsSubmitBtn.textContent = 'Submitting…';
+  submitNewsSubmitBtn.textContent = 'Checking with DeskAi…';
 
   try{
     const imageUrl = await uploadSubmissionImage();
 
+    // The real, honest AI gate — DeskAi classifies the story right now,
+    // at submission time, and its judgment IS the decision. No manual
+    // admin approval step for this path anymore. If classification
+    // genuinely fails (not just returns "low" — an actual error, like
+    // every AI provider being unavailable), this falls back to the
+    // original pending/admin-review path as a safety net, rather than
+    // either silently losing the submission or auto-approving
+    // unclassified content.
+    let status = 'pending';
+    let classification = { impact: null, currency: null, effect: null };
+    let classificationSucceeded = false;
+
+    try{
+      const res = await fetch('/.netlify/functions/deskai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'news-impact', question: `0. ${title}` })
+      });
+      const data = await res.json();
+      const r = data.results?.[0];
+      if(r){
+        classificationSucceeded = true;
+        classification = {
+          impact: (r.impact === 'high' || r.impact === 'medium' || r.impact === 'low') ? r.impact : null,
+          currency: r.currency || null,
+          effect: (r.effect === 'strengthen' || r.effect === 'weaken') ? r.effect : null,
+        };
+        // The real, honest rule: low impact or genuinely unclassifiable
+        // (no impact tier at all) gets auto-rejected. Medium or high
+        // goes live immediately, no waiting.
+        status = (classification.impact === 'medium' || classification.impact === 'high') ? 'approved' : 'rejected';
+      }
+    } catch(e){ /* classificationSucceeded stays false — falls through to pending below */ }
+
     const { error } = await sb.from('submitted_news').insert({
-      title, url, source_name: sourceName || null, category, image_url: imageUrl,
+      title, url, source_name: sourceName || null, image_url: imageUrl,
       submitted_by: window.currentUser.id,
+      status,
+      reviewed_at: status !== 'pending' ? new Date().toISOString() : null,
+      ...classification,
     });
     if(error) throw error;
-    submitNewsStatus.textContent = 'Submitted — an admin will review it shortly.';
-    submitNewsStatus.className = 'submit-news-status success';
+
+    if(status === 'approved'){
+      submitNewsStatus.textContent = 'Approved by DeskAi — live now.';
+      submitNewsStatus.className = 'submit-news-status success';
+    } else if(status === 'rejected'){
+      submitNewsStatus.textContent = 'DeskAi determined this story is low-impact or off-topic, so it won\'t be published.';
+      submitNewsStatus.className = 'submit-news-status error';
+    } else {
+      submitNewsStatus.textContent = 'DeskAi is temporarily unavailable — submitted for manual review instead.';
+      submitNewsStatus.className = 'submit-news-status success';
+    }
+
     document.getElementById('submitNewsTitle').value = '';
     document.getElementById('submitNewsUrl').value = '';
     document.getElementById('submitNewsSource').value = '';
@@ -1775,7 +1863,7 @@ submitNewsSubmitBtn?.addEventListener('click', async () => {
     submitNewsStatus.className = 'submit-news-status error';
   } finally {
     submitNewsSubmitBtn.disabled = false;
-    submitNewsSubmitBtn.textContent = 'Submit for Review';
+    submitNewsSubmitBtn.textContent = 'Submit Story';
   }
 });
 
@@ -1788,18 +1876,26 @@ async function checkAndShowAdminPanel(){
   if(!profile || profile.role !== 'admin') return;
 
   const { data: pending } = await sb.from('submitted_news').select('*').eq('status', 'pending').order('created_at', { ascending: false });
-  if(!pending || !pending.length) return;
+  const { data: live } = await sb.from('submitted_news').select('*').eq('status', 'approved').order('reviewed_at', { ascending: false }).limit(20);
+
+  // Genuinely show the panel whenever there's anything to manage — either
+  // a rare pending fallback item, or live stories an admin might want to
+  // take down. The old version only ever appeared for pending items,
+  // meaning there was no way to reach the remove option below at all.
+  if((!pending || !pending.length) && (!live || !live.length)) return;
 
   const panel = document.createElement('div');
-  panel.style.cssText = 'position:fixed; bottom:20px; left:20px; width:340px; max-height:400px; overflow-y:auto; background:var(--panel); border:1px solid var(--gold); border-radius:10px; padding:1rem; z-index:1100;';
-  panel.innerHTML = `<div style="font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--gold); margin-bottom:.7rem;">⚠ ${pending.length} pending submission${pending.length > 1 ? 's' : ''} — admin only</div>` +
-    pending.map(p => `
+  panel.style.cssText = 'position:fixed; bottom:20px; left:20px; width:340px; max-height:500px; overflow-y:auto; background:var(--panel); border:1px solid var(--gold); border-radius:10px; padding:1rem; z-index:1100;';
+
+  let html = '';
+  if(pending && pending.length){
+    html += `<div style="font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--gold); margin-bottom:.7rem;">⚠ ${pending.length} pending submission${pending.length > 1 ? 's' : ''} — admin only</div>`;
+    html += pending.map(p => `
       <div class="admin-pending-item" style="background:var(--panel-2); border-radius:6px; padding:.7rem; margin-bottom:.6rem;">
         <div style="display:flex; gap:.6rem; margin-bottom:.5rem;">
           ${p.image_url ? `<img src="${escapeHtml(p.image_url)}" style="width:44px; height:44px; border-radius:4px; object-fit:cover; flex-shrink:0;" alt="">` : ''}
           <div>
             <div style="font-size:.78rem; color:var(--ink); margin-bottom:.2rem;">${escapeHtml(p.title)}</div>
-            <div style="font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--gold);">${escapeHtml(p.category || 'Educational News')}</div>
           </div>
         </div>
         <div style="font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--dim); margin-bottom:.5rem; word-break:break-all;">${escapeHtml(p.url)}</div>
@@ -1809,6 +1905,21 @@ async function checkAndShowAdminPanel(){
         </div>
       </div>
     `).join('');
+  }
+
+  if(live && live.length){
+    html += `<div style="font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--dim); margin:${pending && pending.length ? '1rem' : '0'} 0 .7rem;">${live.length} live community ${live.length > 1 ? 'stories' : 'story'} — admin only</div>`;
+    html += live.map(p => `
+      <div class="admin-live-item" style="background:var(--panel-2); border-radius:6px; padding:.6rem; margin-bottom:.5rem; display:flex; align-items:center; gap:.6rem;">
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:.74rem; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(p.title)}</div>
+        </div>
+        <button class="admin-remove-btn" data-id="${p.id}" style="background:#FB6B5B; color:#4A1B0C; border:none; border-radius:4px; padding:.35rem .6rem; font-size:.65rem; cursor:pointer; flex-shrink:0;">Remove</button>
+      </div>
+    `).join('');
+  }
+
+  panel.innerHTML = html;
   document.body.appendChild(panel);
 
   panel.querySelectorAll('.admin-approve-btn').forEach(btn => {
@@ -1852,6 +1963,19 @@ async function checkAndShowAdminPanel(){
     btn.addEventListener('click', async () => {
       await sb.from('submitted_news').update({ status: 'rejected', reviewed_at: new Date().toISOString() }).eq('id', btn.dataset.id);
       btn.closest('.admin-pending-item').remove();
+    });
+  });
+  panel.querySelectorAll('.admin-remove-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      // Genuine confirmation before removing something already live —
+      // this is the real safety valve for a story DeskAi auto-approved
+      // that shouldn't have gone live, or that needs taking down for
+      // any other reason.
+      if(!confirm('Remove this story from the live feed?')) return;
+      btn.disabled = true;
+      btn.textContent = '…';
+      await sb.from('submitted_news').update({ status: 'rejected', reviewed_at: new Date().toISOString() }).eq('id', btn.dataset.id);
+      btn.closest('.admin-live-item').remove();
     });
   });
 }

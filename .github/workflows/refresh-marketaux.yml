@@ -1,0 +1,19 @@
+name: Refresh Marketaux News
+
+# Marketaux's real, confirmed free tier is roughly 100 requests/day — far
+# too tight for the 5-minute schedule the other news sources use (that
+# would burn the entire daily quota in under an hour). This runs on its
+# own, genuinely separate, much less frequent schedule instead — every 2
+# hours is 12 calls/day, leaving real headroom for manual testing too.
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"  # every 2 hours, on the hour
+  workflow_dispatch: {}
+
+jobs:
+  refresh-marketaux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the Marketaux fetch specifically, via the real rate-limit-safe flag
+        run: curl -sf "https://deskterminal.com/.netlify/functions/cache-news?marketaux=true" > /dev/null

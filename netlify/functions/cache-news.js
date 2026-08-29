@@ -108,6 +108,35 @@ function parseRSS(xml, sourceName) {
   return items;
 }
 
+// Marketaux is a real, separate JSON API (not RSS), with a genuinely
+// tight free-tier limit — confirmed at roughly 100 requests/day, not
+// compatible with this file's normal 5-minute schedule. This is why it's
+// called on its own, much less frequent, separate schedule (see the
+// "marketaux=true" gate in the handler below and the second job in
+// keep-news-fresh.yml) rather than being added to the FEEDS array above.
+async function fetchMarketaux() {
+  const apiKey = process.env.MARKETAUX_API_KEY;
+  if (!apiKey) return [];
+  try {
+    const url = `https://api.marketaux.com/v1/news/all?language=en&limit=20&api_token=${encodeURIComponent(apiKey)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data || !Array.isArray(data.data)) return [];
+    return data.data
+      .filter((item) => item.title && item.url)
+      .map((item) => ({
+        title: item.title,
+        link: item.url,
+        pubDate: item.published_at ? new Date(item.published_at).toISOString() : null,
+        source: "Marketaux",
+        description: item.description ? String(item.description).slice(0, 400) : "",
+        image: item.image_url || "",
+      }));
+  } catch (err) {
+    return []; // a failed Marketaux call should never break the rest of the cache run
+  }
+}
+
 // Real, meaningfully-better deduplication than a plain title match. Two
 // headlines from different sources about the same story are rarely
 // worded identically ("Bitcoin surges over 25%" vs "Bitcoin jumps 25% as
@@ -137,12 +166,13 @@ function isDuplicate(a, b) {
   return overlap >= 0.18;
 }
 
-exports.handler = async function () {
+exports.handler = async function (event) {
   const supabaseUrl = process.env.SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_KEY;
   if (!supabaseUrl || !serviceKey) {
     return { statusCode: 500, body: JSON.stringify({ error: "Supabase service credentials not configured." }) };
   }
+  const includeMarketaux = event.queryStringParameters && event.queryStringParameters.marketaux === "true";
 
   try {
     const results = await Promise.allSettled(
@@ -157,6 +187,11 @@ exports.handler = async function () {
 
     let allItems = [];
     results.forEach((r) => { if (r.status === "fulfilled") allItems = allItems.concat(r.value); });
+
+    if (includeMarketaux) {
+      const marketauxItems = await fetchMarketaux();
+      allItems = allItems.concat(marketauxItems);
+    }
 
     // Deduplicate within this fetch — exact link matches first (cheap),
     // then genuine near-duplicate title matches across different sources.
