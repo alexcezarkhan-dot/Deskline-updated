@@ -1,20 +1,15 @@
 // DeskTerminal Instrument Insight — generates the market summary, sentiment,
 // technical overview, trend, volatility read, and FAQ answers for a given
-// instrument landing page. Nothing here is hardcoded: it's built fresh, every
-// request, from the real live price data the page sends in. Reuses the same
-// Gemini setup as netlify/functions/deskai.js.
+// instrument. Nothing here is hardcoded: it's built fresh, every request,
+// from the real live price data the page sends in. Uses the same 5-provider
+// fallback chain as deskai.js (see ai-providers.js), so this no longer
+// depends solely on Gemini having quota left.
+
+const { callAIWithFallback } = require("./ai-providers");
 
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
-  }
-
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Insight generation is not configured yet on this site." }),
-    };
   }
 
   let payload;
@@ -58,24 +53,8 @@ Day low: ${dayLow || 'unknown'}
 Recent headlines: ${Array.isArray(recentHeadlines) && recentHeadlines.length ? recentHeadlines.slice(0,5).join(' | ') : 'none provided'}`;
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts: [{ text: userContent }] }],
-          systemInstruction: { parts: [{ text: systemPrompt }] },
-          generationConfig: { maxOutputTokens: 700, temperature: 0.5 },
-        }),
-      }
-    );
-    const data = await response.json();
-    if (data.error) {
-      return { statusCode: 500, body: JSON.stringify({ error: data.error.message }) };
-    }
-    let text = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "{}";
-    text = text.replace(/^```json\s*/i, "").replace(/```\s*$/, "");
+    const { text: rawText } = await callAIWithFallback(systemPrompt, userContent, []);
+    let text = rawText.replace(/^```json\s*/i, "").replace(/```\s*$/, "");
 
     let parsed;
     try {
@@ -90,6 +69,6 @@ Recent headlines: ${Array.isArray(recentHeadlines) && recentHeadlines.length ? r
       body: JSON.stringify(parsed),
     };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: "Insight request failed." }) };
+    return { statusCode: 500, body: JSON.stringify({ error: err.message || "Insight request failed." }) };
   }
 };
