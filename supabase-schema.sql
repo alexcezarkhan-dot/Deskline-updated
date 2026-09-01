@@ -364,3 +364,84 @@ create policy "Anyone can view cached calendar events"
 
 -- Same deliberate gap as cached_news — only the service role key
 -- (used exclusively by the scheduled cache job) can write here.
+
+-- ---------------------------------------------------------------------
+-- Featured Brokers — moved off the static featured-brokers.json file so
+-- an admin can add, edit, or remove a broker directly from the site's
+-- own admin panel, with no GitHub push needed for routine updates.
+-- ---------------------------------------------------------------------
+create table public.featured_brokers (
+  id uuid default gen_random_uuid() primary key,
+  name text not null,
+  founded text,
+  domestic_license text,
+  max_leverage text,
+  platforms text,
+  spread_eur_usd text,
+  spread_gbp_usd text,
+  spread_usd_jpy text,
+  spread_usd_chf text,
+  spread_usd_cad text,
+  deposit_options text,
+  status text default 'coming-soon' check (status in ('live', 'apply', 'coming-soon')),
+  live_link text,
+  demo_link text,
+  display_order int default 0,
+  created_at timestamptz default now()
+);
+
+alter table public.featured_brokers enable row level security;
+
+create policy "Anyone can view featured brokers"
+  on public.featured_brokers for select
+  using (true);
+
+create policy "Admins can insert brokers"
+  on public.featured_brokers for insert
+  with check (
+    exists (
+      select 1 from public.profiles
+      where profiles.id = auth.uid() and profiles.role = 'admin'
+    )
+  );
+
+create policy "Admins can update brokers"
+  on public.featured_brokers for update
+  using (
+    exists (
+      select 1 from public.profiles
+      where profiles.id = auth.uid() and profiles.role = 'admin'
+    )
+  );
+
+create policy "Admins can delete brokers"
+  on public.featured_brokers for delete
+  using (
+    exists (
+      select 1 from public.profiles
+      where profiles.id = auth.uid() and profiles.role = 'admin'
+    )
+  );
+
+-- ---------------------------------------------------------------------
+-- Scanner Snapshots — our own, self-collected price history, built from
+-- genuinely free, unrestricted sources (Frankfurter for forex, FCS
+-- sparingly for gold only). A scheduled job takes a real price snapshot
+-- periodically; Scanner computes its own candles and % change purely
+-- from these stored snapshots via math — zero AI involved, and no
+-- dependency on any provider's restricted candle-specific endpoint.
+-- ---------------------------------------------------------------------
+create table public.scanner_snapshots (
+  id uuid default gen_random_uuid() primary key,
+  code text not null,
+  price numeric not null,
+  snapshot_at timestamptz default now()
+);
+
+create index scanner_snapshots_code_time on public.scanner_snapshots (code, snapshot_at desc);
+
+alter table public.scanner_snapshots enable row level security;
+
+create policy "Anyone can view scanner snapshots"
+  on public.scanner_snapshots for select
+  using (true);

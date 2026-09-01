@@ -1,0 +1,19 @@
+name: Collect Scanner Snapshots
+
+# Frankfurter (7 forex pairs) is genuinely free and unrestricted. Gold
+# uses FCS's tight shared 500/month budget though — every 3 hours is 8
+# runs/day, roughly 240 gold requests/month, leaving real headroom for
+# Replay's own usage of the same key. (An earlier draft of this comment
+# had the math backwards — checked and corrected before shipping.)
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  collect-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the real snapshot collection
+        run: curl -sf "https://deskterminal.com/.netlify/functions/collect-scanner-snapshot" > /dev/null
