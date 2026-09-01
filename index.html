@@ -823,25 +823,19 @@ function fmtScannerPrice(n){
   return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 4 : 2, maximumFractionDigits: n < 10 ? 4 : 2 });
 }
 
-function buildCandlestickSVG(trend){
-  if(!trend || trend.length < 2) return '';
-  const allVals = trend.flatMap(c => [c.h, c.l]);
-  const min = Math.min(...allVals), max = Math.max(...allVals);
-  const range = (max - min) || 1;
-  const w = 100 / trend.length;
-  const toY = (v) => 32 - ((v - min) / range) * 30;
-
-  const bars = trend.map((c, i) => {
-    const x = i * w + w / 2;
-    const yO = toY(c.o), yC = toY(c.c), yH = toY(c.h), yL = toY(c.l);
-    const up = c.c >= c.o;
-    const color = up ? '#4ADE80' : '#FB6B5B';
-    const bodyTop = Math.min(yO, yC);
-    const bodyH = Math.max(Math.abs(yC - yO), 1);
-    return `<line x1="${x}" y1="${yH}" x2="${x}" y2="${yL}" stroke="${color}" stroke-width="0.7"/><rect x="${x - w*0.3}" y="${bodyTop}" width="${w*0.6}" height="${bodyH}" fill="${color}"/>`;
-  }).join('');
-
-  return `<svg viewBox="0 0 100 32" class="scanner-box-chart">${bars}</svg>`;
+function buildCandlestickSVG(candleDirection){
+  // Genuinely simple, single candle — matches what was actually asked
+  // for (hollow = bullish, filled = bearish), and matches the real data
+  // shape scanner-data.js now provides (a direction, not a full OHLC
+  // history array, since Scanner reads simple price snapshots now).
+  if(!candleDirection) return '';
+  const isHollow = candleDirection === 'hollow';
+  const color = isHollow ? '#4ADE80' : '#FB6B5B';
+  const fill = isHollow ? 'none' : color;
+  return `<svg viewBox="0 0 20 32" class="scanner-box-chart" style="width:20px; height:32px;">
+    <line x1="10" y1="2" x2="10" y2="30" stroke="${color}" stroke-width="1"/>
+    <rect x="4" y="10" width="12" height="12" fill="${fill}" stroke="${color}" stroke-width="1.5"/>
+  </svg>`;
 }
 
 async function loadScanner(){
@@ -851,7 +845,7 @@ async function loadScanner(){
     const res = await fetch('/.netlify/functions/scanner-data');
     const data = await res.json();
     if(data.error || !data.pairs){
-      gridEl.innerHTML = '<div class="home-card-loading" style="padding:1rem;">Market scanner isn\'t available right now.</div>';
+      gridEl.innerHTML = `<div class="home-card-loading" style="padding:1rem;">${data.error || "Market scanner isn't available right now."}</div>`;
       return;
     }
 
@@ -861,7 +855,7 @@ async function loadScanner(){
         <a class="scanner-box" href="market.html">
           <div class="scanner-box-label">${p.label}</div>
           <div class="scanner-box-price mono">${fmtScannerPrice(p.price)}</div>
-          ${buildCandlestickSVG(p.trend)}
+          ${buildCandlestickSVG(p.candleDirection)}
           <div class="scanner-box-chg ${isUp ? 'up' : 'down'}">${isUp ? '+' : ''}${p.pctChange.toFixed(2)}%</div>
         </a>`;
     }).join('');
