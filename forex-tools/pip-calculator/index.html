@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1G086VGN7W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1G086VGN7W');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pip Calculator — Forex Pip Value Calculator | DeskTerminal</title>
@@ -182,6 +191,24 @@
     .nav-clock{ display:none; }
     .mobile-subnav{ display:flex; }
   }
+
+.mobile-sticky-result{ display:none; }
+@media (max-width:640px){
+  body{ padding-bottom:64px; }
+  .mobile-sticky-result{
+    display:flex; justify-content:space-between; align-items:center;
+    position:fixed; bottom:0; left:0; right:0;
+    background:var(--panel); border-top:1px solid var(--gold);
+    padding:.9rem 1.2rem; z-index:50;
+    box-shadow:0 -4px 16px rgba(0,0,0,0.3);
+  }
+  .msr-label{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
+  .msr-value{ font-family:'JetBrains Mono', monospace; font-size:1.15rem; font-weight:700; }
+  /* Push DeskAi's floating button above the new sticky result bar —
+     without this, the two fixed-position elements visually collide at
+     the bottom of the screen. */
+  .deskai-toggle-wrap{ bottom:78px !important; }
+}
 
 
   .breadcrumb-nav{
@@ -739,6 +766,11 @@
   </div>
 </div>
 
+<div class="mobile-sticky-result" id="mobileStickyResult">
+  <span class="msr-label">Pip Value</span>
+  <span class="msr-value gold" id="pip-value-mobile">$0.00</span>
+</div>
+
 
 
 <section class="seo-content">
@@ -1192,6 +1224,8 @@ async function calcPip(){
   const CURRENCY_SYMBOLS = { USD:'$', EUR:'€', GBP:'£', JPY:'¥', AUD:'A$', CAD:'C$', CHF:'CHF ', NZD:'NZ$' };
   const symbol = CURRENCY_SYMBOLS[depositCurrency] || (depositCurrency + ' ');
   document.getElementById('pip-value').textContent = symbol + fmt(pipValueFinal * pips);
+  const mobileVal = document.getElementById('pip-value-mobile');
+  if(mobileVal) mobileVal.textContent = symbol + fmt(pipValueFinal * pips);
 }
 
 
