@@ -232,24 +232,47 @@ exports.handler = async function (event) {
     }
 
     const genuinelyNew = deduped.filter((item) => !existingLinks.has(item.link));
-    const classifications = genuinelyNew.length ? await classifyHeadlines(genuinelyNew) : new Map();
 
-    const rows = deduped.map((item) => {
-      const c = classifications.get(item.title);
-      return {
-        title: item.title, link: item.link, source: item.source,
-        image: item.image || null, description: item.description || null,
-        pub_date: item.pubDate,
-        impact: c ? c.impact : null,
-        currency: c ? c.currency : null,
-        effect: c ? c.effect : null,
-      };
-    });
+    // Real fix for the timeout: insert headlines FIRST, without waiting
+    // on classification at all. This is the critical path — it must
+    // always complete fast and reliably, regardless of how many new
+    // headlines exist. Classification (which can be genuinely slow when
+    // there's a large backlog, like on this pipeline's first-ever
+    // successful run) happens AFTER, capped to a single small batch per
+    // run — any remaining backlog naturally catches up over the next
+    // few scheduled runs (every 5 minutes) rather than risking the
+    // whole function timing out and headlines never appearing at all.
+    const rows = deduped.map((item) => ({
+      title: item.title, link: item.link, source: item.source,
+      image: item.image || null, description: item.description || null,
+      pub_date: item.pubDate,
+      impact: null, currency: null, effect: null,
+    }));
 
     if (rows.length) {
       await fetch(`${supabaseUrl}/rest/v1/cached_news`, {
         method: "POST", headers, body: JSON.stringify(rows),
       });
+    }
+
+    // Now classify — capped to one real batch (20 items) per run,
+    // regardless of how large the genuinely-new backlog is. Updates
+    // each row individually right after classifying it, so headlines
+    // are already visible to real visitors the moment they're saved
+    // above, not blocked waiting on this step.
+    const toClassifyThisRun = genuinelyNew.slice(0, 20);
+    let newlyClassifiedCount = 0;
+    if (toClassifyThisRun.length) {
+      const classifications = await classifyHeadlines(toClassifyThisRun);
+      for (const item of toClassifyThisRun) {
+        const c = classifications.get(item.title);
+        if (!c) continue;
+        newlyClassifiedCount++;
+        await fetch(`${supabaseUrl}/rest/v1/cached_news?link=eq.${encodeURIComponent(item.link)}`, {
+          method: "PATCH", headers,
+          body: JSON.stringify({ impact: c.impact, currency: c.currency, effect: c.effect }),
+        });
+      }
     }
 
     // Real 2-day expiry — delete anything older than 2 days, every run.
@@ -260,7 +283,7 @@ exports.handler = async function (event) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ fetched: allItems.length, newOrUpdated: rows.length, newlyClassified: genuinelyNew.length }),
+      body: JSON.stringify({ fetched: allItems.length, newOrUpdated: rows.length, newlyClassified: newlyClassifiedCount, backlogRemaining: Math.max(0, genuinelyNew.length - toClassifyThisRun.length) }),
     };
   } catch (err) {
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };

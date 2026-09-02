@@ -12,7 +12,7 @@
 // "Filled" candle = price closed lower than it opened (bearish) —
 // matches standard real trading-platform candle convention.
 
-const CODES = ["EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD", "XAU"];
+const CODES = ["XAU", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD"];
 const QUOTE_IS_USD = { EUR: true, GBP: true, JPY: false, CHF: false, CAD: false, AUD: true, NZD: true, XAU: true };
 const LABELS = { EUR: "EUR/USD", GBP: "GBP/USD", JPY: "USD/JPY", CHF: "USD/CHF", CAD: "USD/CAD", AUD: "AUD/USD", NZD: "NZD/USD", XAU: "Gold" };
 

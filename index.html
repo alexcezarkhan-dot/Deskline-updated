@@ -820,7 +820,7 @@ function escapeHtml(str){
 }
 
 function fmtScannerPrice(n){
-  return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 4 : 2, maximumFractionDigits: n < 10 ? 4 : 2 });
+  return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 5 : 2, maximumFractionDigits: n < 10 ? 5 : 2 });
 }
 
 function buildCandlestickSVG(candleDirection){
@@ -849,10 +849,24 @@ async function loadScanner(){
       return;
     }
 
+    // Real mapping to each pair's actual instrument page, not a generic
+    // link — matches the real folder names that genuinely exist.
+    const SCANNER_LINKS = {
+      XAU: 'commodities/gold/',
+      EUR: 'forex/eur-usd/',
+      GBP: 'forex/gbp-usd/',
+      JPY: 'forex/usd-jpy/',
+      CHF: 'forex/usd-chf/',
+      CAD: 'forex/usd-cad/',
+      AUD: 'forex/aud-usd/',
+      NZD: 'market.html', // no dedicated NZD/USD instrument page yet — falls back honestly
+    };
+
     gridEl.innerHTML = data.pairs.map(p => {
       const isUp = p.pctChange >= 0;
+      const href = SCANNER_LINKS[p.code] || 'market.html';
       return `
-        <a class="scanner-box" href="market.html">
+        <a class="scanner-box" href="${href}">
           <div class="scanner-box-label">${p.label}</div>
           <div class="scanner-box-price mono">${fmtScannerPrice(p.price)}</div>
           ${buildCandlestickSVG(p.candleDirection)}
