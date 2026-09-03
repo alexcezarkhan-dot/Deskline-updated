@@ -1,0 +1,20 @@
+name: Bulk Load Calendar (90 Days)
+
+# Deliberately manual-trigger only, or at most weekly — this pulls 90
+# days of global calendar events in one large, efficient shot, using a
+# genuine chunk of Trading Economics' limited guest budget at once. Real
+# events don't change their scheduled dates/names, so this genuinely
+# doesn't need to run often — running it too frequently would defeat
+# its entire purpose (using the limited budget wisely, not wastefully).
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 0 * * 0"  # once a week, Sunday midnight UTC - genuinely enough given events rarely reschedule
+
+jobs:
+  bulk-load:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the real 90-day bulk pull
+        run: curl -sf "https://deskterminal.com/.netlify/functions/bulk-load-calendar" > /dev/null

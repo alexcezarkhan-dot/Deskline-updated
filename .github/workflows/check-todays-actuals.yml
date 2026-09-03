@@ -1,0 +1,18 @@
+name: Check Today's Calendar Actuals
+
+# Genuinely small, lightweight query - only today's events, not 90 days
+# of them - so this can run more frequently without meaningfully eating
+# into Trading Economics' limited guest budget, complementing the rare,
+# large bulk-load-calendar.yml job.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "*/30 * * * *"  # every 30 minutes - small, targeted query each time
+
+jobs:
+  check-actuals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the real, small daily actuals check
+        run: curl -sf "https://deskterminal.com/.netlify/functions/check-todays-actuals" > /dev/null
