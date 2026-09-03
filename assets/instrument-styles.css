@@ -34,8 +34,8 @@ nav{ display:flex; justify-content:space-between; align-items:center; padding: 1
 .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
 
 .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
-.navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s; display:flex; align-items:center; gap:.4rem; }
-.navlinks a:hover{ color:var(--ink); }
+.navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s, background-color .15s; display:flex; align-items:center; gap:.4rem; padding:.3rem .6rem; border-radius:4px; }
+.navlinks a:hover{ color:#1a1206; background-color:var(--gold); }
 
 @media (max-width:860px){
   .navlinks{ display:none; }
