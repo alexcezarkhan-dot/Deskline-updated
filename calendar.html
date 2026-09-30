@@ -1124,6 +1124,71 @@
     .profile-dropdown{ right:4vw; left:4vw; width:auto; }
   }
 
+  /* Up Next highlights - clean, professional, developer-industry standard */
+  .event-row.up-next {
+    background: rgba(74, 222, 128, 0.04) !important; /* soft green glass tint */
+    border-left: 3.5px solid #4ADE80 !important; /* pulsing green indicator bar */
+    box-shadow: inset 2px 0 8px rgba(74, 222, 128, 0.03);
+    position: relative;
+    transition: background 0.3s ease, border-left-color 0.3s ease;
+  }
+  .event-row.up-next:hover {
+    background: rgba(74, 222, 128, 0.07) !important;
+  }
+  .event-row.up-next .ev-time {
+    color: #4ADE80 !important;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .event-row.up-next .ev-time::before {
+    content: '▶';
+    font-size: 0.6rem;
+    color: #4ADE80;
+    display: inline-block;
+    animation: pulsePlay 1.6s infinite ease-in-out;
+  }
+  @keyframes pulsePlay {
+    0%, 100% { opacity: 0.55; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 2px rgba(74, 222, 128, 0.8)); }
+  }
+
+  /* Up Next Button styling inside list status bar */
+  .up-next-btn {
+    background: rgba(74, 222, 128, 0.09);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    color: #4ADE80;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.22rem 0.65rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+    transition: all 0.2s ease;
+  }
+  .up-next-btn:hover {
+    background: rgba(74, 222, 128, 0.16);
+    border-color: rgba(74, 222, 128, 0.35);
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.12);
+  }
+  .up-next-btn .up-next-icon {
+    font-size: 0.55rem;
+    animation: pulsePlay 1.6s infinite ease-in-out;
+  }
+  
+  /* Flash animation for scrolling/highlighting */
+  @keyframes flashHighlight {
+    0% { background-color: rgba(74, 222, 128, 0.35); }
+    100% { background-color: rgba(74, 222, 128, 0.04); }
+  }
+  .event-row.up-next.highlight-flash {
+    animation: flashHighlight 1.5s ease-out;
+  }
+
 </style>
 </head>
 <body>
@@ -1270,6 +1335,9 @@
 
 <div class="list-status-bar">
   <button class="sound-toggle-btn" id="soundToggleBtn" title="Toggle high-impact alert sound" aria-label="Toggle alert sound">🔔</button>
+  <button class="up-next-btn" id="upNextBtn" title="Scroll to the next upcoming economic event" style="display:none;">
+    <span class="up-next-icon">▶</span> Up Next: <span id="upNextLabel" style="font-weight:700; color:#FFF; margin-left:3px;">None</span>
+  </button>
   <div class="util-clock mono" id="clockLine"><span class="dot"></span>live</div>
   <div class="last-updated mono" id="lastUpdated"></div>
 </div>
@@ -1513,6 +1581,35 @@ function renderCalendar(){
     return;
   }
 
+  // Find the index of the closest future event (Up Next)
+  const nowTime = Date.now();
+  let upNextIdx = -1;
+  let minDiff = Infinity;
+  filtered.forEach((e, i) => {
+    const diff = new Date(e.date).getTime() - nowTime;
+    if (diff > 0 && diff < minDiff) {
+      minDiff = diff;
+      upNextIdx = i;
+    }
+  });
+
+  // Handle the "Up Next" status bar button
+  const upNextBtn = document.getElementById('upNextBtn');
+  const upNextLabel = document.getElementById('upNextLabel');
+  if (upNextIdx !== -1) {
+    const nextEvent = filtered[upNextIdx];
+    if (upNextLabel) {
+      upNextLabel.textContent = `${nextEvent.currency} - ${nextEvent.event}`;
+    }
+    if (upNextBtn) {
+      upNextBtn.style.display = 'inline-flex';
+    }
+  } else {
+    if (upNextBtn) {
+      upNextBtn.style.display = 'none';
+    }
+  }
+
   let html = '';
   let currentDay = null;
   filtered.forEach((e, idx) => {
@@ -1533,9 +1630,11 @@ function renderCalendar(){
         actualClass = isLowerBetter ? 'actual-up' : 'actual-down';
       }
     }
+    const isUpNext = idx === upNextIdx;
+    const upNextClass = isUpNext ? ' up-next' : '';
     html += `
       ${dayHeaderHtml}
-      <div class="event-row" data-idx="${idx}" data-key="ev-${idx}" data-eventtime="${new Date(e.date).toISOString()}">
+      <div class="event-row${upNextClass}" data-idx="${idx}" data-key="ev-${idx}" data-eventtime="${new Date(e.date).toISOString()}">
         ${dateCellHtml}
         <span class="ev-time">${fmtTime(e.date)}</span>
         <span class="ev-currency">${escapeHtml(e.currency || e.country || '')}</span>
@@ -1586,6 +1685,22 @@ function renderCalendar(){
       });
     }
   });
+
+  // Connect the Up Next scroll-to button click handler
+  const upNextBtnEl = document.getElementById('upNextBtn');
+  if (upNextBtnEl) {
+    // Remove previous listener by replacing the element
+    const cloned = upNextBtnEl.cloneNode(true);
+    upNextBtnEl.parentNode.replaceChild(cloned, upNextBtnEl);
+    cloned.addEventListener('click', () => {
+      const row = bodyEl.querySelector('.event-row.up-next');
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.classList.add('highlight-flash');
+        setTimeout(() => row.classList.remove('highlight-flash'), 1500);
+      }
+    });
+  }
 
   // Build the list of events currently within their 10-minute countdown
   // window (scheduled, no Actual value yet) — re-derived every render since
