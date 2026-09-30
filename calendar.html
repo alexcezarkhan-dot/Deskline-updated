@@ -1483,7 +1483,6 @@ async function loadCalendarData(useLive = false, customQuery = ''){
     allEvents = Array.from(eventMap.values());
     allEvents.sort((a,b) => new Date(a.date) - new Date(b.date));
     lastCalendarFetchTime = new Date();
-    updateLastUpdatedLine();
     populateCountryFilter();
     renderCalendar();
   } catch(e){
