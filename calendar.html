@@ -1521,8 +1521,18 @@ function renderCalendar(){
     currentDay = day;
     const dateCellHtml = `<span class="date-cell${isNewDay ? '' : ' repeat'}"><span class="dow">${fmtDow(e.date)}</span><span class="dnum">${fmtDnum(e.date)}</span></span>`;
     const dayHeaderHtml = isNewDay ? `<div class="day-group-header">${fmtDayHeader(e.date)}</div>` : '';
-    const actualClass = (e.actual && e.forecast && parseFloat(e.actual) > parseFloat(e.forecast)) ? 'actual-up'
-                       : (e.actual && e.forecast && parseFloat(e.actual) < parseFloat(e.forecast)) ? 'actual-down' : '';
+    const nameLower = e.event.toLowerCase();
+    const isLowerBetter = nameLower.includes('unemployment') || nameLower.includes('jobless claims') || nameLower.includes('claimant count') || nameLower.includes('unemployed');
+    const actualNum = parseFloat(e.actual);
+    const forecastNum = parseFloat(e.forecast);
+    let actualClass = '';
+    if (e.actual && e.forecast && !isNaN(actualNum) && !isNaN(forecastNum)) {
+      if (actualNum > forecastNum) {
+        actualClass = isLowerBetter ? 'actual-down' : 'actual-up';
+      } else if (actualNum < forecastNum) {
+        actualClass = isLowerBetter ? 'actual-up' : 'actual-down';
+      }
+    }
     html += `
       ${dayHeaderHtml}
       <div class="event-row" data-idx="${idx}" data-key="ev-${idx}" data-eventtime="${new Date(e.date).toISOString()}">
