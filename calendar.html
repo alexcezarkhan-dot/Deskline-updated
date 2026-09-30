@@ -1189,6 +1189,12 @@
     animation: flashHighlight 1.5s ease-out;
   }
 
+  @media (max-width: 700px) {
+    .up-next-btn {
+      display: none !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1339,7 +1345,6 @@
     <span class="up-next-icon">▶</span> Up Next: <span id="upNextLabel" style="font-weight:700; color:#FFF; margin-left:3px;">None</span>
   </button>
   <div class="util-clock mono" id="clockLine"><span class="dot"></span>live</div>
-  <div class="last-updated mono" id="lastUpdated"></div>
 </div>
 
 <div class="mobile-list-header">
@@ -1451,22 +1456,9 @@ function updateClock(){
   if(desktopClock) desktopClock.innerHTML = text;
 }
 updateClock();
-setInterval(() => { updateClock(); updateLastUpdatedLine(); }, 1000);
+setInterval(() => { updateClock(); }, 1000);
 
 let lastCalendarFetchTime = null;
-
-function updateLastUpdatedLine(){
-  const el = document.getElementById('lastUpdated');
-  if(!el || !lastCalendarFetchTime) return;
-  const diffMs = new Date() - lastCalendarFetchTime;
-  const diffMin = Math.floor(diffMs / 60000);
-  const diffHr = Math.floor(diffMin / 60);
-  let text;
-  if(diffMin < 1) text = 'Updated just now';
-  else if(diffMin < 60) text = `Updated ${diffMin} minute${diffMin===1?'':'s'} ago`;
-  else text = `Updated ${diffHr} hour${diffHr===1?'':'s'} ago`;
-  el.textContent = text;
-}
 
 async function loadCalendarData(useLive = false, customQuery = ''){
   const bodyEl = document.getElementById('calendarBody');
