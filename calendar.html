@@ -253,7 +253,7 @@
 
   .sound-toggle-btn{
     background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    width:32px; height:32px; font-size:.95rem; cursor:pointer; transition: border-color .15s, opacity .15s;
+    width:26px; height:26px; font-size:.78rem; cursor:pointer; transition: border-color .15s, opacity .15s;
     display:flex; align-items:center; justify-content:center;
   }
   .sound-toggle-btn:hover{ border-color:var(--gold); }
@@ -525,12 +525,12 @@
     font-size:.8rem;
   }
   .event-row:hover{ background: var(--panel-2); }
-  .event-row .ev-folder{ font-size:1.4rem; text-align:center; transition: transform .15s; }
+  .event-row .ev-folder{ font-size:.95rem; text-align:center; transition: transform .15s; }
   .event-row .ev-history-icon{
-    font-size:1.35rem; text-align:center; cursor:pointer; opacity:.6; transition: opacity .15s;
+    font-size:.9rem; text-align:center; cursor:pointer; opacity:.6; transition: opacity .15s;
   }
   .event-row .ev-bell-icon{
-    font-size:1.35rem; text-align:center; cursor:pointer; opacity:.4; transition: opacity .15s, filter .15s;
+    font-size:.9rem; text-align:center; cursor:pointer; opacity:.4; transition: opacity .15s, filter .15s;
   }
   .event-row .ev-bell-icon:hover{ opacity:.85; }
   .event-row .ev-bell-icon.active{
@@ -651,11 +651,12 @@
       font-family:'JetBrains Mono', monospace; font-size:.6rem;
       letter-spacing:.06em; text-transform:uppercase; color:var(--dim);
     }
-    .mobile-list-header .col-time{ width:46px; flex-shrink:0; }
-    .mobile-list-header .col-currency{ width:30px; flex-shrink:0; }
-    .mobile-list-header .col-impact{ width:10px; flex-shrink:0; }
+    .mobile-list-header .col-time{ width:48px; flex-shrink:0; }
+    .mobile-list-header .col-currency{ width:32px; flex-shrink:0; }
+    .mobile-list-header .col-impact{ width:9px; flex-shrink:0; }
     .mobile-list-header .col-event{ flex:1; min-width:0; }
-    .mobile-list-header .col-actual{ flex-shrink:0; }
+    .mobile-list-header .col-actual{ flex-shrink:0; min-width:44px; text-align:right; }
+    .mobile-list-header .col-bell{ width:18px; flex-shrink:0; }
 
     .cal-main{ padding: 0 0 1rem; }
     .table-header-row{ display:none; }
@@ -669,48 +670,50 @@
 
     .event-row{
       display:flex;
-      flex-wrap:wrap;
+      flex-wrap:nowrap;
       align-items:center;
       gap:.4rem;
-      padding: .6rem 4vw;
+      padding: .55rem 4vw;
       font-size:.8rem;
     }
     .event-row > *{ text-align:left; }
 
     .date-cell{ display:none; }
 
-    .ev-time{ order:1; flex-shrink:0; width:46px; font-size:.66rem; }
-    .ev-currency{ order:2; flex-shrink:0; width:30px; font-weight:700; font-size:.7rem; }
-    .ev-impact{ order:3; flex-shrink:0; width:10px; height:10px; }
+    .ev-time{ order:1; flex-shrink:0; width:48px; font-size:.66rem; }
+    .ev-currency{ order:2; flex-shrink:0; width:32px; font-weight:700; font-size:.7rem; }
+    .ev-impact{ order:3; flex-shrink:0; width:9px; height:9px; border-radius:2px; }
 
     .ev-name{
-      order:4; flex:1; min-width:0; color:var(--ink); font-size:.8rem;
+      order:4; flex:1; min-width:0; color:var(--ink); font-size:.78rem;
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
-    .ev-val{
-      order:5; flex-shrink:0;
-      flex-direction:row; align-items:baseline; gap:.3rem;
+    .event-row .ev-val:not(.ev-val-secondary){
+      order:5; flex-shrink:0; min-width:44px; text-align:right;
+      display:flex; flex-direction:row; align-items:baseline; justify-content:flex-end; gap:.25rem;
       font-size:.78rem; font-weight:700;
     }
+    .event-row .ev-val-secondary{ display:none !important; }
     .ev-val-label{
       display:none;
       font-family:'JetBrains Mono', monospace; font-size:.58rem;
       letter-spacing:.05em; text-transform:uppercase; color:var(--dim);
     }
-    .ev-val-secondary{ display:none; }
     .ev-countdown{ font-size:.62rem; }
 
-    .ev-folder{ display:none; }
-    .ev-history-icon{ order:6; flex-shrink:0; font-size:1rem; opacity:.55; margin-left:.2rem; }
-    .ev-bell-icon{ order:7; flex-shrink:0; font-size:1rem; opacity:.45; }
-
-    .event-row.detail-open{ background:var(--panel-2); align-items:flex-start; }
-    .event-row.detail-open .ev-name{ white-space:normal; overflow:visible; text-overflow:clip; }
-    .event-row.detail-open .ev-val:not(.ev-val-secondary) + .ev-val-secondary{
-      display:inline-flex; order:8; flex-basis:100%; margin-top:.4rem; font-weight:400;
+    .event-row .ev-folder{ display:none !important; }
+    .event-row .ev-history-icon{ display:none !important; }
+    .event-row .ev-bell-icon{
+      order:6; flex-shrink:0; width:18px; text-align:center;
+      font-size:.72rem; opacity:.45; cursor:pointer;
     }
-    .event-row.detail-open .ev-val-secondary{ display:inline-flex; order:9; font-weight:400; }
+
+    .event-row.detail-open{ background:var(--panel-2); flex-wrap:wrap; align-items:flex-start; }
+    .event-row.detail-open .ev-name{ white-space:normal; overflow:visible; text-overflow:clip; }
+    .event-row.detail-open .ev-val-secondary{
+      display:inline-flex !important; order:8; margin-top:.35rem; margin-right:.8rem; font-weight:400; font-size:.72rem;
+    }
     .event-row.detail-open .ev-val-label{ display:inline-block; }
 
     .event-detail{ padding: .9rem 4vw 1.1rem; }
@@ -1273,10 +1276,11 @@
 
 <div class="mobile-list-header">
   <span class="col-time">Time</span>
-  <span class="col-currency">Currency</span>
+  <span class="col-currency">Cur</span>
   <span class="col-impact"></span>
   <span class="col-event">Event</span>
   <span class="col-actual">Actual</span>
+  <span class="col-bell"></span>
 </div>
 
 <div class="cal-main">
@@ -1396,17 +1400,27 @@ function updateLastUpdatedLine(){
   el.textContent = text;
 }
 
-async function loadCalendarData(useLive = false){
+async function loadCalendarData(useLive = false, customQuery = ''){
   const bodyEl = document.getElementById('calendarBody');
   bodyEl.innerHTML = '<div class="cal-status">Loading calendar…</div>';
   try{
-    const res = await fetch('/.netlify/functions/econ-calendar' + (useLive ? '?live=true' : ''));
+    let url = '/.netlify/functions/econ-calendar';
+    const qParts = [];
+    if(useLive) qParts.push('live=true');
+    if(customQuery) qParts.push(customQuery);
+    if(qParts.length) url += '?' + qParts.join('&');
+
+    const res = await fetch(url);
     const data = await res.json();
     if(data.error || !data.events){
       bodyEl.innerHTML = '<div class="cal-status">Calendar is not available right now — it may not be set up on this site yet.</div>';
       return;
     }
-    allEvents = data.events.filter(e => e.date && e.event);
+    const incoming = data.events.filter(e => e.date && e.event);
+    const eventMap = new Map();
+    allEvents.forEach(e => eventMap.set(`${e.date}_${e.event}_${e.currency}`, e));
+    incoming.forEach(e => eventMap.set(`${e.date}_${e.event}_${e.currency}`, e));
+    allEvents = Array.from(eventMap.values());
     allEvents.sort((a,b) => new Date(a.date) - new Date(b.date));
     lastCalendarFetchTime = new Date();
     updateLastUpdatedLine();
@@ -2251,11 +2265,25 @@ function endOfMonth(d){ return endOfDay(new Date(d.getFullYear(), d.getMonth() +
 function fmtInputDate(d){ return d.toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' }); }
 function fmtRangeShort(d){ return d.toLocaleDateString(undefined, { month:'short', day:'numeric' }); }
 
-function applyDateFilter(start, end){
+async function applyDateFilter(start, end){
   dateRangeStart = start;
   dateRangeEnd = end;
-  renderCalendar();
   updateDateRangeLabel(start, end);
+
+  if(start && end){
+    const hasEventsInRange = allEvents.some(e => {
+      const t = new Date(e.date).getTime();
+      return t >= start.getTime() && t <= end.getTime();
+    });
+    if(!hasEventsInRange){
+      const startStr = start.toISOString().slice(0, 10);
+      const endStr = end.toISOString().slice(0, 10);
+      await loadCalendarData(false, `start=${startStr}&end=${endStr}`);
+      return;
+    }
+  }
+
+  renderCalendar();
 }
 function updateDateRangeLabel(start, end){
   const label = document.getElementById('dateRangeBtnLabel');

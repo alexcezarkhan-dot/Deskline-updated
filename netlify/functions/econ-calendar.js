@@ -85,62 +85,62 @@ function formatValue(num, unit) {
   return String(num);
 }
 
-function buildCalendarEvents(anchorDate = new Date()) {
+function buildCalendarEvents(startDate, endDate, anchorDate = new Date()) {
   const events = [];
-  const y = anchorDate.getUTCFullYear();
-  const m = anchorDate.getUTCMonth();
-  const d = anchorDate.getUTCDate();
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
-  // Generate a full rolling 4-week window (-14 days to +14 days)
-  for (let offset = -14; offset <= 14; offset++) {
-    const curDate = new Date(Date.UTC(y, m, d + offset));
-    const dayOfWeek = curDate.getUTCDay(); // 0 = Sun, 6 = Sat
-    if (dayOfWeek === 0 || dayOfWeek === 6) continue;
+  const cur = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
+  const endUTC = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate()));
 
-    const dateStr = curDate.toISOString().slice(0, 10);
-    const dayTemplates = DAILY_SCHEDULE_BLUEPRINTS[dayOfWeek] || [];
+  while (cur <= endUTC) {
+    const dayOfWeek = cur.getUTCDay(); // 0 = Sun, 6 = Sat
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      const dateStr = cur.toISOString().slice(0, 10);
+      const dayTemplates = DAILY_SCHEDULE_BLUEPRINTS[dayOfWeek] || [];
+      const daysFromAnchor = Math.round((cur.getTime() - anchorDate.getTime()) / (1000 * 60 * 60 * 24));
 
-    dayTemplates.forEach((tmpl, idx) => {
-      const eventTime = `${dateStr}T${tmpl.time}Z`;
-      const eventTimestamp = new Date(eventTime).getTime();
-      const hasPassed = eventTimestamp < anchorDate.getTime();
+      dayTemplates.forEach((tmpl, idx) => {
+        const eventTime = `${dateStr}T${tmpl.time}Z`;
+        const eventTimestamp = new Date(eventTime).getTime();
+        const hasPassed = eventTimestamp < anchorDate.getTime();
 
-      const countryInfo = CURRENCY_COUNTRY_MAP[tmpl.curr] || {
-        country: tmpl.curr, source: "National Statistics Office", sourceUrl: null
-      };
+        const countryInfo = CURRENCY_COUNTRY_MAP[tmpl.curr] || {
+          country: tmpl.curr, source: "National Statistics Office", sourceUrl: null
+        };
 
-      // Slight deterministic variance across weeks
-      const weekVariance = Math.sin(offset * 0.5 + idx) * 0.15;
-      let forecastNum = tmpl.fct !== null ? tmpl.fct * (1 + weekVariance) : null;
-      let prevNum = tmpl.prev !== null ? tmpl.prev : null;
+        const variance = Math.sin(daysFromAnchor * 0.35 + idx) * 0.12;
+        let forecastNum = tmpl.fct !== null ? tmpl.fct * (1 + variance) : null;
+        let prevNum = tmpl.prev !== null ? tmpl.prev : null;
 
-      let actualNum = null;
-      let actualStr = null;
-      let forecastStr = formatValue(forecastNum, tmpl.unit);
-      let prevStr = formatValue(prevNum, tmpl.unit);
+        let actualNum = null;
+        let actualStr = null;
+        let forecastStr = formatValue(forecastNum, tmpl.unit);
+        let prevStr = formatValue(prevNum, tmpl.unit);
 
-      if (hasPassed && forecastNum !== null) {
-        // Generate actual for passed events
-        const outcomeFactor = ((idx * 17 + offset * 13) % 20 - 10) / 100;
-        actualNum = forecastNum * (1 + outcomeFactor);
-        actualStr = formatValue(actualNum, tmpl.unit);
-      }
+        if (hasPassed && forecastNum !== null) {
+          const outcomeFactor = ((idx * 17 + daysFromAnchor * 13) % 20 - 10) / 100;
+          actualNum = forecastNum * (1 + outcomeFactor);
+          actualStr = formatValue(actualNum, tmpl.unit);
+        }
 
-      events.push({
-        date: eventTime,
-        country: countryInfo.country,
-        currency: tmpl.curr,
-        event: tmpl.event,
-        category: tmpl.cat,
-        importance: tmpl.imp,
-        actual: actualStr,
-        forecast: forecastStr,
-        previous: prevStr,
-        source: countryInfo.source,
-        sourceUrl: countryInfo.sourceUrl,
-        reference: dateStr.slice(0, 7),
+        events.push({
+          date: eventTime,
+          country: countryInfo.country,
+          currency: tmpl.curr,
+          event: tmpl.event,
+          category: tmpl.cat,
+          importance: tmpl.imp,
+          actual: actualStr,
+          forecast: forecastStr,
+          previous: prevStr,
+          source: countryInfo.source,
+          sourceUrl: countryInfo.sourceUrl,
+          reference: dateStr.slice(0, 7),
+        });
       });
-    });
+    }
+    cur.setUTCDate(cur.getUTCDate() + 1);
   }
 
   // Sort strictly chronological
@@ -148,16 +148,44 @@ function buildCalendarEvents(anchorDate = new Date()) {
   return events;
 }
 
-let cachedEvents = null;
+let cachedDefaultEvents = null;
 let lastCacheTime = 0;
 
 exports.handler = async function (event) {
   const params = event.queryStringParameters || {};
   const wantsLive = params.live === "true";
-
   const now = new Date();
-  if (!cachedEvents || wantsLive || (Date.now() - lastCacheTime > 60000)) {
-    cachedEvents = buildCalendarEvents(now);
+
+  // If a specific date or custom range is requested, generate on demand
+  if (params.date || (params.start && params.end)) {
+    let startDate, endDate;
+    if (params.date) {
+      startDate = new Date(params.date + "T00:00:00Z");
+      endDate = new Date(params.date + "T23:59:59Z");
+    } else {
+      startDate = new Date(params.start + "T00:00:00Z");
+      endDate = new Date(params.end + "T23:59:59Z");
+    }
+    const customEvents = buildCalendarEvents(startDate, endDate, now);
+    return {
+      statusCode: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=60",
+      },
+      body: JSON.stringify({
+        events: customEvents,
+        serverTime: now.toISOString(),
+        count: customEvents.length,
+      }),
+    };
+  }
+
+  // Default rolling window: -30 days to +120 days (4 months, covering upcoming months including December 2026)
+  if (!cachedDefaultEvents || wantsLive || (Date.now() - lastCacheTime > 60000)) {
+    const defaultStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 30));
+    const defaultEnd = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 120));
+    cachedDefaultEvents = buildCalendarEvents(defaultStart, defaultEnd, now);
     lastCacheTime = Date.now();
   }
 
@@ -168,9 +196,9 @@ exports.handler = async function (event) {
       "Cache-Control": "public, max-age=30",
     },
     body: JSON.stringify({
-      events: cachedEvents,
+      events: cachedDefaultEvents,
       serverTime: now.toISOString(),
-      count: cachedEvents.length,
+      count: cachedDefaultEvents.length,
     }),
   };
 };
