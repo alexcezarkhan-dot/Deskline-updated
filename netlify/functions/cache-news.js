@@ -73,14 +73,40 @@ const FEEDS = [
   { url: "https://www.investing.com/rss/news.rss", source: "Investing.com" },
 ];
 
+// RSS feeds hand back HTML-escaped text — "&#39;" for an apostrophe, "&amp;"
+// for an ampersand, "&mdash;" for a dash. Decoding it here, once, at parse
+// time means every consumer downstream (the news page, the server-rendered
+// HTML, the instrument pages) shows a clean headline instead of a literal
+// "&#39;" sitting in the middle of a word. Everything that renders these
+// strings escapes them again before they touch the page.
+function decodeEntities(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
+    .replace(/&#[xX]([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&mdash;/gi, "\u2014")
+    .replace(/&ndash;/gi, "\u2013")
+    .replace(/&hellip;/gi, "\u2026")
+    .replace(/&lsquo;|&rsquo;/gi, "\u2019")
+    .replace(/&ldquo;|&rdquo;/gi, "\u201d")
+    .replace(/&amp;/gi, "&"); // must run last, or it would double-decode
+}
+
 function extractTag(xml, tag) {
   const m = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
   if (!m) return "";
-  return m[1].replace(/<!\[CDATA\[/g, "").replace(/\]\]>/g, "").replace(/<[^>]+>/g, "").trim();
+  return decodeEntities(
+    m[1].replace(/<!\[CDATA\[/g, "").replace(/\]\]>/g, "").replace(/<[^>]+>/g, "").trim()
+  );
 }
 
 function stripHtml(str) {
-  return str.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  return decodeEntities(str.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
 }
 
 function parseRSS(xml, sourceName) {
