@@ -284,9 +284,14 @@
 
   /* ---------------- Hot Stories ---------------- */
   .hot-stories-section{ padding: 1.4rem 0 0; }
+  /* Full-width news column — the feed is the star of the page now.
+     (The 220px Promotions rail styles are still defined below and its markup
+     is kept in the body as a comment — to bring it back, restore
+     grid-template-columns: 220px 1fr; uncomment the <aside>, and set
+     .news-main's padding back to 0 0 0 1.4rem.) */
   .news-layout{
     display:grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: minmax(0, 1fr);
     align-items: stretch;
     gap: 0;
     padding: 0 6vw;
@@ -315,7 +320,7 @@
     font-family:'JetBrains Mono', monospace; font-size:.65rem;
     color:var(--dim); letter-spacing:.08em; text-transform:uppercase; line-height:1.8;
   }
-  .news-main{ padding: 0 0 0 1.4rem; min-width:0; }
+  .news-main{ padding: 0; min-width:0; }
   @media (max-width: 860px){ .news-main{ padding: 0 6vw; } }
   .hot-stories-label{
     font-family:'JetBrains Mono', monospace; font-size:.68rem; letter-spacing:.18em;
@@ -358,89 +363,201 @@
   .hot-story-row .hot-story-img{ width:38px; height:38px; }
   .hot-story-row .hot-story-title{ font-size:.82rem; font-weight:500; margin-bottom:0; flex:1; }
   .hot-story-row .hot-story-meta{ flex-shrink:0; white-space:nowrap; }
-  .filter-row{
-    display:flex; flex-wrap:wrap;
-    border-bottom: 1px solid var(--line);
+  .feed-head{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:.6rem;
+    margin: 1.6rem 0 .9rem;
+  }
+  .feed-count{
+    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:20px;
+    padding:.2rem .6rem; letter-spacing:.02em; margin-left:.5rem;
+    text-transform:none;
+  }
+
+  /* Toolbar sitting on top of the feed: source tabs on the left, live
+     headline search on the right. */
+  .feed-toolbar{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    gap:.6rem;
+    border:1px solid var(--line); border-bottom:none; border-radius:6px 6px 0 0;
     background: var(--panel-2);
+    padding-right:.7rem;
+  }
+  .filter-row{
+    display:flex; flex-wrap:wrap; align-items:center;
+    background:transparent;
   }
   .filter-row button{
     font-family:'JetBrains Mono', monospace;
-    font-size:.72rem;
+    font-size:.7rem;
     letter-spacing:.05em;
     text-transform:uppercase;
     background:transparent;
     border:none;
-    border-right:1px solid var(--line-soft);
+    border-bottom:2px solid transparent;
     color:var(--dim);
-    padding:.75rem 1.3rem;
+    padding:.8rem 1rem;
     cursor:pointer;
-    transition: background .12s, color .12s;
+    transition: color .12s, border-color .12s;
   }
-  .filter-row button.active{
-    color:var(--gold);
-    background: var(--panel);
-    box-shadow: inset 0 -2px 0 var(--gold);
-  }
+  .filter-row button.active{ color:var(--gold); border-bottom-color:var(--gold); }
   .filter-row button:hover{ color:var(--ink); }
+  .filter-row button .fc{ margin-left:.4rem; font-size:.62rem; opacity:.55; }
 
-  /* ---------------- News table shell ---------------- */
-  .table-header{
-    display:flex;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.65rem;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    color:var(--dim);
-    padding: .6rem .9rem;
-    border-bottom:1px solid var(--line);
-    background: var(--panel-2);
+  .feed-search{ position:relative; display:flex; align-items:center; flex:0 1 250px; min-width:170px; }
+  .feed-search svg{
+    position:absolute; left:.6rem; width:13px; height:13px;
+    stroke:var(--dim); fill:none; stroke-width:2; pointer-events:none;
   }
-  .table-header span:first-child{ width:70px; }
-  .table-header span:nth-child(2){ width:120px; }
+  .feed-search input{
+    width:100%; background:var(--panel); border:1px solid var(--line-soft); border-radius:5px;
+    color:var(--ink); font-family:'JetBrains Mono', monospace; font-size:.7rem;
+    padding:.45rem .6rem .45rem 1.9rem; outline:none; transition:border-color .12s;
+  }
+  .feed-search input:focus{ border-color:var(--gold); }
+  .feed-search input::placeholder{ color:var(--dim); }
 
+  /* ---------------- News feed shell ---------------- */
   .news-shell{
-    border-left:1px solid var(--line);
-    border-right:1px solid var(--line);
-    border-bottom:1px solid var(--line);
+    border:1px solid var(--line);
+    border-radius:0 0 6px 6px;
     background: var(--panel);
     min-height: 400px;
+    /* No overflow:hidden here on purpose — it would stop the sticky day
+       dividers inside the feed from sticking to the top of the viewport. */
   }
   #newsContainer{ width:100%; }
-  .news-row{
-    display:flex; align-items:center; gap:.5rem;
-    padding: .6rem .9rem;
-    border-bottom:1px solid var(--line-soft);
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    text-decoration:none; color:var(--ink);
-    font-size:.85rem;
-    cursor:pointer;
+
+  /* Sticky day divider — "TODAY · 42 stories" */
+  .feed-day{
+    position:sticky; top:0; z-index:2;
+    display:flex; align-items:center; gap:.6rem;
+    padding:.5rem 1rem;
+    background: #171C24;
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace; font-size:.6rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold);
   }
-  .news-row:last-child{ border-bottom:none; }
-  .news-row:hover{ background: var(--panel-2); }
-  .news-row .nr-time{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); width:70px; flex-shrink:0; }
-  .news-row .nr-source{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--gold); width:120px; flex-shrink:0; }
-  .news-row .nr-title{ flex:1; }
+  .feed-day .feed-day-count{ color:var(--dim); letter-spacing:.04em; }
+
+  /* A single headline row — big, bright, clicking straight through to the
+     publisher, exactly like a real news wire. */
+  .feed-row{
+    display:flex; align-items:stretch; position:relative;
+    background: var(--panel);
+    border-bottom:1px solid var(--line-soft);
+    transition: background .12s;
+  }
+  .feed-row:last-child{ border-bottom:none; }
+  .feed-row::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:transparent; transition:background .12s;
+  }
+  .feed-row:hover{ background:#171E28; }
+  .feed-row:hover::before{ background:var(--gold); }
+  .feed-row.is-high::before{ background:var(--down); }
+  .feed-row.is-med::before{ background:#E8B15C; opacity:.7; }
+
+  .feed-main{
+    display:flex; align-items:flex-start; gap:.9rem;
+    flex:1; min-width:0;
+    padding:.9rem 1rem .9rem 1.15rem;
+    text-decoration:none; color:var(--ink);
+  }
+  .feed-badge{
+    position:relative; overflow:hidden;
+    width:34px; height:34px; flex-shrink:0; margin-top:.1rem;
+    border-radius:6px; background:var(--panel-2); border:1px solid var(--line-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-size:.85rem; font-weight:700; color:var(--gold);
+  }
+  /* Publisher favicon sits on top; if it fails to load it removes itself and
+     the source's first letter underneath stays visible. */
+  .feed-badge img{
+    position:absolute; inset:0; margin:auto;
+    width:18px; height:18px; display:block; background:var(--panel-2);
+  }
+  .feed-content{ flex:1; min-width:0; display:flex; flex-direction:column; gap:.4rem; }
+  .feed-title{
+    font-size:1rem; font-weight:600; line-height:1.42; color:var(--ink);
+    transition:color .12s;
+  }
+  .feed-row:hover .feed-title{ color:var(--gold); }
+  .feed-meta{
+    display:flex; align-items:center; flex-wrap:wrap; gap:.45rem;
+    font-family:'JetBrains Mono', monospace; font-size:.66rem; color:var(--dim);
+  }
+  .feed-src{ color:var(--gold); }
+  .feed-new{
+    display:inline-flex; align-items:center; gap:.3rem;
+    color:var(--up); font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  }
+  .feed-new .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--up);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  .feed-effect{
+    font-size:.62rem; font-weight:700; letter-spacing:.04em;
+    border:1px solid currentColor; border-radius:3px; padding:.05rem .35rem;
+  }
+  .feed-effect.strengthen{ color:var(--up); }
+  .feed-effect.weaken{ color:var(--down); }
+  .feed-tags{ flex-shrink:0; display:flex; align-items:flex-start; padding-top:.15rem; }
+
+  .feed-expand{
+    width:42px; flex-shrink:0; cursor:pointer;
+    background:transparent; border:none; border-left:1px solid var(--line-soft);
+    color:var(--dim); font-size:.85rem; transition: color .12s, background .12s;
+  }
+  .feed-expand:hover{ color:var(--gold); background:var(--panel-2); }
+  .feed-expand.open{ color:var(--gold); background:var(--panel-2); }
+
   .nr-impact-badge{
     display:inline-block; color:#4A1B0C;
     font-family:'JetBrains Mono', monospace; font-size:.62rem; font-weight:700;
-    letter-spacing:.04em; padding:.1rem .4rem; border-radius:3px; margin-right:.4rem;
-    vertical-align:middle;
+    letter-spacing:.04em; padding:.15rem .45rem; border-radius:3px;
   }
   .nr-impact-badge.high{ background:#FB6B5B; }
   .nr-impact-badge.medium{ background:#E8B15C; }
 
   .nr-hidden-notice{
     font-family:'JetBrains Mono', monospace; font-size:.66rem; color:var(--dim);
-    padding:.6rem .9rem; border-bottom:1px solid var(--line-soft); font-style:italic;
+    padding:.6rem 1rem; border-bottom:1px solid var(--line-soft);
+    background:var(--panel-2);
   }
 
-  .nr-effect{
-    font-family:'JetBrains Mono', monospace; font-size:.68rem; font-weight:600;
-    padding:.3rem .9rem .5rem; margin-top:-.3rem;
+  /* Loading skeleton — real rows, just not filled in yet. */
+  @keyframes feedShimmer{ 0%{ background-position:-380px 0; } 100%{ background-position:380px 0; } }
+  .feed-skel{ display:flex; align-items:flex-start; gap:.9rem; padding:.95rem 1.15rem; border-bottom:1px solid var(--line-soft); }
+  .sk-badge{ width:34px; height:34px; border-radius:6px; flex-shrink:0; }
+  .sk-lines{ flex:1; display:flex; flex-direction:column; gap:.5rem; padding-top:.15rem; }
+  .sk-line{ height:11px; border-radius:3px; }
+  .sk-line.w1{ width:82%; } .sk-line.w2{ width:38%; height:9px; }
+  .sk-badge, .sk-line{
+    background: linear-gradient(90deg, #171C24 8%, #20262F 18%, #171C24 33%);
+    background-size: 800px 100%;
+    animation: feedShimmer 1.4s linear infinite;
   }
-  .nr-effect.strengthen{ color:#4ADE80; }
-  .nr-effect.weaken{ color:#FB6B5B; }
+
+  .feed-empty{
+    padding:3rem 1rem; text-align:center;
+    font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim);
+  }
+  .feed-empty .big{ display:block; font-size:1.4rem; margin-bottom:.7rem; opacity:.6; }
+
+  @media (max-width: 700px){
+    .feed-head{ margin-top:1.2rem; }
+    .feed-title{ font-size:.92rem; }
+    .feed-main{ padding:.75rem .7rem .75rem .85rem; gap:.65rem; }
+    .feed-badge{ width:28px; height:28px; }
+    .feed-badge img{ width:16px; height:16px; }
+    .feed-tags{ display:none; }
+    .feed-expand{ width:34px; }
+    .feed-search{ flex:1 1 100%; }
+    .feed-toolbar{ padding:.5rem .5rem .6rem; }
+    .news-shell{ min-height:300px; }
+  }
 
   .news-detail{
     display:none;
@@ -997,28 +1114,37 @@
 </div>
 
 <div class="news-layout">
+  <!-- Promotions rail — switched off while there's nothing real to put in it.
+       To bring it back: uncomment this <aside>, set .news-layout back to
+       "220px 1fr" and give .news-main left padding.
+
   <aside class="news-sidebar">
     <div class="sidebar-label">Promotions</div>
     <div class="ad-slot">
       <span>Broker &amp;<br>Bonus<br>Promotions<br>— Coming Soon —</span>
     </div>
   </aside>
+  -->
 
   <div class="news-main">
-    <div class="hot-stories-section">
+    <div class="hot-stories-section" id="hotStoriesSection" style="display:none;">
       <div class="hot-stories-label">Hot Stories</div>
       <div class="hot-stories-featured" id="hotStoriesFeatured"></div>
       <div class="hot-stories-list" id="hotStoriesList"></div>
     </div>
 
-    <div class="hot-stories-label" style="margin-top:2rem;">Latest Stories</div>
+    <div class="feed-head">
+      <div class="hot-stories-label" style="margin-bottom:0;">
+        Latest Stories <span class="feed-count" id="feedCount"></span>
+      </div>
+    </div>
 
-    <div class="filter-row" id="newsTabs"></div>
-
-    <div class="table-header">
-      <span>Time</span>
-      <span>Source</span>
-      <span>Headline</span>
+    <div class="feed-toolbar">
+      <div class="filter-row" id="newsTabs"></div>
+      <label class="feed-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+        <input type="search" id="newsSearch" placeholder="Search headlines…" autocomplete="off" spellcheck="false" aria-label="Search headlines">
+      </label>
     </div>
 
     <div class="news-shell">
@@ -1083,13 +1209,19 @@ setInterval(updateNavClock, 1000);
 
 let allNewsItems = [];
 let currentSourceFilter = 'all';
+let currentSearchQuery = '';
 
+// Source tabs, each carrying a live count of the headlines it holds — the
+// same category strip you'd find at the top of a real news wire.
 function renderTabs(){
   const el = document.getElementById('newsTabs');
-  const sources = ['all', ...new Set(allNewsItems.map(i => i.source))];
-  const labels = { all: 'All Sources' };
-  el.innerHTML = sources.map(s =>
-    `<button data-key="${s}" class="${s===currentSourceFilter?'active':''}">${labels[s] || s}</button>`
+  if(!el) return;
+  const sources = [...new Set(allNewsItems.map(i => i.source).filter(Boolean))];
+  const tabs = [{ key:'all', label:'All Sources', count: allNewsItems.length }].concat(
+    sources.map(s => ({ key:s, label:s, count: allNewsItems.filter(i => i.source === s).length }))
+  );
+  el.innerHTML = tabs.map(t =>
+    `<button data-key="${escapeHtml(t.key)}" class="${t.key===currentSourceFilter?'active':''}">${escapeHtml(t.label)}<span class="fc">${t.count}</span></button>`
   ).join('');
   el.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1099,6 +1231,12 @@ function renderTabs(){
     });
   });
 }
+
+// Live headline search — filters the feed as you type, no reload, no server call.
+document.getElementById('newsSearch')?.addEventListener('input', (e) => {
+  currentSearchQuery = e.target.value.trim().toLowerCase();
+  renderNewsList();
+});
 
 // Escapes HTML special characters before inserting external text (RSS
 // headlines) into the page. Without this, a malicious or compromised feed
@@ -1115,12 +1253,6 @@ function escapeHtml(str){
     .replace(/'/g, '&#39;');
 }
 
-function fmtNewsTime(iso){
-  if(!iso) return '—';
-  const d = new Date(iso);
-  return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-}
-
 // Real daily cap on low-impact stories — resets automatically each day
 // since the key includes today's date. Only counts stories that actually
 // get shown, so refreshing the page doesn't silently let more through.
@@ -1135,11 +1267,52 @@ function incrementLowImpactShownToday(){
   localStorage.setItem(key, String(getLowImpactShownToday() + 1));
 }
 
+// "14 min ago" / "3 hr ago" / "Yesterday" — wire-style relative times.
+function timeAgo(iso){
+  if(!iso) return '—';
+  const then = new Date(iso).getTime();
+  if(isNaN(then)) return '—';
+  const mins = Math.floor((Date.now() - then) / 60000);
+  if(mins < 1) return 'just now';
+  if(mins < 60) return mins + ' min ago';
+  const hrs = Math.floor(mins / 60);
+  if(hrs < 24) return hrs + ' hr ago';
+  const days = Math.floor(hrs / 24);
+  if(days === 1) return 'yesterday';
+  if(days < 7) return days + ' days ago';
+  return new Date(then).toLocaleDateString([], { month:'short', day:'numeric' });
+}
+
+// Day divider label — Today / Yesterday / Monday, Sep 28.
+function dayLabel(date){
+  const d = new Date(date);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const that = new Date(d); that.setHours(0,0,0,0);
+  const diffDays = Math.round((today - that) / 86400000);
+  if(diffDays === 0) return 'Today';
+  if(diffDays === 1) return 'Yesterday';
+  if(diffDays < 7) return d.toLocaleDateString([], { weekday:'long' });
+  return d.toLocaleDateString([], { weekday:'short', month:'short', day:'numeric' });
+}
+
+// Pulled from the article URL purely to show the publisher's favicon, the
+// same visual anchor a real news wire uses to make each story scannable.
+function sourceDomain(link){
+  try{ return new URL(link).hostname.replace(/^www\./,''); }catch(e){ return ''; }
+}
+
 function renderNewsList(){
   const container = document.getElementById('newsContainer');
   const sourceFiltered = currentSourceFilter === 'all'
     ? allNewsItems
     : allNewsItems.filter(i => i.source === currentSourceFilter);
+
+  // Keyword search — matches the headline or the source name.
+  const searched = currentSearchQuery
+    ? sourceFiltered.filter(i =>
+        (i.title || '').toLowerCase().includes(currentSearchQuery) ||
+        (i.source || '').toLowerCase().includes(currentSearchQuery))
+    : sourceFiltered;
 
   // Apply the real low-impact daily cap — high/medium always show; low-impact
   // items only show up to today's remaining allowance. Items not yet
@@ -1147,7 +1320,7 @@ function renderNewsList(){
   // genuinely don't know their impact level yet.
   let lowImpactBudget = LOW_IMPACT_DAILY_CAP - getLowImpactShownToday();
   let lowImpactHiddenCount = 0;
-  const filtered = sourceFiltered.filter(item => {
+  const filtered = searched.filter(item => {
     const classification = classifiedHeadlines.get(item.title);
     if(classification?.impact !== 'low') return true; // high, medium, or not-yet-classified
 
@@ -1166,8 +1339,20 @@ function renderNewsList(){
     return false;
   });
 
+  // Live tally next to the "Latest Stories" heading.
+  const countEl = document.getElementById('feedCount');
+  if(countEl){
+    countEl.textContent = (currentSearchQuery || currentSourceFilter !== 'all')
+      ? `${filtered.length} of ${allNewsItems.length}`
+      : `${allNewsItems.length} headlines`;
+  }
+
   if(!filtered.length){
-    container.innerHTML = '<div class="news-status">No headlines available right now.</div>';
+    container.innerHTML = `<div class="feed-empty"><span class="big">🔎</span>${
+      currentSearchQuery
+        ? 'No headlines match \u201c' + escapeHtml(currentSearchQuery) + '\u201d.'
+        : 'No headlines available right now.'
+    }</div>`;
     return;
   }
 
@@ -1175,40 +1360,86 @@ function renderNewsList(){
     ? `<div class="nr-hidden-notice">${lowImpactHiddenCount} lower-impact ${lowImpactHiddenCount === 1 ? 'story' : 'stories'} hidden today — focusing on what actually moves markets.</div>`
     : '';
 
-  container.innerHTML = hiddenNoticeHtml + filtered.map((item, idx) => {
-    const classification = classifiedHeadlines.get(item.title);
-    const impact = classification?.impact;
-    const badgeHtml = impact === 'high'
-      ? '<span class="nr-impact-badge high">HIGH</span> '
-      : impact === 'medium'
-        ? '<span class="nr-impact-badge medium">MED</span> '
-        : '';
-    const hasEffect = classification?.currency && classification?.effect;
-    const effectHtml = hasEffect
-      ? `<div class="nr-effect ${classification.effect}">Effect on ${escapeHtml(classification.currency)}: ${classification.effect === 'strengthen' ? '▲ Strengthen' : '▼ Weaken'}</div>`
-      : '';
-    return `
-    <div class="news-row" data-idx="${idx}">
-      <span class="nr-time">${fmtNewsTime(item.pubDate)}</span>
-      <span class="nr-source">${escapeHtml(item.source)}</span>
-      <span class="nr-title">${badgeHtml}${escapeHtml(item.title)}</span>
-    </div>
-    ${effectHtml}
-    <div class="news-detail" id="newsDetail-${idx}"></div>
-  `;
-  }).join('');
+  // Rows build up as one string, grouped under sticky day dividers so a long
+  // feed still reads like a wire rather than an endless table.
+  const dayKeyOf = (it) => {
+    const d = it.pubDate ? new Date(it.pubDate) : null;
+    return d && !isNaN(d) ? d.toDateString() : 'unknown';
+  };
 
-  container.querySelectorAll('.news-row').forEach(row => {
-    row.addEventListener('click', () => toggleNewsDetail(row, filtered, parseInt(row.dataset.idx)));
+  let html = hiddenNoticeHtml;
+  let lastDayKey = null;
+
+  filtered.forEach((item, idx) => {
+    const when = item.pubDate ? new Date(item.pubDate) : null;
+    const validDate = when && !isNaN(when);
+    const dayKey = dayKeyOf(item);
+
+    if(dayKey !== lastDayKey){
+      lastDayKey = dayKey;
+      const dayCount = filtered.filter(i => dayKeyOf(i) === dayKey).length;
+      html += `<div class="feed-day">${validDate ? dayLabel(when) : 'Undated'}<span class="feed-day-count">· ${dayCount} ${dayCount === 1 ? 'story' : 'stories'}</span></div>`;
+    }
+
+    const classification = classifiedHeadlines.get(item.title);
+    const impact = classification?.impact || item.impact || null;
+    const currency = classification?.currency || item.currency || null;
+    const effect = classification?.effect || item.effect || null;
+
+    const badgeHtml = impact === 'high'
+      ? '<span class="nr-impact-badge high">HIGH</span>'
+      : impact === 'medium'
+        ? '<span class="nr-impact-badge medium">MED</span>'
+        : '';
+    const effectHtml = (currency && effect)
+      ? `<span class="feed-effect ${effect}">${escapeHtml(currency)} ${effect === 'strengthen' ? '▲ Strengthen' : '▼ Weaken'}</span>`
+      : '';
+    const isNew = validDate && (Date.now() - when.getTime()) < 45 * 60000;
+    const absTime = validDate ? when.toLocaleString() : '';
+    const domain = sourceDomain(item.link);
+    const favicon = domain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64` : '';
+    const letter = (item.source || '?').trim().charAt(0).toUpperCase();
+
+    html += `
+    <div class="feed-row${impact === 'high' ? ' is-high' : impact === 'medium' ? ' is-med' : ''}" data-idx="${idx}">
+      <a class="feed-main" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">
+        <span class="feed-badge"><span class="fb-letter">${escapeHtml(letter)}</span>${favicon ? `<img src="${favicon}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>
+        <span class="feed-content">
+          <span class="feed-title">${escapeHtml(item.title)}</span>
+          <span class="feed-meta">
+            <span class="feed-src">${escapeHtml(item.source || 'Wire')}</span>
+            <span>·</span>
+            <span title="${escapeHtml(absTime)}">${timeAgo(item.pubDate)}</span>
+            ${isNew ? '<span class="feed-new"><span class="dot"></span>new</span>' : ''}
+            ${effectHtml}
+          </span>
+        </span>
+        ${badgeHtml ? `<span class="feed-tags">${badgeHtml}</span>` : ''}
+      </a>
+      <button class="feed-expand" data-idx="${idx}" type="button" title="Story details" aria-label="Story details">⌄</button>
+    </div>
+    <div class="news-detail" id="newsDetail-${idx}"></div>`;
+  });
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('.feed-expand').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleNewsDetail(parseInt(btn.dataset.idx, 10), filtered, btn);
+    });
   });
 }
 
-function toggleNewsDetail(row, filtered, idx){
+function toggleNewsDetail(idx, filtered, triggerEl){
   const detailEl = document.getElementById('newsDetail-' + idx);
+  if(!detailEl) return;
   const isOpen = detailEl.classList.contains('open');
 
   // Only one story expanded at a time
   document.querySelectorAll('.news-detail.open').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.feed-expand.open').forEach(b => b.classList.remove('open'));
   if(isOpen) return;
 
   const item = filtered[idx];
@@ -1236,6 +1467,7 @@ function toggleNewsDetail(row, filtered, idx){
     ${moreHtml}
   `;
   detailEl.classList.add('open');
+  triggerEl?.classList.add('open');
 }
 
 let lastNewsFetchTime = null;
@@ -1284,14 +1516,26 @@ function playWarningTone(){
 const classifiedHeadlines = new Map(); // title -> { impact, currency, effect }
 const seenHighImpactLinks = new Set(); // tracks which HIGH stories already triggered the sound alert
 
+// Skeleton rows in the real layout while the first fetch is in flight —
+// the page reads as a wire that's filling in, not a blank panel.
+function renderSkeleton(){
+  const container = document.getElementById('newsContainer');
+  if(!container) return;
+  container.innerHTML = Array.from({ length: 9 }).map(() => `
+    <div class="feed-skel">
+      <span class="sk-badge"></span>
+      <span class="sk-lines"><span class="sk-line w1"></span><span class="sk-line w2"></span></span>
+    </div>`).join('');
+}
+
 async function loadNews(){
   const container = document.getElementById('newsContainer');
-  container.innerHTML = '<div class="news-status">Loading live headlines…</div>';
+  renderSkeleton();
   try{
     const res = await fetch('/.netlify/functions/news-feed');
     const data = await res.json();
     if(data.error || !data.items){
-      container.innerHTML = '<div class="news-status">News feed is not available right now — it may not be set up on this site yet.</div>';
+      container.innerHTML = '<div class="feed-empty"><span class="big">📡</span>News feed is not available right now — it may not be set up on this site yet.</div>';
       return;
     }
     allNewsItems = data.items;
@@ -1354,7 +1598,7 @@ async function loadNews(){
     renderNewsList();
     refreshHotStoriesWithLatest();
   } catch(e){
-    container.innerHTML = '<div class="news-status">Could not load news right now. Please try again shortly.</div>';
+    container.innerHTML = '<div class="feed-empty"><span class="big">📡</span>Could not load news right now. Please try again shortly.</div>';
   }
 }
 
@@ -1390,15 +1634,20 @@ function fmtHotTime(ts){
 
 let adminHotStories = [];
 
-function renderHotStories(stories){
+  function renderHotStories(stories){
+  const sectionEl = document.getElementById('hotStoriesSection');
   const featuredEl = document.getElementById('hotStoriesFeatured');
   const listEl = document.getElementById('hotStoriesList');
 
+  // Nothing worth showing means the whole block stays out of the way —
+  // no empty "check back soon" box eating space above the real feed.
   if(!stories.length){
-    featuredEl.style.display = 'none';
-    listEl.innerHTML = '<div class="hot-story-row" style="color:var(--dim); font-family:JetBrains Mono, monospace; font-size:.75rem;">No hot stories yet — check back soon.</div>';
+    if(sectionEl) sectionEl.style.display = 'none';
+    featuredEl.innerHTML = '';
+    listEl.innerHTML = '';
     return;
   }
+  if(sectionEl) sectionEl.style.display = '';
   featuredEl.style.display = '';
 
   const featured = stories.slice(0, 2);
@@ -1443,16 +1692,30 @@ async function loadHotStories(){
 // timestamp (which then outranks it) — auto-fill until admin overrides.
 function refreshHotStoriesWithLatest(){
   if(!allNewsItems.length) return;
-  const latest = allNewsItems[0];
-  const autoStory = {
-    title: latest.title,
-    source: latest.source,
-    sourceUrl: latest.link,
-    imageUrl: '',
-    timestamp: latest.pubDate,
-    auto: true,
-  };
-  const merged = [...adminHotStories, autoStory]
+
+  // Auto-fill from the real feed: the most market-moving stories first
+  // (high → medium → everything else), newest within each tier. An admin
+  // post with a later timestamp still outranks these, so Hot Stories can
+  // never sit there as an empty grey box.
+  const autoStories = allNewsItems
+    .map(item => {
+      const c = classifiedHeadlines.get(item.title);
+      const impact = c?.impact || item.impact || 'medium';
+      return { item, score: impact === 'high' ? 2 : impact === 'medium' ? 1 : 0 };
+    })
+    .filter(x => sourceDomain(x.item.link))
+    .sort((a, b) => (b.score - a.score) || (new Date(b.item.pubDate) - new Date(a.item.pubDate)))
+    .slice(0, 4)
+    .map(x => ({
+      title: x.item.title,
+      source: x.item.source,
+      sourceUrl: x.item.link,
+      imageUrl: x.item.image || '',
+      timestamp: x.item.pubDate,
+      auto: true,
+    }));
+
+  const merged = [...adminHotStories, ...autoStories]
     .sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
     .slice(0, 15);
   renderHotStories(merged);
