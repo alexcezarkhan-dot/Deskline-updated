@@ -249,83 +249,137 @@ tr.t{cursor:pointer}tr.t:hover{background:var(--panel2)}
 .pic-del-btn{background:transparent;color:var(--down);border:1px solid var(--down);padding:3px 8px;font-size:11px;border-radius:4px}
 .sync-badge{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(62,207,142,0.12);color:var(--up);border:1px solid rgba(62,207,142,0.3);display:inline-flex;align-items:center;gap:4px}
 
-/* Trade Report Modal */
-.rep-modal-wrap{max-width:820px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,0.75)}
-.rep-header{background:var(--panel2);border-bottom:1px solid var(--line);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.rep-brand{display:flex;align-items:center;gap:8px}
-.rep-brand-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;letter-spacing:-0.01em}
-.rep-brand-logo span{color:var(--gold)}
-.rep-brand-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,177,92,0.12);color:var(--gold);border:1px solid rgba(232,177,92,0.3);letter-spacing:0.04em}
-.rep-content{padding:18px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
-
-/* Hero Outcome Banner (Profit / Loss / BE) */
-.rep-top-banner{
-  border-radius:10px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
-  transition:all 0.2s ease;position:relative;overflow:hidden;
+/* Trade Report Full-Screen View */
+#reportModal{
+  position:fixed;inset:0;z-index:900;background:#080a0e;overflow-y:auto;
+  display:flex;flex-direction:column;padding:0;
 }
-.rep-top-banner.is-win{
-  background:linear-gradient(135deg, rgba(62,207,142,0.14) 0%, rgba(14,17,22,0.92) 100%);
-  border:1px solid rgba(62,207,142,0.45);
-  box-shadow:0 0 24px rgba(62,207,142,0.12);
+.rep-screen-bar{
+  position:sticky;top:0;z-index:50;background:rgba(14,17,22,0.94);
+  backdrop-filter:blur(12px);border-bottom:1px solid #232a36;
+  padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
 }
-.rep-top-banner.is-loss{
-  background:linear-gradient(135deg, rgba(251,107,91,0.14) 0%, rgba(14,17,22,0.92) 100%);
-  border:1px solid rgba(251,107,91,0.45);
-  box-shadow:0 0 24px rgba(251,107,91,0.12);
+.rep-nav-left{display:flex;align-items:center;gap:14px}
+.rep-back-btn{
+  background:transparent;border:1px solid #2e3846;color:#EDEFF3;padding:7px 14px;
+  border-radius:8px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+  transition:all .15s ease;
 }
-.rep-top-banner.is-be{
-  background:linear-gradient(135deg, rgba(232,177,92,0.12) 0%, rgba(14,17,22,0.92) 100%);
-  border:1px solid rgba(232,177,92,0.4);
+.rep-back-btn:hover{background:#1a202c;border-color:#4a5568}
+.rep-nav-title{font-size:13px;font-weight:600;color:#7C8598;letter-spacing:0.06em;text-transform:uppercase}
+
+.rep-nav-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rep-action-btn{
+  padding:7px 14px;font-size:12px;font-weight:600;border-radius:8px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;border:1px solid #2e3846;background:#151A22;color:#EDEFF3;
+  transition:all .15s ease;
+}
+.rep-action-btn:hover{background:#1f2633;border-color:#4a5568}
+.rep-action-btn.primary{background:var(--gold);color:#0E1116;border-color:var(--gold);font-weight:700}
+.rep-action-btn.primary:hover{filter:brightness(1.1)}
+.rep-action-btn.danger{color:#fb6b5b;border-color:rgba(251,107,91,0.3)}
+.rep-action-btn.danger:hover{background:rgba(251,107,91,0.12);border-color:#fb6b5b}
+
+.rep-screen-body{
+  flex:1;padding:32px 16px 64px;display:flex;justify-content:center;
 }
 
-.rep-outcome-pill{
-  display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;
-  font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:20px;text-transform:uppercase;margin-bottom:6px;
+/* Official Trade Dossier Card (Matches Reference Image) */
+.dt-official-card{
+  width:100%;max-width:820px;background:#0E1116;border:1px solid #232a36;
+  border-radius:24px;padding:36px 40px;box-shadow:0 24px 60px rgba(0,0,0,0.8);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:24px;
 }
-.rep-outcome-pill.win{background:rgba(62,207,142,0.22);color:#3ecf8e;border:1px solid #3ecf8e}
-.rep-outcome-pill.loss{background:rgba(251,107,91,0.22);color:#fb6b5b;border:1px solid #fb6b5b}
-.rep-outcome-pill.be{background:rgba(232,177,92,0.22);color:#e8b15c;border:1px solid #e8b15c}
-
-.rep-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px}
-.rep-stat-box{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
-.rep-stat-box .k{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.05em}
-.rep-stat-box .v{font-size:15px;font-weight:600;margin-top:3px;font-family:'JetBrains Mono',monospace}
-
-.rep-box-card{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;position:relative}
-.rep-box-card h2{display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 8px;font-weight:700}
-.rep-box-card h2 svg{width:14px;height:14px;opacity:0.9}
-
-/* Psychology & Behavioral Badges */
-.rep-psy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:680px){.rep-psy-grid{grid-template-columns:1fr}}
-
-.rep-rule-checklist{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.rep-rule-item{
-  display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:4px 9px;border-radius:6px;
-  background:var(--panel);border:1px solid var(--line);color:var(--ink);
+.dt-official-card::before{
+  content:'';position:absolute;top:0;right:0;width:340px;height:340px;
+  border-radius:50%;pointer-events:none;filter:blur(80px);opacity:0.35;
+  transition:background 0.3s ease;
 }
-.rep-rule-item.pass{border-color:rgba(62,207,142,0.4);background:rgba(62,207,142,0.08);color:var(--up)}
-.rep-rule-item.warn{border-color:rgba(251,107,91,0.4);background:rgba(251,107,91,0.08);color:var(--down)}
+.dt-official-card.is-win::before{background:radial-gradient(circle, #3ecf8e 0%, transparent 70%)}
+.dt-official-card.is-loss::before{background:radial-gradient(circle, #f0616d 0%, transparent 70%)}
+.dt-official-card.is-be::before{background:radial-gradient(circle, #E8B15C 0%, transparent 70%)}
 
-.rep-chart-img{max-width:100%;max-height:380px;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;cursor:zoom-in}
-.rep-footer{background:var(--panel2);border-top:1px solid var(--line);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.rep-footer-brand{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace}
-.rep-footer-brand strong{color:var(--gold);font-weight:600}
+/* Brand Header */
+.dt-card-brand-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.dt-logo-group{display:flex;align-items:center;gap:12px;text-decoration:none}
+.dt-logo-mark{
+  width:36px;height:36px;background:#E8B15C;border-radius:10px;display:flex;align-items:flex-end;
+  justify-content:center;gap:3.5px;padding-bottom:7px;box-sizing:border-box;
+}
+.dt-logo-mark span{background:#0E1116;width:4.5px;border-radius:1.5px;display:inline-block}
+.dt-logo-mark span:nth-child(1){height:12px}
+.dt-logo-mark span:nth-child(2){height:20px}
+.dt-logo-mark span:nth-child(3){height:15px}
+.dt-logo-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#EDEFF3;letter-spacing:-0.02em}
+.dt-card-type{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:#7C8598;letter-spacing:0.12em;text-transform:uppercase}
+
+/* Hero Performance */
+.dt-hero-section{display:flex;flex-direction:column;gap:6px;position:relative;z-index:2}
+.dt-hero-title{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;color:#EDEFF3;letter-spacing:-0.02em;margin:0;line-height:1.15}
+.dt-hero-sub{font-size:15px;color:#7C8598;font-weight:500}
+
+.dt-pnl-wrap{margin-top:14px}
+.dt-hero-pnl{font-family:'JetBrains Mono',monospace;font-size:58px;font-weight:700;letter-spacing:-0.03em;line-height:1}
+.dt-hero-pnl.up{color:#3ecf8e}
+.dt-hero-pnl.down{color:#f0616d}
+.dt-hero-pnl.be{color:#E8B15C}
+.dt-hero-r{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;margin-top:8px}
+.dt-hero-r.up{color:#3ecf8e}
+.dt-hero-r.down{color:#f0616d}
+.dt-hero-r.be{color:#E8B15C}
+
+/* Stat Box Grid (Matching Screenshot) */
+.dt-boxes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;position:relative;z-index:2}
+.dt-stat-box{
+  background:#151A22;border:1px solid #232a36;border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:6px;
+}
+.dt-stat-box .dt-k{font-size:11px;font-weight:700;color:#7C8598;letter-spacing:0.08em;text-transform:uppercase}
+.dt-stat-box .dt-v{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:#EDEFF3}
+
+/* Executive Review & Psychological Notes */
+.dt-review-section{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
+.dt-review-card{background:#151A22;border:1px solid #232a36;border-radius:14px;padding:16px 20px}
+.dt-review-card h3{
+  margin:0 0 8px;font-size:11px;font-weight:700;color:#E8B15C;letter-spacing:0.1em;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+.dt-review-card p{margin:0;font-size:13.5px;color:#EDEFF3;line-height:1.6;white-space:pre-wrap}
+
+.dt-chart-card{background:#151A22;border:1px solid #232a36;border-radius:14px;padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.dt-chart-card h3{margin:0;font-size:11px;font-weight:700;color:#E8B15C;letter-spacing:0.1em;text-transform:uppercase}
+.dt-chart-img{width:100%;max-height:420px;border-radius:10px;border:1px solid #232a36;object-fit:cover;cursor:zoom-in}
+
+/* Card Brand Footer */
+.dt-card-footer{
+  border-top:1px solid #232a36;padding-top:18px;display:flex;justify-content:space-between;align-items:center;
+  margin-top:10px;position:relative;z-index:2;
+}
+.dt-footer-link{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#E8B15C;letter-spacing:-0.01em;text-decoration:none}
+.dt-footer-tag{font-size:13px;color:#7C8598;font-weight:500}
+
+@media(max-width:680px){
+  .dt-official-card{padding:24px 18px;border-radius:16px}
+  .dt-hero-title{font-size:28px}
+  .dt-hero-pnl{font-size:42px}
+  .dt-boxes-grid{grid-template-columns:1fr 1fr}
+}
 
 @media print{
-  @page{size:portrait;margin:10mm}
+  @page{size:portrait;margin:8mm}
   body *{visibility:hidden}
   #reportModal,#reportModal *{visibility:visible}
-  #reportModal{position:absolute;left:0;top:0;width:100%!important;max-width:100%!important;background:#fff!important;color:#000!important;padding:0!important;border:none!important;box-shadow:none!important}
-  .rep-modal-wrap{border:none!important;box-shadow:none!important;background:#fff!important;color:#000!important}
-  .rep-header,.rep-footer .row{display:none!important}
-  .rep-top-banner.is-win{background:#e8f8f0!important;border:2px solid #28a745!important;color:#000!important}
-  .rep-top-banner.is-loss{background:#fde8e8!important;border:2px solid #dc3545!important;color:#000!important}
-  .rep-top-banner.is-be{background:#fff8e6!important;border:2px solid #e8b15c!important;color:#000!important}
-  .rep-stat-box,.rep-box-card{background:#f8f9fa!important;border:1px solid #ccc!important;color:#000!important}
-  .k,.note,h2{color:#444!important}
-  .v,td,th,span,p,div{color:#000!important}
-  .tag{border-color:#ccc!important;background:#eee!important;color:#000!important}
+  #reportModal{position:absolute;left:0;top:0;width:100%!important;background:#fff!important;color:#000!important;padding:0!important;box-shadow:none!important}
+  .rep-screen-bar{display:none!important}
+  .rep-screen-body{padding:0!important}
+  .dt-official-card{border:1px solid #ddd!important;box-shadow:none!important;background:#fff!important;color:#000!important;padding:20px!important}
+  .dt-official-card::before{display:none!important}
+  .dt-logo-title{color:#000!important}
+  .dt-hero-title{color:#000!important}
+  .dt-hero-sub,.dt-k,.dt-card-type,.dt-footer-tag{color:#666!important}
+  .dt-stat-box,.dt-review-card,.dt-chart-card{background:#f9fafb!important;border:1px solid #ccc!important;color:#000!important}
+  .dt-stat-box .dt-v,.dt-review-card p{color:#000!important}
+  .dt-card-footer{border-top:1px solid #ccc!important}
+  .dt-footer-link{color:#b37d1d!important}
 }
 </style>
 <script src="/_aistudio-iframe.js?v=2c34bde1"></script></head>
@@ -516,113 +570,128 @@ tr.t{cursor:pointer}tr.t:hover{background:var(--panel2)}
 <button id="fab" aria-label="Add trade">+</button>
 
 <!-- ========================================================
-     TRADE REPORT DOSSIER MODAL
+     FULL-SCREEN OFFICIAL TRADE REPORT VIEW
      ======================================================== -->
-<div class="ov" id="reportModal" hidden>
-  <div class="rep-modal-wrap">
-    <!-- Header with Official DeskTerminal Branding -->
-    <div class="rep-header">
-      <div class="rep-brand">
-        <a href="index.html" class="rep-brand-logo">Desk<span>Terminal</span>.com</a>
-        <span class="rep-brand-badge">TRADING DOSSIER</span>
-        <span style="font-size:11px;color:var(--dim)" id="repDate"></span>
-      </div>
-      <div class="row">
-        <button class="alt" id="repPdfBtn" style="padding:5px 11px;font-size:11px">📄 PDF / Print</button>
-        <button class="alt" id="repShareBtn" style="padding:5px 11px;font-size:11px">📸 Share Card</button>
-        <button class="alt" id="repEditBtn" style="padding:5px 11px;font-size:11px">✏️ Edit</button>
-        <button class="alt" id="repDelBtn" style="padding:5px 11px;font-size:11px;color:var(--down)">Delete</button>
-        <button class="alt" id="repCloseBtn" style="padding:5px 9px;font-size:13px;line-height:1" title="Close">&times;</button>
-      </div>
+<div id="reportModal" hidden>
+  <!-- Top Sticky Navigation & Action Bar -->
+  <div class="rep-screen-bar">
+    <div class="rep-nav-left">
+      <button class="rep-back-btn" id="repCloseBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Journal
+      </button>
+      <span class="rep-nav-title" id="repNavTradeTitle">Trade Report</span>
     </div>
+    <div class="rep-nav-actions">
+      <button class="rep-action-btn primary" id="repPdfBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Download PDF / Print
+      </button>
+      <button class="rep-action-btn" id="repShareBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share Card
+      </button>
+      <button class="rep-action-btn" id="repEditBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Edit Trade
+      </button>
+      <button class="rep-action-btn danger" id="repDelBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        Delete
+      </button>
+    </div>
+  </div>
 
-    <div class="rep-content">
-      <!-- Dynamic Outcome Banner: Green for Profit, Red for Loss, Gold for BE -->
-      <div class="rep-top-banner" id="repTopBanner">
-        <div>
-          <div id="repOutcomePill" class="rep-outcome-pill win">● WIN / PROFIT</div>
-          <h3 style="margin:0;font-size:24px;display:flex;align-items:center;gap:10px">
-            <span id="repInst" style="font-weight:700">XAUUSD</span>
-            <span class="tag" id="repSide" style="font-size:12px;font-weight:700;padding:2px 8px">LONG ↗</span>
-          </h3>
-          <div style="color:var(--dim);font-size:12px;margin-top:6px" id="repMeta">Session: London &bull; Strategy: Breakout</div>
+  <!-- Document Body Container -->
+  <div class="rep-screen-body">
+    <div class="dt-official-card is-win" id="dtOfficialCard">
+      <!-- Brand Header with Logo Mark & DeskTerminal Wordmark -->
+      <div class="dt-card-brand-row">
+        <div class="dt-logo-group">
+          <div class="dt-logo-mark">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="dt-logo-title">DeskTerminal</span>
         </div>
-        <div style="text-align:right">
-          <div class="mono" style="font-size:26px;font-weight:700;letter-spacing:-0.02em" id="repPnl">+$0.00</div>
-          <div class="mono" style="font-size:13px;margin-top:2px" id="repR">0.00 R &bull; +0.0% RoR</div>
+        <div class="dt-card-type">TRADING JOURNAL</div>
+      </div>
+
+      <!-- Hero Section: Instrument & Massive PnL -->
+      <div class="dt-hero-section">
+        <h1 class="dt-hero-title" id="repInstTitle">XAUUSD · LONG</h1>
+        <div class="dt-hero-sub" id="repSubMeta">London Session · 2026-10-01 · Breakout</div>
+        
+        <div class="dt-pnl-wrap">
+          <div class="dt-hero-pnl up" id="repPnlDisplay">+$0.00</div>
+          <div class="dt-hero-r up" id="repRDisplay">+0.00R net</div>
         </div>
       </div>
 
-      <!-- Execution & Level Statistics Grid -->
-      <div class="rep-stat-grid">
-        <div class="rep-stat-box"><div class="k">Entry Price</div><div class="v" id="repEntry">—</div></div>
-        <div class="rep-stat-box"><div class="k">Exit Price</div><div class="v" id="repExit">—</div></div>
-        <div class="rep-stat-box"><div class="k">Stop Loss</div><div class="v" id="repSl">—</div></div>
-        <div class="rep-stat-box"><div class="k">Position Size</div><div class="v" id="repSize">—</div></div>
-        <div class="rep-stat-box"><div class="k">Capital Risk</div><div class="v" id="repRisk">$0.00</div></div>
-        <div class="rep-stat-box"><div class="k">Tag / Category</div><div class="v" id="repTag">None</div></div>
+      <!-- Key Execution Stat Boxes (Matching Reference Image) -->
+      <div class="dt-boxes-grid">
+        <div class="dt-stat-box">
+          <span class="dt-k">ENTRY</span>
+          <span class="dt-v" id="repBoxEntry">—</span>
+        </div>
+        <div class="dt-stat-box">
+          <span class="dt-k">EXIT</span>
+          <span class="dt-v" id="repBoxExit">—</span>
+        </div>
+        <div class="dt-stat-box">
+          <span class="dt-k">STOP LOSS</span>
+          <span class="dt-v" id="repBoxSl">—</span>
+        </div>
+        <div class="dt-stat-box">
+          <span class="dt-k">CAPITAL RISK</span>
+          <span class="dt-v" id="repBoxRisk">$0.00</span>
+        </div>
+        <div class="dt-stat-box">
+          <span class="dt-k">POSITION SIZE</span>
+          <span class="dt-v" id="repBoxSize">—</span>
+        </div>
+        <div class="dt-stat-box">
+          <span class="dt-k">RESULT / R:R</span>
+          <span class="dt-v" id="repBoxRr">0.00 R</span>
+        </div>
       </div>
 
-      <!-- Psychological & Behavioral Audit Section -->
-      <div class="rep-psy-grid">
-        <div class="rep-box-card" id="repPreBox">
-          <h2>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <!-- Psychological & Execution Review Section -->
+      <div class="dt-review-section">
+        <div class="dt-review-card" id="repPreCard">
+          <h3>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             Pre-Trade Psychology &amp; Mindset
-          </h2>
-          <div id="repPreNotes" style="white-space:pre-wrap;font-size:12.5px;color:var(--ink);line-height:1.5">—</div>
+          </h3>
+          <p id="repPreText">—</p>
         </div>
 
-        <div class="rep-box-card" id="repPostBox">
-          <h2>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <div class="dt-review-card" id="repPostCard">
+          <h3>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             Post-Trade Emotional Review &amp; Discipline
-          </h2>
-          <div id="repPostNotes" style="white-space:pre-wrap;font-size:12.5px;color:var(--ink);line-height:1.5">—</div>
+          </h3>
+          <p id="repPostText">—</p>
+        </div>
+
+        <div class="dt-review-card" id="repNotesCard">
+          <h3>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Trade Commentary &amp; Strategy Notes
+          </h3>
+          <p id="repNotesText">—</p>
+        </div>
+
+        <!-- Technical Chart Evidence -->
+        <div class="dt-chart-card" id="repChartBox" style="display:none">
+          <h3>Technical Chart Evidence</h3>
+          <img id="repChartImg" class="dt-chart-img" src="" alt="Trade screenshot" title="Click to zoom">
         </div>
       </div>
 
-      <!-- Psychological Rule Adherence Checklist -->
-      <div class="rep-box-card">
-        <h2>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Psychological Discipline &amp; Execution Audit
-        </h2>
-        <div class="rep-rule-checklist" id="repRuleChecklist">
-          <span class="rep-rule-item pass">✓ Followed Trading Plan</span>
-          <span class="rep-rule-item pass">✓ Respected Stop Loss</span>
-          <span class="rep-rule-item pass">✓ Controlled Position Size</span>
-          <span class="rep-rule-item pass">✓ No Revenge / FOMO Entry</span>
-        </div>
-      </div>
-
-      <!-- Strategy & Execution Notes -->
-      <div class="rep-box-card" id="repNotesBox">
-        <h2>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Strategy Notes &amp; Trade Commentary
-        </h2>
-        <div id="repNotes" style="white-space:pre-wrap;font-size:13px;color:var(--ink);line-height:1.55">—</div>
-      </div>
-
-      <!-- Screenshot / Chart Evidence -->
-      <div class="rep-box-card" id="repChartBox" style="display:none">
-        <h2>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          Technical Chart Evidence
-        </h2>
-        <img id="repChartImg" class="rep-chart-img" src="" alt="Trade screenshot" title="Click to zoom">
-      </div>
-    </div>
-
-    <!-- Modal Footer with DeskTerminal Credentials & Watermark -->
-    <div class="rep-footer">
-      <div class="rep-footer-brand">
-        <strong>DeskTerminal.com</strong> &bull; <span id="repId">Trade ID: —</span>
-      </div>
-      <div class="row">
-        <button class="alt" id="repPrintBottomBtn">Print / Save PDF</button>
-        <button class="alt" id="repCloseBottomBtn">Close</button>
+      <!-- Official Card Footer with DeskTerminal Advertisement -->
+      <div class="dt-card-footer">
+        <a href="index.html" class="dt-footer-link">deskterminal.com</a>
+        <span class="dt-footer-tag">Journal every trade.</span>
       </div>
     </div>
   </div>
@@ -1058,113 +1127,88 @@ $('imp').onclick=()=>{try{const a=JSON.parse($('bk').value);if(!Array.isArray(a)
 $('clr').onclick=()=>{if(confirm('Delete ALL local trades in this browser?')){trades=[];save();render()}};
 
 /* ========================================================
-   TRADE REPORT DOSSIER MODAL LOGIC
+   TRADE REPORT DOSSIER FULL-SCREEN LOGIC
    ======================================================== */
 function openReport(t){
   activeTrade=t;
   const r=rOf(t);
   const isWin = t.pnl > 0;
   const isLoss = t.pnl < 0;
-  const isBe = t.pnl === 0;
   const outcomeClass = isWin ? 'is-win' : (isLoss ? 'is-loss' : 'is-be');
-  const banner = $('repTopBanner');
-  if(banner) banner.className = `rep-top-banner ${outcomeClass}`;
-
-  const pill = $('repOutcomePill');
-  if(pill){
-    if(isWin){
-      pill.className = 'rep-outcome-pill win';
-      pill.innerHTML = '● WIN / PROFIT';
-    } else if(isLoss){
-      pill.className = 'rep-outcome-pill loss';
-      pill.innerHTML = '● LOSS / DRAWDOWN';
-    } else {
-      pill.className = 'rep-outcome-pill be';
-      pill.innerHTML = '● BREAK-EVEN';
-    }
-  }
-
-  $('repDate').textContent=`${t.date} · ${t.session} Session`;
-  $('repInst').textContent=t.inst;
   
+  const card = $('dtOfficialCard');
+  if(card) card.className = `dt-official-card ${outcomeClass}`;
+
+  const navTitle = $('repNavTradeTitle');
+  if(navTitle) navTitle.textContent = `${t.inst} (${t.side.toUpperCase()}) · Dossier #${t.id}`;
+
   const isLong = (t.side||'').toLowerCase() === 'long';
-  $('repSide').textContent = isLong ? 'LONG ↗' : 'SHORT ↘';
-  $('repSide').className = `tag ${isLong ? 'up' : 'down'}`;
-  $('repMeta').textContent = `Session: ${t.session} · Strategy: ${t.strat||'Discretionary'} · Tag: ${t.tag||'Standard Execution'}`;
+  const sideArrow = isLong ? 'LONG ↗' : 'SHORT ↘';
+  $('repInstTitle').textContent = `${t.inst} · ${sideArrow}`;
+  $('repSubMeta').textContent = `Session: ${t.session} · Date: ${t.date} · Strategy: ${t.strat || 'Discretionary'}${t.tag ? ' · Tag: '+t.tag : ''}`;
   
-  const ror = t.risk > 0 ? ((t.pnl / t.risk) * 100).toFixed(1) : (isWin ? '+100.0' : '0.0');
-  $('repPnl').innerHTML = `<span class="${cls(t.pnl)}">${(t.pnl>=0?'+':'-')}${money(t.pnl)}</span>`;
-  $('repR').innerHTML = `<span class="${cls(t.pnl)}">${r>=0?'+':''}${r.toFixed(2)} R &bull; ${(t.pnl>=0?'+':'')}${ror}% RoR</span>`;
-  
-  $('repEntry').textContent = t.entry!=null ? t.entry : '—';
-  $('repExit').textContent = t.exit!=null ? t.exit : '—';
-  $('repSl').textContent = t.sl!=null ? t.sl : '—';
-  $('repSize').textContent = t.size!=null ? `${t.size} lots` : '—';
-  $('repRisk').textContent = money(t.risk);
-  $('repTag').textContent = t.tag || 'Standard';
-  
-  // Psychological & Mindset Notes
-  $('repNotes').textContent = t.notes || 'No general strategy notes recorded.';
-  $('repPreNotes').textContent = t.preNotes || 'No pre-trade psychological notes entered for this execution.';
-  $('repPostNotes').textContent = t.postNotes || 'No post-trade emotional reflections entered.';
-  
-  // Dynamic Psychological Rule Checklist
-  const ruleBox = $('repRuleChecklist');
-  if(ruleBox){
-    const tagLower = (t.tag||'').toLowerCase();
-    const hasMistake = tagLower.includes('fomo') || tagLower.includes('chase') || tagLower.includes('oversize') || tagLower.includes('early') || tagLower.includes('revenge');
-    let rulesHtml = '';
-    
-    if(isWin){
-      rulesHtml += `<span class="rep-rule-item pass">✓ Followed Entry Setup</span>`;
-      rulesHtml += `<span class="rep-rule-item pass">✓ Respected Target &amp; Exit</span>`;
-      rulesHtml += `<span class="rep-rule-item pass">✓ Controlled Emotional Bias</span>`;
-      rulesHtml += `<span class="rep-rule-item pass">✓ Position Sizing Respected</span>`;
-    } else if(isLoss){
-      rulesHtml += `<span class="rep-rule-item pass">✓ Defined Max Stop-Loss</span>`;
-      if(hasMistake){
-        rulesHtml += `<span class="rep-rule-item warn">⚠ Psychological Trigger: ${esc(t.tag)}</span>`;
-      } else {
-        rulesHtml += `<span class="rep-rule-item pass">✓ Executed Acceptable Market Risk</span>`;
-      }
-      rulesHtml += `<span class="rep-rule-item pass">✓ No Emotional Revenge Trade</span>`;
-      rulesHtml += `<span class="rep-rule-item pass">✓ Trade Journaled for Growth</span>`;
-    } else {
-      rulesHtml += `<span class="rep-rule-item pass">✓ Capital Preserved (Break-Even)</span>`;
-      rulesHtml += `<span class="rep-rule-item pass">✓ Timely Risk Management</span>`;
-    }
-    ruleBox.innerHTML = rulesHtml;
-  }
-  
-  if(t.img){
-    $('repChartImg').src=t.img;
-    $('repChartBox').style.display='block';
+  const pnlEl = $('repPnlDisplay');
+  const rEl = $('repRDisplay');
+  if(isWin){
+    pnlEl.className = 'dt-hero-pnl up';
+    pnlEl.textContent = `+${money(t.pnl)}`;
+    rEl.className = 'dt-hero-r up';
+    rEl.textContent = `+${r.toFixed(2)}R net`;
+  } else if(isLoss){
+    pnlEl.className = 'dt-hero-pnl down';
+    pnlEl.textContent = `-${money(t.pnl)}`;
+    rEl.className = 'dt-hero-r down';
+    rEl.textContent = `${r.toFixed(2)}R net`;
   } else {
-    $('repChartImg').src='';
-    $('repChartBox').style.display='none';
+    pnlEl.className = 'dt-hero-pnl be';
+    pnlEl.textContent = '$0.00';
+    rEl.className = 'dt-hero-r be';
+    rEl.textContent = '0.00R net';
   }
-  
-  $('repId').textContent=`Trade Dossier #${t.id}`;
-  $('reportModal').hidden=false;
+
+  $('repBoxEntry').textContent = t.entry != null ? t.entry : '—';
+  $('repBoxExit').textContent = t.exit != null ? t.exit : '—';
+  $('repBoxSl').textContent = t.sl != null ? t.sl : '—';
+  $('repBoxRisk').textContent = money(t.risk);
+  $('repBoxSize').textContent = t.size != null ? `${t.size} lots` : '—';
+  $('repBoxRr').textContent = `${r >= 0 ? '+' : ''}${r.toFixed(2)} R`;
+
+  // Psychology & Strategy Review
+  $('repPreText').textContent = t.preNotes || 'No pre-trade psychological notes entered for this execution.';
+  $('repPostText').textContent = t.postNotes || 'No post-trade emotional reflections or discipline notes entered.';
+  $('repNotesText').textContent = t.notes || 'No general strategy notes recorded.';
+
+  if(t.img){
+    $('repChartImg').src = t.img;
+    $('repChartBox').style.display = 'block';
+  } else {
+    $('repChartImg').src = '';
+    $('repChartBox').style.display = 'none';
+  }
+
+  $('reportModal').hidden = false;
+  document.body.style.overflow = 'hidden';
 }
 
-$('repChartImg').onclick=()=>{
+$('repChartImg').onclick = () => {
   if($('repChartImg').src){
-    $('lightboxImg').src=$('repChartImg').src;
-    $('lightboxModal').hidden=false;
+    $('lightboxImg').src = $('repChartImg').src;
+    $('lightboxModal').hidden = false;
   }
 };
-$('lightboxModal').onclick=()=>{$('lightboxModal').hidden=true;};
+$('lightboxModal').onclick = () => { $('lightboxModal').hidden = true; };
 
-const closeReport=()=>{$('reportModal').hidden=true;};
-$('repCloseBtn').onclick=closeReport;
-$('repCloseBottomBtn').onclick=closeReport;
-$('reportModal').addEventListener('click',e=>{if(e.target===$('reportModal'))closeReport()});
-window.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    $('reportModal').hidden=true;
-    $('lightboxModal').hidden=true;
-    $('m').hidden=true;
+const closeReport = () => {
+  $('reportModal').hidden = true;
+  document.body.style.overflow = '';
+};
+$('repCloseBtn').onclick = closeReport;
+
+window.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    closeReport();
+    $('lightboxModal').hidden = true;
+    $('m').hidden = true;
     closeAuthModal();
   }
 });
@@ -1188,7 +1232,7 @@ $('repShareBtn').onclick=()=>{
   if(activeTrade) openShare('trade',activeTrade);
 };
 $('repPdfBtn').onclick=()=>window.print();
-$('repPrintBottomBtn').onclick=()=>window.print();
+if($('repPrintBottomBtn')) $('repPrintBottomBtn').onclick=()=>window.print();
 
 /* ========================================================
    SHARE SOCIAL CARD CANVAS GENERATION
