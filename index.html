@@ -70,7 +70,7 @@
       "name": "What is the Market Scanner?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A real currency strength ranking, computed from live hourly price data across the major pairs — showing at a glance which currencies are genuinely strengthening or weakening against the basket right now, not a static or estimated figure."
+        "text": "A real currency strength ranking, computed from price snapshots we collect ourselves across the major pairs — showing at a glance which currencies are genuinely strengthening or weakening against the basket right now, not a static or estimated figure."
       }
     },
     {
@@ -196,25 +196,41 @@
 
   /* ---------------- Page head ---------------- */
   /* ---------------- Home dashboard (date, sessions, mini previews) ---------------- */
-  /* ---------------- Market Scanner ---------------- */
+  /* ---------------- Market Scanner (dense majors table) ---------------- */
   .scanner-section{ padding: 1.4rem 6vw 0; }
   .scanner-title{ font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:.7rem; }
   .scanner-sub{ font-family:'JetBrains Mono', monospace; font-size:.68rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
 
-  .scanner-grid{
-    display:grid; grid-template-columns:repeat(8, 1fr); gap:.5rem; margin-bottom:1.4rem;
+  .scanner-table-wrap{
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
+    overflow-x:auto; margin-bottom:1rem;
   }
-  .scanner-box{
-    display:block; background:var(--panel); border:1px solid var(--line-soft); border-radius:6px;
-    padding:.5rem; text-decoration:none; transition:border-color .15s;
+  .scanner-table{ border-collapse:collapse; width:100%; min-width:880px; table-layout:fixed; }
+  .scanner-table th, .scanner-table td{
+    border:1px solid var(--line-soft);
+    padding:.4rem .45rem;
+    font-size:.74rem; text-align:center;
+    overflow:hidden; white-space:nowrap;
   }
-  .scanner-box:hover{ border-color:var(--gold); }
-  .scanner-box-label{ font-size:.64rem; font-weight:700; color:var(--ink); margin-bottom:.2rem; }
-  .scanner-box-price{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--ink); margin-bottom:.3rem; }
-  .scanner-box-chart{ width:100%; height:32px; display:block; margin-bottom:.3rem; }
-  .scanner-box-chg{ font-family:'JetBrains Mono', monospace; font-size:.6rem; text-align:right; }
-  .scanner-box-chg.up{ color:#4ADE80; }
-  .scanner-box-chg.down{ color:#FB6B5B; }
+  .scanner-table thead th{ padding:0; }
+  .scanner-pair-link{
+    display:block; padding:.5rem .25rem;
+    font-family:'JetBrains Mono', monospace; font-size:.78rem; font-weight:700;
+    color:var(--ink); text-decoration:none; background:var(--panel-2);
+    transition:color .15s, background-color .15s;
+  }
+  .scanner-pair-link:hover{ color:#1a1206; background-color:var(--gold); }
+  .scanner-rowlabel{
+    width:118px; text-align:left; font-weight:400;
+    font-family:'JetBrains Mono', monospace; font-size:.64rem;
+    color:var(--dim); background:var(--panel-2);
+    padding-left:.7rem;
+  }
+  .scanner-table td.mono{ font-family:'JetBrains Mono', monospace; }
+  .scanner-table td.up{ color:#4ADE80; }
+  .scanner-table td.down{ color:#FB6B5B; }
+  .scanner-candle-svg{ display:block; margin:0 auto; }
+  .scanner-loading{ padding:1rem; text-align:left; }
 
   .strength-collapsible{
     background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
@@ -228,8 +244,15 @@
   .strength-arrow{ color:var(--gold); font-size:.7rem; transition:transform .15s; }
   .strength-body{ display:none; padding:0 1.1rem 1rem; }
   .strength-body.open{ display:block; }
-  .strength-row{ display:grid; grid-template-columns:40px 1fr 55px; align-items:center; gap:.6rem; padding:.3rem 0; }
+  .strength-row{ display:grid; grid-template-columns:44px 130px 1fr 55px 64px; align-items:center; gap:.6rem; padding:.3rem 0; }
+  .strength-head{
+    font-family:'JetBrains Mono', monospace; font-size:.58rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--dim);
+    padding:.1rem 0 .45rem; border-bottom:1px solid var(--line-soft); margin-bottom:.25rem;
+  }
+  .strength-head span:nth-child(4), .strength-head span:nth-child(5){ text-align:right; }
   .strength-code{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--ink); }
+  .strength-name{ font-size:.72rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .strength-track{ height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden; }
   .strength-fill{ height:100%; border-radius:3px; }
   .strength-fill.up{ background:#4ADE80; }
@@ -237,6 +260,9 @@
   .strength-score{ font-family:'JetBrains Mono', monospace; font-size:.68rem; text-align:right; }
   .strength-score.up{ color:#4ADE80; }
   .strength-score.down{ color:#FB6B5B; }
+  .strength-pct{ font-family:'JetBrains Mono', monospace; font-size:.68rem; text-align:right; }
+  .strength-pct.up{ color:#4ADE80; }
+  .strength-pct.down{ color:#FB6B5B; }
 
   footer{
     text-align:center;
@@ -247,14 +273,6 @@
     border-top:1px solid var(--line-soft);
   }
   footer a{ color:var(--gold); text-decoration:none; }
-
-  @media (max-width:900px){
-    .scanner-grid{
-      grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:110px;
-      overflow-x:auto; padding-bottom:.4rem; -ms-overflow-style:none; scrollbar-width:none;
-    }
-    .scanner-grid::-webkit-scrollbar{ display:none; }
-  }
 
   .home-dashboard{ padding: 1.4rem 6vw 0; }
   .home-date{
@@ -848,17 +866,21 @@
 </div>
 
 <div class="scanner-section">
-  <div class="scanner-title">Market Scanner <span class="scanner-sub">Today's real movers</span></div>
-  <div class="scanner-grid" id="scannerGrid">
-    <div class="home-card-loading" style="padding:1rem;">Loading market scanner…</div>
+  <div class="scanner-title">Market Scanner <span class="scanner-sub" id="scannerSub">Majors · last 6 hr</span></div>
+  <div class="scanner-table-wrap">
+    <table class="scanner-table" id="scannerTable">
+      <tbody>
+        <tr><td class="home-card-loading scanner-loading">Loading market scanner…</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="strength-collapsible">
     <button class="strength-toggle" id="strengthToggle">
-      <span>Currency Strength — Today</span>
-      <span class="strength-arrow" id="strengthArrow">▾</span>
+      <span id="strengthTitle">Currency Strength — Last 6 hr</span>
+      <span class="strength-arrow" id="strengthArrow">▴</span>
     </button>
-    <div class="strength-body" id="strengthBody"></div>
+    <div class="strength-body open" id="strengthBody"></div>
   </div>
 </div>
 
@@ -903,7 +925,7 @@
   <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">The four major forex trading sessions — Sydney, Tokyo, London, and New York — shown against the current time, so you can see which markets are genuinely open right now and where session overlaps create the highest typical liquidity.</p>
 
   <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">What is the Market Scanner?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">A real currency strength ranking, computed from live hourly price data across the major pairs — showing at a glance which currencies are genuinely strengthening or weakening against the basket right now, not a static or estimated figure.</p>
+  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">A real currency strength ranking, computed from price snapshots we collect ourselves across the major pairs — showing at a glance which currencies are genuinely strengthening or weakening against the basket right now, not a static or estimated figure.</p>
 
   <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">Do I need to create an account to use DeskTerminal?</h3>
   <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">No — live prices, the calendar, news, and every calculator tool work without signing in. An account is only needed for optional features like saving a personal watchlist or submitting a news story.</p>
@@ -950,29 +972,42 @@ function fmtScannerPrice(n){
   return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 5 : 2, maximumFractionDigits: n < 10 ? 5 : 2 });
 }
 
-function buildCandlestickSVG(candleDirection){
-  // Genuinely simple, single candle — matches what was actually asked
-  // for (hollow = bullish, filled = bearish), and matches the real data
-  // shape scanner-data.js now provides (a direction, not a full OHLC
-  // history array, since Scanner reads simple price snapshots now).
-  if(!candleDirection) return '';
-  const isHollow = candleDirection === 'hollow';
-  const color = isHollow ? '#4ADE80' : '#FB6B5B';
-  const fill = isHollow ? 'none' : color;
-  return `<svg viewBox="0 0 20 32" class="scanner-box-chart" style="width:20px; height:32px;">
-    <line x1="10" y1="2" x2="10" y2="30" stroke="${color}" stroke-width="1"/>
-    <rect x="4" y="10" width="12" height="12" fill="${fill}" stroke="${color}" stroke-width="1.5"/>
-  </svg>`;
+function buildCandlesSVG(candles){
+  // Real OHLC candles from scanner-data.js: hollow = bullish, filled =
+  // bearish, wicks from each candle's true high/low — standard candle
+  // convention, on a faint grid like a terminal chart.
+  if(!Array.isArray(candles) || !candles.length) return '';
+  const W = 120, H = 44, PAD = 3;
+  let max = Math.max(...candles.map(c => c.h));
+  let min = Math.min(...candles.map(c => c.l));
+  if(max === min){ max += 1; min -= 1; } // flat window — centre the line
+  const span = max - min;
+  const y = v => PAD + (1 - (v - min) / span) * (H - PAD * 2);
+  const slot = W / candles.length;
+  const bodyW = Math.max(3, Math.min(9, slot * 0.6));
+  const grid = [0.25, 0.5, 0.75].map(f =>
+    `<line x1="0" y1="${(H * f).toFixed(2)}" x2="${W}" y2="${(H * f).toFixed(2)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`
+  ).join('');
+  const parts = candles.map((c, i) => {
+    const cx = (slot * i + slot / 2).toFixed(2);
+    const bull = c.c >= c.o;
+    const color = bull ? '#4ADE80' : '#FB6B5B';
+    const top = y(Math.max(c.o, c.c));
+    const height = Math.max(1.5, y(Math.min(c.o, c.c)) - top);
+    return `<line x1="${cx}" y1="${y(c.h).toFixed(2)}" x2="${cx}" y2="${y(c.l).toFixed(2)}" stroke="${color}" stroke-width="1"/>` +
+      `<rect x="${(cx - bodyW / 2).toFixed(2)}" y="${top.toFixed(2)}" width="${bodyW.toFixed(2)}" height="${height.toFixed(2)}" fill="${bull ? 'none' : color}" stroke="${color}" stroke-width="1.2"/>`;
+  }).join('');
+  return `<svg class="scanner-candle-svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${grid}${parts}</svg>`;
 }
 
 async function loadScanner(){
-  const gridEl = document.getElementById('scannerGrid');
+  const tableEl = document.getElementById('scannerTable');
   const strengthBodyEl = document.getElementById('strengthBody');
   try{
     const res = await fetch('/.netlify/functions/scanner-data');
     const data = await res.json();
     if(data.error || !data.pairs){
-      gridEl.innerHTML = `<div class="home-card-loading" style="padding:1rem;">${data.error || "Market scanner isn't available right now."}</div>`;
+      tableEl.innerHTML = `<tbody><tr><td class="home-card-loading scanner-loading">${escapeHtml(data.error || "Market scanner isn't available right now.")}</td></tr></tbody>`;
       return;
     }
 
@@ -989,39 +1024,56 @@ async function loadScanner(){
       NZD: 'market.html', // no dedicated NZD/USD instrument page yet — falls back honestly
     };
 
-    gridEl.innerHTML = data.pairs.map(p => {
-      const isUp = p.pctChange >= 0;
-      const href = SCANNER_LINKS[p.code] || 'market.html';
-      return `
-        <a class="scanner-box" href="${href}">
-          <div class="scanner-box-label">${p.label}</div>
-          <div class="scanner-box-price mono">${fmtScannerPrice(p.price)}</div>
-          ${buildCandlestickSVG(p.candleDirection)}
-          <div class="scanner-box-chg ${isUp ? 'up' : 'down'}">${isUp ? '+' : ''}${p.pctChange.toFixed(2)}%</div>
-        </a>`;
-    }).join('');
+    const pairs = data.pairs;
+    const wl = data.window === '6h' ? '6 hr' : '48 hr';
+    const subEl = document.getElementById('scannerSub');
+    if(subEl) subEl.textContent = 'Majors · last ' + wl;
+    const titleEl = document.getElementById('strengthTitle');
+    if(titleEl) titleEl.textContent = 'Currency Strength — Last ' + wl;
+    const row = (label, cells) => `<tr><th class="scanner-rowlabel">${label}</th>${cells}</tr>`;
+
+    tableEl.innerHTML = `
+      <thead>
+        <tr>
+          <th class="scanner-rowlabel"></th>
+          ${pairs.map(p => `<th><a class="scanner-pair-link" href="${SCANNER_LINKS[p.code] || 'market.html'}">${escapeHtml(p.label)}</a></th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        ${row('Bid', pairs.map(p => `<td class="mono">${fmtScannerPrice(p.price)}</td>`).join(''))}
+        ${row('Chart: Last ' + wl, pairs.map(p => `<td>${buildCandlesSVG(p.candles)}</td>`).join(''))}
+        ${row('Pip Chg: ' + wl, pairs.map(p => `<td class="mono ${p.pipChange >= 0 ? 'up' : 'down'}">${p.pipChange >= 0 ? '+' : ''}${p.pipChange.toFixed(1)}</td>`).join(''))}
+        ${row('% Chg: ' + wl, pairs.map(p => `<td class="mono ${p.pctChange >= 0 ? 'up' : 'down'}">${p.pctChange >= 0 ? '+' : ''}${p.pctChange.toFixed(2)}%</td>`).join(''))}
+      </tbody>`;
 
     if(data.strength && strengthBodyEl){
       const maxAbs = Math.max(...data.strength.map(s => Math.abs(s.score)), 0.01);
-      strengthBodyEl.innerHTML = data.strength.map(s => {
-        const pct = Math.min(Math.abs(s.score) / maxAbs * 100, 100);
-        const isUp = s.score >= 0;
-        return `
-          <div class="strength-row">
-            <span class="strength-code">${s.code}</span>
-            <div class="strength-track"><div class="strength-fill ${isUp ? 'up' : 'down'}" style="width:${pct}%;"></div></div>
-            <span class="strength-score ${isUp ? 'up' : 'down'}">${isUp ? '+' : ''}${s.score.toFixed(2)}</span>
-          </div>`;
-      }).join('');
+      strengthBodyEl.innerHTML = `
+        <div class="strength-row strength-head">
+          <span>Code</span><span>Currency</span><span>Strength vs basket</span><span>Score</span><span>${wl} %</span>
+        </div>` +
+        data.strength.map(s => {
+          const pct = Math.min(Math.abs(s.score) / maxAbs * 100, 100);
+          const isUp = s.score >= 0;
+          const pctUp = s.pct >= 0;
+          return `
+            <div class="strength-row">
+              <span class="strength-code">${escapeHtml(s.code)}</span>
+              <span class="strength-name">${escapeHtml(s.name || '')}</span>
+              <div class="strength-track"><div class="strength-fill ${isUp ? 'up' : 'down'}" style="width:${pct}%;"></div></div>
+              <span class="strength-score ${isUp ? 'up' : 'down'}">${isUp ? '+' : ''}${s.score.toFixed(2)}</span>
+              <span class="strength-pct ${pctUp ? 'up' : 'down'}">${pctUp ? '+' : ''}${s.pct.toFixed(2)}%</span>
+            </div>`;
+        }).join('');
     }
   } catch(err){
-    gridEl.innerHTML = '<div class="home-card-loading" style="padding:1rem;">Could not load market scanner right now.</div>';
+    tableEl.innerHTML = '<tbody><tr><td class="home-card-loading scanner-loading">Could not load market scanner right now.</td></tr></tbody>';
   }
 }
 loadScanner();
 setInterval(loadScanner, 5 * 60 * 1000); // 5 min — matches the function's own cache window
 
-let strengthOpen = false;
+let strengthOpen = true;
 document.getElementById('strengthToggle')?.addEventListener('click', () => {
   strengthOpen = !strengthOpen;
   document.getElementById('strengthBody').classList.toggle('open', strengthOpen);
