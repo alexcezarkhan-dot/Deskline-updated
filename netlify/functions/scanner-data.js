@@ -5,9 +5,11 @@
 // 1. "6h" mode — real intraday candles from Yahoo Finance's public chart
 //    API (30-min OHLC, no API key, no cost). This is what makes the
 //    homepage chart behave like an industry terminal: real wicks, real
-//    bodies, real 6-hour pip/% change. Gold uses COMEX front-month futures
-//    (GC=F) — the standard live stand-in for spot, since Yahoo delisted
-//    its spot gold ticker.
+//    bodies, real 6-hour pip/% change. Yahoo delisted its spot gold
+//    ticker, so gold's Bid comes from gold-api.com's free live spot feed
+//    (same source DeskAi already uses) and the GC=F front-month futures
+//    30-min candles are anchored to that live spot level — real intraday
+//    shape, live spot price.
 //
 // 2. "48h" fallback — our own self-collected price snapshots from Supabase
 //    (see collect-scanner-snapshot.js), one candle per snapshot step over
@@ -45,6 +47,23 @@ function json(statusCode, payload) {
   };
 }
 
+async function fetchGoldSpot() {
+  // Free, keyless live spot gold — the same source DeskAi already trusts
+  // in index.html. Returns null on any failure so the caller can decide
+  // whether to fall back to the futures-derived price.
+  try {
+    const res = await fetch("https://api.gold-api.com/price/XAU", {
+      headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" },
+    });
+    if (!res.ok) return null;
+    const j = await res.json();
+    const p = parseFloat(j?.price);
+    return Number.isFinite(p) && p > 0 ? p : null;
+  } catch (err) {
+    return null;
+  }
+}
+
 async function fetchIntradayCandles(code) {
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(YAHOO_SYMBOLS[code])}?range=1d&interval=30m`;
   const res = await fetch(url, {
@@ -55,7 +74,7 @@ async function fetchIntradayCandles(code) {
   const r0 = j?.chart?.result?.[0];
   if (!r0) throw new Error("yahoo: empty chart result");
   const q = r0.indicators?.quote?.[0] || {};
-  const candles = [];
+  let candles = [];
   const ts = r0.timestamp || [];
   for (let i = 0; i < ts.length; i++) {
     const o = q.open?.[i], h = q.high?.[i], l = q.low?.[i], c = q.close?.[i];
@@ -63,11 +82,27 @@ async function fetchIntradayCandles(code) {
     candles.push({ o, h, l, c });
   }
   if (candles.length < INTRADAY_CANDLES + 1) throw new Error("yahoo: not enough candles");
-  const ref = candles[candles.length - INTRADAY_CANDLES - 1].c; // close ~6h ago
-  const recent = candles.slice(-INTRADAY_CANDLES);
-  const price = Number.isFinite(r0.meta?.regularMarketPrice)
+
+  let price = Number.isFinite(r0.meta?.regularMarketPrice)
     ? r0.meta.regularMarketPrice
-    : recent[recent.length - 1].c;
+    : candles[candles.length - 1].c;
+
+  // Gold: replace the futures-derived level with live spot, and shift the
+  // real GC=F candle series by the same basis so the chart keeps its true
+  // intraday shape while every number the user reads is live spot.
+  if (code === "XAU") {
+    const spot = await fetchGoldSpot();
+    if (spot !== null) {
+      const basis = spot - price; // spot − futures last
+      candles = candles.map((cd) => ({
+        o: cd.o + basis, h: cd.h + basis, l: cd.l + basis, c: cd.c + basis,
+      }));
+      price = spot;
+    }
+  }
+
+  const ref = candles[candles.length - INTRADAY_CANDLES - 1].c; // close ~6h ago (spot-anchored for gold)
+  const recent = candles.slice(-INTRADAY_CANDLES);
   const change = price - ref;
   return {
     price,

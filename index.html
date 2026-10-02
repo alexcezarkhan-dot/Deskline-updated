@@ -220,6 +220,8 @@
     transition:color .15s, background-color .15s;
   }
   .scanner-pair-link:hover{ color:#1a1206; background-color:var(--gold); }
+  .scanner-cell-link{ display:block; color:inherit; text-decoration:none; }
+  .scanner-cell-link:hover{ color:var(--gold); }
   .scanner-rowlabel{
     width:118px; text-align:left; font-weight:400;
     font-family:'JetBrains Mono', monospace; font-size:.64rem;
@@ -878,9 +880,9 @@
   <div class="strength-collapsible">
     <button class="strength-toggle" id="strengthToggle">
       <span id="strengthTitle">Currency Strength — Last 6 hr</span>
-      <span class="strength-arrow" id="strengthArrow">▴</span>
+      <span class="strength-arrow" id="strengthArrow">▾</span>
     </button>
-    <div class="strength-body open" id="strengthBody"></div>
+    <div class="strength-body" id="strengthBody"></div>
   </div>
 </div>
 
@@ -1026,6 +1028,7 @@ async function loadScanner(){
 
     const pairs = data.pairs;
     const wl = data.window === '6h' ? '6 hr' : '48 hr';
+    const hrefFor = p => SCANNER_LINKS[p.code] || 'market.html';
     const subEl = document.getElementById('scannerSub');
     if(subEl) subEl.textContent = 'Majors · last ' + wl;
     const titleEl = document.getElementById('strengthTitle');
@@ -1040,10 +1043,10 @@ async function loadScanner(){
         </tr>
       </thead>
       <tbody>
-        ${row('Bid', pairs.map(p => `<td class="mono">${fmtScannerPrice(p.price)}</td>`).join(''))}
-        ${row('Chart: Last ' + wl, pairs.map(p => `<td>${buildCandlesSVG(p.candles)}</td>`).join(''))}
-        ${row('Pip Chg: ' + wl, pairs.map(p => `<td class="mono ${p.pipChange >= 0 ? 'up' : 'down'}">${p.pipChange >= 0 ? '+' : ''}${p.pipChange.toFixed(1)}</td>`).join(''))}
-        ${row('% Chg: ' + wl, pairs.map(p => `<td class="mono ${p.pctChange >= 0 ? 'up' : 'down'}">${p.pctChange >= 0 ? '+' : ''}${p.pctChange.toFixed(2)}%</td>`).join(''))}
+        ${row('Bid', pairs.map(p => `<td class="mono"><a class="scanner-cell-link" href="${hrefFor(p)}">${fmtScannerPrice(p.price)}</a></td>`).join(''))}
+        ${row('Chart: Last ' + wl, pairs.map(p => `<td><a class="scanner-cell-link" href="${hrefFor(p)}" aria-label="${escapeHtml(p.label)} chart">${buildCandlesSVG(p.candles)}</a></td>`).join(''))}
+        ${row('Pip Chg: ' + wl, pairs.map(p => `<td class="mono ${p.pipChange >= 0 ? 'up' : 'down'}"><a class="scanner-cell-link" href="${hrefFor(p)}">${p.pipChange >= 0 ? '+' : ''}${p.pipChange.toFixed(1)}</a></td>`).join(''))}
+        ${row('% Chg: ' + wl, pairs.map(p => `<td class="mono ${p.pctChange >= 0 ? 'up' : 'down'}"><a class="scanner-cell-link" href="${hrefFor(p)}">${p.pctChange >= 0 ? '+' : ''}${p.pctChange.toFixed(2)}%</a></td>`).join(''))}
       </tbody>`;
 
     if(data.strength && strengthBodyEl){
@@ -1073,7 +1076,7 @@ async function loadScanner(){
 loadScanner();
 setInterval(loadScanner, 5 * 60 * 1000); // 5 min — matches the function's own cache window
 
-let strengthOpen = true;
+let strengthOpen = false;
 document.getElementById('strengthToggle')?.addEventListener('click', () => {
   strengthOpen = !strengthOpen;
   document.getElementById('strengthBody').classList.toggle('open', strengthOpen);
