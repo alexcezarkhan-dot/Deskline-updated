@@ -1,22 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1G086VGN7W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1G086VGN7W');
+</script>
+
 <meta charset="utf-8">
 <meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DeskTerminal Trading Journal</title>
+<title>Trading Journal — DeskTerminal</title>
+<meta name="description" content="Free trading journal and performance tracking terminal for forex, gold, and indices. Sync your trade logs with Supabase cloud.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0E1116;--panel:#151A22;--panel2:#12161D;--ink:#EDEFF3;--dim:#7C8598;--gold:#E8B15C;--line:#232a36;--up:#3ecf8e;--down:#f0616d;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 'Space Grotesk',system-ui,sans-serif}
+:root{
+  --bg:#0E1116; --panel:#151A22; --panel-2:#12161D; --panel2:#12161D;
+  --line-soft:rgba(255,255,255,0.08); --line:#232a36;
+  --ink:#EDEFF3; --dim:#7C8598; --gold:#E8B15C; --up:#3ecf8e; --down:#f0616d;
+  box-sizing:border-box;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;min-height:100vh}
 .mono,td,input,select,textarea,.v{font-family:'JetBrains Mono',ui-monospace,monospace}
-.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-h1{font-size:20px;margin:0}h1 span{color:var(--gold)}
+
+/* ---------------- Global Navigation ---------------- */
+nav{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.2rem 6vw; border-bottom:1px solid var(--line-soft);
+  background:var(--bg);
+}
+.wordmark{font-size:1.25rem;font-weight:700;letter-spacing:-0.01em;text-decoration:none;color:var(--ink)}
+.wordmark span{color:var(--gold)}
+.wordmark-wrap{display:flex;align-items:center;gap:.6rem}
+.wordmark-bar{width:4px;height:22px;background:var(--gold);border-radius:2px;flex-shrink:0}
+.nav-icon{width:15px;height:15px;flex-shrink:0}
+.nav-right{display:flex;align-items:center;gap:1.2rem}
+.nav-clock{font-size:.72rem;color:var(--dim);white-space:nowrap}
+
+.navlinks{display:flex;gap:1.8rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.04em}
+.navlinks a{color:var(--dim);text-decoration:none;transition:color .15s,background-color .15s;padding:.3rem .6rem;border-radius:4px;display:flex;align-items:center;gap:.4rem}
+.navlinks a:hover{color:#1a1206;background-color:var(--gold)}
+.navlinks a.active{color:var(--gold)}
+
+.mobile-subnav{
+  display:none;
+  overflow-x:auto;white-space:nowrap;
+  background:var(--panel-2);border-bottom:1px solid var(--line-soft);
+  -ms-overflow-style:none;scrollbar-width:none;
+}
+.mobile-subnav::-webkit-scrollbar{display:none}
+.mobile-subnav a{
+  display:inline-block;padding:.65rem .9rem;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim);
+  text-decoration:none;border-bottom:2px solid transparent;
+}
+.mobile-subnav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+@media(max-width:860px){
+  .navlinks{display:none}
+  .nav-clock{display:none}
+  .mobile-subnav{display:flex}
+}
+
+/* Hamburger & Drawer */
+.nav-left{display:flex;align-items:center;gap:.9rem}
+.hamburger-btn{
+  background:transparent;border:1px solid var(--line-soft);border-radius:5px;
+  width:34px;height:34px;cursor:pointer;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.hamburger-btn span{width:16px;height:2px;background:var(--dim);border-radius:1px;transition:background .15s}
+.hamburger-btn:hover{border-color:var(--gold)}
+.hamburger-btn:hover span{background:var(--gold)}
+
+.nav-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:1000;display:none}
+.nav-drawer-overlay.open{display:block}
+.nav-drawer{
+  position:fixed;top:0;left:0;bottom:0;width:280px;max-width:82vw;
+  background:var(--panel);border-right:1px solid var(--line-soft);
+  z-index:1001;transform:translateX(-100%);transition:transform .25s ease;
+  display:flex;flex-direction:column;
+}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 1.3rem;border-bottom:1px solid var(--line-soft);
+}
+.drawer-close{background:transparent;border:none;color:var(--dim);font-size:1.2rem;cursor:pointer;line-height:1}
+.drawer-close:hover{color:var(--ink)}
+.nav-drawer-links{display:flex;flex-direction:column;padding:.6rem 0}
+.nav-drawer-links a{
+  padding:.85rem 1.3rem;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.02em;
+  color:var(--dim);text-decoration:none;border-left:2px solid transparent;
+}
+.nav-drawer-links a:hover{color:var(--ink);background:var(--panel-2)}
+.nav-drawer-links a.active{color:var(--gold);border-left-color:var(--gold);background:var(--panel-2)}
+.nav-drawer-note{
+  margin-top:auto;padding:1rem 1.3rem;font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;color:var(--dim);border-top:1px solid var(--line-soft);
+}
+
+/* Auth Buttons */
+.auth-slot{display:flex;align-items:center;gap:.6rem}
+.auth-btn{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;
+  padding:.32rem .65rem;border-radius:4px;cursor:pointer;
+  border:1px solid var(--line-soft);background:transparent;color:var(--dim);
+}
+.auth-btn:hover{border-color:var(--gold);color:var(--gold)}
+.auth-btn.primary{background:linear-gradient(145deg,#FFD98E,var(--gold) 60%,#B9803A);border:none;color:#1A1305}
+.auth-btn.primary:hover{opacity:.92}
+
+.auth-avatar-btn{
+  width:32px;height:32px;border-radius:50%;overflow:hidden;
+  border:1px solid var(--line-soft);cursor:pointer;background:var(--panel-2);
+  display:flex;align-items:center;justify-content:center;padding:0;
+}
+.auth-avatar-btn img{width:100%;height:100%;object-fit:cover}
+.auth-avatar-btn .initial{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);font-size:.85rem}
+
+/* Auth Modal */
+.auth-modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1100;display:none;
+  align-items:center;justify-content:center;
+}
+.auth-modal-overlay.open{display:flex}
+.auth-modal{
+  width:340px;max-width:90vw;background:var(--panel);border:1px solid var(--line-soft);
+  border-radius:12px;padding:1.8rem;position:relative;
+}
+.auth-modal-close{
+  position:absolute;top:.9rem;right:.9rem;background:transparent;border:none;
+  color:var(--dim);font-size:1.1rem;cursor:pointer;
+}
+.auth-modal-close:hover{color:var(--ink)}
+.auth-modal h2{font-size:1.1rem;font-weight:700;margin-bottom:.4rem;text-transform:none;letter-spacing:normal;color:var(--ink)}
+.auth-modal p{font-size:.82rem;color:var(--dim);margin-bottom:1.4rem;line-height:1.5}
+.auth-provider-btn{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.75rem;border-radius:6px;border:1px solid var(--line-soft);
+  background:var(--panel-2);color:var(--ink);font-family:'Space Grotesk',sans-serif;
+  font-size:.85rem;font-weight:500;cursor:pointer;margin-bottom:.7rem;
+}
+.auth-provider-btn:hover{border-color:var(--gold)}
+.auth-provider-btn svg{width:18px;height:18px;flex-shrink:0}
+.auth-modal-note{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--dim);
+  margin-top:1rem;line-height:1.6;text-align:center;
+}
+
+/* Profile Dropdown */
+.profile-dropdown{
+  position:fixed;top:64px;right:6vw;z-index:1090;width:300px;
+  background:var(--panel);border:1px solid var(--line-soft);
+  border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.5);
+  display:none;overflow:hidden;
+}
+.profile-dropdown.open{display:block}
+.profile-header{
+  display:flex;align-items:center;gap:.8rem;padding:1.1rem;
+  border-bottom:1px solid var(--line-soft);background:var(--panel-2);
+}
+.profile-header img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.profile-header .initial{
+  width:44px;height:44px;border-radius:50%;background:var(--panel);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);font-size:1.1rem;
+}
+.profile-header-name{font-weight:600;font-size:.9rem}
+.profile-header-email{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);margin-top:.15rem}
+.profile-fields{padding:.9rem 1.1rem;display:flex;flex-direction:column;gap:.6rem}
+.profile-field{display:flex;justify-content:space-between;gap:.6rem}
+.profile-field-label{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--dim);flex-shrink:0;
+}
+.profile-field-value{font-size:.78rem;color:var(--ink);text-align:right}
+.profile-actions{padding:.7rem 1.1rem 1.1rem;border-top:1px solid var(--line-soft)}
+.profile-signout{
+  width:100%;padding:.6rem;border-radius:6px;border:1px solid rgba(251,107,91,0.35);
+  background:rgba(251,107,91,0.08);color:#FB6B5B;
+  font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:600;cursor:pointer;
+}
+.profile-signout:hover{background:rgba(251,107,91,0.15)}
+
+/* ---------------- Main Journal Layout ---------------- */
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 48px}
+.journal-title-bar{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  flex-wrap:wrap;margin-bottom:20px;
+}
+.page-title{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin:0}
+.page-subtitle{font-size:12px;color:var(--dim);margin-top:2px}
+
 h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-weight:600}
 .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:16px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
@@ -30,6 +211,7 @@ input:focus,select:focus,textarea:focus{outline:1px solid var(--gold)}
 .full{grid-column:1/-1}
 button{background:var(--gold);color:#111;border:0;border-radius:6px;padding:9px 14px;font:600 13px 'Space Grotesk',sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
 button.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+button.alt:hover{background:#181e28}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .scroll{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
@@ -52,23 +234,22 @@ tr.t{cursor:pointer}tr.t:hover{background:var(--panel2)}
 .day.loss span{color:var(--down)}
 .day.be{border-color:var(--gold)}
 @media(max-width:560px){.day{min-height:48px;padding:3px}.day span{font-size:9px}.day i{display:none}}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));z-index:9}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));z-index:900}
 .ov[hidden]{display:none}
 .mb{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;max-width:420px;width:100%;max-height:100%;overflow:auto}
 #pv{width:100%;border-radius:8px;display:block;margin-bottom:10px}
 .chk{flex-direction:row;align-items:center;gap:8px;text-transform:none;font-size:13px;color:var(--ink);letter-spacing:0}
 .chk input{width:auto}
 .sh{padding:4px 10px;font-size:11px}
-#fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;font-size:28px;line-height:1;padding:0;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:5}
+#fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;font-size:28px;line-height:1;padding:0;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:50}
 
 /* Screenshot row & preview */
 .pic-preview-wrap{display:flex;align-items:center;gap:10px;margin-top:6px}
 .pic-thumb{height:46px;width:auto;max-width:100px;border-radius:6px;border:1px solid var(--line);object-fit:cover;cursor:pointer}
 .pic-del-btn{background:transparent;color:var(--down);border:1px solid var(--down);padding:3px 8px;font-size:11px;border-radius:4px}
+.sync-badge{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(62,207,142,0.12);color:var(--up);border:1px solid rgba(62,207,142,0.3);display:inline-flex;align-items:center;gap:4px}
 
-/* ========================================================
-   TRADE REPORT MODAL & PRINT STYLES
-   ======================================================== */
+/* Trade Report Modal */
 .rep-modal-wrap{max-width:760px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 12px 36px rgba(0,0,0,0.6)}
 .rep-header{background:var(--panel2);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .rep-content{padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
@@ -96,102 +277,187 @@ tr.t{cursor:pointer}tr.t:hover{background:var(--panel2)}
 </style>
 <script src="/_aistudio-iframe.js?v=2c34bde1"></script></head>
 <body>
+
+<!-- GLOBAL NAVIGATION BAR -->
+<nav>
+  <div class="nav-left">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="wordmark-wrap">
+      <span class="wordmark-bar"></span>
+      <a href="index.html" class="wordmark">Desk<span>Terminal</span></a>
+    </div>
+  </div>
+  <div class="navlinks">
+    <a href="index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
+    <a href="market.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-5"/></svg>Market</a>
+    <a href="calendar.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Economic Calendar</a>
+    <a href="news.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V4z"/><path d="M8 8h7M8 12h7M8 16h4"/></svg>News</a>
+    <a href="forex-tools.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h2M8 15h2M12 15h2M16 15h2"/></svg>Forex Tools</a>
+    <a href="brokers/index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg>Brokers</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-clock mono" id="navClock"></span>
+    <div class="auth-slot" id="authSlot">
+      <button class="auth-btn" id="loginBtn">Login</button>
+      <button class="auth-btn primary" id="signupBtn">Sign Up</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Subnav Bar -->
+<div class="mobile-subnav" id="mobileSubnav">
+  <a href="index.html">Home</a>
+  <a href="market.html">Market</a>
+  <a href="news.html">News</a>
+  <a href="calendar.html">Calendar</a>
+  <a href="forex-tools.html">Forex Tools</a>
+  <a href="brokers/index.html">Brokers</a>
+</div>
+
+<!-- Slide-out Navigation Drawer -->
+<div class="nav-drawer-overlay" id="navOverlay"></div>
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <div class="wordmark">Desk<span>Terminal</span></div>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="index.html">Market</a>
+    <a href="instruments.html">Instruments</a>
+    <a href="forex-tools.html">Forex Tools</a>
+    <a href="journal.html" class="active">Trading Journal</a>
+    <a href="news.html">News</a>
+    <a href="calendar.html">Economic Calendar</a>
+    <a href="opinion/index.html">Opinion</a>
+    <a href="academy/index.html">Academy</a>
+    <a href="brokers/index.html">Brokers</a>
+  </div>
+  <div class="nav-drawer-note">DESKTERMINAL · FULL SITE MENU</div>
+</div>
+
+<!-- User Profile Dropdown -->
+<div class="profile-dropdown" id="profileDropdown">
+  <div class="profile-header" id="profileHeaderContent">
+    <div class="initial" id="dropUserInitial">T</div>
+    <div>
+      <div class="profile-header-name" id="dropUserName">Trader</div>
+      <div class="profile-header-email" id="dropUserEmail">user@example.com</div>
+    </div>
+  </div>
+  <div class="profile-fields">
+    <div class="profile-field"><span class="profile-field-label">Cloud Sync</span><span class="profile-field-value" style="color:var(--up)">🟢 Active</span></div>
+    <div class="profile-field"><span class="profile-field-label">Total Trades</span><span class="profile-field-value mono" id="dropTradeCount">0</span></div>
+  </div>
+  <div class="profile-actions">
+    <button class="profile-signout" id="signOutBtn">Sign out</button>
+  </div>
+</div>
+
+<!-- Main Page Container -->
 <div class="wrap">
-<header>
-  <div>
-    <h1>Desk<span>Terminal</span> · Trading Journal</h1>
-    <div style="font-size:12px;color:var(--dim);margin-top:2px">Institutional Performance Log &amp; Execution Audit</div>
+  <div class="journal-title-bar">
+    <div>
+      <h1 class="page-title">Trading Journal</h1>
+      <div class="page-subtitle">Institutional Performance Log &amp; Execution Audit</div>
+    </div>
+    <div class="row">
+      <button id="addT">+ Add trade</button>
+    </div>
   </div>
-  <div class="row">
-    <button id="addT">+ Add trade</button>
+
+  <div class="grid" id="stats"></div>
+
+  <div class="two">
+    <div class="card"><h2>Equity curve</h2><div id="eq"></div></div>
+    <div class="card"><h2>By strategy</h2><div class="scroll"><table id="strat"></table></div></div>
   </div>
-</header>
 
-<div class="grid" id="stats"></div>
-
-<div class="two">
-  <div class="card"><h2>Equity curve</h2><div id="eq"></div></div>
-  <div class="card"><h2>By strategy</h2><div class="scroll"><table id="strat"></table></div></div>
-</div>
-
-<div class="card" style="margin-bottom:16px">
-  <div class="row" style="justify-content:space-between;margin-bottom:10px">
-    <h2 style="margin:0" id="calTitle">Calendar</h2>
-    <div class="row"><span class="note mono" id="calTotal"></span><button class="alt" id="shM">Share month</button><button class="alt" id="prevM" aria-label="Previous month">&larr;</button><button class="alt" id="nextM" aria-label="Next month">&rarr;</button></div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="row" style="justify-content:space-between;margin-bottom:10px">
+      <h2 style="margin:0" id="calTitle">Calendar</h2>
+      <div class="row"><span class="note mono" id="calTotal"></span><button class="alt" id="shM">Share month</button><button class="alt" id="prevM" aria-label="Previous month">&larr;</button><button class="alt" id="nextM" aria-label="Next month">&rarr;</button></div>
+    </div>
+    <div class="cal" id="calGrid"></div>
   </div>
-  <div class="cal" id="calGrid"></div>
-</div>
 
-<div class="card" id="formCard" style="margin-bottom:16px">
-  <h2 id="formTitle">Log a trade</h2>
-  <form id="f">
-    <label>Date<input type="date" name="date" required></label>
-    <label>Instrument<input name="inst" placeholder="XAUUSD" required></label>
-    <label>Side<select name="side"><option>Long</option><option>Short</option></select></label>
-    <label>Session<select name="session"><option>London</option><option>New York</option><option>Asia</option><option>Overlap</option></select></label>
-    <label>Entry<input type="number" step="any" name="entry"></label>
-    <label>Exit<input type="number" step="any" name="exit"></label>
-    <label>Stop loss<input type="number" step="any" name="sl"></label>
-    <label>Size (lots)<input type="number" step="any" name="size"></label>
-    <label>Risk ($)<input type="number" step="any" name="risk" required></label>
-    <label>Net P&amp;L ($)<input type="number" step="any" name="pnl" required></label>
-    <label>Strategy<input name="strat" placeholder="Breakout"></label>
-    <label>Mistake / tag<select name="tag"><option value="">None</option><option>FOMO</option><option>Revenge</option><option>Moved stop</option><option>Early exit</option><option>Oversized</option><option>Off-plan</option></select></label>
-    
-    <label class="full">Notes<textarea name="notes" rows="2" placeholder="Setup, reasoning, what you would change"></textarea></label>
-    
-    <label class="full">Pre-Trade Emotion Notes<textarea name="preNotes" rows="2" placeholder="How did you feel before entering?"></textarea></label>
-    
-    <label class="full">Post-Trade Emotion Notes<textarea name="postNotes" rows="2" placeholder="How did you feel after closing? What did you learn?"></textarea></label>
-    
-    <!-- Small Add Screenshot Button Row -->
-    <div class="full">
-      <input type="file" id="picInput" accept="image/*" style="display:none">
-      <div class="row">
-        <button type="button" class="alt" id="picBtn" style="padding:6px 12px;font-size:12px">📷 Add picture / screenshot</button>
-        <span class="note" id="picStatus">No image attached</span>
+  <div class="card" id="formCard" style="margin-bottom:16px">
+    <h2 id="formTitle">Log a trade</h2>
+    <form id="f">
+      <label>Date<input type="date" name="date" required></label>
+      <label>Instrument<input name="inst" placeholder="XAUUSD" required></label>
+      <label>Side<select name="side"><option>Long</option><option>Short</option></select></label>
+      <label>Session<select name="session"><option>London</option><option>New York</option><option>Asia</option><option>Overlap</option></select></label>
+      <label>Entry<input type="number" step="any" name="entry"></label>
+      <label>Exit<input type="number" step="any" name="exit"></label>
+      <label>Stop loss<input type="number" step="any" name="sl"></label>
+      <label>Size (lots)<input type="number" step="any" name="size"></label>
+      <label>Risk ($)<input type="number" step="any" name="risk" required></label>
+      <label>Net P&amp;L ($)<input type="number" step="any" name="pnl" required></label>
+      <label>Strategy<input name="strat" placeholder="Breakout"></label>
+      <label>Mistake / tag<select name="tag"><option value="">None</option><option>FOMO</option><option>Revenge</option><option>Moved stop</option><option>Early exit</option><option>Oversized</option><option>Off-plan</option></select></label>
+      
+      <label class="full">Notes<textarea name="notes" rows="2" placeholder="Setup, reasoning, what you would change"></textarea></label>
+      <label class="full">Pre-Trade Emotion Notes<textarea name="preNotes" rows="2" placeholder="How did you feel before entering?"></textarea></label>
+      <label class="full">Post-Trade Emotion Notes<textarea name="postNotes" rows="2" placeholder="How did you feel after closing? What did you learn?"></textarea></label>
+      
+      <!-- Screenshot Row -->
+      <div class="full">
+        <input type="file" id="picInput" accept="image/*" style="display:none">
+        <div class="row">
+          <button type="button" class="alt" id="picBtn" style="padding:6px 12px;font-size:12px">📷 Add picture / screenshot</button>
+          <span class="note" id="picStatus">No image attached</span>
+        </div>
+        <div id="picPreviewWrap" class="pic-preview-wrap" style="display:none">
+          <img id="picThumb" class="pic-thumb" src="" alt="Thumbnail">
+          <button type="button" class="pic-del-btn" id="picDelBtn">Remove</button>
+        </div>
       </div>
-      <div id="picPreviewWrap" class="pic-preview-wrap" style="display:none">
-        <img id="picThumb" class="pic-thumb" src="" alt="Thumbnail">
-        <button type="button" class="pic-del-btn" id="picDelBtn">Remove</button>
+
+      <!-- Actions Row -->
+      <div class="row full">
+        <button type="submit" id="save">Save trade</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px">
+      <div class="row" style="gap:8px">
+        <h2 style="margin:0">Trade Log</h2>
+        <span class="sync-badge" id="cloudSyncStatus">Cloud Sync Ready</span>
+      </div>
+      <div class="row" style="gap:8px">
+        <select id="fInst" aria-label="Filter instrument" style="width:auto;padding:6px 10px;font-size:12px"></select>
+        <select id="fSide" aria-label="Filter side" style="width:auto;padding:6px 10px;font-size:12px">
+          <option value="">All sides</option>
+          <option>Long</option>
+          <option>Short</option>
+        </select>
+        <select id="fSession" aria-label="Filter session" style="width:auto;padding:6px 10px;font-size:12px">
+          <option value="">All sessions</option>
+          <option>London</option>
+          <option>New York</option>
+          <option>Asia</option>
+          <option>Overlap</option>
+        </select>
       </div>
     </div>
+    <div class="scroll"><table id="tbl"></table></div>
+  </div>
 
-    <!-- Actions Row: Clean and simple Save button -->
-    <div class="row full">
-      <button type="submit" id="save">Save trade</button>
-    </div>
-  </form>
-</div>
-
-<div class="card" style="margin-bottom:16px">
-  <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px">
-    <h2 style="margin:0">Trade Log</h2>
-    <div class="row" style="gap:8px">
-      <select id="fInst" aria-label="Filter instrument" style="width:auto;padding:6px 10px;font-size:12px"></select>
-      <select id="fSide" aria-label="Filter side" style="width:auto;padding:6px 10px;font-size:12px">
-        <option value="">All sides</option>
-        <option>Long</option>
-        <option>Short</option>
-      </select>
-      <select id="fSession" aria-label="Filter session" style="width:auto;padding:6px 10px;font-size:12px">
-        <option value="">All sessions</option>
-        <option>London</option>
-        <option>New York</option>
-        <option>Asia</option>
-        <option>Overlap</option>
-      </select>
+  <div class="card">
+    <h2>Backup &amp; Cloud Sync</h2>
+    <p class="note">Trades are automatically synchronized with your Supabase account. You can also export/import manual JSON backups below.</p>
+    <textarea id="bk" rows="3"></textarea>
+    <div class="row" style="margin-top:8px">
+      <button class="alt" id="syncNowBtn">🔄 Sync Cloud Now</button>
+      <button class="alt" id="exp">Export JSON</button>
+      <button class="alt" id="imp">Import JSON</button>
+      <button class="alt" id="clr" style="color:var(--down)">Clear Local</button>
     </div>
   </div>
-  <div class="scroll"><table id="tbl"></table></div>
-</div>
-
-<div class="card">
-  <h2>Backup</h2>
-  <p class="note">Data is saved in this browser only. Copy the JSON below to back it up, or paste a backup and press Import.</p>
-  <textarea id="bk" rows="3"></textarea>
-  <div class="row" style="margin-top:8px"><button class="alt" id="exp">Export</button><button class="alt" id="imp">Import</button><button class="alt" id="clr">Clear all</button></div>
-</div>
 </div>
 
 <button id="fab" aria-label="Add trade">+</button>
@@ -283,6 +549,25 @@ tr.t{cursor:pointer}tr.t:hover{background:var(--panel2)}
   <p class="note" id="ms">Tip: long-press or right-click the card to save it.</p>
 </div></div>
 
+<!-- Auth Modal -->
+<div class="auth-modal-overlay" id="authModalOverlay">
+  <div class="auth-modal">
+    <button class="auth-modal-close" id="authModalClose">✕</button>
+    <h2>Welcome to DeskTerminal</h2>
+    <p>Sign in to save and sync your trading journal securely in the cloud.</p>
+    <button class="auth-provider-btn" id="googleLoginBtn">
+      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <button class="auth-provider-btn" id="facebookLoginBtn">
+      <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      Continue with Facebook
+    </button>
+    <div class="auth-modal-note">Secure cloud sync powered by Supabase RLS.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 const KEY='dt_journal_v1';
 let trades=[],editing=null,currentImgBase64='',activeTrade=null;
@@ -294,6 +579,186 @@ const money=n=>(n<0?'-':'')+'$'+Math.abs(n||0).toLocaleString(undefined,{minimum
 const cls=n=>n>0?'up':n<0?'down':'';
 const rOf=t=>t.risk>0?t.pnl/t.risk:0;
 const num=v=>v===''||v==null?null:+v;
+
+/* ---------------- Clock in Navbar ---------------- */
+function updateClock(){
+  const el = $('navClock');
+  if(el){
+    const now = new Date();
+    el.textContent = now.toUTCString().slice(17, 22) + ' UTC';
+  }
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+/* ---------------- Drawer & Mobile Nav ---------------- */
+const hamburgerBtn = $('hamburgerBtn');
+const drawerClose = $('drawerClose');
+const navOverlay = $('navOverlay');
+const navDrawer = $('navDrawer');
+
+function openDrawer(){ navDrawer.classList.add('open'); navOverlay.classList.add('open'); }
+function closeDrawer(){ navDrawer.classList.remove('open'); navOverlay.classList.remove('open'); }
+hamburgerBtn?.addEventListener('click', openDrawer);
+drawerClose?.addEventListener('click', closeDrawer);
+navOverlay?.addEventListener('click', closeDrawer);
+
+/* ========================================================
+   SUPABASE INTEGRATION & CLOUD SYNC
+   ======================================================== */
+const SUPABASE_URL = 'https://odlyvhxhktdjrydpkmta.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_zTpEf6S1XsS4JgPpjpXTFg_7atZZvFu';
+const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+let currentUser = null;
+
+const authSlot = $('authSlot');
+const authModalOverlay = $('authModalOverlay');
+const profileDropdown = $('profileDropdown');
+
+function openAuthModal(){ authModalOverlay.classList.add('open'); }
+function closeAuthModal(){ authModalOverlay.classList.remove('open'); }
+$('authModalClose')?.addEventListener('click', closeAuthModal);
+authModalOverlay?.addEventListener('click', (e) => { if(e.target === authModalOverlay) closeAuthModal(); });
+
+function updateAuthUI(user){
+  currentUser = user;
+  if(user){
+    const photo = user.user_metadata?.avatar_url || user.user_metadata?.picture;
+    const name = user.user_metadata?.full_name || user.user_metadata?.name || user.email;
+    authSlot.innerHTML = `<button class="auth-avatar-btn" id="avatarBtn">${photo?`<img src="${photo}" alt="">`:`<span class="initial">${(name||'?').charAt(0).toUpperCase()}</span>`}</button>`;
+    $('dropUserName').textContent = name || 'Trader';
+    $('dropUserEmail').textContent = user.email || '';
+    $('dropTradeCount').textContent = trades.length;
+    $('cloudSyncStatus').textContent = '🟢 Cloud Synced';
+    $('cloudSyncStatus').style.color = 'var(--up)';
+    
+    $('avatarBtn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      profileDropdown.classList.toggle('open');
+    });
+  } else {
+    authSlot.innerHTML = `<button class="auth-btn" id="loginBtn">Login</button><button class="auth-btn primary" id="signupBtn">Sign Up</button>`;
+    $('loginBtn')?.addEventListener('click', openAuthModal);
+    $('signupBtn')?.addEventListener('click', openAuthModal);
+    $('cloudSyncStatus').textContent = '💾 Local Storage (Sign in to sync)';
+    $('cloudSyncStatus').style.color = 'var(--gold)';
+    profileDropdown.classList.remove('open');
+  }
+}
+
+document.addEventListener('click', (e) => {
+  if(profileDropdown && !profileDropdown.contains(e.target) && !e.target.closest('#avatarBtn')){
+    profileDropdown.classList.remove('open');
+  }
+});
+
+async function signInWith(provider){
+  if(!sb){ alert('Supabase client not initialized'); return; }
+  await sb.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
+}
+$('googleLoginBtn')?.addEventListener('click', () => signInWith('google'));
+$('facebookLoginBtn')?.addEventListener('click', () => signInWith('facebook'));
+$('signOutBtn')?.addEventListener('click', async () => {
+  if(sb) await sb.auth.signOut();
+  updateAuthUI(null);
+  window.location.reload();
+});
+
+async function fetchUserTradesFromSupabase(){
+  if(!sb || !currentUser) return;
+  try {
+    $('cloudSyncStatus').textContent = '🔄 Syncing...';
+    const { data, error } = await sb.from('trades').select('*').order('date', { ascending: true });
+    if(error){
+      console.warn('Supabase fetch query note:', error);
+      $('cloudSyncStatus').textContent = '⚠️ Table pending setup';
+      return;
+    }
+    if(Array.isArray(data) && data.length > 0){
+      trades = data.map(row => ({
+        id: isNaN(+row.id) ? row.id : +row.id,
+        date: row.date,
+        inst: row.inst,
+        side: row.side,
+        session: row.session || 'London',
+        entry: row.entry != null ? +row.entry : null,
+        exit: row.exit != null ? +row.exit : null,
+        sl: row.sl != null ? +row.sl : null,
+        size: row.size != null ? +row.size : null,
+        risk: +row.risk,
+        pnl: +row.pnl,
+        strat: row.strat || '',
+        tag: row.tag || '',
+        notes: row.notes || '',
+        preNotes: row.pre_notes || '',
+        postNotes: row.post_notes || '',
+        img: row.img || ''
+      }));
+      save();
+      render();
+      $('cloudSyncStatus').textContent = '🟢 Cloud Synced';
+      $('dropTradeCount').textContent = trades.length;
+    } else if(trades.length > 0) {
+      for(const t of trades){
+        await syncTradeToSupabase(t);
+      }
+      $('cloudSyncStatus').textContent = '🟢 Cloud Synced';
+      $('dropTradeCount').textContent = trades.length;
+    }
+  } catch(e){
+    console.error('Supabase fetch error', e);
+  }
+}
+
+async function syncTradeToSupabase(t){
+  if(!sb || !currentUser) return;
+  try {
+    const row = {
+      id: String(t.id),
+      user_id: currentUser.id,
+      date: t.date,
+      inst: t.inst,
+      side: t.side,
+      session: t.session,
+      entry: t.entry,
+      exit: t.exit,
+      sl: t.sl,
+      size: t.size,
+      risk: t.risk,
+      pnl: t.pnl,
+      strat: t.strat,
+      tag: t.tag,
+      notes: t.notes,
+      pre_notes: t.preNotes,
+      post_notes: t.postNotes,
+      img: t.img
+    };
+    await sb.from('trades').upsert(row);
+    $('cloudSyncStatus').textContent = '🟢 Cloud Synced';
+    $('dropTradeCount').textContent = trades.length;
+  } catch(e){
+    console.warn('Supabase upsert error', e);
+  }
+}
+
+async function deleteTradeFromSupabase(tradeId){
+  if(!sb || !currentUser) return;
+  try {
+    await sb.from('trades').delete().eq('id', String(tradeId));
+    $('dropTradeCount').textContent = trades.length;
+  } catch(e){
+    console.warn('Supabase delete error', e);
+  }
+}
+
+$('syncNowBtn').onclick = async () => {
+  if(!currentUser){
+    openAuthModal();
+  } else {
+    await fetchUserTradesFromSupabase();
+    alert('Synchronized with Supabase Cloud!');
+  }
+};
 
 // Compression helper for single trade screenshot
 function compressImage(file, maxDim=1200, quality=0.82) {
@@ -433,7 +898,7 @@ function reset(){
   $('save').textContent='Save trade';
 }
 
-f.addEventListener('submit',ev=>{
+f.addEventListener('submit',async ev=>{
   ev.preventDefault();
   const d=new FormData(f);
   const t={
@@ -459,6 +924,7 @@ f.addEventListener('submit',ev=>{
   if(i>=0)trades[i]=t;else trades.push(t);
   save();reset();render();
   openReport(t);
+  await syncTradeToSupabase(t);
 });
 
 function editTrade(t){
@@ -495,9 +961,9 @@ $('tbl').addEventListener('click',ev=>{
 });
 
 $('fInst').onchange=$('fSide').onchange=$('fSession').onchange=render;
-$('exp').onclick=()=>{$('bk').value=JSON.stringify(trades)};
+$('exp').onclick=()=>{$('bk').value=JSON.stringify(trades,null,2)};
 $('imp').onclick=()=>{try{const a=JSON.parse($('bk').value);if(!Array.isArray(a))throw 0;trades=a;save();render()}catch(e){alert('Invalid backup JSON')}};
-$('clr').onclick=()=>{if(confirm('Delete ALL trades?')){trades=[];save();render()}};
+$('clr').onclick=()=>{if(confirm('Delete ALL local trades in this browser?')){trades=[];save();render()}};
 
 /* ========================================================
    TRADE REPORT DOSSIER MODAL LOGIC
@@ -554,6 +1020,7 @@ window.addEventListener('keydown',e=>{
     $('reportModal').hidden=true;
     $('lightboxModal').hidden=true;
     $('m').hidden=true;
+    closeAuthModal();
   }
 });
 
@@ -561,13 +1028,15 @@ $('repEditBtn').onclick=()=>{
   closeReport();
   if(activeTrade) editTrade(activeTrade);
 };
-$('repDelBtn').onclick=()=>{
+$('repDelBtn').onclick=async()=>{
   if(!activeTrade) return;
   if(confirm(`Delete trade ${activeTrade.inst} (${activeTrade.date})?`)){
-    trades=trades.filter(x=>x.id!==activeTrade.id);
+    const delId = activeTrade.id;
+    trades=trades.filter(x=>x.id!==delId);
     save();
     closeReport();
     render();
+    await deleteTradeFromSupabase(delId);
   }
 };
 $('repShareBtn').onclick=()=>{
@@ -644,7 +1113,30 @@ $('bDl').onclick=()=>{try{const a=document.createElement('a');a.href=cv.toDataUR
 
 const goAdd=()=>{reset();$('formCard').scrollIntoView({behavior:'smooth'});setTimeout(()=>f.inst.focus(),400)};
 $('addT').onclick=$('fab').onclick=goAdd;
-reset();render();
+
+// Initialize Supabase Auth & Cloud Sync
+async function init(){
+  reset();
+  render();
+  if(sb){
+    const { data: { session } } = await sb.auth.getSession();
+    if(session && session.user){
+      updateAuthUI(session.user);
+      await fetchUserTradesFromSupabase();
+    } else {
+      updateAuthUI(null);
+    }
+    sb.auth.onAuthStateChange(async (event, session) => {
+      if(session && session.user){
+        updateAuthUI(session.user);
+        await fetchUserTradesFromSupabase();
+      } else {
+        updateAuthUI(null);
+      }
+    });
+  }
+}
+init();
 </script>
 </body>
 </html>
