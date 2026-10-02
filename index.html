@@ -258,43 +258,89 @@
 
   .home-dashboard{ padding: 1.4rem 6vw 0; }
   .home-date{
-    font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
+    font-size:.96rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
     margin-bottom:1rem;
   }
   .sessions-widget{
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
-    padding:1rem 1.2rem; margin-bottom:1rem;
+    background: linear-gradient(180deg, #1A212C 0%, #141A22 100%);
+    border:1px solid rgba(232,177,92,0.24);
+    border-radius:12px;
+    padding:1.35rem 1.5rem 1.2rem;
+    margin-bottom:1rem;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.05);
   }
-  .sessions-title{ font-size:.85rem; font-weight:700; color:var(--ink); margin-bottom:.8rem; }
-  .sessions-bar{ position:relative; height:112px; background:var(--panel-2); border-radius:5px; overflow:hidden; }
+  .sessions-head{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:.95rem;
+  }
+  .sessions-title{ font-size:1.13rem; font-weight:700; color:var(--ink); letter-spacing:-0.01em; }
+  .sessions-live{
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-family:'JetBrains Mono', monospace; font-size:.68rem;
+    color:#4ADE80; background:rgba(74,222,128,0.08);
+    border:1px solid rgba(74,222,128,0.22);
+    padding:.22rem .55rem; border-radius:999px;
+  }
+  .sessions-live-dot{
+    width:7px; height:7px; border-radius:50%; background:#4ADE80;
+    box-shadow:0 0 8px rgba(74,222,128,0.85);
+  }
+  .sessions-bar-wrap{ position:relative; padding-top:1.15rem; }
+  .sessions-bar{
+    position:relative; height:168px;
+    background:
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(90deg, transparent 0, transparent calc(8.333% - 1px), rgba(255,255,255,0.035) calc(8.333% - 1px), rgba(255,255,255,0.035) 8.333%),
+      linear-gradient(180deg, #10151C, #0B0F15);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), inset 0 0 0 1px rgba(0,0,0,0.25);
+  }
   .session-block{
-    position:absolute; height:22px; border-radius:4px;
-    display:flex; flex-direction:column; justify-content:center; padding:0 8px; white-space:nowrap; overflow:hidden;
-    transition: box-shadow .2s;
+    position:absolute; height:32px; border-radius:7px;
+    display:flex; flex-direction:column; justify-content:center; padding:0 10px; white-space:nowrap; overflow:hidden;
+    transition: box-shadow .2s, border-color .2s, background .2s;
   }
-  .session-name{ font-size:.68rem; font-weight:600; line-height:1.3; }
-  .session-local{ font-size:.58rem; line-height:1.3; opacity:.85; }
+  .session-name{ font-size:.82rem; font-weight:700; line-height:1.25; }
+  .session-local{ font-size:.68rem; line-height:1.25; opacity:.88; }
   .session-block.open{
-    background:rgba(74,222,128,0.18); color:#4ADE80;
-    box-shadow: 0 0 8px rgba(74,222,128,0.25);
+    background: linear-gradient(90deg, rgba(74,222,128,0.42), rgba(74,222,128,0.16));
+    color:#B8F5CC;
+    border:1px solid rgba(74,222,128,0.5);
+    box-shadow: 0 0 16px rgba(74,222,128,0.22), inset 0 1px 0 rgba(255,255,255,0.16);
   }
-  .session-block.closed{ background:var(--line-soft); color:var(--dim); }
+  .session-block.closed{
+    background: rgba(255,255,255,0.07);
+    color:#8A93A6;
+    border:1px solid rgba(255,255,255,0.08);
+  }
   .sessions-now-line{
-    position:absolute; top:0; bottom:0; width:2px; background:#FB6B5B; z-index:2;
+    position:absolute; top:0; bottom:0; width:2px;
+    background: linear-gradient(180deg, #FB6B5B, #E8B15C);
+    box-shadow: 0 0 10px rgba(251,107,91,0.55);
+    z-index:2;
   }
-  .sessions-now-line::before{
-    content:"now"; position:absolute; top:-16px; left:-12px;
-    font-family:'JetBrains Mono', monospace; font-size:.55rem; color:#FB6B5B;
+  .sessions-now-tag{
+    position:absolute; top:0; transform:translateX(-50%);
+    font-family:'JetBrains Mono', monospace; font-size:.58rem; font-weight:700;
+    letter-spacing:.08em; color:#1A1305;
+    background:#FB6B5B; padding:.12rem .38rem; border-radius:4px;
+    box-shadow: 0 4px 10px rgba(251,107,91,0.35);
+    z-index:3; pointer-events:none;
   }
-  .sessions-hours{ display:flex; justify-content:space-between; font-size:.6rem; color:var(--dim); margin-top:.4rem; }
+  .sessions-hours{
+    display:flex; justify-content:space-between;
+    font-size:.68rem; color:var(--dim); margin-top:.55rem; letter-spacing:.04em;
+  }
   .home-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.4rem; }
   @media (max-width:700px){ .home-grid{ grid-template-columns:1fr; } }
   .home-card{ background:var(--panel); border:1px solid var(--line-soft); border-radius:8px; padding:1rem 1.2rem; }
   .home-card-title{
     display:flex; justify-content:space-between; align-items:center;
-    font-size:.85rem; font-weight:700; color:var(--ink); margin-bottom:.7rem;
+    font-size:1.13rem; font-weight:700; color:var(--ink); margin-bottom:.7rem;
   }
-  .home-card-title a{ font-family:'JetBrains Mono', monospace; font-size:.65rem; color:var(--gold); text-decoration:none; font-weight:400; }
+  .home-card-title a{ font-family:'JetBrains Mono', monospace; font-size:.87rem; color:var(--gold); text-decoration:none; font-weight:400; }
   .home-card-loading{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
   .home-preview-row{
     display:flex; justify-content:space-between; gap:.6rem;
@@ -303,6 +349,72 @@
   .home-preview-row:last-child{ border-bottom:none; }
   .home-preview-meta{ font-family:'JetBrains Mono', monospace; color:var(--dim); flex-shrink:0; white-space:nowrap; }
   .home-preview-text{ color:var(--ink); text-align:right; }
+
+  .home-event-head,
+  .home-event-row{
+    display:grid;
+    grid-template-columns: 72px 1fr 58px 10px 58px;
+    gap:.35rem;
+    align-items:center;
+    font-size:.72rem;
+  }
+  .home-event-head{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.58rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--dim);
+    padding:.2rem 0 .45rem;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .home-event-head span:nth-child(3),
+  .home-event-head span:nth-child(5),
+  .home-event-row .home-ev-val{ text-align:right; }
+  .home-event-row{
+    padding:.45rem .45rem .45rem .55rem;
+    margin:0 -.45rem;
+    border-bottom:1px solid var(--line-soft);
+    border-left:3.5px solid transparent;
+  }
+  .home-event-row:last-child{ border-bottom:none; }
+  .home-ev-time{ font-family:'JetBrains Mono', monospace; color:var(--dim); white-space:nowrap; }
+  .home-ev-name{
+    color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;
+  }
+  .home-ev-val{ font-family:'JetBrains Mono', monospace; color:var(--dim); }
+  .home-ev-val.actual-up{ color:#4ADE80; }
+  .home-ev-val.actual-down{ color:#FB6B5B; }
+  .home-ev-gap{ display:block; }
+  .home-event-row.up-next{
+    background: rgba(74, 222, 128, 0.04);
+    border-left: 3.5px solid #4ADE80;
+    box-shadow: inset 2px 0 8px rgba(74, 222, 128, 0.03);
+    border-radius:4px;
+  }
+  .home-event-row.up-next .home-ev-time{
+    color:#4ADE80;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  .home-event-row.up-next .home-ev-time::before{
+    content:'▶';
+    font-size:0.6rem;
+    color:#4ADE80;
+    animation: pulsePlay 1.6s infinite ease-in-out;
+  }
+  @keyframes pulsePlay{
+    0%, 100%{ opacity:0.55; transform:scale(0.9); }
+    50%{ opacity:1; transform:scale(1.15); filter:drop-shadow(0 0 2px rgba(74,222,128,0.8)); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .home-event-row.up-next .home-ev-time::before{ animation:none; }
+  }
+  @media (max-width:700px){
+    .home-event-head,
+    .home-event-row{ grid-template-columns: 64px 1fr 50px 6px 50px; font-size:.66rem; }
+  }
 
   .deskai-toggle-wrap{
     position: fixed;
@@ -765,9 +877,14 @@
   </div>
 
   <div class="sessions-widget">
-    <div class="sessions-title">Sessions</div>
-    <div class="sessions-bar" id="sessionsBar">
-      <div class="sessions-now-line" id="sessionsNowLine"></div>
+    <div class="sessions-head">
+      <div class="sessions-title">Sessions</div>
+      <div class="sessions-live"><span class="sessions-live-dot"></span> Live UTC</div>
+    </div>
+    <div class="sessions-bar-wrap">
+      <div class="sessions-bar" id="sessionsBar">
+        <div class="sessions-now-line" id="sessionsNowLine"></div>
+      </div>
     </div>
     <div class="sessions-hours mono" id="sessionsHours"></div>
   </div>
@@ -952,7 +1069,7 @@ function renderSessions(){
       // Normal same-day session — one bar, no wraparound.
       const startPct = (s.startUTC / 24) * 100;
       const widthPct = ((s.endUTC - s.startUTC) / 24) * 100;
-      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${i*28}px; left:${startPct}%; width:${widthPct}%;">${labelHtml}</div>`;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${5 + i*42}px; left:${startPct}%; width:${widthPct}%;">${labelHtml}</div>`;
     } else {
       // Overnight session (e.g. Sydney 22:00-07:00 UTC) — genuinely split into
       // two segments in the same row, so the full session is visible instead
@@ -960,12 +1077,23 @@ function renderSessions(){
       const eveningStartPct = (s.startUTC / 24) * 100;
       const eveningWidthPct = ((24 - s.startUTC) / 24) * 100;
       const morningWidthPct = (s.endUTC / 24) * 100;
-      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${i*28}px; left:${eveningStartPct}%; width:${eveningWidthPct}%;"></div>`;
-      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${i*28}px; left:0%; width:${morningWidthPct}%;">${labelHtml}</div>`;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${5 + i*42}px; left:${eveningStartPct}%; width:${eveningWidthPct}%;"></div>`;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${5 + i*42}px; left:0%; width:${morningWidthPct}%;">${labelHtml}</div>`;
     }
   });
 
   bar.innerHTML = blocksHtml + `<div class="sessions-now-line" id="sessionsNowLine" style="left:${nowPct}%;"></div>`;
+  const wrap = bar.parentElement;
+  if(wrap){
+    let tag = wrap.querySelector('.sessions-now-tag');
+    if(!tag){
+      tag = document.createElement('div');
+      tag.className = 'sessions-now-tag';
+      tag.textContent = 'NOW';
+      wrap.appendChild(tag);
+    }
+    tag.style.left = nowPct + '%';
+  }
   if(hoursEl) hoursEl.innerHTML = '<span>00:00 UTC</span><span>12:00 UTC</span><span>24:00 UTC</span>';
 }
 renderSessions();
@@ -979,15 +1107,56 @@ async function loadHomeCalendarPreview(){
     const res = await fetch('/.netlify/functions/econ-calendar');
     const data = await res.json();
     if(!data.events){ el.textContent = 'Economic calendar isn\'t available right now.'; return; }
+
+    const now = Date.now();
     const todayStr = new Date().toDateString();
     const todayEvents = data.events
-      .filter(e => new Date(e.date).toDateString() === todayStr && e.importance >= 2)
-      .slice(0, 5);
-    if(!todayEvents.length){ el.innerHTML = '<div class="home-card-loading">No major events scheduled for today.</div>'; return; }
-    el.innerHTML = todayEvents.map(e => {
-      const time = new Date(e.date).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-      return `<div class="home-preview-row"><span class="home-preview-meta">${time}</span><span class="home-preview-text">${escapeHtml(e.event)}</span></div>`;
-    }).join('');
+      .filter(e => e.date && e.event && new Date(e.date).toDateString() === todayStr)
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    if(!todayEvents.length){
+      el.innerHTML = '<div class="home-card-loading">No events scheduled for today.</div>';
+      return;
+    }
+
+    const passed = todayEvents.filter(e => new Date(e.date).getTime() <= now);
+    const upcoming = todayEvents.filter(e => new Date(e.date).getTime() > now);
+    const rows = [];
+    if(passed.length) rows.push({ e: passed[passed.length - 1], kind: 'passed' });
+    if(upcoming.length){
+      rows.push({ e: upcoming[0], kind: 'next' });
+      upcoming.slice(1, 6).forEach(e => rows.push({ e, kind: 'later' }));
+    }
+
+    function homeActualClass(e){
+      const nameLower = (e.event || '').toLowerCase();
+      const isLowerBetter = nameLower.includes('unemployment') || nameLower.includes('jobless claims') || nameLower.includes('claimant count') || nameLower.includes('unemployed');
+      const actualNum = parseFloat(e.actual);
+      const forecastNum = parseFloat(e.forecast);
+      if(e.actual && e.forecast && !isNaN(actualNum) && !isNaN(forecastNum)){
+        if(actualNum > forecastNum) return isLowerBetter ? 'actual-down' : 'actual-up';
+        if(actualNum < forecastNum) return isLowerBetter ? 'actual-up' : 'actual-down';
+      }
+      return '';
+    }
+
+    el.innerHTML = `
+      <div class="home-event-head">
+        <span>Time</span><span>Event</span><span>Actual</span><span></span><span>Forecast</span>
+      </div>
+      ${rows.map(({ e, kind }) => {
+        const time = new Date(e.date).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+        const rowClass = kind === 'next' ? 'home-event-row up-next' : 'home-event-row';
+        const actClass = homeActualClass(e);
+        return `<div class="${rowClass}">
+          <span class="home-ev-time">${time}</span>
+          <span class="home-ev-name" title="${escapeHtml(e.event)}">${escapeHtml(e.event)}</span>
+          <span class="home-ev-val ${actClass}">${escapeHtml(e.actual) || '—'}</span>
+          <span class="home-ev-gap"></span>
+          <span class="home-ev-val">${escapeHtml(e.forecast) || '—'}</span>
+        </div>`;
+      }).join('')}
+    `;
   } catch(err){
     el.textContent = 'Could not load today\'s events right now.';
   }
