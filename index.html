@@ -208,30 +208,38 @@
   .scanner-table{ border-collapse:collapse; width:100%; min-width:880px; table-layout:fixed; }
   .scanner-table th, .scanner-table td{
     border:1px solid var(--line-soft);
-    padding:.4rem .45rem;
-    font-size:.74rem; text-align:center;
+    padding:.3rem .4rem;
+    font-size:.72rem; text-align:center;
     overflow:hidden; white-space:nowrap;
   }
-  .scanner-table thead th{ padding:0; }
+  .scanner-table thead th{ padding:.42rem .25rem .38rem; background:var(--panel-2); }
   .scanner-pair-link{
-    display:block; padding:.5rem .25rem;
-    font-family:'JetBrains Mono', monospace; font-size:.78rem; font-weight:700;
-    color:var(--ink); text-decoration:none; background:var(--panel-2);
-    transition:color .15s, background-color .15s;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    text-decoration:none;
   }
-  .scanner-pair-link:hover{ color:#1a1206; background-color:var(--gold); }
+  .scanner-pair-pill{
+    padding:.16rem .6rem;
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; font-weight:700;
+    color:var(--ink); background:var(--panel);
+    border:1px solid var(--line); border-radius:3px;
+    transition:color .15s, background-color .15s, border-color .15s;
+  }
+  .scanner-pair-link:hover .scanner-pair-pill{ color:#1a1206; background:var(--gold); border-color:var(--gold); }
+  .scanner-pair-caret{ width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; }
+  .scanner-pair-caret.up{ border-bottom:5px solid #4ADE80; }
+  .scanner-pair-caret.down{ border-top:5px solid #FB6B5B; }
   .scanner-cell-link{ display:block; color:inherit; text-decoration:none; }
   .scanner-cell-link:hover{ color:var(--gold); }
   .scanner-rowlabel{
     width:118px; text-align:left; font-weight:400;
-    font-family:'JetBrains Mono', monospace; font-size:.64rem;
+    font-family:'JetBrains Mono', monospace; font-size:.62rem;
     color:var(--dim); background:var(--panel-2);
     padding-left:.7rem;
   }
   .scanner-table td.mono{ font-family:'JetBrains Mono', monospace; }
   .scanner-table td.up{ color:#4ADE80; }
   .scanner-table td.down{ color:#FB6B5B; }
-  .scanner-candle-svg{ display:block; margin:0 auto; }
+  .scanner-candle-svg{ display:block; margin:0 auto; width:100%; max-width:138px; height:auto; }
   .scanner-loading{ padding:1rem; text-align:left; }
 
   .strength-collapsible{
@@ -979,14 +987,14 @@ function buildCandlesSVG(candles){
   // bearish, wicks from each candle's true high/low — standard candle
   // convention, on a faint grid like a terminal chart.
   if(!Array.isArray(candles) || !candles.length) return '';
-  const W = 120, H = 44, PAD = 3;
+  const W = 128, H = 46, PAD = 4;
   let max = Math.max(...candles.map(c => c.h));
   let min = Math.min(...candles.map(c => c.l));
   if(max === min){ max += 1; min -= 1; } // flat window — centre the line
   const span = max - min;
   const y = v => PAD + (1 - (v - min) / span) * (H - PAD * 2);
   const slot = W / candles.length;
-  const bodyW = Math.max(3, Math.min(9, slot * 0.6));
+  const bodyW = Math.max(2.5, Math.min(4.5, slot * 0.42));
   const grid = [0.25, 0.5, 0.75].map(f =>
     `<line x1="0" y1="${(H * f).toFixed(2)}" x2="${W}" y2="${(H * f).toFixed(2)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`
   ).join('');
@@ -995,9 +1003,9 @@ function buildCandlesSVG(candles){
     const bull = c.c >= c.o;
     const color = bull ? '#4ADE80' : '#FB6B5B';
     const top = y(Math.max(c.o, c.c));
-    const height = Math.max(1.5, y(Math.min(c.o, c.c)) - top);
+    const height = Math.max(1.2, y(Math.min(c.o, c.c)) - top);
     return `<line x1="${cx}" y1="${y(c.h).toFixed(2)}" x2="${cx}" y2="${y(c.l).toFixed(2)}" stroke="${color}" stroke-width="1"/>` +
-      `<rect x="${(cx - bodyW / 2).toFixed(2)}" y="${top.toFixed(2)}" width="${bodyW.toFixed(2)}" height="${height.toFixed(2)}" fill="${bull ? 'none' : color}" stroke="${color}" stroke-width="1.2"/>`;
+      `<rect x="${(cx - bodyW / 2).toFixed(2)}" y="${top.toFixed(2)}" width="${bodyW.toFixed(2)}" height="${height.toFixed(2)}" fill="${bull ? 'none' : color}" stroke="${color}" stroke-width="1"/>`;
   }).join('');
   return `<svg class="scanner-candle-svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${grid}${parts}</svg>`;
 }
@@ -1039,7 +1047,7 @@ async function loadScanner(){
       <thead>
         <tr>
           <th class="scanner-rowlabel"></th>
-          ${pairs.map(p => `<th><a class="scanner-pair-link" href="${SCANNER_LINKS[p.code] || 'market.html'}">${escapeHtml(p.label)}</a></th>`).join('')}
+          ${pairs.map(p => `<th><a class="scanner-pair-link" href="${SCANNER_LINKS[p.code] || 'market.html'}"><span class="scanner-pair-pill">${escapeHtml(p.label)}</span><span class="scanner-pair-caret ${p.pctChange >= 0 ? 'up' : 'down'}" aria-hidden="true"></span></a></th>`).join('')}
         </tr>
       </thead>
       <tbody>
