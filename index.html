@@ -109,7 +109,8 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0E1116;
@@ -122,8 +123,8 @@
     --gold:#E8B15C;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background:var(--bg); color:var(--ink); font-family:'Space Grotesk',sans-serif; min-height:100vh; }
-  .mono{ font-family:'JetBrains Mono', monospace; }
+  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
 
   /* ---------------- Nav ---------------- */
   nav{
@@ -135,13 +136,13 @@
   .wordmark span{ color:var(--gold); }
   .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
   .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
-  .navlinks{ display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:.75rem; letter-spacing:.04em; }
+  .navlinks{ display:flex; gap:1.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.04em; }
   .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s, background-color .15s; display:flex; align-items:center; gap:.4rem; padding:.3rem .6rem; border-radius:4px; }
   .navlinks a:hover{ color:#1a1206; background-color:var(--gold); }
   .navlinks a.active{ color:var(--gold); }
   .nav-icon{ width:15px; height:15px; flex-shrink:0; }
   .nav-right{ display:flex; align-items:center; gap:1.2rem; }
-  .nav-clock{ font-size:.72rem; color:var(--dim); white-space:nowrap; }
+  .nav-clock{ font-size:0.875rem; color:var(--dim); white-space:nowrap; }
 
   .mobile-subnav{
     display:none;
@@ -152,7 +153,7 @@
   .mobile-subnav::-webkit-scrollbar{ display:none; }
   .mobile-subnav a{
     display:inline-block; padding:.65rem .9rem;
-    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim);
+    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
     text-decoration:none; border-bottom:2px solid transparent;
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
@@ -170,14 +171,14 @@
   @keyframes scrollTape{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
   .tape-chip{
     display:inline-flex; align-items:center; gap:.5rem;
-    font-family:'JetBrains Mono', monospace; font-size:.8rem;
+    font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
     padding: 0 1.4rem;
     border:none; border-right:1px solid var(--line-soft);
     background:transparent; color:var(--ink);
     cursor:pointer;
   }
   .tape-chip:hover{ color:var(--gold); }
-  .tape-star{ margin-left:.35rem; color:var(--line-soft); font-size:.85rem; }
+  .tape-star{ margin-left:.35rem; color:var(--line-soft); font-size:0.875rem; }
   .tape-star.starred{ color:var(--gold); }
   .tape-star:hover{ color:var(--gold); }
   .tape-icon-img{ width:18px; height:18px; border-radius:50%; object-fit:cover; flex-shrink:0; }
@@ -199,7 +200,7 @@
   /* ---------------- Market Scanner (dense majors table) ---------------- */
   .scanner-section{ padding: 1.4rem 6vw 0; }
   .scanner-title{ font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:.7rem; }
-  .scanner-sub{ font-family:'JetBrains Mono', monospace; font-size:.68rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
+  .scanner-sub{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
 
   .scanner-table-wrap{
     background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
@@ -209,7 +210,7 @@
   .scanner-table th, .scanner-table td{
     border:1px solid var(--line-soft);
     padding:.3rem .4rem;
-    font-size:.72rem; text-align:center;
+    font-size:0.875rem; text-align:center;
     overflow:hidden; white-space:nowrap;
   }
   .scanner-table thead th{ padding:.42rem .25rem .38rem; background:var(--panel-2); }
@@ -219,7 +220,7 @@
   }
   .scanner-pair-pill{
     padding:.16rem .6rem;
-    font-family:'JetBrains Mono', monospace; font-size:.72rem; font-weight:700;
+    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; font-weight:700;
     color:var(--ink); background:var(--panel);
     border:1px solid var(--line); border-radius:3px;
     transition:color .15s, background-color .15s, border-color .15s;
@@ -232,11 +233,11 @@
   .scanner-cell-link:hover{ color:var(--gold); }
   .scanner-rowlabel{
     width:118px; text-align:left; font-weight:400;
-    font-family:'JetBrains Mono', monospace; font-size:.62rem;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
     color:var(--dim); background:var(--panel-2);
     padding-left:.7rem;
   }
-  .scanner-table td.mono{ font-family:'JetBrains Mono', monospace; }
+  .scanner-table td.mono{ font-family:'IBM Plex Mono', monospace; }
   .scanner-table td.up{ color:#4ADE80; }
   .scanner-table td.down{ color:#FB6B5B; }
   .scanner-candle-svg{ display:block; margin:0 auto; width:100%; max-width:138px; height:auto; }
@@ -249,36 +250,36 @@
   .strength-toggle{
     width:100%; display:flex; justify-content:space-between; align-items:center;
     background:none; border:none; padding:.8rem 1.1rem; cursor:pointer;
-    font-size:.78rem; font-weight:700; color:var(--ink);
+    font-size:0.875rem; font-weight:700; color:var(--ink);
   }
-  .strength-arrow{ color:var(--gold); font-size:.7rem; transition:transform .15s; }
+  .strength-arrow{ color:var(--gold); font-size:0.75rem; transition:transform .15s; }
   .strength-body{ display:none; padding:0 1.1rem 1rem; }
   .strength-body.open{ display:block; }
   .strength-row{ display:grid; grid-template-columns:44px 130px 1fr 55px 64px; align-items:center; gap:.6rem; padding:.3rem 0; }
   .strength-head{
-    font-family:'JetBrains Mono', monospace; font-size:.58rem; letter-spacing:.06em;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
     text-transform:uppercase; color:var(--dim);
     padding:.1rem 0 .45rem; border-bottom:1px solid var(--line-soft); margin-bottom:.25rem;
   }
   .strength-head span:nth-child(4), .strength-head span:nth-child(5){ text-align:right; }
-  .strength-code{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--ink); }
-  .strength-name{ font-size:.72rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .strength-code{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--ink); }
+  .strength-name{ font-size:0.875rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .strength-track{ height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden; }
   .strength-fill{ height:100%; border-radius:3px; }
   .strength-fill.up{ background:#4ADE80; }
   .strength-fill.down{ background:#FB6B5B; }
-  .strength-score{ font-family:'JetBrains Mono', monospace; font-size:.68rem; text-align:right; }
+  .strength-score{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-align:right; }
   .strength-score.up{ color:#4ADE80; }
   .strength-score.down{ color:#FB6B5B; }
-  .strength-pct{ font-family:'JetBrains Mono', monospace; font-size:.68rem; text-align:right; }
+  .strength-pct{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-align:right; }
   .strength-pct.up{ color:#4ADE80; }
   .strength-pct.down{ color:#FB6B5B; }
 
   footer{
     text-align:center;
     padding: 1.8rem;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.65rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
     color: var(--dim);
     border-top:1px solid var(--line-soft);
   }
@@ -286,7 +287,7 @@
 
   .home-dashboard{ padding: 1.4rem 6vw 0; }
   .home-date{
-    font-size:.96rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
+    font-size:1rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold);
     margin-bottom:1rem;
   }
   .sessions-widget{
@@ -304,7 +305,7 @@
   .sessions-title{ font-size:1.13rem; font-weight:700; color:var(--ink); letter-spacing:-0.01em; }
   .sessions-live{
     display:inline-flex; align-items:center; gap:.4rem;
-    font-family:'JetBrains Mono', monospace; font-size:.68rem;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
     color:#4ADE80; background:rgba(74,222,128,0.08);
     border:1px solid rgba(74,222,128,0.22);
     padding:.22rem .55rem; border-radius:999px;
@@ -330,8 +331,8 @@
     display:flex; flex-direction:column; justify-content:center; padding:0 10px; white-space:nowrap; overflow:hidden;
     transition: box-shadow .2s, border-color .2s, background .2s;
   }
-  .session-name{ font-size:.82rem; font-weight:700; line-height:1.25; }
-  .session-local{ font-size:.68rem; line-height:1.25; opacity:.88; }
+  .session-name{ font-size:0.875rem; font-weight:700; line-height:1.25; }
+  .session-local{ font-size:0.75rem; line-height:1.25; opacity:.88; }
   .session-block.open{
     background: linear-gradient(90deg, rgba(74,222,128,0.42), rgba(74,222,128,0.16));
     color:#B8F5CC;
@@ -351,7 +352,7 @@
   }
   .sessions-now-tag{
     position:absolute; top:0; transform:translateX(-50%);
-    font-family:'JetBrains Mono', monospace; font-size:.58rem; font-weight:700;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:700;
     letter-spacing:.08em; color:#1A1305;
     background:#FB6B5B; padding:.12rem .38rem; border-radius:4px;
     box-shadow: 0 4px 10px rgba(251,107,91,0.35);
@@ -359,7 +360,7 @@
   }
   .sessions-hours{
     display:flex; justify-content:space-between;
-    font-size:.68rem; color:var(--dim); margin-top:.55rem; letter-spacing:.04em;
+    font-size:0.75rem; color:var(--dim); margin-top:.55rem; letter-spacing:.04em;
   }
   .home-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.4rem; }
   @media (max-width:700px){ .home-grid{ grid-template-columns:1fr; } }
@@ -368,14 +369,14 @@
     display:flex; justify-content:space-between; align-items:center;
     font-size:1.13rem; font-weight:700; color:var(--ink); margin-bottom:.7rem;
   }
-  .home-card-title a{ font-family:'JetBrains Mono', monospace; font-size:.87rem; color:var(--gold); text-decoration:none; font-weight:400; }
-  .home-card-loading{ font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--dim); }
+  .home-card-title a{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--gold); text-decoration:none; font-weight:400; }
+  .home-card-loading{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
   .home-preview-row{
     display:flex; justify-content:space-between; gap:.6rem;
-    padding:.45rem 0; border-bottom:1px solid var(--line-soft); font-size:.72rem;
+    padding:.45rem 0; border-bottom:1px solid var(--line-soft); font-size:0.875rem;
   }
   .home-preview-row:last-child{ border-bottom:none; }
-  .home-preview-meta{ font-family:'JetBrains Mono', monospace; color:var(--dim); flex-shrink:0; white-space:nowrap; }
+  .home-preview-meta{ font-family:'IBM Plex Mono', monospace; color:var(--dim); flex-shrink:0; white-space:nowrap; }
   .home-preview-text{ color:var(--ink); text-align:right; }
 
   .home-event-head,
@@ -384,11 +385,11 @@
     grid-template-columns: 72px 1fr 58px 10px 58px;
     gap:.35rem;
     align-items:center;
-    font-size:.72rem;
+    font-size:0.875rem;
   }
   .home-event-head{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.58rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
     letter-spacing:.06em;
     text-transform:uppercase;
     color:var(--dim);
@@ -405,11 +406,11 @@
     border-left:3.5px solid transparent;
   }
   .home-event-row:last-child{ border-bottom:none; }
-  .home-ev-time{ font-family:'JetBrains Mono', monospace; color:var(--dim); white-space:nowrap; }
+  .home-ev-time{ font-family:'IBM Plex Mono', monospace; color:var(--dim); white-space:nowrap; }
   .home-ev-name{
     color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;
   }
-  .home-ev-val{ font-family:'JetBrains Mono', monospace; color:var(--dim); }
+  .home-ev-val{ font-family:'IBM Plex Mono', monospace; color:var(--dim); }
   .home-ev-val.actual-up{ color:#4ADE80; }
   .home-ev-val.actual-down{ color:#FB6B5B; }
   .home-ev-gap{ display:block; }
@@ -428,7 +429,7 @@
   }
   .home-event-row.up-next .home-ev-time::before{
     content:'▶';
-    font-size:0.6rem;
+    font-size:0.75rem;
     color:#4ADE80;
     animation: pulsePlay 1.6s infinite ease-in-out;
   }
@@ -441,7 +442,7 @@
   }
   @media (max-width:700px){
     .home-event-head,
-    .home-event-row{ grid-template-columns: 64px 1fr 50px 6px 50px; font-size:.66rem; }
+    .home-event-row{ grid-template-columns: 64px 1fr 50px 6px 50px; font-size:0.75rem; }
   }
 
   .deskai-toggle-wrap{
@@ -466,8 +467,8 @@
   .deskai-toggle:hover .deskai-spark{ animation: deskaiShimmer .6s ease-in-out; }
   .deskai-spark{ width:27px; height:27px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25)); }
   .deskai-toggle-label{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.64rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
     letter-spacing:.03em;
     color: var(--gold);
     background: var(--panel);
@@ -514,9 +515,9 @@
     flex-shrink:0;
   }
   .deskai-header-title .mark svg{ width:16px; height:16px; }
-  .deskai-header-title span{ font-weight:700; font-size:.95rem; letter-spacing:-0.01em; }
+  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:-0.01em; }
   .deskai-header-sub{
-    font-family:'JetBrains Mono', monospace; font-size:.6rem; color:var(--dim);
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
     display:flex; align-items:center; gap:.35rem; margin-top:.1rem;
   }
   .deskai-header-sub .live-dot{
@@ -554,7 +555,7 @@
     max-width: 76%;
     padding: .68rem .9rem;
     border-radius: 14px;
-    font-size: .85rem;
+    font-size:0.875rem;
     line-height: 1.55;
     white-space: pre-wrap;
   }
@@ -574,8 +575,8 @@
     background: rgba(251,107,91,0.1);
     border: 1px solid rgba(251,107,91,0.3);
     color: #FB6B5B;
-    font-family:'JetBrains Mono', monospace;
-    font-size:.78rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.875rem;
     border-bottom-left-radius:4px;
   }
 
@@ -597,14 +598,14 @@
   .deskai-thinking-bubble span:nth-child(3){ animation-delay:.3s; }
 
   .deskai-welcome{
-    font-size:.83rem; color:var(--dim); line-height:1.65; padding: .1rem .1rem 0;
+    font-size:0.875rem; color:var(--dim); line-height:1.65; padding: .1rem .1rem 0;
   }
   .deskai-quick{
     display:flex; flex-wrap:wrap; gap:.45rem; padding: 0 1.1rem 1rem;
   }
   .deskai-quick button{
-    font-family:'JetBrains Mono', monospace;
-    font-size:.66rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
     background: rgba(232,177,92,0.06);
     border:1px solid rgba(232,177,92,0.25);
     color:var(--gold);
@@ -628,8 +629,8 @@
     border-radius:22px;
     padding:.65rem 1rem;
     color:var(--ink);
-    font-family:'Space Grotesk',sans-serif;
-    font-size:.85rem;
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:0.875rem;
     outline:none;
     transition: border-color .15s;
   }
@@ -689,7 +690,7 @@
   .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
   .nav-drawer-links a{
     padding:.85rem 1.3rem;
-    font-family:'JetBrains Mono', monospace; font-size:.85rem; letter-spacing:.02em;
+    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.02em;
     color:var(--dim); text-decoration:none;
     border-left:2px solid transparent;
   }
@@ -698,7 +699,7 @@
   .nav-drawer-note{
     margin-top:auto;
     padding:1rem 1.3rem;
-    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
     border-top:1px solid var(--line-soft);
   }
 
@@ -706,7 +707,7 @@
   /* ---------------- Auth: login/signup + profile ---------------- */
   .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
   .auth-btn{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; font-weight:600;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:600;
     padding:.32rem .65rem; border-radius:4px; cursor:pointer;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
   }
@@ -723,7 +724,7 @@
     display:flex; align-items:center; justify-content:center; padding:0;
   }
   .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
-  .auth-avatar-btn .initial{ font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:.85rem; }
+  .auth-avatar-btn .initial{ font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:0.875rem; }
 
   .auth-modal-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
@@ -741,18 +742,18 @@
   }
   .auth-modal-close:hover{ color:var(--ink); }
   .auth-modal h2{ font-size:1.1rem; font-weight:700; margin-bottom:.4rem; }
-  .auth-modal p{ font-size:.82rem; color:var(--dim); margin-bottom:1.4rem; line-height:1.5; }
+  .auth-modal p{ font-size:0.875rem; color:var(--dim); margin-bottom:1.4rem; line-height:1.5; }
   .auth-provider-btn{
     width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
     padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
     background:var(--panel-2); color:var(--ink);
-    font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:500;
+    font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:500;
     cursor:pointer; margin-bottom:.7rem;
   }
   .auth-provider-btn:hover{ border-color:var(--gold); }
   .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
   .auth-modal-note{
-    font-family:'JetBrains Mono', monospace; font-size:.62rem; color:var(--dim);
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
     margin-top:1rem; line-height:1.6; text-align:center;
   }
 
@@ -771,33 +772,33 @@
   .profile-header .initial{
     width:44px; height:44px; border-radius:50%; background:var(--panel);
     display:flex; align-items:center; justify-content:center;
-    font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
+    font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
   }
-  .profile-header-name{ font-weight:600; font-size:.9rem; }
-  .profile-header-email{ font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim); margin-top:.15rem; }
+  .profile-header-name{ font-weight:600; font-size:0.875rem; }
+  .profile-header-email{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
 
   .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
   .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
   .profile-field-label{
-    font-family:'JetBrains Mono', monospace; font-size:.65rem; letter-spacing:.06em;
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
     text-transform:uppercase; color:var(--dim); flex-shrink:0;
   }
-  .profile-field-value{ font-size:.78rem; color:var(--ink); text-align:right; word-break:break-word; }
-  .profile-field-value.mono{ font-family:'JetBrains Mono', monospace; font-size:.7rem; }
+  .profile-field-value{ font-size:0.875rem; color:var(--ink); text-align:right; word-break:break-word; }
+  .profile-field-value.mono{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; }
   .profile-field-clickable{ cursor:pointer; }
   .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
   .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
   .watchlist-chip{
     display:inline-flex; align-items:center; gap:.35rem;
     background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    padding:.3rem .5rem; font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--ink);
+    padding:.3rem .5rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink);
   }
   .watchlist-chip-remove{
-    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:.75rem; padding:0; line-height:1;
+    background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:0.875rem; padding:0; line-height:1;
   }
   .watchlist-chip-remove:hover{ color:#FB6B5B; }
   .watchlist-empty{
-    font-family:'JetBrains Mono', monospace; font-size:.68rem; color:var(--dim);
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
     padding:.4rem 0; line-height:1.5;
   }
 
@@ -805,7 +806,7 @@
   .profile-signout{
     width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
     background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'JetBrains Mono', monospace; font-size:.75rem; font-weight:600; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; font-weight:600; cursor:pointer;
   }
   .profile-signout:hover{ background:rgba(251,107,91,0.15); }
 
@@ -815,6 +816,7 @@
   }
 
 </style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
@@ -923,31 +925,31 @@
 </div>
 
 <section class="seo-content" style="max-width:900px; margin:2rem auto; padding:0 1.2rem;">
-  <h1 style="font-size:1.4rem; margin-bottom:.8rem;">DeskTerminal — Live Forex, Gold, Crypto, and Indices</h1>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:1.5rem;">A real-time trading dashboard covering forex, gold and silver, crypto, and major stock indices — live prices, today's economic events, breaking market news, and a Market Scanner showing real currency strength, all in one place, free.</p>
+  <h1>DeskTerminal — Live Forex, Gold, Crypto, and Indices</h1>
+  <p>A real-time trading dashboard covering forex, gold and silver, crypto, and major stock indices — live prices, today's economic events, breaking market news, and a Market Scanner showing real currency strength, all in one place, free.</p>
 
-  <h2 style="font-size:1.1rem; font-weight:600; margin:1.6rem 0 .6rem;">Frequently Asked Questions</h2>
+  <h2>Frequently Asked Questions</h2>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">What is DeskTerminal?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">A free, real-time markets platform covering forex, gold and silver, crypto, and major stock indices — combining live prices, an economic calendar, breaking financial news, and a set of practical trading tools in one place, without requiring an account to use most of it.</p>
+  <h3>What is DeskTerminal?</h3>
+  <p>A free, real-time markets platform covering forex, gold and silver, crypto, and major stock indices — combining live prices, an economic calendar, breaking financial news, and a set of practical trading tools in one place, without requiring an account to use most of it.</p>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">What are the trading sessions shown on the homepage?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">The four major forex trading sessions — Sydney, Tokyo, London, and New York — shown against the current time, so you can see which markets are genuinely open right now and where session overlaps create the highest typical liquidity.</p>
+  <h3>What are the trading sessions shown on the homepage?</h3>
+  <p>The four major forex trading sessions — Sydney, Tokyo, London, and New York — shown against the current time, so you can see which markets are genuinely open right now and where session overlaps create the highest typical liquidity.</p>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">What is the Market Scanner?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">A real currency strength ranking, computed from price snapshots we collect ourselves across the major pairs — showing at a glance which currencies are genuinely strengthening or weakening against the basket right now, not a static or estimated figure.</p>
+  <h3>What is the Market Scanner?</h3>
+  <p>A real currency strength ranking, computed from price snapshots we collect ourselves across the major pairs — showing at a glance which currencies are genuinely strengthening or weakening against the basket right now, not a static or estimated figure.</p>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">Do I need to create an account to use DeskTerminal?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">No — live prices, the calendar, news, and every calculator tool work without signing in. An account is only needed for optional features like saving a personal watchlist or submitting a news story.</p>
+  <h3>Do I need to create an account to use DeskTerminal?</h3>
+  <p>No — live prices, the calendar, news, and every calculator tool work without signing in. An account is only needed for optional features like saving a personal watchlist or submitting a news story.</p>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">Is DeskTerminal free to use?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">Yes, completely free — no subscription, no paywall on the core tools and data.</p>
+  <h3>Is DeskTerminal free to use?</h3>
+  <p>Yes, completely free — no subscription, no paywall on the core tools and data.</p>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">How is DeskTerminal different from Forex Factory or Investing.com?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">DeskTerminal is newer and smaller, but built with AI woven directly into the experience — automatic news impact classification, an AI assistant explaining market moves, and AI-generated analysis on every instrument page — alongside the same core tools traders expect from an established platform.</p>
+  <h3>How is DeskTerminal different from Forex Factory or Investing.com?</h3>
+  <p>DeskTerminal is newer and smaller, but built with AI woven directly into the experience — automatic news impact classification, an AI assistant explaining market moves, and AI-generated analysis on every instrument page — alongside the same core tools traders expect from an established platform.</p>
 
-  <h3 style="font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem;">What is DeskAi?</h3>
-  <p style="font-size:.92rem; line-height:1.7; color:#B7BECC; margin-bottom:.8rem;">DeskTerminal's built-in AI assistant, available across the site to explain price moves, market context, and specific tools in plain language — genuinely useful as a starting point for understanding what's happening, though never a substitute for your own research or financial advice.</p>
+  <h3>What is DeskAi?</h3>
+  <p>DeskTerminal's built-in AI assistant, available across the site to explain price moves, market context, and specific tools in plain language — genuinely useful as a starting point for understanding what's happening, though never a substitute for your own research or financial advice.</p>
 </section>
 
 
