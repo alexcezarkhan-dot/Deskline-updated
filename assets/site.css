@@ -197,7 +197,7 @@ article li,
 
 /* ---------- Nav ---------- */
 .navlinks{
-  gap: 0.35rem;
+  gap: 1.8rem;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 500;
@@ -208,8 +208,8 @@ article li,
   border-radius: 4px;
 }
 .navlinks a:hover{
-  color: var(--gold);
-  background-color: transparent;
+  color: #1a1206;
+  background-color: var(--gold);
 }
 .navlinks a.active{
   color: var(--gold);
@@ -239,7 +239,6 @@ article li,
 .panel,
 .insight-main,
 .insight-side,
-.scanner-table-wrap,
 .strength-collapsible,
 .chart-panel,
 .events-table,
@@ -266,7 +265,6 @@ article li,
 .news-card,
 .panel,
 .insight-main,
-.scanner-table-wrap,
 .strength-collapsible,
 .chart-panel,
 .events-table{
@@ -335,7 +333,55 @@ article li,
 .section{
   min-width: 0;
 }
-.scanner-table-wrap{ overflow-x: auto; }
+.scanner-table-wrap{
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 8px;
+}
+
+/* Dense Market Scanner — keep the compact terminal sizes from before the type-scale pass */
+.scanner-title{
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+.scanner-sub{
+  font-size: 0.68rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.scanner-table th,
+.scanner-table td{
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.3;
+  text-transform: none;
+}
+.scanner-pair-pill{
+  font-size: 0.72rem;
+}
+.scanner-rowlabel{
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.scanner-section .strength-toggle{ font-size: 0.78rem; }
+.scanner-section .strength-arrow{ font-size: 0.7rem; }
+.scanner-section .strength-head{
+  font-size: 0.58rem;
+  display: grid;
+  grid-template-columns: 44px 130px 1fr 55px 64px;
+}
+.scanner-section .strength-row{
+  grid-template-columns: 44px 130px 1fr 55px 64px;
+}
+.scanner-section .strength-code{ font-size: 0.72rem; }
+.scanner-section .strength-name{ font-size: 0.72rem; display: block; }
+.scanner-section .strength-score,
+.scanner-section .strength-pct{ font-size: 0.68rem; }
 .strength-row{
   min-width: 0;
 }
@@ -378,6 +424,13 @@ td,
   .sessions-widget{ padding: 1rem; }
   .session-name{ font-size: var(--text-sm); }
   .session-local{ font-size: var(--text-xs); }
+  .scanner-section .strength-row,
+  .scanner-section .strength-head{
+    grid-template-columns: 44px 130px 1fr 55px 64px;
+    gap: 0.6rem;
+  }
+  .scanner-section .strength-head span:nth-child(2),
+  .scanner-section .strength-name{ display: revert; }
 }
 
 /* ---------- DeskAi ---------- */
