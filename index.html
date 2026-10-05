@@ -229,6 +229,8 @@
   .scanner-pair-caret{ width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; }
   .scanner-pair-caret.up{ border-bottom:5px solid #4ADE80; }
   .scanner-pair-caret.down{ border-top:5px solid #FB6B5B; }
+  .scanner-pair-caret.up.closed{ border-bottom-color:#9CA3AF; }
+  .scanner-pair-caret.down.closed{ border-top-color:#9CA3AF; }
   .scanner-cell-link{ display:block; color:inherit; text-decoration:none; }
   .scanner-cell-link:hover{ color:var(--gold); }
   .scanner-rowlabel{
@@ -378,6 +380,19 @@
   .home-preview-row:last-child{ border-bottom:none; }
   .home-preview-meta{ font-family:'IBM Plex Mono', monospace; color:var(--dim); flex-shrink:0; white-space:nowrap; }
   .home-preview-text{ color:var(--ink); text-align:right; }
+
+  /* Latest News list: headline, then source + time ago + read link */
+  .home-news-item{ padding:.55rem 0; border-bottom:1px solid var(--line-soft); }
+  .home-news-item:last-child{ border-bottom:none; }
+  .home-news-headline{ display:block; font-size:0.9rem; font-weight:600; line-height:1.35; color:var(--ink); text-decoration:none; }
+  .home-news-headline:hover{ color:var(--gold); text-decoration:underline; }
+  .home-news-meta{
+    display:flex; flex-wrap:wrap; align-items:center; gap:.35rem .6rem;
+    margin-top:.25rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+  }
+  .home-news-meta .sep{ opacity:.5; }
+  .home-news-read{ color:var(--gold); text-decoration:none; }
+  .home-news-read:hover{ text-decoration:underline; }
 
   .home-event-head,
   .home-event-row{
@@ -984,12 +999,21 @@ function fmtScannerPrice(n){
   return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 5 : 2, maximumFractionDigits: n < 10 ? 5 : 2 });
 }
 
+// Forex/gold market is closed from Friday 22:00 UTC until Sunday 22:00 UTC.
+// While closed, the scanner switches to black & white.
+function isMarketClosed(){
+  const d = new Date();
+  const day = d.getUTCDay(), hr = d.getUTCHours();
+  return day === 6 || (day === 5 && hr >= 22) || (day === 0 && hr < 22);
+}
+
 function buildCandlesSVG(candles){
   // Real OHLC candles from scanner-data.js: hollow = bullish, filled =
   // bearish, wicks from each candle's true high/low — standard candle
   // convention, on a faint grid like a terminal chart.
   if(!Array.isArray(candles) || !candles.length) return '';
   const W = 128, H = 46, PAD = 4;
+  const closed = isMarketClosed();
   let max = Math.max(...candles.map(c => c.h));
   let min = Math.min(...candles.map(c => c.l));
   if(max === min){ max += 1; min -= 1; } // flat window — centre the line
@@ -1003,7 +1027,7 @@ function buildCandlesSVG(candles){
   const parts = candles.map((c, i) => {
     const cx = (slot * i + slot / 2).toFixed(2);
     const bull = c.c >= c.o;
-    const color = bull ? '#4ADE80' : '#FB6B5B';
+    const color = closed ? '#B8BDC7' : (bull ? '#4ADE80' : '#FB6B5B');
     const top = y(Math.max(c.o, c.c));
     const height = Math.max(1.2, y(Math.min(c.o, c.c)) - top);
     return `<line x1="${cx}" y1="${y(c.h).toFixed(2)}" x2="${cx}" y2="${y(c.l).toFixed(2)}" stroke="${color}" stroke-width="1"/>` +
@@ -1049,7 +1073,7 @@ async function loadScanner(){
       <thead>
         <tr>
           <th class="scanner-rowlabel"></th>
-          ${pairs.map(p => `<th><a class="scanner-pair-link" href="${SCANNER_LINKS[p.code] || 'market.html'}"><span class="scanner-pair-pill">${escapeHtml(p.label)}</span><span class="scanner-pair-caret ${p.pctChange >= 0 ? 'up' : 'down'}" aria-hidden="true"></span></a></th>`).join('')}
+          ${pairs.map(p => `<th><a class="scanner-pair-link" href="${SCANNER_LINKS[p.code] || 'market.html'}"><span class="scanner-pair-pill">${escapeHtml(p.label)}</span><span class="scanner-pair-caret ${p.pctChange >= 0 ? 'up' : 'down'}${isMarketClosed() ? ' closed' : ''}" aria-hidden="true"></span></a></th>`).join('')}
         </tr>
       </thead>
       <tbody>
@@ -1229,6 +1253,22 @@ async function loadHomeCalendarPreview(){
 loadHomeCalendarPreview();
 
 /* ---------------- Home dashboard: mini Latest News preview ---------------- */
+// "9 min ago" style label from an ISO string, unix seconds or unix ms.
+function newsTimeAgo(value){
+  if(value === undefined || value === null || value === '') return '';
+  let t = typeof value === 'number' || /^\d+$/.test(String(value))
+    ? Number(value) : Date.parse(value);
+  if(!isFinite(t)) return '';
+  if(t < 1e12) t *= 1000; // seconds -> ms
+  const mins = Math.max(0, Math.round((Date.now() - t) / 60000));
+  if(mins < 1) return 'just now';
+  if(mins < 60) return mins + ' min ago';
+  const hrs = Math.floor(mins / 60);
+  if(hrs < 24) return hrs + ' hr' + (hrs === 1 ? '' : 's') + ' ago';
+  const days = Math.floor(hrs / 24);
+  return days + ' day' + (days === 1 ? '' : 's') + ' ago';
+}
+
 async function loadHomeNewsPreview(){
   const el = document.getElementById('homeNewsPreview');
   if(!el) return;
@@ -1236,9 +1276,25 @@ async function loadHomeNewsPreview(){
     const res = await fetch('/.netlify/functions/news-feed');
     const data = await res.json();
     if(!data.items || !data.items.length){ el.textContent = 'News feed isn\'t available right now.'; return; }
-    el.innerHTML = data.items.slice(0, 5).map(item =>
-      `<div class="home-preview-row"><span class="home-preview-meta">${escapeHtml(item.source)}</span><span class="home-preview-text">${escapeHtml(item.title)}</span></div>`
-    ).join('');
+    el.classList.remove('home-card-loading');
+    el.innerHTML = data.items.slice(0, 8).map(item => {
+      const title = escapeHtml(item.title || '');
+      const source = escapeHtml(item.source || '');
+      const rawLink = item.link || item.url || 'news.html';
+      const link = /^https?:\/\//i.test(rawLink) || rawLink === 'news.html' ? rawLink : 'news.html';
+      const ago = newsTimeAgo(item.publishedAt || item.pubDate || item.published || item.date || item.time || item.timestamp);
+      const ext = link === 'news.html' ? '' : ' target="_blank" rel="noopener noreferrer"';
+      return `<div class="home-news-item">
+        <a class="home-news-headline" href="${escapeHtml(link)}"${ext}>${title}</a>
+        <div class="home-news-meta">
+          ${source ? `<span>From ${source}</span>` : ''}
+          ${source && ago ? '<span class="sep">|</span>' : ''}
+          ${ago ? `<span>${ago}</span>` : ''}
+          <span class="sep">|</span>
+          <a class="home-news-read" href="${escapeHtml(link)}"${ext}>Read full story →</a>
+        </div>
+      </div>`;
+    }).join('');
   } catch(err){
     el.textContent = 'Could not load news right now.';
   }
