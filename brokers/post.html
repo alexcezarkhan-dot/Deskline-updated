@@ -12,11 +12,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="pageTitle">Brokers — DeskTerminal</title>
+<title id="pageTitle">Brokers | DeskTerminal</title>
 <meta name="description" content="Brokers articles from DeskTerminal.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
   :root{
@@ -24,11 +21,11 @@
     --line-soft:rgba(255,255,255,0.08); --ink:#EDEFF3; --dim:#7C8598; --gold:#E8B15C;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
+  body{ background:var(--bg); color:var(--ink); font-family:Arial,Helvetica,sans-serif; min-height:100vh; }
+  .mono{ font-family:Arial,Helvetica,sans-serif; }
 
   nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
-  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
+  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:0; }
   .wordmark span{ color:var(--gold); }
   .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
   .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
@@ -45,12 +42,12 @@
   .mobile-subnav::-webkit-scrollbar{ display:none; }
   .mobile-subnav a{
     display:inline-block; padding:.65rem .9rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim);
     text-decoration:none; border-bottom:2px solid transparent;
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
 
-    .navlinks{ display:flex; gap:1.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.04em; }
+    .navlinks{ display:flex; gap:1.8rem; font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0; }
   .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s, background-color .15s;  padding:.3rem .6rem; border-radius:4px;}
   .navlinks a:hover{ color:#1a1206; background-color:var(--gold); }
   .navlinks a.active{ color:var(--gold); }
@@ -64,26 +61,26 @@
 
   article{ max-width: 720px; margin: 0 auto; padding: 3rem 6vw 4rem; }
   .back-link{
-    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    display:inline-block; font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     color:var(--dim); text-decoration:none; margin-bottom:1.5rem;
   }
   .back-link:hover{ color:var(--gold); }
   .post-tag{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:0.06em;
-    text-transform:uppercase; color:var(--gold); margin-bottom:.8rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--gold); margin-bottom:.8rem;
   }
-  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:.8rem; }
-  .post-date{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); margin-bottom:2.2rem; }
+  h1{ font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight:700; letter-spacing:0; line-height:1.2; margin-bottom:.8rem; }
+  .post-date{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); margin-bottom:2.2rem; }
   #postBody h2{ font-size:1.3rem; font-weight:600; margin:2rem 0 .8rem; }
   #postBody p{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:1rem; }
   #postBody ul{ margin: 0 0 1rem 1.2rem; }
   #postBody li{ font-size:1rem; line-height:1.75; color:#D7DAE1; margin-bottom:.5rem; }
   #postBody strong{ color:var(--ink); }
   #postBody a{ color:var(--gold); }
-  .not-found{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); padding:2rem 0; }
+  .not-found{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); padding:2rem 0; }
 
   footer{
-    text-align:center; padding: 1.8rem; font-family:'IBM Plex Mono', monospace;
+    text-align:center; padding: 1.8rem; font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem; color: var(--dim); border-top:1px solid var(--line-soft);
   }
   footer a{ color:var(--gold); text-decoration:none; }
@@ -124,7 +121,7 @@
   .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
   .nav-drawer-links a{
     padding:.85rem 1.3rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.02em;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0;
     color:var(--dim); text-decoration:none;
     border-left:2px solid transparent;
   }
@@ -133,14 +130,14 @@
   .nav-drawer-note{
     margin-top:auto;
     padding:1rem 1.3rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     border-top:1px solid var(--line-soft);
   }
 
   /* ---------------- Auth: login/signup + profile ---------------- */
   .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
   .auth-btn{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:600;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; font-weight:600;
     padding:.32rem .65rem; border-radius:4px; cursor:pointer;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
   }
@@ -157,7 +154,7 @@
     display:flex; align-items:center; justify-content:center; padding:0;
   }
   .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
-  .auth-avatar-btn .initial{ font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:0.875rem; }
+  .auth-avatar-btn .initial{ font-family:Arial,Helvetica,sans-serif; font-weight:700; color:var(--gold); font-size:0.875rem; }
 
   .auth-modal-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
@@ -180,13 +177,13 @@
     width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
     padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
     background:var(--panel-2); color:var(--ink);
-    font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:500;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:500;
     cursor:pointer; margin-bottom:.7rem;
   }
   .auth-provider-btn:hover{ border-color:var(--gold); }
   .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
   .auth-modal-note{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     margin-top:1rem; line-height:1.6; text-align:center;
   }
 
@@ -205,33 +202,33 @@
   .profile-header .initial{
     width:44px; height:44px; border-radius:50%; background:var(--panel);
     display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
+    font-family:Arial,Helvetica,sans-serif; font-weight:700; color:var(--gold); font-size:1.1rem;
   }
   .profile-header-name{ font-weight:600; font-size:0.875rem; }
-  .profile-header-email{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
+  .profile-header-email{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
 
   .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
   .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
   .profile-field-label{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim); flex-shrink:0;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--dim); flex-shrink:0;
   }
   .profile-field-value{ font-size:0.875rem; color:var(--ink); text-align:right; word-break:break-word; }
-  .profile-field-value.mono{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; }
+  .profile-field-value.mono{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; }
   .profile-field-clickable{ cursor:pointer; }
   .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
   .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
   .watchlist-chip{
     display:inline-flex; align-items:center; gap:.35rem;
     background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    padding:.3rem .5rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink);
+    padding:.3rem .5rem; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--ink);
   }
   .watchlist-chip-remove{
     background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:0.875rem; padding:0; line-height:1;
   }
   .watchlist-chip-remove:hover{ color:#FB6B5B; }
   .watchlist-empty{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     padding:.4rem 0; line-height:1.5;
   }
 
@@ -239,7 +236,7 @@
   .profile-signout{
     width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
     background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; font-weight:600; cursor:pointer;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:600; cursor:pointer;
   }
   .profile-signout:hover{ background:rgba(251,107,91,0.15); }
 
@@ -250,6 +247,11 @@
 
 </style>
 <link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/timezone.js"></script>
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -258,10 +260,10 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark-wrap">
+    <a class="wordmark-wrap" href="../index.html" aria-label="DeskTerminal home">
       <span class="wordmark-bar"></span>
-      <div class="wordmark">Desk<span>Terminal</span></div>
-    </div>
+      <span class="wordmark">Desk<span>Terminal</span></span>
+    </a>
   </div>
   <div class="navlinks">
     <a href="../index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
@@ -292,11 +294,12 @@
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <a class="wordmark" href="../index.html" aria-label="DeskTerminal home">Desk<span>Terminal</span></a>
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="../index.html">Market</a>
+    <a href="../index.html">Home</a>
+    <a href="../market.html">Market</a>
     <a href="../instruments.html">Instruments</a>
     <a href="../forex-tools.html">Forex Tools</a>
     <a href="../journal.html">Trading Journal</a>
@@ -361,6 +364,7 @@ setInterval(updateNavClock, 1000);
         container.innerHTML = '<div class="not-found">Post not found.</div>';
         return;
       }
+      document.title = post.title + ' | DeskTerminal';
       document.getElementById('pageTitle').textContent = post.title + ' — DeskTerminal';
       const bodyHtml = (typeof marked !== 'undefined') ? marked.parse(post.body || '') : (post.body || '');
       container.innerHTML = `

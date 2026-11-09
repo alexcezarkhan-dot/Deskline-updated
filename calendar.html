@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Economic Calendar 2026 — Live CPI, NFP, Interest Rate Events | DeskTerminal</title>
+<title>Economic Calendar | DeskTerminal</title>
 <meta name="description" content="Free live economic calendar with real CPI, NFP, interest rate decisions & GDP data from official sources. Filter by impact & country. AI explains every event. Updated in real time.">
 <meta name="keywords" content="economic calendar, forex economic calendar, economic calendar today, economic calendar this week, CPI release date, NFP release date, non farm payrolls calendar, interest rate decision calendar, FOMC calendar, central bank calendar, GDP release calendar, high impact forex news today, market moving events today, forex news calendar, trading economic calendar, economic calendar with AI, economic calendar explained, what time is CPI released, when is NFP released, forex factory calendar alternative, investing.com calendar alternative, forex news today, news time forex, should I trade during news, avoid trading during news, don't trade before news, high impact news today, news candle forex, trading around news events, when not to trade forex, forex news schedule">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -154,9 +154,6 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0E1116; --panel:#151A22; --panel-2:#12161D;
@@ -164,15 +161,15 @@
     --ink:#EDEFF3; --dim:#7C8598; --gold:#E8B15C;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
+  body{ background:var(--bg); color:var(--ink); font-family:Arial,Helvetica,sans-serif; min-height:100vh; }
+  .mono{ font-family:Arial,Helvetica,sans-serif; }
 
   nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
-  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
+  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:0; }
   .wordmark span{ color:var(--gold); }
   .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
   .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
-  .navlinks{ display:flex; gap:1.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.04em; }
+  .navlinks{ display:flex; gap:1.8rem; font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0; }
   .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s, background-color .15s; display:flex; align-items:center; gap:.4rem;  padding:.3rem .6rem; border-radius:4px;}
   .navlinks a:hover{ color:#1a1206; background-color:var(--gold); }
   .navlinks a.active{ color:var(--gold); }
@@ -189,7 +186,7 @@
   .mobile-subnav::-webkit-scrollbar{ display:none; }
   .mobile-subnav a{
     display:inline-block; padding:.65rem .9rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim);
     text-decoration:none; border-bottom:2px solid transparent;
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
@@ -208,7 +205,7 @@
   @keyframes scrollTape{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
   .tape-chip{
     display:inline-flex; align-items:center; gap:.5rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     padding: 0 1.4rem;
     border:none; border-right:1px solid var(--line-soft);
     background:transparent; color:var(--ink);
@@ -240,12 +237,12 @@
     border-bottom: 1px solid var(--line-soft);
   }
   .util-bar h1{
-    font-size:1.15rem; font-weight:700; letter-spacing:-0.01em;
-    font-family:'IBM Plex Mono', monospace;
-    text-transform:uppercase;
+    font-size:1.15rem; font-weight:700; letter-spacing:0;
+    font-family:Arial,Helvetica,sans-serif;
+    text-transform:none;
   }
   .util-bar h1 span{ color:var(--gold); }
-  .util-clock{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
+  .util-clock{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
   .util-clock .dot{
     display:inline-block; width:6px; height:6px; border-radius:50%;
     background:#4ADE80; margin-right:.4rem; animation:pulse 2s ease-in-out infinite;
@@ -262,7 +259,7 @@
 
   .last-updated{
     padding: .6rem 6vw 0;
-    font-size:0.75rem; color:var(--dim); letter-spacing:.02em;
+    font-size:0.75rem; color:var(--dim); letter-spacing:0;
   }
 
   .filter-bar{
@@ -273,7 +270,7 @@
   }
   .impact-toggles{ display:flex; gap:.4rem; }
   .impact-toggle{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
     display:flex; align-items:center; gap:.35rem;
     padding:.35rem .65rem; border-radius:5px;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
@@ -289,12 +286,12 @@
     border-radius:5px;
     padding:.4rem .7rem;
     color:var(--ink);
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     outline:none;
   }
   .filter-bar select:focus, .filter-bar input[type="text"]:focus{ border-color:var(--gold); }
-  .filter-status{ margin-left:auto; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim); }
+  .filter-status{ margin-left:auto; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim); }
 
   /* ---------------- Status bar: bell + live clock (mobile-only) ---------------- */
   .list-status-bar{
@@ -329,7 +326,7 @@
   .quick-nav::-webkit-scrollbar{ display:none; }
   .quick-nav button{
     flex-shrink:0;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
     background:transparent; border:1px solid var(--line-soft); color:var(--dim);
     padding:.4rem .8rem; border-radius:20px; cursor:pointer; white-space:nowrap;
     transition: border-color .15s, color .15s, background .15s;
@@ -338,7 +335,7 @@
   .quick-nav button.active{ border-color:var(--gold); color:var(--gold); background:rgba(232,177,92,0.08); }
   .date-toggle-btn{
     display:flex; align-items:center; gap:.45rem; flex-shrink:0;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
     padding:.45rem .8rem; cursor:pointer;
     transition: border-color .15s, color .15s;
@@ -361,7 +358,7 @@
     max-width: 300px;
   }
   .mini-cal-hint{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     line-height:1.5; padding-top:.7rem; border-top:1px solid var(--line-soft);
   }
 
@@ -373,7 +370,7 @@
   }
   .nav-dropdown-btn, .date-range-btn{
     display:flex; align-items:center; gap:.45rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
     padding:.45rem .8rem; cursor:pointer;
     transition: border-color .15s, color .15s;
@@ -400,7 +397,7 @@
   }
   .nav-dropdown-grid button{
     text-align:left; background:transparent; border:none; color:var(--dim);
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; padding:.35rem 0; cursor:pointer;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; padding:.35rem 0; cursor:pointer;
   }
   .nav-dropdown-grid button:hover{ color:var(--gold); }
   .nav-dropdown-grid button.active{ color:var(--gold); }
@@ -410,7 +407,7 @@
   }
   .nav-dropdown-past button{
     text-align:left; background:transparent; border:none; color:var(--dim);
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; padding:.35rem 0; cursor:pointer; width:fit-content;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; padding:.35rem 0; cursor:pointer; width:fit-content;
   }
   .nav-dropdown-past button:hover{ color:var(--gold); }
   .nav-dropdown-past button.active{ color:var(--gold); }
@@ -444,7 +441,7 @@
   .date-range-close:hover{ color:var(--ink); }
   .date-range-input{
     width:100%; background:var(--panel-2); border:1px solid var(--line-soft); border-radius:6px;
-    padding:.55rem .7rem; color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    padding:.55rem .7rem; color:var(--ink); font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     outline:none; margin-bottom:.9rem;
   }
   .date-range-input:focus{ border-color:var(--gold); }
@@ -452,13 +449,13 @@
   .month-head span{ font-size:0.875rem; font-weight:600; }
   .month-head button{
     background:transparent; border:1px solid var(--line-soft); color:var(--dim);
-    width:20px; height:20px; border-radius:4px; cursor:pointer; font-family:'IBM Plex Mono', monospace;
+    width:20px; height:20px; border-radius:4px; cursor:pointer; font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem; line-height:1;
   }
   .month-head button:hover{ border-color:var(--gold); color:var(--gold); }
   .mini-cal{
     display:grid; grid-template-columns: repeat(7, 1fr); gap:2px;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; margin-bottom:.9rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; margin-bottom:.9rem;
   }
   .mini-cal .dow{ color:var(--dim); text-align:center; padding:.2rem 0; font-size:0.75rem; }
   .mini-cal .day{ text-align:center; padding:.32rem 0; border-radius:4px; cursor:pointer; color:var(--ink); }
@@ -472,13 +469,13 @@
   }
   .date-range-shortcuts button{
     background:transparent; border:none; color:var(--gold);
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; text-decoration:underline;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; text-decoration:underline;
     cursor:pointer; padding:0;
   }
   .date-range-modal-actions{ display:flex; flex-direction:column; gap:.5rem; }
   .date-range-apply, .date-range-cancel{
     width:100%; padding:.65rem; border-radius:6px; cursor:pointer;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.03em;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0;
   }
   .date-range-apply{ background:var(--gold); border:1px solid var(--gold); color:#1A1305; font-weight:700; }
   .date-range-apply:hover{ background:#f0c078; }
@@ -494,8 +491,8 @@
     padding: 1.2rem;
   }
   .ad-banner span{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
-    color:var(--dim); letter-spacing:.08em; text-transform:uppercase; line-height:1.8;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
+    color:var(--dim); letter-spacing:0; text-transform:none; line-height:1.8;
   }
 
   /* ---------------- Event table ---------------- */
@@ -504,12 +501,12 @@
     display:grid;
     grid-template-columns: 62px 66px 68px 24px 1fr 26px 84px 84px 84px 26px 26px;
     gap:.5rem;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:0.75rem; letter-spacing:0; text-transform:none; color:var(--dim);
     padding: .5rem .8rem;
     border-bottom:1px solid var(--line);
   }
-  .date-cell{ font-family:'IBM Plex Mono', monospace; line-height:1.25; }
+  .date-cell{ font-family:Arial,Helvetica,sans-serif; line-height:1.25; }
   .date-cell .dow{ font-size:0.75rem; color:var(--gold); font-weight:700; display:block; }
   .date-cell .dnum{ font-size:0.75rem; color:var(--dim); display:block; }
   .date-cell.repeat{ visibility:hidden; }
@@ -547,8 +544,8 @@
   }
   .specs-row:last-child{ border-bottom:none; }
   .specs-label{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--dim);
   }
   .specs-value{ font-size:0.875rem; color:#D7DAE1; line-height:1.55; }
   @media (max-width: 600px){
@@ -556,8 +553,8 @@
   }
 
   .history-label{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:0.06em;
-    text-transform:uppercase; color:var(--gold); margin: 1rem 0 .6rem; padding-top:.8rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--gold); margin: 1rem 0 .6rem; padding-top:.8rem;
     border-top:1px solid var(--line-soft);
   }
   .history-table{ border:1px solid var(--line-soft); border-radius:6px; overflow:hidden; }
@@ -566,12 +563,12 @@
     padding:.45rem .7rem;
   }
   .history-header-row{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim); background:var(--panel-2);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--dim); background:var(--panel-2);
     border-bottom:1px solid var(--line-soft);
   }
   .history-row{
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim);
     border-bottom:1px solid var(--line-soft);
   }
   .history-row:last-child{ border-bottom:none; }
@@ -579,7 +576,7 @@
   @media (max-width: 600px){
     .history-header-row, .history-row{ grid-template-columns: 1.1fr 1fr 1fr 1fr; font-size:0.75rem; gap:.3rem; }
   }
-  .event-row .ev-time{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
+  .event-row .ev-time{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
   .ev-time.countdown{
     color: #FB6B5B;
     font-weight: 700;
@@ -592,10 +589,10 @@
   @media (prefers-reduced-motion: reduce){
     .ev-time.countdown{ animation: none; }
   }
-  .event-row .ev-currency{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--ink); }
+  .event-row .ev-currency{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--ink); }
   .event-row .ev-impact{ width:10px; height:10px; border-radius:2px; }
   .event-row .ev-name{ color:var(--ink); }
-  .event-row .ev-val{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; text-align:right; color:var(--dim); display:flex; flex-direction:column; align-items:flex-end; gap:.15rem; }
+  .event-row .ev-val{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; text-align:right; color:var(--dim); display:flex; flex-direction:column; align-items:flex-end; gap:.15rem; }
   .event-row .ev-val.actual-up{ color:#4ADE80; }
   .event-row .ev-val.actual-down{ color:#FB6B5B; }
   .ev-countdown{
@@ -603,7 +600,7 @@
     animation: countdownPulse 1s ease-in-out infinite;
   }
   @keyframes countdownPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.55; } }
-  .ev-countdown.releasing{ color:#FB6B5B; text-transform:uppercase; letter-spacing:.05em; font-size:0.75rem; }
+  .ev-countdown.releasing{ color:#FB6B5B; text-transform:none; letter-spacing:0; font-size:0.75rem; }
 
   .event-detail{
     display:none;
@@ -615,14 +612,14 @@
     line-height:1.7;
   }
   .event-detail.open{ display:block; }
-  .event-detail .detail-loading{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
+  .event-detail .detail-loading{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
   .event-detail .detail-source{
-    margin-top:.7rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    margin-top:.7rem; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
   }
   .event-detail .detail-source a{ color:var(--gold); }
 
   .cal-status{
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim);
     padding: 2rem 1rem; text-align:center;
   }
 
@@ -634,7 +631,7 @@
   .seo-content a{ color:var(--gold); }
 
   footer{
-    text-align:center; padding: 1.8rem; font-family:'IBM Plex Mono', monospace;
+    text-align:center; padding: 1.8rem; font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem; color: var(--dim); border-top:1px solid var(--line-soft);
   }
   footer a{ color:var(--gold); text-decoration:none; }
@@ -649,8 +646,8 @@
       display:flex; align-items:center; gap:.4rem;
       padding:.45rem 4vw;
       border-bottom:1px solid var(--line);
-      font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
-      letter-spacing:.06em; text-transform:uppercase; color:var(--dim);
+      font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
+      letter-spacing:0; text-transform:none; color:var(--dim);
     }
     .mobile-list-header .col-time{ width:48px; flex-shrink:0; }
     .mobile-list-header .col-currency{ width:32px; flex-shrink:0; }
@@ -663,7 +660,7 @@
     .table-header-row{ display:none; }
 
     .day-group-header{
-      font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:0.875rem;
+      font-family:Arial,Helvetica,sans-serif; font-weight:700; font-size:0.875rem;
       color:var(--ink); background:var(--panel-2);
       padding:.5rem 4vw;
       border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
@@ -698,8 +695,8 @@
     .event-row .ev-val-secondary{ display:none !important; }
     .ev-val-label{
       display:none;
-      font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
-      letter-spacing:.05em; text-transform:uppercase; color:var(--dim);
+      font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
+      letter-spacing:0; text-transform:none; color:var(--dim);
     }
     .ev-countdown{ font-size:0.75rem; }
 
@@ -761,9 +758,9 @@
   .deskai-toggle:hover .deskai-spark{ animation: deskaiShimmer .6s ease-in-out; }
   .deskai-spark{ width:27px; height:27px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25)); }
   .deskai-toggle-label{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
-    letter-spacing:.03em;
+    letter-spacing:0;
     color: var(--gold);
     background: var(--panel);
     border:1px solid var(--line-soft);
@@ -809,9 +806,9 @@
     flex-shrink:0;
   }
   .deskai-header-title .mark svg{ width:16px; height:16px; }
-  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:-0.01em; }
+  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:0; }
   .deskai-header-sub{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     display:flex; align-items:center; gap:.35rem; margin-top:.1rem;
   }
   .deskai-header-sub .live-dot{
@@ -869,7 +866,7 @@
     background: rgba(251,107,91,0.1);
     border: 1px solid rgba(251,107,91,0.3);
     color: #FB6B5B;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     border-bottom-left-radius:4px;
   }
@@ -898,7 +895,7 @@
     display:flex; flex-wrap:wrap; gap:.45rem; padding: 0 1.1rem 1rem;
   }
   .deskai-quick button{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
     background: rgba(232,177,92,0.06);
     border:1px solid rgba(232,177,92,0.25);
@@ -923,7 +920,7 @@
     border-radius:22px;
     padding:.65rem 1rem;
     color:var(--ink);
-    font-family:'IBM Plex Sans',sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     outline:none;
     transition: border-color .15s;
@@ -985,7 +982,7 @@
   .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
   .nav-drawer-links a{
     padding:.85rem 1.3rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.02em;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0;
     color:var(--dim); text-decoration:none;
     border-left:2px solid transparent;
   }
@@ -994,7 +991,7 @@
   .nav-drawer-note{
     margin-top:auto;
     padding:1rem 1.3rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     border-top:1px solid var(--line-soft);
   }
 
@@ -1003,7 +1000,7 @@
   /* ---------------- Auth: login/signup + profile ---------------- */
   .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
   .auth-btn{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:600;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; font-weight:600;
     padding:.32rem .65rem; border-radius:4px; cursor:pointer;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
   }
@@ -1020,7 +1017,7 @@
     display:flex; align-items:center; justify-content:center; padding:0;
   }
   .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
-  .auth-avatar-btn .initial{ font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:0.875rem; }
+  .auth-avatar-btn .initial{ font-family:Arial,Helvetica,sans-serif; font-weight:700; color:var(--gold); font-size:0.875rem; }
 
   .auth-modal-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
@@ -1043,13 +1040,13 @@
     width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
     padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
     background:var(--panel-2); color:var(--ink);
-    font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:500;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:500;
     cursor:pointer; margin-bottom:.7rem;
   }
   .auth-provider-btn:hover{ border-color:var(--gold); }
   .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
   .auth-modal-note{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     margin-top:1rem; line-height:1.6; text-align:center;
   }
 
@@ -1068,33 +1065,33 @@
   .profile-header .initial{
     width:44px; height:44px; border-radius:50%; background:var(--panel);
     display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
+    font-family:Arial,Helvetica,sans-serif; font-weight:700; color:var(--gold); font-size:1.1rem;
   }
   .profile-header-name{ font-weight:600; font-size:0.875rem; }
-  .profile-header-email{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
+  .profile-header-email{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
 
   .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
   .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
   .profile-field-label{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim); flex-shrink:0;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--dim); flex-shrink:0;
   }
   .profile-field-value{ font-size:0.875rem; color:var(--ink); text-align:right; word-break:break-word; }
-  .profile-field-value.mono{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; }
+  .profile-field-value.mono{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; }
   .profile-field-clickable{ cursor:pointer; }
   .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
   .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
   .watchlist-chip{
     display:inline-flex; align-items:center; gap:.35rem;
     background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    padding:.3rem .5rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink);
+    padding:.3rem .5rem; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--ink);
   }
   .watchlist-chip-remove{
     background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:0.875rem; padding:0; line-height:1;
   }
   .watchlist-chip-remove:hover{ color:#FB6B5B; }
   .watchlist-empty{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     padding:.4rem 0; line-height:1.5;
   }
 
@@ -1102,7 +1099,7 @@
   .profile-signout{
     width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
     background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; font-weight:600; cursor:pointer;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:600; cursor:pointer;
   }
   .profile-signout:hover{ background:rgba(251,107,91,0.15); }
 
@@ -1116,7 +1113,7 @@
   .profile-signout{
     width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
     background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; font-weight:600; cursor:pointer;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:600; cursor:pointer;
   }
   .profile-signout:hover{ background:rgba(251,107,91,0.15); }
 
@@ -1160,7 +1157,7 @@
     background: rgba(74, 222, 128, 0.09);
     border: 1px solid rgba(74, 222, 128, 0.2);
     color: #4ADE80;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
     padding: 0.22rem 0.65rem;
     border-radius: 4px;
@@ -1198,6 +1195,11 @@
 
 </style>
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/timezone.js"></script>
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -1206,10 +1208,10 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark-wrap">
+    <a class="wordmark-wrap" href="index.html" aria-label="DeskTerminal home">
       <span class="wordmark-bar"></span>
-      <div class="wordmark">Desk<span>Terminal</span></div>
-    </div>
+      <span class="wordmark">Desk<span>Terminal</span></span>
+    </a>
   </div>
   <div class="navlinks">
     <a href="index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
@@ -1241,7 +1243,7 @@
 <div class="nav-drawer" id="navDrawer">
 
   <div class="nav-drawer-header">
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <a class="wordmark" href="index.html" aria-label="DeskTerminal home">Desk<span>Terminal</span></a>
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
@@ -1453,7 +1455,8 @@ let dateRangeEnd = null;
 
 function updateClock(){
   const now = new Date();
-  const text = `<span class="dot"></span>live · ${now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'})}`;
+  const abbr = window.DTTime ? DTTime.abbr() : '';
+  const text = `<span class="dot"></span>live · ${now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'})}${abbr ? ' ' + abbr : ''}`;
   document.getElementById('clockLine').innerHTML = text;
   const desktopClock = document.getElementById('clockLineDesktop');
   if(desktopClock) desktopClock.innerHTML = text;
@@ -1607,7 +1610,7 @@ function renderCalendar(){
   let html = '';
   let currentDay = null;
   filtered.forEach((e, idx) => {
-    const day = new Date(e.date).toDateString();
+    const day = DTTime.dateKey(new Date(e.date));
     const isNewDay = day !== currentDay;
     currentDay = day;
     const dateCellHtml = `<span class="date-cell${isNewDay ? '' : ' repeat'}"><span class="dow">${fmtDow(e.date)}</span><span class="dnum">${fmtDnum(e.date)}</span></span>`;
@@ -2284,9 +2287,10 @@ setInterval(loadCalendarData, 3 * 60 * 1000);
 /* ---------------- Mini calendar (inside the Date range modal) ---------------- */
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const today = new Date();
-let viewYear = today.getFullYear();
-let viewMonth = today.getMonth();
-let selectedDate = new Date(today);
+const todayZone = DTTime.parts(today);
+let viewYear = +todayZone.year;
+let viewMonth = +todayZone.month - 1;
+let selectedDate = DTTime.dateInZone(viewYear, viewMonth + 1, +todayZone.day);
 // Staged range from a shortcut button inside the modal (This Week / Next Week /
 // This Month / Next Month) — takes priority over the single selectedDate when
 // Apply is pressed, and is cleared as soon as the person picks a day instead.
@@ -2294,13 +2298,13 @@ let pendingShortcutRange = null;
 
 function renderMiniCal(){
   renderMiniCalInstance('monthLabel', 'miniCal', (day) => {
-    selectedDate = new Date(viewYear, viewMonth, day);
+    selectedDate = DTTime.dateInZone(viewYear, viewMonth + 1, day);
     pendingShortcutRange = null;
     document.getElementById('dateRangeInput').value = fmtInputDate(selectedDate);
     renderMiniCal();
   });
   renderMiniCalInstance('monthLabelDesktop', 'miniCalDesktop', (day) => {
-    selectedDate = new Date(viewYear, viewMonth, day);
+    selectedDate = DTTime.dateInZone(viewYear, viewMonth + 1, day);
     renderMiniCal();
     applyDateFilter(startOfDay(selectedDate), endOfDay(selectedDate));
     document.querySelectorAll('#quickNavDesktop button').forEach(b=>b.classList.remove('active'));
@@ -2312,15 +2316,17 @@ function renderMiniCalInstance(labelId, gridId, onDayClick){
   const grid = document.getElementById(gridId);
   if(!labelEl || !grid) return;
   labelEl.textContent = `${MONTH_NAMES[viewMonth]} ${viewYear}`;
-  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
-  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-  const daysInPrevMonth = new Date(viewYear, viewMonth, 0).getDate();
+  const firstDay = new Date(Date.UTC(viewYear, viewMonth, 1)).getUTCDay();
+  const daysInMonth = new Date(Date.UTC(viewYear, viewMonth + 1, 0)).getUTCDate();
+  const daysInPrevMonth = new Date(Date.UTC(viewYear, viewMonth, 0)).getUTCDate();
 
+  const nowParts = DTTime.parts(new Date());
+  const selParts = DTTime.parts(selectedDate);
   let html = ['S','M','T','W','T','F','S'].map(d => `<div class="dow">${d}</div>`).join('');
   for(let i = firstDay - 1; i >= 0; i--){ html += `<div class="day muted">${daysInPrevMonth - i}</div>`; }
   for(let d = 1; d <= daysInMonth; d++){
-    const isToday = d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear();
-    const isSelected = d === selectedDate.getDate() && viewMonth === selectedDate.getMonth() && viewYear === selectedDate.getFullYear();
+    const isToday = d === +nowParts.day && viewMonth === +nowParts.month - 1 && viewYear === +nowParts.year;
+    const isSelected = d === +selParts.day && viewMonth === +selParts.month - 1 && viewYear === +selParts.year;
     html += `<div class="day ${isToday?'today':''} ${isSelected?'selected':''}" data-day="${d}">${d}</div>`;
   }
   const totalCells = firstDay + daysInMonth;
@@ -2364,23 +2370,17 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* ---------------- Date range helpers ---------------- */
-function startOfDay(d){ const x = new Date(d); x.setHours(0,0,0,0); return x; }
-function endOfDay(d){ const x = new Date(d); x.setHours(23,59,59,999); return x; }
-function startOfWeek(d){
-  const x = new Date(d);
-  const day = x.getDay(); // 0 = Sunday
-  x.setDate(x.getDate() - day);
-  return startOfDay(x);
+/* ---------------- Date range helpers (all in the visitor's display timezone) ---------------- */
+function startOfDay(d){ return DTTime.startOfDay(d); }
+function endOfDay(d){ return DTTime.endOfDay(d); }
+function startOfWeek(d){ return DTTime.startOfWeek(d); }
+function endOfWeek(d){ return DTTime.endOfWeek(d); }
+function startOfMonth(d){ return DTTime.startOfMonth(d); }
+function endOfMonth(d){ return DTTime.endOfMonth(d); }
+function anchorDate(d){
+  const p = DTTime.parts(d);
+  return DTTime.dateInZone(+p.year, +p.month, +p.day);
 }
-function endOfWeek(d){
-  const s = startOfWeek(d);
-  const e = new Date(s);
-  e.setDate(e.getDate() + 6);
-  return endOfDay(e);
-}
-function startOfMonth(d){ return startOfDay(new Date(d.getFullYear(), d.getMonth(), 1)); }
-function endOfMonth(d){ return endOfDay(new Date(d.getFullYear(), d.getMonth() + 1, 0)); }
 function fmtInputDate(d){ return d.toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' }); }
 function fmtRangeShort(d){ return d.toLocaleDateString(undefined, { month:'short', day:'numeric' }); }
 
@@ -2395,8 +2395,8 @@ async function applyDateFilter(start, end){
       return t >= start.getTime() && t <= end.getTime();
     });
     if(!hasEventsInRange){
-      const startStr = start.toISOString().slice(0, 10);
-      const endStr = end.toISOString().slice(0, 10);
+      const startStr = DTTime.dateKey(start);
+      const endStr = DTTime.dateKey(end);
       await loadCalendarData(false, `start=${startStr}&end=${endStr}`);
       return;
     }
@@ -2407,7 +2407,7 @@ async function applyDateFilter(start, end){
 function updateDateRangeLabel(start, end){
   const label = document.getElementById('dateRangeBtnLabel');
   if(!start || !end){ label.textContent = 'All dates'; return; }
-  const sameDay = start.toDateString() === new Date(end.getTime() - 1).toDateString() || start.toDateString() === end.toDateString();
+  const sameDay = DTTime.dateKey(start) === DTTime.dateKey(end);
   label.textContent = sameDay
     ? start.toLocaleDateString(undefined, { weekday:'short', month:'short', day:'numeric' })
     : `${fmtRangeShort(start)} – ${fmtRangeShort(end)}`;
@@ -2416,16 +2416,16 @@ function updateDateRangeLabel(start, end){
 /* ---------------- Navigation dropdown (Today / This Week / This Month, etc.) ---------------- */
 const NAV_GRID_LINKS = [
   ['Today', () => [startOfDay(today), endOfDay(today)]],
-  ['Tomorrow', () => { const d = new Date(today); d.setDate(d.getDate()+1); return [startOfDay(d), endOfDay(d)]; }],
+  ['Tomorrow', () => { const d = DTTime.addDays(today, 1); return [startOfDay(d), endOfDay(d)]; }],
   ['This Week', () => [startOfWeek(today), endOfWeek(today)]],
-  ['Next Week', () => { const d = new Date(today); d.setDate(d.getDate()+7); return [startOfWeek(d), endOfWeek(d)]; }],
+  ['Next Week', () => { const d = DTTime.addDays(today, 7); return [startOfWeek(d), endOfWeek(d)]; }],
   ['This Month', () => [startOfMonth(today), endOfMonth(today)]],
-  ['Next Month', () => { const d = new Date(today.getFullYear(), today.getMonth()+1, 1); return [startOfMonth(d), endOfMonth(d)]; }],
+  ['Next Month', () => { const d = DTTime.startOfMonthOffset(today, 1); return [startOfMonth(d), endOfMonth(d)]; }],
 ];
 const NAV_PAST_LINKS = [
-  ['Yesterday', () => { const d = new Date(today); d.setDate(d.getDate()-1); return [startOfDay(d), endOfDay(d)]; }],
-  ['Last Week', () => { const d = new Date(today); d.setDate(d.getDate()-7); return [startOfWeek(d), endOfWeek(d)]; }],
-  ['Last Month', () => { const d = new Date(today.getFullYear(), today.getMonth()-1, 1); return [startOfMonth(d), endOfMonth(d)]; }],
+  ['Yesterday', () => { const d = DTTime.addDays(today, -1); return [startOfDay(d), endOfDay(d)]; }],
+  ['Last Week', () => { const d = DTTime.addDays(today, -7); return [startOfWeek(d), endOfWeek(d)]; }],
+  ['Last Month', () => { const d = DTTime.startOfMonthOffset(today, -1); return [startOfMonth(d), endOfMonth(d)]; }],
 ];
 
 function renderNavDropdown(){
@@ -2441,9 +2441,10 @@ function renderNavDropdown(){
       btn.classList.add('active');
       const source = btn.dataset.source === 'grid' ? NAV_GRID_LINKS : NAV_PAST_LINKS;
       const [start, end] = source[parseInt(btn.dataset.i)][1]();
-      selectedDate = new Date(start);
-      viewMonth = selectedDate.getMonth();
-      viewYear = selectedDate.getFullYear();
+      selectedDate = anchorDate(start);
+      const sp = DTTime.parts(selectedDate);
+      viewMonth = +sp.month - 1;
+      viewYear = +sp.year;
       applyDateFilter(start, end);
       closeNavDropdown();
     });
@@ -2475,9 +2476,9 @@ const dateRangeInput = document.getElementById('dateRangeInput');
 
 const DATE_RANGE_SHORTCUTS = [
   ['This Week', () => [startOfWeek(today), endOfWeek(today)]],
-  ['Next Week', () => { const d = new Date(today); d.setDate(d.getDate()+7); return [startOfWeek(d), endOfWeek(d)]; }],
+  ['Next Week', () => { const d = DTTime.addDays(today, 7); return [startOfWeek(d), endOfWeek(d)]; }],
   ['This Month', () => [startOfMonth(today), endOfMonth(today)]],
-  ['Next Month', () => { const d = new Date(today.getFullYear(), today.getMonth()+1, 1); return [startOfMonth(d), endOfMonth(d)]; }],
+  ['Next Month', () => { const d = DTTime.startOfMonthOffset(today, 1); return [startOfMonth(d), endOfMonth(d)]; }],
 ];
 function renderDateRangeShortcuts(){
   const el = document.getElementById('dateRangeShortcuts');
@@ -2486,9 +2487,10 @@ function renderDateRangeShortcuts(){
     btn.addEventListener('click', () => {
       const [start, end] = DATE_RANGE_SHORTCUTS[parseInt(btn.dataset.i)][1]();
       pendingShortcutRange = [start, end];
-      selectedDate = new Date(start);
-      viewMonth = selectedDate.getMonth();
-      viewYear = selectedDate.getFullYear();
+      selectedDate = anchorDate(start);
+      const sp = DTTime.parts(selectedDate);
+      viewMonth = +sp.month - 1;
+      viewYear = +sp.year;
       dateRangeInput.value = `${btn.textContent} (${fmtRangeShort(start)} – ${fmtRangeShort(end)})`;
       renderMiniCal();
     });
@@ -2498,9 +2500,10 @@ renderDateRangeShortcuts();
 
 function openDateRangeModal(){
   pendingShortcutRange = null;
-  selectedDate = new Date(dateRangeStart || today);
-  viewMonth = selectedDate.getMonth();
-  viewYear = selectedDate.getFullYear();
+  selectedDate = anchorDate(dateRangeStart || today);
+  const sp = DTTime.parts(selectedDate);
+  viewMonth = +sp.month - 1;
+  viewYear = +sp.year;
   dateRangeInput.value = fmtInputDate(selectedDate);
   renderMiniCal();
   dateRangeOverlay.classList.add('open');
@@ -2517,10 +2520,11 @@ dateRangeOverlay.addEventListener('click', (e) => {
 dateRangeInput.addEventListener('change', () => {
   const parsed = new Date(dateRangeInput.value);
   if(!isNaN(parsed.getTime())){
-    selectedDate = parsed;
+    selectedDate = DTTime.dateInZone(parsed.getFullYear(), parsed.getMonth() + 1, parsed.getDate());
     pendingShortcutRange = null;
-    viewMonth = selectedDate.getMonth();
-    viewYear = selectedDate.getFullYear();
+    const sp = DTTime.parts(selectedDate);
+    viewMonth = +sp.month - 1;
+    viewYear = +sp.year;
     renderMiniCal();
   }
 });
@@ -2544,14 +2548,17 @@ function renderQuickNavDesktop(){
       el.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       const i = parseInt(btn.dataset.i);
-      let d = new Date(today);
+      let d = anchorDate(today);
       let start, end;
       if(i===0){ start = startOfDay(d); end = endOfDay(d); }
-      if(i===1){ d.setDate(d.getDate()+1); start = startOfDay(d); end = endOfDay(d); }
+      if(i===1){ d = DTTime.addDays(d, 1); start = startOfDay(d); end = endOfDay(d); }
       if(i===2){ start = startOfWeek(today); end = endOfWeek(today); }
-      if(i===3){ const nw = new Date(today); nw.setDate(nw.getDate()+7); start = startOfWeek(nw); end = endOfWeek(nw); }
-      if(i===4){ const lw = new Date(today); lw.setDate(lw.getDate()-7); start = startOfWeek(lw); end = endOfWeek(lw); }
-      selectedDate = d; viewMonth = d.getMonth(); viewYear = d.getFullYear();
+      if(i===3){ const nw = DTTime.addDays(today, 7); start = startOfWeek(nw); end = endOfWeek(nw); }
+      if(i===4){ const lw = DTTime.addDays(today, -7); start = startOfWeek(lw); end = endOfWeek(lw); }
+      selectedDate = d;
+      const sp = DTTime.parts(d);
+      viewMonth = +sp.month - 1;
+      viewYear = +sp.year;
       renderMiniCal();
       applyDateFilter(start, end);
     });
@@ -2563,6 +2570,17 @@ renderMiniCal();
 renderNavDropdown();
 // Default view: today only, matching the active "Today" quick-nav / nav item
 applyDateFilter(startOfDay(today), endOfDay(today));
+
+// If the IP timezone lookup resolves after first paint, move the page to that zone
+window.addEventListener('dt:timezonechange', () => {
+  const now = new Date();
+  const p = DTTime.parts(now);
+  viewYear = +p.year;
+  viewMonth = +p.month - 1;
+  selectedDate = DTTime.dateInZone(viewYear, viewMonth + 1, +p.day);
+  renderMiniCal();
+  applyDateFilter(startOfDay(now), endOfDay(now));
+});
 </script>
 
 <div class="deskai-toggle-wrap">

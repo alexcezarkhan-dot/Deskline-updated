@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeskTerminal — Trading Sessions, Today's Events &amp; Latest Market News</title>
+<title>Home | DeskTerminal</title>
 <meta name="description" content="Your trading day at a glance: live forex session times, today's key economic events, and the latest market news — all in one dashboard on DeskTerminal.">
 <meta name="keywords" content="forex trading sessions, forex market hours, today's economic events, forex news today, trading session times, London New York session overlap">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -108,9 +108,6 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0E1116;
@@ -123,8 +120,8 @@
     --gold:#E8B15C;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
+  body{ background:var(--bg); color:var(--ink); font-family:Arial,Helvetica,sans-serif; min-height:100vh; }
+  .mono{ font-family:Arial,Helvetica,sans-serif; }
 
   /* ---------------- Nav ---------------- */
   nav{
@@ -132,11 +129,11 @@
     padding: 1.2rem 6vw;
     border-bottom:1px solid var(--line-soft);
   }
-  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
+  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:0; }
   .wordmark span{ color:var(--gold); }
   .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
   .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
-  .navlinks{ display:flex; gap:1.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.04em; }
+  .navlinks{ display:flex; gap:1.8rem; font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0; }
   .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s, background-color .15s; display:flex; align-items:center; gap:.4rem; padding:.3rem .6rem; border-radius:4px; }
   .navlinks a:hover{ color:#1a1206; background-color:var(--gold); }
   .navlinks a.active{ color:var(--gold); }
@@ -153,7 +150,7 @@
   .mobile-subnav::-webkit-scrollbar{ display:none; }
   .mobile-subnav a{
     display:inline-block; padding:.65rem .9rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim);
     text-decoration:none; border-bottom:2px solid transparent;
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
@@ -171,7 +168,7 @@
   @keyframes scrollTape{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
   .tape-chip{
     display:inline-flex; align-items:center; gap:.5rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     padding: 0 1.4rem;
     border:none; border-right:1px solid var(--line-soft);
     background:transparent; color:var(--ink);
@@ -200,7 +197,7 @@
   /* ---------------- Market Scanner (dense majors table) ---------------- */
   .scanner-section{ padding: 1.4rem 6vw 0; }
   .scanner-title{ font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:.7rem; }
-  .scanner-sub{ font-family:'IBM Plex Mono', monospace; font-size:.68rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
+  .scanner-sub{ font-family:Arial,Helvetica,sans-serif; font-size:.68rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
 
   .scanner-table-wrap{
     background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
@@ -220,7 +217,7 @@
   }
   .scanner-pair-pill{
     padding:.16rem .6rem;
-    font-family:'IBM Plex Mono', monospace; font-size:.72rem; font-weight:700;
+    font-family:Arial,Helvetica,sans-serif; font-size:.72rem; font-weight:700;
     color:var(--ink); background:var(--panel);
     border:1px solid var(--line); border-radius:3px;
     transition:color .15s, background-color .15s, border-color .15s;
@@ -235,11 +232,11 @@
   .scanner-cell-link:hover{ color:var(--gold); }
   .scanner-rowlabel{
     width:118px; text-align:left; font-weight:400;
-    font-family:'IBM Plex Mono', monospace; font-size:.62rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:.62rem;
     color:var(--dim); background:var(--panel-2);
     padding-left:.7rem;
   }
-  .scanner-table td.mono{ font-family:'IBM Plex Mono', monospace; }
+  .scanner-table td.mono{ font-family:Arial,Helvetica,sans-serif; }
   .scanner-table td.up{ color:#4ADE80; }
   .scanner-table td.down{ color:#FB6B5B; }
   .scanner-candle-svg{ display:block; margin:0 auto; width:100%; max-width:138px; height:auto; }
@@ -259,28 +256,28 @@
   .strength-body.open{ display:block; }
   .strength-row{ display:grid; grid-template-columns:44px 130px 1fr 55px 64px; align-items:center; gap:.6rem; padding:.3rem 0; }
   .strength-head{
-    font-family:'IBM Plex Mono', monospace; font-size:.58rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:.58rem; letter-spacing:0;
+    text-transform:none; color:var(--dim);
     padding:.1rem 0 .45rem; border-bottom:1px solid var(--line-soft); margin-bottom:.25rem;
   }
   .strength-head span:nth-child(4), .strength-head span:nth-child(5){ text-align:right; }
-  .strength-code{ font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--ink); }
+  .strength-code{ font-family:Arial,Helvetica,sans-serif; font-size:.72rem; color:var(--ink); }
   .strength-name{ font-size:.72rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .strength-track{ height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden; }
   .strength-fill{ height:100%; border-radius:3px; }
   .strength-fill.up{ background:#4ADE80; }
   .strength-fill.down{ background:#FB6B5B; }
-  .strength-score{ font-family:'IBM Plex Mono', monospace; font-size:.68rem; text-align:right; }
+  .strength-score{ font-family:Arial,Helvetica,sans-serif; font-size:.68rem; text-align:right; }
   .strength-score.up{ color:#4ADE80; }
   .strength-score.down{ color:#FB6B5B; }
-  .strength-pct{ font-family:'IBM Plex Mono', monospace; font-size:.68rem; text-align:right; }
+  .strength-pct{ font-family:Arial,Helvetica,sans-serif; font-size:.68rem; text-align:right; }
   .strength-pct.up{ color:#4ADE80; }
   .strength-pct.down{ color:#FB6B5B; }
 
   footer{
     text-align:center;
     padding: 1.8rem;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
     color: var(--dim);
     border-top:1px solid var(--line-soft);
@@ -289,7 +286,7 @@
 
   .home-dashboard{ padding: 1.4rem 6vw 0; }
   .home-date{
-    font-size:1rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold);
+    font-size:1rem; letter-spacing:0; text-transform:none; color:var(--gold);
     margin-bottom:1rem;
   }
   .sessions-widget{
@@ -304,10 +301,10 @@
     display:flex; justify-content:space-between; align-items:center;
     margin-bottom:.95rem;
   }
-  .sessions-title{ font-size:1.13rem; font-weight:700; color:var(--ink); letter-spacing:-0.01em; }
+  .sessions-title{ font-size:1.13rem; font-weight:700; color:var(--ink); letter-spacing:0; }
   .sessions-live{
     display:inline-flex; align-items:center; gap:.4rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
     color:#4ADE80; background:rgba(74,222,128,0.08);
     border:1px solid rgba(74,222,128,0.22);
     padding:.22rem .55rem; border-radius:999px;
@@ -354,15 +351,15 @@
   }
   .sessions-now-tag{
     position:absolute; top:0; transform:translateX(-50%);
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:700;
-    letter-spacing:.08em; color:#1A1305;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; font-weight:700;
+    letter-spacing:0; color:#1A1305;
     background:#FB6B5B; padding:.12rem .38rem; border-radius:4px;
     box-shadow: 0 4px 10px rgba(251,107,91,0.35);
     z-index:3; pointer-events:none;
   }
   .sessions-hours{
     display:flex; justify-content:space-between;
-    font-size:0.75rem; color:var(--dim); margin-top:.55rem; letter-spacing:.04em;
+    font-size:0.75rem; color:var(--dim); margin-top:.55rem; letter-spacing:0;
   }
   .home-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.4rem; }
   @media (max-width:700px){ .home-grid{ grid-template-columns:1fr; } }
@@ -371,14 +368,14 @@
     display:flex; justify-content:space-between; align-items:center;
     font-size:1.13rem; font-weight:700; color:var(--ink); margin-bottom:.7rem;
   }
-  .home-card-title a{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--gold); text-decoration:none; font-weight:400; }
-  .home-card-loading{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
+  .home-card-title a{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--gold); text-decoration:none; font-weight:400; }
+  .home-card-loading{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
   .home-preview-row{
     display:flex; justify-content:space-between; gap:.6rem;
     padding:.45rem 0; border-bottom:1px solid var(--line-soft); font-size:0.875rem;
   }
   .home-preview-row:last-child{ border-bottom:none; }
-  .home-preview-meta{ font-family:'IBM Plex Mono', monospace; color:var(--dim); flex-shrink:0; white-space:nowrap; }
+  .home-preview-meta{ font-family:Arial,Helvetica,sans-serif; color:var(--dim); flex-shrink:0; white-space:nowrap; }
   .home-preview-text{ color:var(--ink); text-align:right; }
 
   /* Latest News list: headline, then source + time ago + read link */
@@ -388,7 +385,7 @@
   .home-news-headline:hover{ color:var(--gold); text-decoration:underline; }
   .home-news-meta{
     display:flex; flex-wrap:wrap; align-items:center; gap:.35rem .6rem;
-    margin-top:.25rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    margin-top:.25rem; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
   }
   .home-news-meta .sep{ opacity:.5; }
   .home-news-read{ color:var(--gold); text-decoration:none; }
@@ -403,10 +400,10 @@
     font-size:0.875rem;
   }
   .home-event-head{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
-    letter-spacing:.06em;
-    text-transform:uppercase;
+    letter-spacing:0;
+    text-transform:none;
     color:var(--dim);
     padding:.2rem 0 .45rem;
     border-bottom:1px solid var(--line-soft);
@@ -421,11 +418,11 @@
     border-left:3.5px solid transparent;
   }
   .home-event-row:last-child{ border-bottom:none; }
-  .home-ev-time{ font-family:'IBM Plex Mono', monospace; color:var(--dim); white-space:nowrap; }
+  .home-ev-time{ font-family:Arial,Helvetica,sans-serif; color:var(--dim); white-space:nowrap; }
   .home-ev-name{
     color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;
   }
-  .home-ev-val{ font-family:'IBM Plex Mono', monospace; color:var(--dim); }
+  .home-ev-val{ font-family:Arial,Helvetica,sans-serif; color:var(--dim); }
   .home-ev-val.actual-up{ color:#4ADE80; }
   .home-ev-val.actual-down{ color:#FB6B5B; }
   .home-ev-gap{ display:block; }
@@ -482,9 +479,9 @@
   .deskai-toggle:hover .deskai-spark{ animation: deskaiShimmer .6s ease-in-out; }
   .deskai-spark{ width:27px; height:27px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25)); }
   .deskai-toggle-label{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
-    letter-spacing:.03em;
+    letter-spacing:0;
     color: var(--gold);
     background: var(--panel);
     border:1px solid var(--line-soft);
@@ -530,9 +527,9 @@
     flex-shrink:0;
   }
   .deskai-header-title .mark svg{ width:16px; height:16px; }
-  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:-0.01em; }
+  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:0; }
   .deskai-header-sub{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     display:flex; align-items:center; gap:.35rem; margin-top:.1rem;
   }
   .deskai-header-sub .live-dot{
@@ -590,7 +587,7 @@
     background: rgba(251,107,91,0.1);
     border: 1px solid rgba(251,107,91,0.3);
     color: #FB6B5B;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     border-bottom-left-radius:4px;
   }
@@ -619,7 +616,7 @@
     display:flex; flex-wrap:wrap; gap:.45rem; padding: 0 1.1rem 1rem;
   }
   .deskai-quick button{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
     background: rgba(232,177,92,0.06);
     border:1px solid rgba(232,177,92,0.25);
@@ -644,7 +641,7 @@
     border-radius:22px;
     padding:.65rem 1rem;
     color:var(--ink);
-    font-family:'IBM Plex Sans',sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     outline:none;
     transition: border-color .15s;
@@ -705,7 +702,7 @@
   .nav-drawer-links{ display:flex; flex-direction:column; padding:.6rem 0; }
   .nav-drawer-links a{
     padding:.85rem 1.3rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.02em;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0;
     color:var(--dim); text-decoration:none;
     border-left:2px solid transparent;
   }
@@ -714,7 +711,7 @@
   .nav-drawer-note{
     margin-top:auto;
     padding:1rem 1.3rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     border-top:1px solid var(--line-soft);
   }
 
@@ -722,7 +719,7 @@
   /* ---------------- Auth: login/signup + profile ---------------- */
   .auth-slot{ display:flex; align-items:center; gap:.6rem; margin-left:1.4rem; }
   .auth-btn{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:600;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; font-weight:600;
     padding:.32rem .65rem; border-radius:4px; cursor:pointer;
     border:1px solid var(--line-soft); background:transparent; color:var(--dim);
   }
@@ -739,7 +736,7 @@
     display:flex; align-items:center; justify-content:center; padding:0;
   }
   .auth-avatar-btn img{ width:100%; height:100%; object-fit:cover; }
-  .auth-avatar-btn .initial{ font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:0.875rem; }
+  .auth-avatar-btn .initial{ font-family:Arial,Helvetica,sans-serif; font-weight:700; color:var(--gold); font-size:0.875rem; }
 
   .auth-modal-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1100; display:none;
@@ -762,13 +759,13 @@
     width:100%; display:flex; align-items:center; justify-content:center; gap:.6rem;
     padding:.75rem; border-radius:6px; border:1px solid var(--line-soft);
     background:var(--panel-2); color:var(--ink);
-    font-family:'IBM Plex Sans',sans-serif; font-size:0.875rem; font-weight:500;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:500;
     cursor:pointer; margin-bottom:.7rem;
   }
   .auth-provider-btn:hover{ border-color:var(--gold); }
   .auth-provider-btn svg{ width:18px; height:18px; flex-shrink:0; }
   .auth-modal-note{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     margin-top:1rem; line-height:1.6; text-align:center;
   }
 
@@ -787,33 +784,33 @@
   .profile-header .initial{
     width:44px; height:44px; border-radius:50%; background:var(--panel);
     display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--gold); font-size:1.1rem;
+    font-family:Arial,Helvetica,sans-serif; font-weight:700; color:var(--gold); font-size:1.1rem;
   }
   .profile-header-name{ font-weight:600; font-size:0.875rem; }
-  .profile-header-email{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
+  .profile-header-email{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim); margin-top:.15rem; }
 
   .profile-fields{ padding:.9rem 1.1rem; display:flex; flex-direction:column; gap:.6rem; }
   .profile-field{ display:flex; justify-content:space-between; gap:.6rem; }
   .profile-field-label{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--dim); flex-shrink:0;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0;
+    text-transform:none; color:var(--dim); flex-shrink:0;
   }
   .profile-field-value{ font-size:0.875rem; color:var(--ink); text-align:right; word-break:break-word; }
-  .profile-field-value.mono{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; }
+  .profile-field-value.mono{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; }
   .profile-field-clickable{ cursor:pointer; }
   .profile-field-clickable:hover .profile-field-label{ color:var(--gold); }
   .watchlist-chips{ display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0 .3rem; }
   .watchlist-chip{
     display:inline-flex; align-items:center; gap:.35rem;
     background:var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    padding:.3rem .5rem; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink);
+    padding:.3rem .5rem; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--ink);
   }
   .watchlist-chip-remove{
     background:transparent; border:none; color:var(--dim); cursor:pointer; font-size:0.875rem; padding:0; line-height:1;
   }
   .watchlist-chip-remove:hover{ color:#FB6B5B; }
   .watchlist-empty{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     padding:.4rem 0; line-height:1.5;
   }
 
@@ -821,7 +818,7 @@
   .profile-signout{
     width:100%; padding:.6rem; border-radius:6px; border:1px solid rgba(251,107,91,0.35);
     background:rgba(251,107,91,0.08); color:#FB6B5B;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; font-weight:600; cursor:pointer;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; font-weight:600; cursor:pointer;
   }
   .profile-signout:hover{ background:rgba(251,107,91,0.15); }
 
@@ -832,6 +829,11 @@
 
 </style>
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/timezone.js"></script>
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -840,10 +842,10 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark-wrap">
+    <a class="wordmark-wrap" href="index.html" aria-label="DeskTerminal home">
       <span class="wordmark-bar"></span>
-      <div class="wordmark">Desk<span>Terminal</span></div>
-    </div>
+      <span class="wordmark">Desk<span>Terminal</span></span>
+    </a>
   </div>
   <div class="navlinks">
     <a href="index.html" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
@@ -874,7 +876,7 @@
 <div class="nav-drawer-overlay" id="navOverlay"></div>
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
-    <div class="wordmark">Desk<span>Terminal</span></div>
+    <a class="wordmark" href="index.html" aria-label="DeskTerminal home">Desk<span>Terminal</span></a>
     <button class="drawer-close" id="drawerClose">✕</button>
   </div>
   <div class="nav-drawer-links">
@@ -1121,7 +1123,8 @@ document.getElementById('strengthToggle')?.addEventListener('click', () => {
 function updateHomeDate(){
   const el = document.getElementById('homeDate');
   if(!el) return;
-  el.textContent = 'Today — ' + new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+  const city = window.DTTime ? DTTime.city() : '';
+  el.textContent = 'Today — ' + new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' }) + (city ? ' · ' + city : '');
 }
 updateHomeDate();
 
@@ -1189,68 +1192,88 @@ renderSessions();
 setInterval(renderSessions, 60 * 1000); // refresh the "now" line position every minute
 
 /* ---------------- Home dashboard: mini Today's Events preview ---------------- */
+let homeCalData = null;   // cached econ-calendar payload
+let homeCalFetchedAt = 0;
+
+function renderHomeCalendar(){
+  const el = document.getElementById('homeCalendarPreview');
+  if(!el || !homeCalData) return;
+  if(!homeCalData.events){ el.textContent = 'Economic calendar isn\'t available right now.'; return; }
+
+  const now = Date.now();
+  const dayKey = d => window.DTTime ? DTTime.dateKey(d) : d.toDateString();
+  const todayStr = dayKey(new Date());
+  const todayEvents = homeCalData.events
+    .filter(e => e.date && e.event && dayKey(new Date(e.date)) === todayStr)
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  if(!todayEvents.length){
+    el.innerHTML = '<div class="home-card-loading">No events scheduled for today.</div>';
+    return;
+  }
+
+  const passed = todayEvents.filter(e => new Date(e.date).getTime() <= now);
+  const upcoming = todayEvents.filter(e => new Date(e.date).getTime() > now);
+  const rows = [];
+  if(!upcoming.length){
+    // Day's schedule is done — hold the last five events until midnight
+    passed.slice(-5).forEach(e => rows.push({ e, kind: 'passed' }));
+  } else {
+    if(passed.length) rows.push({ e: passed[passed.length - 1], kind: 'passed' });
+    rows.push({ e: upcoming[0], kind: 'next' });
+    upcoming.slice(1, 6).forEach(e => rows.push({ e, kind: 'later' }));
+  }
+
+  function homeActualClass(e){
+    const nameLower = (e.event || '').toLowerCase();
+    const isLowerBetter = nameLower.includes('unemployment') || nameLower.includes('jobless claims') || nameLower.includes('claimant count') || nameLower.includes('unemployed');
+    const actualNum = parseFloat(e.actual);
+    const forecastNum = parseFloat(e.forecast);
+    if(e.actual && e.forecast && !isNaN(actualNum) && !isNaN(forecastNum)){
+      if(actualNum > forecastNum) return isLowerBetter ? 'actual-down' : 'actual-up';
+      if(actualNum < forecastNum) return isLowerBetter ? 'actual-up' : 'actual-down';
+    }
+    return '';
+  }
+
+  el.innerHTML = `
+    <div class="home-event-head">
+      <span>Time</span><span>Event</span><span>Actual</span><span></span><span>Forecast</span>
+    </div>
+    ${rows.map(({ e, kind }) => {
+      const time = new Date(e.date).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+      const rowClass = kind === 'next' ? 'home-event-row up-next' : 'home-event-row';
+      const actClass = homeActualClass(e);
+      return `<div class="${rowClass}">
+        <span class="home-ev-time">${time}</span>
+        <span class="home-ev-name" title="${escapeHtml(e.event)}">${escapeHtml(e.event)}</span>
+        <span class="home-ev-val ${actClass}">${escapeHtml(e.actual) || '—'}</span>
+        <span class="home-ev-gap"></span>
+        <span class="home-ev-val">${escapeHtml(e.forecast) || '—'}</span>
+      </div>`;
+    }).join('')}
+  `;
+}
+
 async function loadHomeCalendarPreview(){
   const el = document.getElementById('homeCalendarPreview');
   if(!el) return;
   try{
-    const res = await fetch('/.netlify/functions/econ-calendar');
-    const data = await res.json();
-    if(!data.events){ el.textContent = 'Economic calendar isn\'t available right now.'; return; }
-
-    const now = Date.now();
-    const todayStr = new Date().toDateString();
-    const todayEvents = data.events
-      .filter(e => e.date && e.event && new Date(e.date).toDateString() === todayStr)
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-    if(!todayEvents.length){
-      el.innerHTML = '<div class="home-card-loading">No events scheduled for today.</div>';
-      return;
+    const stale = Date.now() - homeCalFetchedAt > 5 * 60 * 1000;
+    if(!homeCalData || stale){
+      const res = await fetch('/.netlify/functions/econ-calendar');
+      homeCalData = await res.json();
+      homeCalFetchedAt = Date.now();
     }
-
-    const passed = todayEvents.filter(e => new Date(e.date).getTime() <= now);
-    const upcoming = todayEvents.filter(e => new Date(e.date).getTime() > now);
-    const rows = [];
-    if(passed.length) rows.push({ e: passed[passed.length - 1], kind: 'passed' });
-    if(upcoming.length){
-      rows.push({ e: upcoming[0], kind: 'next' });
-      upcoming.slice(1, 6).forEach(e => rows.push({ e, kind: 'later' }));
-    }
-
-    function homeActualClass(e){
-      const nameLower = (e.event || '').toLowerCase();
-      const isLowerBetter = nameLower.includes('unemployment') || nameLower.includes('jobless claims') || nameLower.includes('claimant count') || nameLower.includes('unemployed');
-      const actualNum = parseFloat(e.actual);
-      const forecastNum = parseFloat(e.forecast);
-      if(e.actual && e.forecast && !isNaN(actualNum) && !isNaN(forecastNum)){
-        if(actualNum > forecastNum) return isLowerBetter ? 'actual-down' : 'actual-up';
-        if(actualNum < forecastNum) return isLowerBetter ? 'actual-up' : 'actual-down';
-      }
-      return '';
-    }
-
-    el.innerHTML = `
-      <div class="home-event-head">
-        <span>Time</span><span>Event</span><span>Actual</span><span></span><span>Forecast</span>
-      </div>
-      ${rows.map(({ e, kind }) => {
-        const time = new Date(e.date).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
-        const rowClass = kind === 'next' ? 'home-event-row up-next' : 'home-event-row';
-        const actClass = homeActualClass(e);
-        return `<div class="${rowClass}">
-          <span class="home-ev-time">${time}</span>
-          <span class="home-ev-name" title="${escapeHtml(e.event)}">${escapeHtml(e.event)}</span>
-          <span class="home-ev-val ${actClass}">${escapeHtml(e.actual) || '—'}</span>
-          <span class="home-ev-gap"></span>
-          <span class="home-ev-val">${escapeHtml(e.forecast) || '—'}</span>
-        </div>`;
-      }).join('')}
-    `;
+    renderHomeCalendar();
   } catch(err){
-    el.textContent = 'Could not load today\'s events right now.';
+    if(homeCalData) renderHomeCalendar();
+    else el.textContent = 'Could not load today\'s events right now.';
   }
 }
 loadHomeCalendarPreview();
+setInterval(loadHomeCalendarPreview, 60 * 1000); // roll rows forward, drop the list at midnight
+window.addEventListener('dt:timezonechange', () => { updateHomeDate(); loadHomeCalendarPreview(); });
 
 /* ---------------- Home dashboard: mini Latest News preview ---------------- */
 // "9 min ago" style label from an ISO string, unix seconds or unix ms.
@@ -1277,7 +1300,7 @@ async function loadHomeNewsPreview(){
     const data = await res.json();
     if(!data.items || !data.items.length){ el.textContent = 'News feed isn\'t available right now.'; return; }
     el.classList.remove('home-card-loading');
-    el.innerHTML = data.items.slice(0, 8).map(item => {
+    el.innerHTML = data.items.slice(0, 5).map(item => {
       const title = escapeHtml(item.title || '');
       const source = escapeHtml(item.source || '');
       const rawLink = item.link || item.url || 'news.html';

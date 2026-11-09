@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forex Profit Calculator — Trade P/L Calculator | DeskTerminal</title>
+<title>Profit Calculator | DeskTerminal</title>
 <meta name="description" content="Free forex profit calculator. Calculate exact profit or loss on any trade, including broker fees, with live prices for 50+ instruments.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://deskterminal.com/forex-tools/profit-calculator/">
@@ -115,9 +115,6 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0E1116; --panel:#151A22; --panel-2:#12161D;
@@ -125,10 +122,10 @@
     --up:#4ADE80; --down:#FB6B5B;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
+  body{ background:var(--bg); color:var(--ink); font-family:Arial,Helvetica,sans-serif; min-height:100vh; }
+  .mono{ font-family:Arial,Helvetica,sans-serif; }
   nav{ display:flex; justify-content:space-between; align-items:center; padding: 1.2rem 6vw; border-bottom:1px solid var(--line-soft); }
-  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:-0.01em; }
+  .wordmark{ font-size:1.25rem; font-weight:700; letter-spacing:0; }
   .wordmark span{ color:var(--gold); }
   .wordmark-wrap{ display:flex; align-items:center; gap:.6rem; }
   .wordmark-bar{ width:4px; height:22px; background:var(--gold); border-radius:2px; flex-shrink:0; }
@@ -145,12 +142,12 @@
   .mobile-subnav::-webkit-scrollbar{ display:none; }
   .mobile-subnav a{
     display:inline-block; padding:.65rem .9rem;
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim);
     text-decoration:none; border-bottom:2px solid transparent;
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
 
-    .navlinks{ display:flex; gap:1.8rem; font-family:'IBM Plex Mono', monospace; font-size:0.875rem; letter-spacing:.04em; }
+    .navlinks{ display:flex; gap:1.8rem; font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; letter-spacing:0; }
   .navlinks a{ color:var(--dim); text-decoration:none; transition:color .15s, background-color .15s;  padding:.3rem .6rem; border-radius:4px;}
   .navlinks a:hover{ color:#1a1206; background-color:var(--gold); }
   .navlinks a.active{ color:var(--gold); }
@@ -171,14 +168,14 @@
     padding:.9rem 1.2rem; z-index:50;
     box-shadow:0 -4px 16px rgba(0,0,0,0.3);
   }
-  .msr-label{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
-  .msr-value{ font-family:'IBM Plex Mono', monospace; font-size:1.15rem; font-weight:700; }
+  .msr-label{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
+  .msr-value{ font-family:Arial,Helvetica,sans-serif; font-size:1.15rem; font-weight:700; }
   .deskai-toggle-wrap{ bottom:78px !important; }
 }
 
 
   .breadcrumb-nav{
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); margin-bottom:1.4rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); margin-bottom:1.4rem;
   }
   .breadcrumb-nav a{ color:var(--dim); text-decoration:none; }
   .breadcrumb-nav a:hover{ color:var(--gold); }
@@ -186,15 +183,15 @@
   .breadcrumb-nav .current{ color:var(--gold); }
 
   .pagehead{ padding: 2rem 6vw 1.2rem; }
-  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:-0.01em; }
-  .pagehead p{ font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); margin-top:.4rem; }
+  .pagehead h1{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight:700; letter-spacing:0; }
+  .pagehead p{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); margin-top:.4rem; }
 
   .tabbar{
     display:flex; gap:.5rem;
     padding: 0 6vw 1.4rem;
   }
   .tabbar button{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     background:transparent;
     border:1px solid var(--line-soft);
@@ -228,8 +225,8 @@
     gap:1rem;
   }
   .field label{
-    display:block; font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--dim); margin-bottom:.4rem;
+    display:block; font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
+    letter-spacing:0; text-transform:none; color:var(--dim); margin-bottom:.4rem;
   }
   .field input, .field select{
     width:100%;
@@ -238,7 +235,7 @@
     border-radius:5px;
     padding:.65rem .75rem;
     color:var(--ink);
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     outline:none;
   }
@@ -254,7 +251,7 @@
 
   .quick-amounts{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:1rem; }
   .quick-amounts button{
-    font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     background:var(--panel-2); border:1px solid var(--line-soft); color:var(--dim);
     padding:.5rem .8rem; border-radius:5px; cursor:pointer; transition: all .15s;
   }
@@ -265,7 +262,7 @@
   .currency-dropdown-btn{
     width:100%; display:flex; align-items:center; justify-content:space-between;
     background: var(--panel-2); border:1px solid var(--line-soft); border-radius:5px;
-    padding:.65rem .75rem; color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    padding:.65rem .75rem; color:var(--ink); font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     cursor:pointer; text-align:left;
   }
   .currency-dropdown-btn:hover{ border-color:var(--gold); }
@@ -278,7 +275,7 @@
   .currency-dropdown-panel.open{ display:block; }
   .currency-dropdown-search{
     width:100%; background: var(--panel-2); border:none; border-bottom:1px solid var(--line-soft);
-    padding:.7rem .8rem; color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:0.875rem;
+    padding:.7rem .8rem; color:var(--ink); font-family:Arial,Helvetica,sans-serif; font-size:0.875rem;
     outline:none;
   }
   .currency-dropdown-list{ max-height:240px; overflow-y:auto; }
@@ -297,7 +294,7 @@
     border-radius:5px;
     padding:.65rem .75rem;
     color:var(--ink);
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     outline:none;
   }
@@ -319,7 +316,7 @@
   .instrument-result-item{
     padding:.6rem .8rem;
     cursor:pointer;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     display:flex; justify-content:space-between; align-items:center;
     border-bottom:1px solid var(--line-soft);
@@ -328,12 +325,12 @@
   .instrument-result-item:hover{ background: var(--panel-2); }
   .instrument-result-item .ir-label{ color:var(--ink); }
   .instrument-result-item .ir-tag{ color:var(--dim); font-size:0.75rem; }
-  .instrument-empty{ padding:.7rem .8rem; font-family:'IBM Plex Mono', monospace; font-size:0.875rem; color:var(--dim); }
+  .instrument-empty{ padding:.7rem .8rem; font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
 
   .toggle-group{ display:flex; gap:.5rem; }
   .toggle-group button{
     flex:1;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     padding:.6rem;
     border-radius:5px;
@@ -346,7 +343,7 @@
   .toggle-group button.active.sell{ border-color:var(--down); color:var(--down); }
 
   .hint{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
     color:var(--dim);
     margin-top:1rem;
@@ -356,7 +353,7 @@
   /* result sidebar */
   .result-stack{ display:flex; flex-direction:column; gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:8px; overflow:hidden; }
   .result-row{ background:var(--panel); padding:1.1rem 1.3rem; }
-  .result-label{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--dim); margin-bottom:.4rem; }
+  .result-label{ font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; letter-spacing:0; text-transform:none; color:var(--dim); margin-bottom:.4rem; }
   .result-value{ font-size:1.6rem; font-weight:700; }
   .result-value.up{ color:var(--up); }
   .result-value.down{ color:var(--down); }
@@ -399,7 +396,7 @@
   .seo-content h3{ font-size:1rem; font-weight:600; margin:1.2rem 0 .4rem; }
   .seo-content p{ font-size:0.875rem; line-height:1.7; color:#D7DAE1; margin-bottom:.8rem; }
   footer{
-    text-align:center; padding:1.8rem; font-family:'IBM Plex Mono', monospace;
+    text-align:center; padding:1.8rem; font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem; color:var(--dim); border-top:1px solid var(--line-soft); line-height:1.8;
   }
   footer a{ color:var(--gold); text-decoration:none; }
@@ -425,9 +422,9 @@
   .deskai-toggle:hover .deskai-spark{ animation: deskaiShimmer .6s ease-in-out; }
   .deskai-spark{ width:27px; height:27px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25)); }
   .deskai-toggle-label{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
-    letter-spacing:.03em;
+    letter-spacing:0;
     color: var(--gold);
     background: var(--panel);
     border:1px solid var(--line-soft);
@@ -473,9 +470,9 @@
     flex-shrink:0;
   }
   .deskai-header-title .mark svg{ width:16px; height:16px; }
-  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:-0.01em; }
+  .deskai-header-title span{ font-weight:700; font-size:0.875rem; letter-spacing:0; }
   .deskai-header-sub{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--dim);
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
     display:flex; align-items:center; gap:.35rem; margin-top:.1rem;
   }
   .deskai-header-sub .live-dot{
@@ -533,7 +530,7 @@
     background: rgba(251,107,91,0.1);
     border: 1px solid rgba(251,107,91,0.3);
     color: #FB6B5B;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     border-bottom-left-radius:4px;
   }
@@ -562,7 +559,7 @@
     display:flex; flex-wrap:wrap; gap:.45rem; padding: 0 1.1rem 1rem;
   }
   .deskai-quick button{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.75rem;
     background: rgba(232,177,92,0.06);
     border:1px solid rgba(232,177,92,0.25);
@@ -587,7 +584,7 @@
     border-radius:22px;
     padding:.65rem 1rem;
     color:var(--ink);
-    font-family:'IBM Plex Sans',sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     font-size:0.875rem;
     outline:none;
     transition: border-color .15s;
@@ -617,6 +614,11 @@
 
 </style>
 <link rel="stylesheet" href="../../assets/site.css">
+<script src="../../assets/timezone.js"></script>
+<link rel="icon" href="../../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -625,10 +627,10 @@
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
-    <div class="wordmark-wrap">
+    <a class="wordmark-wrap" href="../../index.html" aria-label="DeskTerminal home">
       <span class="wordmark-bar"></span>
-      <div class="wordmark">Desk<span>Terminal</span></div>
-    </div>
+      <span class="wordmark">Desk<span>Terminal</span></span>
+    </a>
   </div>
   <div class="navlinks">
     <a href="../../index.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home</a>
