@@ -185,7 +185,7 @@
   // Explain the zone on hover without altering the nav layout
   function labelClock(){
     var el = document.getElementById('navClock');
-    if(el && state.tz) el.title = 'Times shown in ' + (zoneCity() || state.tz);
+    if(el && state.tz) el.title = 'Times shown in your local timezone';
   }
   ready.then(labelClock);
   window.addEventListener('dt:timezonechange', labelClock);

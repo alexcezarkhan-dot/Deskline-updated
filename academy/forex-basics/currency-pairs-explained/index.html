@@ -588,6 +588,11 @@
   </div>
   <div class="nav-right">
     <span class="nav-clock mono" id="navClock"></span>
+
+    <div class="auth-slot" id="authSlot">
+      <button class="auth-btn" id="loginBtn"><span class="auth-btn-label">Sign in</span></button>
+      <button class="auth-btn primary" id="signupBtn"><span class="auth-btn-label">Sign up</span></button>
+    </div>
   </div>
 </nav>
 
@@ -768,6 +773,16 @@ setInterval(updateNavClock, 1000);
 </script>
 
 
+<div class="profile-dropdown" id="profileDropdown">
+  <div class="profile-header" id="profileHeaderContent"></div>
+  <div class="profile-fields" id="profileFields"></div>
+  <div class="profile-actions">
+    <button class="profile-signout" id="signOutBtn">Sign out</button>
+  </div>
+</div>
+
+
+<script src="../../../assets/auth.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
@@ -937,8 +952,8 @@ function showLoggedOutUI(){
   window.currentUser = null;
   window.currentProfile = null;
   authSlot.innerHTML = `
-    <button class="auth-btn" id="loginBtn"><span class="auth-btn-label">Login</span></button>
-    <button class="auth-btn primary" id="signupBtn"><span class="auth-btn-label">Sign Up</span></button>
+    <button class="auth-btn" id="loginBtn"><span class="auth-btn-label">Sign in</span></button>
+    <button class="auth-btn primary" id="signupBtn"><span class="auth-btn-label">Sign up</span></button>
   `;
   document.getElementById('loginBtn').addEventListener('click', openAuthModal);
   document.getElementById('signupBtn').addEventListener('click', openAuthModal);
@@ -970,7 +985,7 @@ signOutBtn?.addEventListener('click', async () => {
 });
 
 async function initAuth(){
-  if(!sb){ return; } // not configured yet — buttons remain visible as Login/Sign Up, inert
+  if(!sb){ return; } // not configured yet — buttons remain visible as Sign in / Sign up, inert
   const { data: { session } } = await sb.auth.getSession();
   if(session?.user){
     await loadProfileUI(session.user);

@@ -155,7 +155,7 @@
   }
   .mobile-subnav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
 
-  @media (max-width:860px){
+  @media (max-width:970px){
     .navlinks{ display:none; }
     .nav-clock{ display:none; }
     .mobile-subnav{ display:flex; }
@@ -196,14 +196,18 @@
   /* ---------------- Home dashboard (date, sessions, mini previews) ---------------- */
   /* ---------------- Market Scanner (dense majors table) ---------------- */
   .scanner-section{ padding: 1.4rem 6vw 0; }
-  .scanner-title{ font-size:1.1rem; font-weight:700; color:var(--ink); margin-bottom:.7rem; }
+  .scanner-head{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; margin-bottom:.7rem;
+  }
+  .scanner-title{ font-size:1.1rem; font-weight:700; color:var(--ink); }
   .scanner-sub{ font-family:Arial,Helvetica,sans-serif; font-size:.68rem; font-weight:400; color:var(--dim); margin-left:.6rem; }
 
   .scanner-table-wrap{
     background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
     overflow-x:auto; margin-bottom:1rem;
   }
-  .scanner-table{ border-collapse:collapse; width:100%; min-width:880px; table-layout:fixed; }
+  .scanner-table{ border-collapse:collapse; width:100%; min-width:800px; table-layout:fixed; }
   .scanner-table th, .scanner-table td{
     border:1px solid var(--line-soft);
     padding:.3rem .4rem;
@@ -242,18 +246,50 @@
   .scanner-candle-svg{ display:block; margin:0 auto; width:100%; max-width:138px; height:auto; }
   .scanner-loading{ padding:1rem; text-align:left; }
 
-  .strength-collapsible{
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
-    overflow:hidden; margin-bottom:1.4rem;
+  .strength-btn{
+    display:inline-flex; align-items:center; gap:.55rem;
+    background: linear-gradient(180deg, #1C2430 0%, #151B23 100%);
+    border:1px solid rgba(232,177,92,0.30);
+    border-radius:8px;
+    padding:.5rem .85rem;
+    color:var(--ink); cursor:pointer;
+    font-family:inherit; text-align:left;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: border-color .15s, background .15s, box-shadow .15s;
   }
-  .strength-toggle{
-    width:100%; display:flex; justify-content:space-between; align-items:center;
-    background:none; border:none; padding:.8rem 1.1rem; cursor:pointer;
-    font-size:.78rem; font-weight:700; color:var(--ink);
+  .strength-btn:hover{
+    border-color:rgba(232,177,92,0.55);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.07);
+  }
+  .strength-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .strength-btn[aria-expanded="true"]{
+    border-color:rgba(232,177,92,0.65);
+    background: linear-gradient(180deg, rgba(232,177,92,0.14) 0%, #151B23 100%);
+  }
+  .strength-btn-dot{
+    width:7px; height:7px; border-radius:50%; flex-shrink:0;
+    background:var(--gold); box-shadow:0 0 9px rgba(232,177,92,0.85);
+  }
+  .strength-btn-label{ font-size:.78rem; font-weight:700; color:var(--ink); white-space:nowrap; }
+  .strength-btn-sub{
+    font-family:Arial,Helvetica,sans-serif; font-size:.68rem; font-weight:400;
+    color:var(--dim); white-space:nowrap;
+    padding-left:.55rem; border-left:1px solid var(--line-soft);
   }
   .strength-arrow{ color:var(--gold); font-size:.7rem; transition:transform .15s; }
-  .strength-body{ display:none; padding:0 1.1rem 1rem; }
+  .strength-btn[aria-expanded="true"] .strength-arrow{ transform:rotate(180deg); }
+  .strength-body{
+    display:none;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:8px;
+    padding:1rem 1.2rem .9rem;
+    margin-bottom:1.4rem;
+  }
   .strength-body.open{ display:block; }
+  @media (max-width: 600px){
+    .scanner-head{ flex-wrap:wrap; gap:.55rem; }
+    .strength-btn{ width:100%; }
+    .strength-btn .strength-arrow{ margin-left:auto; }
+  }
   .strength-row{ display:grid; grid-template-columns:44px 130px 1fr 55px 64px; align-items:center; gap:.6rem; padding:.3rem 0; }
   .strength-head{
     font-family:Arial,Helvetica,sans-serif; font-size:.58rem; letter-spacing:0;
@@ -273,6 +309,7 @@
   .strength-pct{ font-family:Arial,Helvetica,sans-serif; font-size:.68rem; text-align:right; }
   .strength-pct.up{ color:#4ADE80; }
   .strength-pct.down{ color:#FB6B5B; }
+  .strength-empty{ font-family:Arial,Helvetica,sans-serif; font-size:0.8rem; color:var(--dim); }
 
   footer{
     text-align:center;
@@ -299,9 +336,18 @@
   }
   .sessions-head{
     display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:.95rem;
+    margin-bottom:.55rem;
   }
   .sessions-title{ font-size:1.13rem; font-weight:700; color:var(--ink); letter-spacing:0; }
+  .section-rule{
+    position:relative; height:1px; background:var(--line-soft);
+    margin:0 0 .8rem;
+  }
+  .section-rule::before{
+    content:""; position:absolute; left:0; top:-.5px; height:2px; width:46px;
+    background:linear-gradient(90deg, var(--gold), rgba(232,177,92,0));
+    border-radius:2px;
+  }
   .sessions-live{
     display:inline-flex; align-items:center; gap:.4rem;
     font-family:Arial,Helvetica,sans-serif; font-size:0.75rem;
@@ -313,6 +359,27 @@
     width:7px; height:7px; border-radius:50%; background:#4ADE80;
     box-shadow:0 0 8px rgba(74,222,128,0.85);
   }
+  .sessions-live.closed{
+    color:#9AA3B5; background:rgba(255,255,255,0.05);
+    border-color:rgba(255,255,255,0.14);
+  }
+  .sessions-live.closed .sessions-live-dot{
+    background:#8A93A6; box-shadow:none;
+  }
+  .sessions-widget.is-closed{
+    border-color:rgba(255,255,255,0.14);
+  }
+  .sessions-widget.is-closed .session-block.open{
+    background: rgba(255,255,255,0.07);
+    color:#8A93A6;
+    border-color:rgba(255,255,255,0.08);
+    box-shadow:none;
+  }
+  .sessions-widget.is-closed .sessions-now-line{
+    background: linear-gradient(180deg, #A4ACBC, #6E7788);
+    box-shadow: 0 0 8px rgba(138,147,166,0.45);
+  }
+  .sessions-now-tag.closed{ background:#8A93A6; box-shadow:0 4px 10px rgba(0,0,0,0.35); }
   .sessions-bar-wrap{ position:relative; padding-top:1.15rem; }
   .sessions-bar{
     position:relative; height:168px;
@@ -358,15 +425,47 @@
     z-index:3; pointer-events:none;
   }
   .sessions-hours{
-    display:flex; justify-content:space-between;
+    position:relative; height:1rem;
     font-size:0.75rem; color:var(--dim); margin-top:.55rem; letter-spacing:0;
+  }
+  .sessions-hours span{
+    position:absolute; top:0; transform:translateX(-50%);
+    white-space:nowrap;
+  }
+  .sessions-hours span:first-child{ transform:none; }
+  .sessions-hours span:last-child{ transform:translateX(-100%); }
+  .sessions-summary{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:.3rem 1rem;
+    margin-top:.55rem;
+    font-family:Arial,Helvetica,sans-serif; font-size:0.75rem; color:var(--dim);
+  }
+  .sessions-summary #sessionsSummary{ color:var(--ink); }
+  .sessions-tz{
+    font-size:0.6875rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--dim); opacity:.75;
+  }
+  @media (max-width: 600px){
+    .sessions-widget{ padding:1.1rem 1rem 1rem; }
+  }
+  .sn-short{ display:none; }
+  @media (max-width: 480px){
+    .session-local{ display:none; }
+    .session-name{ font-size:.8rem; }
+    .sessions-tz{ display:none; }
+  }
+  @media (max-width: 360px){
+    .session-block{ padding:0 7px; }
+    .session-name{ font-size:.72rem; }
+    .sn-full{ display:none; }
+    .sn-short{ display:inline; }
   }
   .home-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.4rem; }
   @media (max-width:700px){ .home-grid{ grid-template-columns:1fr; } }
   .home-card{ background:var(--panel); border:1px solid var(--line-soft); border-radius:8px; padding:1rem 1.2rem; }
   .home-card-title{
     display:flex; justify-content:space-between; align-items:center;
-    font-size:1.13rem; font-weight:700; color:var(--ink); margin-bottom:.7rem;
+    font-size:1.13rem; font-weight:700; color:var(--ink); margin-bottom:.55rem;
   }
   .home-card-title a{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--gold); text-decoration:none; font-weight:400; }
   .home-card-loading{ font-family:Arial,Helvetica,sans-serif; font-size:0.875rem; color:var(--dim); }
@@ -858,8 +957,8 @@
   <div class="nav-right">
     <span class="nav-clock mono" id="navClock"></span>
     <div class="auth-slot" id="authSlot">
-    <button class="auth-btn" id="loginBtn">Login</button>
-    <button class="auth-btn primary" id="signupBtn">Sign Up</button>
+    <button class="auth-btn" id="loginBtn">Sign in</button>
+    <button class="auth-btn primary" id="signupBtn">Sign up</button>
 </div>
   </div>
 </nav>
@@ -895,7 +994,15 @@
 </div>
 
 <div class="scanner-section">
-  <div class="scanner-title">Market Scanner <span class="scanner-sub" id="scannerSub">Majors · last 6 hr</span></div>
+  <div class="scanner-head">
+    <div class="scanner-title">Market Scanner <span class="scanner-sub" id="scannerSub">Majors · last 6 hr</span></div>
+    <button class="strength-btn" id="strengthToggle" type="button" aria-expanded="false" aria-controls="strengthBody">
+      <span class="strength-btn-dot" aria-hidden="true"></span>
+      <span class="strength-btn-label">Currency Strength</span>
+      <span class="strength-btn-sub" id="strengthTitle">Last 6 hr</span>
+      <span class="strength-arrow" id="strengthArrow" aria-hidden="true">▾</span>
+    </button>
+  </div>
   <div class="scanner-table-wrap">
     <table class="scanner-table" id="scannerTable">
       <tbody>
@@ -904,13 +1011,7 @@
     </table>
   </div>
 
-  <div class="strength-collapsible">
-    <button class="strength-toggle" id="strengthToggle">
-      <span id="strengthTitle">Currency Strength — Last 6 hr</span>
-      <span class="strength-arrow" id="strengthArrow">▾</span>
-    </button>
-    <div class="strength-body" id="strengthBody"></div>
-  </div>
+  <div class="strength-body" id="strengthBody"></div>
 </div>
 
 <div class="home-dashboard">
@@ -918,26 +1019,33 @@
 
   <div class="home-grid">
     <div class="home-card">
-      <div class="home-card-title">Latest News <a href="news.html">More →</a></div>
-      <div id="homeNewsPreview" class="home-card-loading">Loading latest headlines…</div>
+      <div class="home-card-title">Today's Events <a href="calendar.html">More →</a></div>
+      <div class="section-rule" aria-hidden="true"></div>
+      <div id="homeCalendarPreview" class="home-card-loading">Loading today's events…</div>
     </div>
     <div class="home-card">
-      <div class="home-card-title">Today's Events <a href="calendar.html">More →</a></div>
-      <div id="homeCalendarPreview" class="home-card-loading">Loading today's events…</div>
+      <div class="home-card-title">Latest News <a href="news.html">More →</a></div>
+      <div class="section-rule" aria-hidden="true"></div>
+      <div id="homeNewsPreview" class="home-card-loading">Loading latest headlines…</div>
     </div>
   </div>
 
-  <div class="sessions-widget">
+  <div class="sessions-widget" id="sessionsWidget">
     <div class="sessions-head">
       <div class="sessions-title">Sessions</div>
-      <div class="sessions-live"><span class="sessions-live-dot"></span> Live UTC</div>
+      <div class="sessions-live" id="sessionsStatus" role="status" aria-live="polite"><span class="sessions-live-dot"></span><span id="sessionsStatusText">Market open</span></div>
     </div>
+    <div class="section-rule" aria-hidden="true"></div>
     <div class="sessions-bar-wrap">
       <div class="sessions-bar" id="sessionsBar">
         <div class="sessions-now-line" id="sessionsNowLine"></div>
       </div>
     </div>
     <div class="sessions-hours mono" id="sessionsHours"></div>
+    <div class="sessions-summary">
+      <span id="sessionsSummary">—</span>
+      <span class="sessions-tz">UTC · DST-aware</span>
+    </div>
   </div>
 </div>
 
@@ -1001,12 +1109,69 @@ function fmtScannerPrice(n){
   return Number(n).toLocaleString(undefined, { minimumFractionDigits: n < 10 ? 5 : 2, maximumFractionDigits: n < 10 ? 5 : 2 });
 }
 
-// Forex/gold market is closed from Friday 22:00 UTC until Sunday 22:00 UTC.
-// While closed, the scanner switches to black & white.
+// FX week: opens Sunday 17:00 New York, closes Friday 17:00 New York.
+// Those instants are resolved through the NY timezone so the UTC clock time
+// moves correctly when US daylight saving changes.
+const FX_DAY_MS = 86400000;
+const FX_NY = 'America/New_York';
+const FX_FMT_CACHE = {};
+
+function fxParts(date, tz){
+  let fmt = FX_FMT_CACHE[tz];
+  if(!fmt){
+    fmt = FX_FMT_CACHE[tz] = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz, hourCycle: 'h23',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+  }
+  const out = {};
+  fmt.formatToParts(date).forEach(p => { if(p.type !== 'literal') out[p.type] = p.value; });
+  return { year:+out.year, month:+out.month, day:+out.day, hour:+out.hour % 24, minute:+out.minute, second:+out.second };
+}
+
+function fxOffsetMs(date, tz){
+  const p = fxParts(date, tz);
+  return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second) - Math.floor(date.getTime() / 1000) * 1000;
+}
+
+// Local wall-clock time in `tz` -> real instant (DST-safe, 3 passes).
+function fxZonedInstant(y, m, d, h, min, tz){
+  const target = Date.UTC(y, m - 1, d, h, min, 0);
+  let guess = target;
+  for(let i = 0; i < 3; i++){
+    const next = target - fxOffsetMs(new Date(guess), tz);
+    if(next === guess) break;
+    guess = next;
+  }
+  return new Date(guess);
+}
+
+function fxNyAt(dayIndex, hour){
+  const t = new Date(dayIndex * FX_DAY_MS);
+  return fxZonedInstant(t.getUTCFullYear(), t.getUTCMonth() + 1, t.getUTCDate(), hour, 0, FX_NY);
+}
+
+function forexMarketState(now){
+  const p = fxParts(now, FX_NY);
+  const localDayStart = Date.UTC(p.year, p.month - 1, p.day);
+  const dayIndex = Math.round(localDayStart / FX_DAY_MS);
+  const sundayIndex = dayIndex - (((dayIndex + 4) % 7 + 7) % 7); // 0 = Sunday
+  const sundayOpen = fxNyAt(sundayIndex, 17);
+  const fridayClose = fxNyAt(sundayIndex + 5, 17);
+  const nowMs = now.getTime();
+  if(nowMs < sundayOpen.getTime()){
+    return { open: false, nextOpen: sundayOpen, nextClose: fridayClose };
+  }
+  if(nowMs >= fridayClose.getTime()){
+    return { open: false, nextOpen: fxNyAt(sundayIndex + 7, 17), nextClose: fridayClose };
+  }
+  return { open: true, nextOpen: null, nextClose: fridayClose };
+}
+
+// While the FX week is shut, the scanner renders neutral instead of red/green.
 function isMarketClosed(){
-  const d = new Date();
-  const day = d.getUTCDay(), hr = d.getUTCHours();
-  return day === 6 || (day === 5 && hr >= 22) || (day === 0 && hr < 22);
+  return !forexMarketState(new Date()).open;
 }
 
 function buildCandlesSVG(candles){
@@ -1046,6 +1211,7 @@ async function loadScanner(){
     const data = await res.json();
     if(data.error || !data.pairs){
       tableEl.innerHTML = `<tbody><tr><td class="home-card-loading scanner-loading">${escapeHtml(data.error || "Market scanner isn't available right now.")}</td></tr></tbody>`;
+      if(strengthBodyEl && !strengthBodyEl.innerHTML) strengthBodyEl.innerHTML = '<div class="strength-empty">Currency strength isn\'t available right now.</div>';
       return;
     }
 
@@ -1068,7 +1234,7 @@ async function loadScanner(){
     const subEl = document.getElementById('scannerSub');
     if(subEl) subEl.textContent = 'Majors · last ' + wl;
     const titleEl = document.getElementById('strengthTitle');
-    if(titleEl) titleEl.textContent = 'Currency Strength — Last ' + wl;
+    if(titleEl) titleEl.textContent = 'Last ' + wl;
     const row = (label, cells) => `<tr><th class="scanner-rowlabel">${label}</th>${cells}</tr>`;
 
     tableEl.innerHTML = `
@@ -1105,73 +1271,116 @@ async function loadScanner(){
             </div>`;
         }).join('');
     }
+    if(strengthBodyEl && !strengthBodyEl.innerHTML) strengthBodyEl.innerHTML = '<div class="strength-empty">Currency strength isn\'t available right now.</div>';
   } catch(err){
     tableEl.innerHTML = '<tbody><tr><td class="home-card-loading scanner-loading">Could not load market scanner right now.</td></tr></tbody>';
+    if(strengthBodyEl && !strengthBodyEl.innerHTML) strengthBodyEl.innerHTML = '<div class="strength-empty">Currency strength isn\'t available right now.</div>';
   }
 }
 loadScanner();
 setInterval(loadScanner, 5 * 60 * 1000); // 5 min — matches the function's own cache window
 
 let strengthOpen = false;
-document.getElementById('strengthToggle')?.addEventListener('click', () => {
+const strengthToggleEl = document.getElementById('strengthToggle');
+strengthToggleEl?.addEventListener('click', () => {
   strengthOpen = !strengthOpen;
+  strengthToggleEl.setAttribute('aria-expanded', strengthOpen ? 'true' : 'false');
   document.getElementById('strengthBody').classList.toggle('open', strengthOpen);
-  document.getElementById('strengthArrow').textContent = strengthOpen ? '▴' : '▾';
 });
 
 /* ---------------- Home dashboard: date header ---------------- */
 function updateHomeDate(){
   const el = document.getElementById('homeDate');
   if(!el) return;
-  const city = window.DTTime ? DTTime.city() : '';
-  el.textContent = 'Today — ' + new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' }) + (city ? ' · ' + city : '');
+  el.textContent = 'Today — ' + new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
 }
 updateHomeDate();
 
 /* ---------------- Home dashboard: Sessions widget ---------------- */
-// Standard forex session hours in UTC — the widely-used industry reference
-// (approximate; actual hours shift slightly with regional daylight saving).
+// Standard cash-session hours in each centre's own local time. Storing local
+// hours (not fixed UTC hours) keeps the timeline correct when a city changes
+// clocks — e.g. London is 08:00-17:00 local in both GMT and BST.
 const SESSIONS = [
-  { name: 'Sydney',   startUTC: 22, endUTC: 7,  tz: 'Australia/Sydney' },
-  { name: 'Tokyo',    startUTC: 0,  endUTC: 9,  tz: 'Asia/Tokyo' },
-  { name: 'London',   startUTC: 8,  endUTC: 17, tz: 'Europe/London' },
-  { name: 'New York', startUTC: 13, endUTC: 22, tz: 'America/New_York' },
+  { name: 'Sydney',   short: 'SYD', localStart: 7, localEnd: 16, tz: 'Australia/Sydney' },
+  { name: 'Tokyo',    short: 'TOK', localStart: 9, localEnd: 18, tz: 'Asia/Tokyo' },
+  { name: 'London',   short: 'LDN', localStart: 8, localEnd: 17, tz: 'Europe/London' },
+  { name: 'New York', short: 'NY',  localStart: 8, localEnd: 17, tz: 'America/New_York' },
 ];
+
+// All instants where this session is live that overlap the current UTC day.
+function fxSessionState(session, dayStartMs, nowMs){
+  const dayEnd = dayStartMs + FX_DAY_MS;
+  const mid = fxParts(new Date(dayStartMs + FX_DAY_MS / 2), session.tz);
+  const segments = [];
+  let open = false;
+  for(let delta = -1; delta <= 1; delta++){
+    const ld = new Date(Date.UTC(mid.year, mid.month - 1, mid.day + delta));
+    const y = ld.getUTCFullYear(), m = ld.getUTCMonth() + 1, d = ld.getUTCDate();
+    const start = fxZonedInstant(y, m, d, session.localStart, 0, session.tz).getTime();
+    const end = fxZonedInstant(y, m, d + (session.localEnd > session.localStart ? 0 : 1), session.localEnd, 0, session.tz).getTime();
+    if(nowMs >= start && nowMs < end) open = true;
+    const cs = Math.max(start, dayStartMs);
+    const ce = Math.min(end, dayEnd);
+    if(ce > cs) segments.push({ start: cs, end: ce });
+  }
+  return { segments, open };
+}
+
+function fxUTCStamp(d){
+  const wd = d.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' });
+  const hm = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'UTC' });
+  return `${wd} ${hm} UTC`;
+}
+
+function fxDuration(mins){
+  const d = Math.floor(mins / 1440);
+  const h = Math.floor((mins % 1440) / 60);
+  const m = mins % 60;
+  if(d > 0) return `${d}d ${h}h`;
+  if(h > 0) return `${h}h ${String(m).padStart(2, '0')}m`;
+  return `${m}m`;
+}
 
 function renderSessions(){
   const bar = document.getElementById('sessionsBar');
   const hoursEl = document.getElementById('sessionsHours');
+  const summaryEl = document.getElementById('sessionsSummary');
+  const statusEl = document.getElementById('sessionsStatus');
+  const statusTextEl = document.getElementById('sessionsStatusText');
+  const widget = document.getElementById('sessionsWidget');
   if(!bar) return;
 
   const now = new Date();
-  const nowUTCHour = now.getUTCHours() + now.getUTCMinutes()/60;
-  const nowPct = (nowUTCHour / 24) * 100;
+  const nowMs = now.getTime();
+  const dayStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const nowPct = ((nowMs - dayStart) / FX_DAY_MS) * 100;
+  const market = forexMarketState(now);
 
+  let openCount = 0;
   let blocksHtml = '';
   SESSIONS.forEach((s, i) => {
-    const isOpen = s.endUTC > s.startUTC
-      ? (nowUTCHour >= s.startUTC && nowUTCHour < s.endUTC)
-      : (nowUTCHour >= s.startUTC || nowUTCHour < s.endUTC);
+    const state = fxSessionState(s, dayStart, nowMs);
+    const isOpen = market.open && state.open;
+    if(isOpen) openCount++;
 
-    // Real local time for that city, DST-aware via the browser's own timezone data.
     const localTime = now.toLocaleTimeString('en-US', { timeZone: s.tz, hour: 'numeric', minute: '2-digit' });
-    const labelHtml = `<span class="session-name">${isOpen ? '● ' : ''}${s.name}</span><span class="session-local mono">${localTime} local</span>`;
+    const hh = n => String(n).padStart(2, '0') + ':00';
+    const labelHtml = `<span class="session-name"><span class="sn-full">${s.name}</span><span class="sn-short">${s.short}</span></span><span class="session-local mono">${hh(s.localStart)}–${hh(s.localEnd)} local</span>`;
+    const blockTitle = `${s.name} session · ${localTime} in ${s.tz.split('/').pop().replace(/_/g, ' ')}`;
 
-    if(s.endUTC > s.startUTC){
-      // Normal same-day session — one bar, no wraparound.
-      const startPct = (s.startUTC / 24) * 100;
-      const widthPct = ((s.endUTC - s.startUTC) / 24) * 100;
-      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${5 + i*42}px; left:${startPct}%; width:${widthPct}%;">${labelHtml}</div>`;
-    } else {
-      // Overnight session (e.g. Sydney 22:00-07:00 UTC) — genuinely split into
-      // two segments in the same row, so the full session is visible instead
-      // of one part being silently clipped past the container's 100% edge.
-      const eveningStartPct = (s.startUTC / 24) * 100;
-      const eveningWidthPct = ((24 - s.startUTC) / 24) * 100;
-      const morningWidthPct = (s.endUTC / 24) * 100;
-      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${5 + i*42}px; left:${eveningStartPct}%; width:${eveningWidthPct}%;"></div>`;
-      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" style="top:${5 + i*42}px; left:0%; width:${morningWidthPct}%;">${labelHtml}</div>`;
-    }
+    // Label the widest visible piece so a wrap-around session still reads
+    // clearly without duplicating its name in both halves.
+    let widest = null;
+    state.segments.forEach(seg => {
+      if(!widest || (seg.end - seg.start) > (widest.end - widest.start)) widest = seg;
+    });
+
+    state.segments.forEach(seg => {
+      const leftPct = ((seg.start - dayStart) / FX_DAY_MS) * 100;
+      const widthPct = ((seg.end - seg.start) / FX_DAY_MS) * 100;
+      const isWidest = widest && seg.start === widest.start && seg.end === widest.end;
+      blocksHtml += `<div class="session-block ${isOpen ? 'open' : 'closed'}" title="${blockTitle}" style="top:${5 + i * 42}px; left:${leftPct}%; width:${widthPct}%;">${isWidest ? labelHtml : ''}</div>`;
+    });
   });
 
   bar.innerHTML = blocksHtml + `<div class="sessions-now-line" id="sessionsNowLine" style="left:${nowPct}%;"></div>`;
@@ -1185,11 +1394,30 @@ function renderSessions(){
       wrap.appendChild(tag);
     }
     tag.style.left = nowPct + '%';
+    tag.classList.toggle('closed', !market.open);
   }
-  if(hoursEl) hoursEl.innerHTML = '<span>00:00 UTC</span><span>12:00 UTC</span><span>24:00 UTC</span>';
+
+  if(hoursEl){
+    hoursEl.innerHTML = [0, 6, 12, 18, 24]
+      .map(h => `<span style="left:${(h / 24) * 100}%">${String(h).padStart(2, '0')}:00</span>`)
+      .join('');
+  }
+
+  if(statusTextEl) statusTextEl.textContent = market.open ? 'Market open' : 'Market closed';
+  if(statusEl) statusEl.classList.toggle('closed', !market.open);
+  if(widget) widget.classList.toggle('is-closed', !market.open);
+
+  if(summaryEl){
+    if(market.open){
+      summaryEl.textContent = `${openCount} of ${SESSIONS.length} sessions open · FX closes ${fxUTCStamp(market.nextClose)}`;
+    } else {
+      const mins = Math.max(0, Math.ceil((market.nextOpen.getTime() - nowMs) / 60000));
+      summaryEl.textContent = `Reopens ${fxUTCStamp(market.nextOpen)} · in ${fxDuration(mins)}`;
+    }
+  }
 }
 renderSessions();
-setInterval(renderSessions, 60 * 1000); // refresh the "now" line position every minute
+setInterval(renderSessions, 60 * 1000); // keeps the now-line, badge and countdown honest
 
 /* ---------------- Home dashboard: mini Today's Events preview ---------------- */
 let homeCalData = null;   // cached econ-calendar payload
@@ -1509,22 +1737,7 @@ window.getDeskAiContext = async function(){
 </script>
 
 
-<div class="auth-modal-overlay" id="authModalOverlay">
-  <div class="auth-modal">
-    <button class="auth-modal-close" id="authModalClose">✕</button>
-    <h2>Welcome to DeskTerminal</h2>
-    <p>Sign in to save your watchlist, favorites, and personal settings.</p>
-    <button class="auth-provider-btn" id="googleLoginBtn">
-      <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Continue with Google
-    </button>
-    <button class="auth-provider-btn" id="facebookLoginBtn">
-      <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-      Continue with Facebook
-    </button>
-    <div class="auth-modal-note">By continuing you agree this is a demo auth flow — see About for details.</div>
-  </div>
-</div>
+
 
 <div class="profile-dropdown" id="profileDropdown">
   <div class="profile-header" id="profileHeaderContent"></div>
@@ -1535,6 +1748,7 @@ window.getDeskAiContext = async function(){
 </div>
 
 
+<script src="assets/auth.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---------------- Supabase Auth ---------------- */
@@ -1704,8 +1918,8 @@ function showLoggedOutUI(){
   window.currentUser = null;
   window.currentProfile = null;
   authSlot.innerHTML = `
-    <button class="auth-btn" id="loginBtn"><span class="auth-btn-label">Login</span></button>
-    <button class="auth-btn primary" id="signupBtn"><span class="auth-btn-label">Sign Up</span></button>
+    <button class="auth-btn" id="loginBtn"><span class="auth-btn-label">Sign in</span></button>
+    <button class="auth-btn primary" id="signupBtn"><span class="auth-btn-label">Sign up</span></button>
   `;
   document.getElementById('loginBtn').addEventListener('click', openAuthModal);
   document.getElementById('signupBtn').addEventListener('click', openAuthModal);
@@ -1737,7 +1951,7 @@ signOutBtn?.addEventListener('click', async () => {
 });
 
 async function initAuth(){
-  if(!sb){ return; } // not configured yet — buttons remain visible as Login/Sign Up, inert
+  if(!sb){ return; } // not configured yet — buttons remain visible as Sign in / Sign up, inert
   const { data: { session } } = await sb.auth.getSession();
   if(session?.user){
     await loadProfileUI(session.user);

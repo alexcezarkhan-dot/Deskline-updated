@@ -66,22 +66,56 @@
   }
 
   /* ---------------- Live price fetching ---------------- */
+  // The Market terminal's quote feed already covers every instrument here with
+  // a real intraday high/low (Yahoo for FX/indices/futures, gold-api spot
+  // anchored to futures for metals). Fetch it once and reuse, so instrument
+  // pages show the same coherent price/change/range set as the terminal.
+  let marketQuotePromise = null;
+  function timeoutSignal(ms) {
+    try { return AbortSignal.timeout(ms); } catch (e) { return undefined; }
+  }
+  function getMarketQuote() {
+    if (!marketQuotePromise) {
+      marketQuotePromise = fetch('/.netlify/functions/market-quotes', { signal: timeoutSignal(6000) })
+        .then(res => (res.ok ? res.json() : null))
+        .then(data => (data && data.quotes && data.quotes[inst.tvSymbol]) || null)
+        .catch(() => null);
+    }
+    return marketQuotePromise;
+  }
+  function num(v) { return Number.isFinite(v) ? v : null; }
+
   async function fetchPrice() {
+    const quotePromise = getMarketQuote();
+
+    if (inst.priceSource === 'binance') {
+      try {
+        const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${inst.binanceSymbol}`);
+        const data = await res.json();
+        const price = parseFloat(data.lastPrice);
+        const changePct = parseFloat(data.priceChangePercent);
+        const dayHigh = parseFloat(data.highPrice);
+        const dayLow = parseFloat(data.lowPrice);
+        if (Number.isFinite(price)) {
+          return {
+            price,
+            changePct: Number.isFinite(changePct) ? changePct : null,
+            dayHigh: Number.isFinite(dayHigh) ? dayHigh : null,
+            dayLow: Number.isFinite(dayLow) ? dayLow : null,
+          };
+        }
+      } catch (e) { /* fall through to the market quote */ }
+    }
+
     try {
       if (inst.priceSource === 'goldapi') {
         const res = await fetch(`https://api.gold-api.com/price/${inst.goldApiCode}`);
         const data = await res.json();
-        return { price: data.price, changePct: null, dayHigh: null, dayLow: null };
-      }
-      if (inst.priceSource === 'binance') {
-        const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${inst.binanceSymbol}`);
-        const data = await res.json();
-        return {
-          price: parseFloat(data.lastPrice),
-          changePct: parseFloat(data.priceChangePercent),
-          dayHigh: parseFloat(data.highPrice),
-          dayLow: parseFloat(data.lowPrice),
-        };
+        const quote = await quotePromise;
+        if (quote && Number.isFinite(quote.price)) {
+          return { price: quote.price, changePct: num(quote.changePct), dayHigh: num(quote.high), dayLow: num(quote.low) };
+        }
+        return { price: Number.isFinite(data.price) ? data.price : null, changePct: null, dayHigh: null, dayLow: null };
       }
       if (inst.priceSource === 'frankfurter') {
         const [latestRes, prevRes] = await Promise.all([
@@ -94,12 +128,19 @@
         const prevDates = prevSeries.rates ? Object.keys(prevSeries.rates).sort() : [];
         const prevRate = prevDates.length ? prevSeries.rates[prevDates[prevDates.length - 1]][inst.quote] : null;
         const changePct = (price && prevRate) ? ((price - prevRate) / prevRate) * 100 : null;
-        return { price, changePct, dayHigh: null, dayLow: null };
+        const quote = await quotePromise;
+        if (quote && Number.isFinite(quote.price)) {
+          return { price: quote.price, changePct: num(quote.changePct), dayHigh: num(quote.high), dayLow: num(quote.low) };
+        }
+        return { price: price ?? null, changePct, dayHigh: null, dayLow: null };
       }
-      return { price: null, changePct: null, dayHigh: null, dayLow: null };
-    } catch (e) {
-      return { price: null, changePct: null, dayHigh: null, dayLow: null };
+    } catch (e) { /* fall through to the market quote */ }
+
+    const quote = await quotePromise;
+    if (quote && Number.isFinite(quote.price)) {
+      return { price: quote.price, changePct: num(quote.changePct), dayHigh: num(quote.high), dayLow: num(quote.low) };
     }
+    return { price: null, changePct: null, dayHigh: null, dayLow: null };
   }
   function isoDaysAgo(days) {
     const d = new Date();
@@ -111,6 +152,11 @@
     const decimals = n < 10 ? 4 : 2;
     return Number(n).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   }
+  function fmtChangePct(pct) {
+    if (!Number.isFinite(pct)) return '';
+    const r = Math.round(pct * 100) / 100;
+    return (r > 0 ? '+' : '') + r.toFixed(2) + '%';
+  }
 
   /* ---------------- Render hero ---------------- */
   async function renderHero() {
@@ -119,20 +165,20 @@
     const priceData = await fetchPrice();
     window.__priceData = priceData;
 
-    document.getElementById('heroPrice').textContent = priceData.price !== null ? fmtPrice(priceData.price) : 'Loading…';
+    document.getElementById('heroPrice').textContent = priceData.price !== null ? fmtPrice(priceData.price) : '—';
     const changeEl = document.getElementById('heroChange');
     if (priceData.changePct !== null) {
-      const up = priceData.changePct >= 0;
-      changeEl.textContent = (up ? '+' : '') + priceData.changePct.toFixed(2) + '%';
-      changeEl.className = 'hero-change ' + (up ? 'up' : 'down');
+      const pct = Math.round(priceData.changePct * 100) / 100;
+      changeEl.textContent = fmtChangePct(priceData.changePct);
+      changeEl.className = 'hero-change ' + (pct >= 0 ? 'up' : 'down');
     } else {
-      changeEl.textContent = 'N/A';
+      changeEl.textContent = '—';
     }
 
-    document.getElementById('statHigh').textContent = priceData.dayHigh !== null ? fmtPrice(priceData.dayHigh) : 'N/A (free data limit)';
-    document.getElementById('statLow').textContent = priceData.dayLow !== null ? fmtPrice(priceData.dayLow) : 'N/A (free data limit)';
+    document.getElementById('statHigh').textContent = priceData.dayHigh !== null ? fmtPrice(priceData.dayHigh) : '—';
+    document.getElementById('statLow').textContent = priceData.dayLow !== null ? fmtPrice(priceData.dayLow) : '—';
     document.getElementById('statRange').textContent = (priceData.dayHigh !== null && priceData.dayLow !== null)
-      ? fmtPrice(priceData.dayHigh - priceData.dayLow) : 'N/A';
+      ? fmtPrice(priceData.dayHigh - priceData.dayLow) : '—';
     document.getElementById('statSpread').textContent = 'N/A (broker-specific)';
 
     const sessionInfo = computeSessionInfo();
@@ -151,7 +197,7 @@
   function updateSeo(priceData) {
     if (priceData.price === null) return;
     const priceStr = fmtPrice(priceData.price);
-    const changeStr = priceData.changePct !== null ? `${priceData.changePct >= 0 ? '+' : ''}${priceData.changePct.toFixed(2)}%` : '';
+    const changeStr = priceData.changePct !== null ? fmtChangePct(priceData.changePct) : '';
     document.title = `${inst.name} Price Today: ${priceStr} ${changeStr} | Live Chart & Analysis | DeskTerminal`;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', `${inst.fullName} (${inst.name}) live price: ${priceStr} ${changeStr} today. Real-time chart, AI market analysis, news, and economic events for ${inst.name}.`);
@@ -168,14 +214,27 @@
     script.text = JSON.stringify({
       autosize: true, symbol: inst.tvSymbol, interval: '60', timezone: 'Etc/UTC',
       theme: 'dark', style: '1', locale: 'en', toolbar_bg: '#151A22',
-      enable_publishing: false, allow_symbol_change: false, hide_side_toolbar: false,
-      withdateranges: true, calendar: false, support_host: 'https://www.tradingview.com',
+      enable_publishing: false, allow_symbol_change: false, hide_legend: true,
+      hide_side_toolbar: false, withdateranges: true, calendar: false,
+      support_host: 'https://www.tradingview.com',
     });
     const wrap = document.createElement('div');
     wrap.className = 'tradingview-widget-container';
     wrap.style.height = '100%';
     wrap.appendChild(script);
     container.appendChild(wrap);
+
+    // DeskTerminal mark over the widget's attribution logo. The widget's logo
+    // lives inside a cross-origin iframe, so an overlay that takes the pointer
+    // is the only way to keep it from expanding on hover. Anchored to the chart
+    // container so the offset matches regardless of panel padding.
+    if (!container.querySelector('.chart-brand')) {
+      const brand = document.createElement('span');
+      brand.className = 'chart-brand';
+      brand.setAttribute('aria-hidden', 'true');
+      brand.innerHTML = '<span class="chart-brand-pill"><span class="cb-mark">DT</span><span class="cb-name">DeskTerminal</span></span>';
+      container.appendChild(brand);
+    }
   }
 
   /* ---------------- AI insight (summary, sentiment, trend, FAQ) ---------------- */
