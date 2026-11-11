@@ -513,10 +513,13 @@ footer{
   align-items:center;
   gap:.4rem;
   padding:.3rem .6rem;
+  font-weight:700;
+  color:#E6E8EC;
 }
 .nav-icon{ width:15px; height:15px; flex-shrink:0; }
 
-/* Side menu: full list, each item in a square-cornered box */
+/* Side menu: square-cornered bordered rows; the current section's border
+   goes gold. */
 .nav-drawer-links{
   display:flex;
   flex-direction:column;
@@ -533,6 +536,44 @@ footer{
 }
 .nav-drawer-links a.active{
   border-color:var(--gold);
+}
+
+/* Per-page inline drawer CSS loads after this file and wins on equal
+   specificity, so the shared overrides below are body-prefixed. */
+body .navlinks a{
+  font-weight:700;
+  color:#E6E8EC;
+}
+body .navlinks a:hover{
+  color:#1a1206;
+}
+body .navlinks a.active{
+  color:var(--gold);
+}
+body .nav-drawer-links a{
+  font-family:var(--font-sans);
+  font-size:.9375rem;
+  font-weight:700;
+  letter-spacing:0;
+  color:#E6E8EC;
+  padding:.85rem 1rem;
+  border:1px solid var(--line-soft);
+  border-radius:0;
+  transition:background .15s, color .15s, border-color .15s;
+}
+body .nav-drawer-links a:hover{
+  color:#EDEFF3;
+  background:var(--panel-2);
+  border-color:var(--line);
+}
+body .nav-drawer-links a.active{
+  color:var(--gold);
+  background:var(--panel-2);
+  border-color:var(--gold);
+}
+body .nav-drawer-note{
+  font-weight:600;
+  letter-spacing:.06em;
 }
 
 /* ==========================================================================
