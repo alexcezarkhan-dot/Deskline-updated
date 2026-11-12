@@ -10,9 +10,8 @@
 //
 // Frankfurter (free, no key, ECB-sourced) covers the 7 real forex pairs
 // completely unrestricted. Gold isn't a currency ECB publishes rates
-// for, so gold uses FCS instead — but only 1 symbol, not 8, keeping
-// FCS's tight 500/month budget genuinely sustainable alongside Replay's
-// own usage of the same key.
+// for, so it comes from gold-api.com's keyless live spot feed — the same
+// source scanner-data.js and DeskAi already use. FCS stays as a backup.
 
 const PAIRS = [
   { code: "EUR", base: "EUR", quote: "USD" },
@@ -28,6 +27,20 @@ async function fetchFrankfurterPrice(base, quote) {
   const res = await fetch(`https://api.frankfurter.dev/v1/latest?base=${base}&symbols=${quote}`);
   const data = await res.json();
   return data.rates ? data.rates[quote] : null;
+}
+
+async function fetchGoldSpot() {
+  try {
+    const res = await fetch("https://api.gold-api.com/price/XAU", {
+      headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const price = parseFloat(data?.price);
+    return Number.isFinite(price) && price > 0 ? price : null;
+  } catch (err) {
+    return null;
+  }
 }
 
 async function fetchGoldPrice(apiKey) {
@@ -53,7 +66,7 @@ exports.handler = async function () {
 
   try {
     const results = await Promise.allSettled(PAIRS.map((p) => fetchFrankfurterPrice(p.base, p.quote)));
-    const goldPrice = await fetchGoldPrice(fcsKey);
+    const goldPrice = (await fetchGoldSpot()) ?? (await fetchGoldPrice(fcsKey));
 
     const rows = [];
     results.forEach((r, idx) => {

@@ -1,10 +1,8 @@
 name: Collect Scanner Snapshots
 
-# Frankfurter (7 forex pairs) is genuinely free and unrestricted. Gold
-# uses FCS's tight shared 500/month budget though — every 3 hours is 8
-# runs/day, roughly 240 gold requests/month, leaving real headroom for
-# Replay's own usage of the same key. (An earlier draft of this comment
-# had the math backwards — checked and corrected before shipping.)
+# Frankfurter (7 forex pairs) and gold-api.com (gold spot) are both free
+# and keyless, so a run costs nothing. FCS remains only a backup source
+# for gold if the keyless feed is ever unreachable.
 
 on:
   schedule:
