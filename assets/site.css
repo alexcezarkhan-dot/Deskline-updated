@@ -201,7 +201,7 @@ article li,
   gap: 1.8rem;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing:0;
   line-height: var(--leading-ui);
 }
@@ -257,8 +257,9 @@ a.wordmark:focus-visible{
   letter-spacing: 0;
   line-height: var(--leading-ui);
 }
-/* Top menu reads bold on every breakpoint */
-.mobile-subnav a{ font-weight: 700; }
+/* Top menu: regular weight, bold only on the current page */
+.mobile-subnav a{ font-weight: 400; }
+body .mobile-subnav a.active{ font-weight: 700; }
 .nav-clock,
 .util-clock{
   font-size: var(--text-xs);
@@ -513,7 +514,7 @@ footer{
   align-items:center;
   gap:.4rem;
   padding:.3rem .6rem;
-  font-weight:700;
+  font-weight:400;
   color:#E6E8EC;
 }
 .nav-icon{ width:15px; height:15px; flex-shrink:0; }
@@ -541,13 +542,14 @@ footer{
 /* Per-page inline drawer CSS loads after this file and wins on equal
    specificity, so the shared overrides below are body-prefixed. */
 body .navlinks a{
-  font-weight:700;
+  font-weight:400;
   color:#E6E8EC;
 }
 body .navlinks a:hover{
   color:#1a1206;
 }
 body .navlinks a.active{
+  font-weight:700;
   color:var(--gold);
 }
 body .nav-drawer-links a{
